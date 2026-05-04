@@ -589,8 +589,9 @@ const STEPS = [
 const TAG_CLS = { must: "tag-must", watch: "tag-watch", do: "tag-do", soon: "tag-soon" };
 const LINK_ICON = "↗";
 
-let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null") || new Array(15).fill(false);
-if (done.length < 15) { while (done.length < 15) done.push(false); }
+const TOTAL = 15;
+let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null");
+if (!done || done.length !== TOTAL) { done = new Array(TOTAL).fill(false); localStorage.setItem("podium-onboarding-done", JSON.stringify(done)); }
 let openIdx = -1;
 
 function save() {
@@ -599,10 +600,10 @@ function save() {
 
 function updateProgress() {
   const n = done.filter(Boolean).length;
-  const pct = Math.round(n / 15 * 100);
-  document.getElementById("prog-label").textContent = n + " de 15 etapas concluídas";
+  const pct = Math.round(n / TOTAL * 100);
+  document.getElementById("prog-label").textContent = n + " de " + TOTAL + " etapas concluídas";
   document.getElementById("prog-fill").style.width = pct + "%";
-  document.getElementById("prog-count").innerHTML = n + ' <span>/ 15</span>';
+  document.getElementById("prog-count").innerHTML = n + ' <span>/ ' + TOTAL + '</span>';
 }
 
 function renderSteps() {
