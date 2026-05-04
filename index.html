@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trilha de Onboarding SDR — Podium Educação</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0f6e56;
+    --green-light: #1D9E75;
+    --green-pale: #e1f5ee;
+    --green-mid: #9FE1CB;
+    --amber: #BA7517;
+    --amber-pale: #FAEEDA;
+    --blue: #185FA5;
+    --blue-pale: #E6F1FB;
+    --red-pale: #FCEBEB;
+    --red: #791F1F;
+    --gray-50: #f8f7f4;
+    --gray-100: #f0ede8;
+    --gray-200: #e0dcd4;
+    --gray-400: #9e9a93;
+    --gray-600: #5f5c56;
+    --gray-800: #2c2a26;
+    --text: #1a1916;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--gray-50);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--green);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .topbar-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: white;
+    letter-spacing: 0.01em;
+  }
+  .topbar-logo span {
+    color: var(--green-mid);
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--green);
+    padding: 3rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 48px;
+    background: var(--gray-50);
+    border-radius: 48px 48px 0 0;
+  }
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 12px;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  /* PROGRESS */
+  .progress-section {
+    max-width: 680px;
+    margin: 2rem auto 0;
+    padding: 0 2rem;
+  }
+  .progress-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .progress-text { flex: 1; }
+  .progress-label {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 6px;
+  }
+  .progress-track {
+    height: 6px;
+    background: var(--gray-100);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--green-light);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+  .progress-count {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--green);
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .progress-count span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--gray-400);
+    font-weight: 400;
+  }
+
+  /* STEPS */
+  .steps-section {
+    max-width: 680px;
+    margin: 1.5rem auto 4rem;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .step.is-done {
+    border-color: var(--green-light);
+  }
+  .step.is-open {
+    box-shadow: 0 4px 20px rgba(15, 110, 86, 0.08);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .step-header:hover { background: var(--gray-50); }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    flex-shrink: 0;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    transition: all 0.25s;
+  }
+  .step.is-done .step-num {
+    background: var(--green-light);
+    color: white;
+  }
+
+  .step-info { flex: 1; min-width: 0; }
+  .step-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.2s;
+    line-height: 1.4;
+  }
+  .step.is-done .step-name {
+    color: var(--gray-400);
+    text-decoration: line-through;
+  }
+  .step-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 4px;
+  }
+  .tag-must { background: var(--red-pale); color: var(--red); }
+  .tag-watch { background: var(--blue-pale); color: var(--blue); }
+  .tag-do { background: var(--green-pale); color: var(--green); }
+  .tag-soon { background: var(--amber-pale); color: var(--amber); }
+
+  .step-chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-400);
+    transition: transform 0.25s;
+  }
+  .step.is-open .step-chevron { transform: rotate(180deg); }
+
+  .step-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .step-body-inner {
+    padding: 0 16px 16px 62px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  .step-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .step-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .step-link:hover { color: var(--green-light); }
+  .step-link-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--green-pale);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+
+  .sub-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+  .sub-step { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .sub-step-hdr { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .sub-step-order { font-size: 10px; font-weight: 500; background: var(--green-pale); color: var(--green); border-radius: 20px; padding: 2px 8px; }
+  .sub-step-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .sub-step-why { font-size: 12px; color: var(--gray-600); line-height: 1.6; margin-bottom: 4px; }
+  .sub-step-result { font-size: 12px; color: var(--green); font-weight: 500; }
+  .sub-step-result::before { content: "→ "; }
+
+  .step-pending-note {
+    font-size: 12px;
+    color: var(--amber);
+    background: var(--amber-pale);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    line-height: 1.5;
+  }
+
+  .mark-btn {
+    align-self: flex-start;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--gray-200);
+    background: transparent;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .mark-btn:hover {
+    border-color: var(--green-light);
+    color: var(--green);
+    background: var(--green-pale);
+  }
+  .mark-btn.is-done-btn {
+    border-color: var(--green-light);
+    color: var(--green);
+    background: var(--green-pale);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0 2px;
+  }
+  .section-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+  .section-divider-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 2rem 1.25rem 3.5rem; }
+    .progress-section, .steps-section { padding: 0 1rem; }
+    .step-body-inner { padding-left: 16px; }
+    .progress-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">Podium <span>Educação</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Pré-Vendas · SDR</p>
+    <h1 class="hero-title">Trilha de Onboarding</h1>
+    <p class="hero-sub">11 passos em sequência para você entender o produto, dominar a operação e fazer sua primeira ligação com confiança.</p>
+  </div>
+</div>
+
+<div class="progress-section">
+  <div class="progress-card">
+    <div class="progress-text">
+      <p class="progress-label" id="prog-label">0 de 10 etapas concluídas</p>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="progress-count" id="prog-count">0 <span>/ 11</span></div>
+  </div>
+</div>
+
+<div class="steps-section" id="steps-container"></div>
+
+<footer>Podium Educação · Uso interno · Pré-Vendas</footer>
+
+<script>
+const STEPS = [
+  {
+    name: "Criar e-mail corporativo",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Criar conta Google Workspace com nome@podiumeducacao.com.br. Esse e-mail é a identidade do SDR em todas as ferramentas — nenhum acesso é liberado antes disso.",
+    links: []
+  },
+  {
+    name: "Assistir os vídeos do ecossistema Cash Barber",
+    tag: "watch", tagTxt: "assistir",
+    desc: "3 vídeos no YouTube para entender o produto antes de qualquer ferramenta. Assista com bloco de notas aberto — anote as dores do barbeiro que o produto resolve e os principais diferenciais.",
+    links: [
+      { url: "https://www.youtube.com/watch?v=ty7TkzVutRY&t=466s", txt: "Vídeo 1 — Visão geral do produto" },
+      { url: "https://www.youtube.com/watch?v=V9mbvvWOzYs&t=10s", txt: "Vídeo 2 — Demonstração do sistema" },
+      { url: "https://www.youtube.com/watch?v=OD98tPi1Kbo&t=1s", txt: "Vídeo 3 — Diferencial competitivo" }
+    ]
+  },
+  {
+    name: "Entender o ecossistema — A Nova Barbearia Academy",
+    tag: "watch", tagTxt: "assistir",
+    desc: "A plataforma tem 4 produtos: B10X, Gestão Lucrativa, Formação Express e Masterclass. Siga a ordem estratégica abaixo — ela foi desenhada para você entender o cliente antes de entender o produto.",
+    links: [
+      { url: "https://anovabarbearia.cademi.com.br/area/vitrine/home", txt: "Acessar A Nova Barbearia Academy" },
+      { url: "https://daianesilvasvc-afk.github.io/playbook-5-passos/", txt: "Playbook 5 Passos — material do cliente" }
+    ],
+    subSteps: [
+      {
+        order: "1º",
+        title: "Masterclass do Rafa",
+        why: "É exatamente o que o cliente já viu antes de falar com você. Você entende o nível de consciência dele, o que ele acha que já sabe e onde estão as lacunas.",
+        result: "Munição para quebrar objeção e alinhar expectativa."
+      },
+      {
+        order: "2º",
+        title: "Formação Express + Apronte de Vendas",
+        why: "Módulos: Pare de Perder Dinheiro · Aumente seu Faturamento · Workshop Barbearia Alta Performance. Esse é o produto de entrada — se o cliente não estiver pronto pro principal, é isso que você vende.",
+        result: "Você explica valor com clareza, conecta com a dor e vende transformação — não um pack."
+      },
+      {
+        order: "3º",
+        title: "Sistema Cash Barber",
+        why: "Aqui está o conteúdo completo para o cliente. Cria contraste com a Masterclass e posiciona o produto como solução real.",
+        result: "Você mostra profundidade e fecha com argumento concreto."
+      },
+      {
+        order: "4º",
+        title: "B10X",
+        why: "Entenda os conteúdos que o produto possui para usar de argumento na qualificação e na condução para o agendamento.",
+        result: "Mais argumentos de valor para leads mais avançados."
+      }
+    ]
+  },
+  {
+    name: "Ler a Central de Depoimentos",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Ler ao mínimo 5 depoimentos. Para cada um, anotar: qual dor aparece? Qual resultado foi entregue? Esses padrões viram argumentos reais na abordagem — não decorar, internalizar.",
+    links: [
+      { url: "https://www.notion.so/2853bbf5b1e180d88485eec426ca8de6", txt: "Abrir Central de Depoimentos" }
+    ]
+  },
+  {
+    name: "Treinamento Pipedrive e ChatWoot",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Vídeos gravados pela Daiane mostrando as duas plataformas e como usá-las no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA, como registrar atividades e o que fazer (e não fazer) no ChatWoot.",
+    links: [
+      { url: "https://www.loom.com/share/11d8a753f31f41bfb4fa95c39401f34e", txt: "Treinamento ChatWoot" },
+      { url: "https://www.loom.com/share/ca2f9e8a7fcf4f28a721dc84513c6ea3", txt: "Treinamento Pipedrive" }
+    ]
+  },
+  {
+    name: "Ler o Playbook Operacional SDR completo",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Documento base da operação. Foco em: meta de 60 atividades/dia, SLA de 10 minutos, lógica de turnos (Time A e B), o que conta como atividade, regra do ChatWoot (só confere, não envia) e fluxo padrão de cada atividade.",
+    links: [
+      { url: "https://daianesilvasvc-afk.github.io/playbook-sdr-podium/Playbook_SDR_v6.pdf", txt: "Abrir Playbook SDR v6 (PDF)" }
+    ]
+  },
+  {
+    name: "BANT e SPIN — metodologias de qualificação",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Antes de ler o script, é preciso entender o porquê de cada pergunta. BANT define os critérios de qualificação. SPIN organiza as perguntas para que o próprio lead chegue à conclusão de que precisa do produto.",
+    links: [],
+    subSteps: [
+      {
+        order: "BANT",
+        title: "Budget · Authority · Need · Timeline",
+        why: "Budget: o lead tem faturamento compatível com o investimento? (mínimo R$10K/mês — CNPJ obrigatório). Authority: fala com quem decide? Need: tem dor real ou é curiosidade? Timeline: tem urgência ou está só pesquisando?",
+        result: "Cada pergunta de qualificação no script tem um critério BANT por trás. Entender isso evita desperdiçar agenda do closer com lead sem perfil."
+      },
+      {
+        order: "SPIN",
+        title: "Situação · Problema · Implicação · Necessidade",
+        why: "Situação: contexto atual do barbeiro. Problema: o que está travando o crescimento? Implicação: o que acontece se nada mudar? Necessidade: o que ele precisa para resolver?",
+        result: "O SPIN não é um roteiro rígido — é uma lógica. Quando aplicado junto com o script, o barbeiro sente que está sendo ouvido, não qualificado."
+      }
+    ]
+  },
+  {
+    name: "Estudar o script de atendimento",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Ler do início ao fim. Entender a lógica de cada etapa: abertura, qualificação BANT (com CNPJ como critério obrigatório), condução para agendamento. Não memorizar — internalizar a lógica para que soe natural.",
+    links: [
+      { url: "https://daianesilvasvc-afk.github.io/script-sdr-podium/", txt: "Abrir script de atendimento" }
+    ]
+  },
+  {
+    name: "Roleplay interno",
+    tag: "do", tagTxt: "praticar",
+    desc: "SDR lê o script enquanto colega ou líder faz o papel do barbeiro. Objetivo: sentir o fluxo, não travar na qualificação de CNPJ e faturamento. Fazer ao mínimo 2 rodadas — uma como SDR, uma como barbeiro para ouvir de fora.",
+    links: []
+  },
+  {
+    name: "Ouvir ligações reais — biblioteca de chamadas",
+    tag: "watch", tagTxt: "ouvir",
+    desc: "Ouvir no mínimo 5 ligações. Para cada uma anotar: o que funcionou, onde o SDR travou, como contornou a objeção. Não é para copiar estilo — é para calibrar o ouvido antes da primeira ligação real.",
+    links: [
+      { url: "https://podiumeducacao.notion.site/?v=2693bbf5b1e181fe9752000c981a0c08", txt: "Abrir biblioteca de ligações" }
+    ]
+  },
+  {
+    name: "Assistir reuniões de closer",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Entender o que acontece depois do agendamento. Anotar: quais objeções aparecem na reunião que já poderiam ter sido tratadas na qualificação? Uma boa entrega do SDR define o sucesso do closer.",
+    links: [
+      { url: "https://drive.google.com/file/d/1Cz5dBmTxcA9HbOirTWqWyBm45U4PgfYH/view?usp=sharing", txt: "Reunião closer — gravação 1" },
+      { url: "https://drive.google.com/file/d/1HD9rIgM3kIL9E1o7WyBm45U4PgfYH/view?usp=sharing", txt: "Reunião closer — gravação 2" },
+      { url: "https://drive.google.com/file/d/10Mr9dt2kpjn6B6V8FBI6DbweJIEqb2O2/view?usp=sharing", txt: "Reunião closer — gravação 3" }
+    ]
+  }
+];
+
+const TAG_CLS = { must: "tag-must", watch: "tag-watch", do: "tag-do", soon: "tag-soon" };
+const LINK_ICON = "↗";
+
+let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null") || new Array(11).fill(false);
+if (done.length < 11) { while (done.length < 11) done.push(false); }
+let openIdx = -1;
+
+function save() {
+  try { localStorage.setItem("podium-onboarding-done", JSON.stringify(done)); } catch(e) {}
+}
+
+function updateProgress() {
+  const n = done.filter(Boolean).length;
+  const pct = Math.round(n / 11 * 100);
+  document.getElementById("prog-label").textContent = n + " de 11 etapas concluídas";
+  document.getElementById("prog-fill").style.width = pct + "%";
+  document.getElementById("prog-count").innerHTML = n + ' <span>/ 11</span>';
+}
+
+function renderSteps() {
+  const container = document.getElementById("steps-container");
+  container.innerHTML = "";
+
+  const groups = [
+    { label: "Produto e ecossistema", indices: [0, 1, 2, 3] },
+    { label: "Ferramentas e operação", indices: [4, 5, 6, 7, 8] },
+    { label: "Imersão em campo", indices: [9, 10] }
+  ];
+
+  groups.forEach(group => {
+    const div = document.createElement("div");
+    div.className = "section-divider";
+    div.innerHTML = '<div class="section-divider-line"></div><span class="section-divider-label">' + group.label + '</span><div class="section-divider-line"></div>';
+    container.appendChild(div);
+
+    group.indices.forEach(i => {
+      const s = STEPS[i];
+      const card = document.createElement("div");
+      card.className = "step" + (done[i] ? " is-done" : "") + (openIdx === i ? " is-open" : "");
+
+      const hdr = document.createElement("div");
+      hdr.className = "step-header";
+      hdr.setAttribute("role", "button");
+      hdr.setAttribute("aria-expanded", openIdx === i ? "true" : "false");
+
+      const numEl = document.createElement("div");
+      numEl.className = "step-num";
+      numEl.textContent = done[i] ? "✓" : (i + 1);
+
+      const info = document.createElement("div");
+      info.className = "step-info";
+
+      const name = document.createElement("div");
+      name.className = "step-name";
+      name.textContent = s.name;
+
+      const tag = document.createElement("span");
+      tag.className = "step-tag " + TAG_CLS[s.tag];
+      tag.textContent = s.tagTxt;
+
+      info.appendChild(name);
+      info.appendChild(tag);
+
+      const chevron = document.createElement("div");
+      chevron.className = "step-chevron";
+      chevron.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+      hdr.appendChild(numEl);
+      hdr.appendChild(info);
+      hdr.appendChild(chevron);
+
+      const body = document.createElement("div");
+      body.className = "step-body";
+
+      const inner = document.createElement("div");
+      inner.className = "step-body-inner";
+
+      const desc = document.createElement("p");
+      desc.className = "step-desc";
+      desc.textContent = s.desc;
+      inner.appendChild(desc);
+
+      if (s.subSteps) {
+        const subDiv = document.createElement("div");
+        subDiv.className = "sub-steps";
+        s.subSteps.forEach(sub => {
+          const subCard = document.createElement("div");
+          subCard.className = "sub-step";
+          subCard.innerHTML = '<div class="sub-step-hdr"><span class="sub-step-order">' + sub.order + '</span><span class="sub-step-title">' + sub.title + '</span></div><p class="sub-step-why">' + sub.why + '</p><p class="sub-step-result">' + sub.result + '</p>';
+          subDiv.appendChild(subCard);
+        });
+        inner.appendChild(subDiv);
+      }
+
+      if (s.links && s.links.length > 0) {
+        const linksDiv = document.createElement("div");
+        linksDiv.className = "step-links";
+        s.links.forEach(l => {
+          const a = document.createElement("a");
+          a.className = "step-link";
+          a.href = l.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.innerHTML = '<span class="step-link-icon">' + LINK_ICON + '</span>' + l.txt;
+          linksDiv.appendChild(a);
+        });
+        inner.appendChild(linksDiv);
+      }
+
+      if (s.pending) {
+        const note = document.createElement("div");
+        note.className = "step-pending-note";
+        note.textContent = "Os vídeos serão adicionados assim que gravados. Aguarde a notificação da liderança.";
+        inner.appendChild(note);
+      } else {
+        const btn = document.createElement("button");
+        btn.className = "mark-btn" + (done[i] ? " is-done-btn" : "");
+        btn.textContent = done[i] ? "✓ Concluído — desfazer" : "Marcar como concluído";
+        btn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          done[i] = !done[i];
+          save();
+          updateProgress();
+          renderSteps();
+        });
+        inner.appendChild(btn);
+      }
+
+      body.appendChild(inner);
+
+      if (openIdx === i) {
+        body.style.maxHeight = "600px";
+      }
+
+      hdr.addEventListener("click", function() {
+        openIdx = openIdx === i ? -1 : i;
+        renderSteps();
+      });
+
+      card.appendChild(hdr);
+      card.appendChild(body);
+      container.appendChild(card);
+    });
+  });
+
+  updateProgress();
+}
+
+renderSteps();
+</script>
+</body>
+</html>
