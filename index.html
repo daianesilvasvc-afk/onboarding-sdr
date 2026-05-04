@@ -373,7 +373,7 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Pré-Vendas · SDR</p>
     <h1 class="hero-title">Trilha de Onboarding</h1>
-    <p class="hero-sub">11 passos em sequência para você entender o produto, dominar a operação e fazer sua primeira ligação com confiança.</p>
+    <p class="hero-sub">15 passos em sequência para você entender o produto, dominar a operação e fazer sua primeira ligação com confiança.</p>
   </div>
 </div>
 
@@ -385,7 +385,7 @@
         <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
       </div>
     </div>
-    <div class="progress-count" id="prog-count">0 <span>/ 11</span></div>
+    <div class="progress-count" id="prog-count">0 <span>/ 15</span></div>
   </div>
 </div>
 
@@ -398,7 +398,7 @@ const STEPS = [
   {
     name: "Criar e-mail corporativo",
     tag: "must", tagTxt: "obrigatório",
-    desc: "Criar conta Google Workspace com nome@podiumeducacao.com.br. Esse e-mail é a identidade do SDR em todas as ferramentas — nenhum acesso é liberado antes disso.",
+    desc: "Criar uma conta Gmail com o formato nome.podiumeducacao@gmail.com. Esse e-mail é a identidade do SDR em todas as ferramentas — nenhum acesso é liberado antes disso.",
     links: []
   },
   {
@@ -414,7 +414,7 @@ const STEPS = [
   {
     name: "Entender o ecossistema — A Nova Barbearia Academy",
     tag: "watch", tagTxt: "assistir",
-    desc: "A plataforma tem 4 produtos: B10X, Gestão Lucrativa, Formação Express e Masterclass. Siga a ordem estratégica abaixo — ela foi desenhada para você entender o cliente antes de entender o produto.",
+    desc: "A plataforma tem 4 produtos: B10X, Gestão Lucrativa, Formação Express e Masterclass. Siga a ordem estratégica abaixo. Login: daiane.podiumeducacao@gmail.com · Senha: Senha@123 (solicite à liderança caso não funcione).",
     links: [
       { url: "https://anovabarbearia.cademi.com.br/area/vitrine/home", txt: "Acessar A Nova Barbearia Academy" },
       { url: "https://daianesilvasvc-afk.github.io/playbook-5-passos/", txt: "Playbook 5 Passos — material do cliente" }
@@ -455,12 +455,35 @@ const STEPS = [
     ]
   },
   {
+    name: "Verificar acessos — checklist antes de operar",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Antes de qualquer treinamento de ferramenta, confirme que todos os acessos foram criados. Se algum estiver faltando, avise a Daiane para liberar.",
+    links: [],
+    subSteps: [
+      { order: "1", title: "API4COM", why: "Plataforma de telefonia para ligações. Sem acesso, não há como ligar.", result: "Confirme login e faça uma ligação teste." },
+      { order: "2", title: "Pipedrive", why: "CRM onde ficam todos os leads e atividades. É a ferramenta central da operação.", result: "Confirme login e veja se o filtro de turno aparece." },
+      { order: "3", title: "ChatWoot", why: "Plataforma de WhatsApp onde a LIA opera e onde você confere as conversas.", result: "Confirme login e acesse a caixa de entrada." },
+      { order: "4", title: "3C Plus", why: "Discador integrado ao Pipedrive para volume de ligações.", result: "Confirme login e integração com o Pipedrive." }
+    ]
+  },
+  {
     name: "Treinamento Pipedrive e ChatWoot",
     tag: "watch", tagTxt: "assistir",
     desc: "Vídeos gravados pela Daiane mostrando as duas plataformas e como usá-las no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA, como registrar atividades e o que fazer (e não fazer) no ChatWoot.",
     links: [
       { url: "https://www.loom.com/share/11d8a753f31f41bfb4fa95c39401f34e", txt: "Treinamento ChatWoot" },
       { url: "https://www.loom.com/share/ca2f9e8a7fcf4f28a721dc84513c6ea3", txt: "Treinamento Pipedrive" }
+    ]
+  },
+  {
+    name: "Explorar o ChatWoot — 10 conversas da LIA",
+    tag: "do", tagTxt: "praticar",
+    desc: "Abra o ChatWoot e leia ao mínimo 10 conversas conduzidas pela LIA. Para cada uma, observe: como a LIA abre a conversa, como qualifica, onde o lead engaja e onde trava. Identificar padrões ajuda a entender o lead antes mesmo de ligar.",
+    links: [],
+    subSteps: [
+      { order: "Observe", title: "Abertura e tom da LIA", why: "A LIA é o primeiro contato do lead — o SDR é o segundo. Entender o que o lead já leu prepara a abordagem.", result: "Anote 2 frases que o lead usa com frequência." },
+      { order: "Observe", title: "Onde o lead para de responder", why: "O ponto de silêncio é onde a objeção mora. O SDR que conhece esse padrão já sabe onde vai precisar de mais energia na ligação.", result: "Anote o padrão mais comum de objeção." },
+      { order: "Observe", title: "Perfil de lead que avança", why: "Quais conversas chegam até o agendamento? O que esses leads têm em comum?", result: "Anote 1 característica do lead que converte." }
     ]
   },
   {
@@ -472,29 +495,47 @@ const STEPS = [
     ]
   },
   {
-    name: "BANT e SPIN — metodologias de qualificação",
+    name: "Treinamento BANT — framework de qualificação",
     tag: "must", tagTxt: "obrigatório",
-    desc: "Antes de ler o script, é preciso entender o porquê de cada pergunta. BANT define os critérios de qualificação. SPIN organiza as perguntas para que o próprio lead chegue à conclusão de que precisa do produto.",
+    desc: "BANT é o filtro que decide se um lead vai ou não para o closer. Cada letra é uma informação que o especialista precisa ter antes da reunião. Sem BANT completo, o closer entra às cegas.",
     links: [],
     subSteps: [
       {
-        order: "BANT",
-        title: "Budget · Authority · Need · Timeline",
-        why: "Budget: o lead tem faturamento compatível com o investimento? (mínimo R$10K/mês — CNPJ obrigatório). Authority: fala com quem decide? Need: tem dor real ou é curiosidade? Timeline: tem urgência ou está só pesquisando?",
-        result: "Cada pergunta de qualificação no script tem um critério BANT por trás. Entender isso evita desperdiçar agenda do closer com lead sem perfil."
+        order: "N · 1º",
+        title: "Need — comece sempre aqui",
+        why: "Descubra a dor antes de qualquer coisa. Script: \"Me conta o que te trouxe até aqui — o que você tá buscando com a gente?\" Sonde mais: \"Você já trabalha com assinatura hoje? Como você faz essa cobrança?\" Evite assumir a dor antes de ouvir.",
+        result: "Registre no Pipedrive a dor específica com as palavras do próprio dono. Nunca só 'desorganizado'."
       },
       {
-        order: "SPIN",
-        title: "Situação · Problema · Implicação · Necessidade",
-        why: "Situação: contexto atual do barbeiro. Problema: o que está travando o crescimento? Implicação: o que acontece se nada mudar? Necessidade: o que ele precisa para resolver?",
-        result: "O SPIN não é um roteiro rígido — é uma lógica. Quando aplicado junto com o script, o barbeiro sente que está sendo ouvido, não qualificado."
+        order: "A · 2º",
+        title: "Authority + CNPJ — confirmação obrigatória",
+        why: "Script authority: \"Você toca a barbearia sozinho ou tem sócio envolvido na parte financeira?\" Script CNPJ: \"O CNPJ aí tá ativo, tudo certinho?\" Se CNPJ inativo: \"Para ter acesso ao sistema, você precisa ter empresa regularizada. Assim que regularizar, a gente retoma!\"",
+        result: "⚠ Nunca agendar com closer sem CNPJ confirmado. Isso descredita o SDR e desperdiça o horário do especialista."
+      },
+      {
+        order: "B · 3º",
+        title: "Budget — ancore, não pergunte direto",
+        why: "Âncora estrutura: \"Quantas cadeiras você tem hoje? A agenda tá cheia?\" Âncora faturamento: \"O faturamento mensal tá em que faixa, mais ou menos?\" Dica: barbearia com 2+ cadeiras ocupadas e sem sistema = budget existe. O problema é urgência, não verba.",
+        result: "Nunca pergunte sobre dinheiro diretamente. Use âncoras para calibrar a conversa de forma natural."
+      },
+      {
+        order: "T · 4º",
+        title: "Timeline — use o sonho dele para criar urgência",
+        why: "Script: \"Se você resolver esse problema de cobrança, quando queria já estar funcionando?\" Lead frio: \"Não tenho pressa\" sem justificativa = sem urgência real. Empurre para cadência de follow-up.",
+        result: "Urgência inventada afasta. Urgência conectada ao sonho dele fecha."
+      },
+      {
+        order: "✓",
+        title: "Checklist pós-call — antes de passar pro closer",
+        why: "Dor identificada com palavras do dono · Decisor confirmado · CNPJ ativo confirmado · Faturamento/estrutura mapeada · Urgência criada · Perfil comportamental identificado · Agendamento com escassez (2 horários específicos) · Confirmação enviada no WhatsApp · Tudo registrado no Pipedrive.",
+        result: "Se algum item está faltando, o lead não está qualificado para o closer."
       }
     ]
   },
   {
     name: "Estudar o script de atendimento",
     tag: "must", tagTxt: "obrigatório",
-    desc: "Ler do início ao fim. Entender a lógica de cada etapa: abertura, qualificação BANT (com CNPJ como critério obrigatório), condução para agendamento. Não memorizar — internalizar a lógica para que soe natural.",
+    desc: "Ler do início ao fim com os olhos de quem já entende BANT. Identificar: onde cada pergunta está qualificando? Não memorizar — internalizar a lógica para que soe natural na ligação.",
     links: [
       { url: "https://daianesilvasvc-afk.github.io/script-sdr-podium/", txt: "Abrir script de atendimento" }
     ]
@@ -522,14 +563,34 @@ const STEPS = [
       { url: "https://drive.google.com/file/d/1HD9rIgM3kIL9E1o7WyBm45U4PgfYH/view?usp=sharing", txt: "Reunião closer — gravação 2" },
       { url: "https://drive.google.com/file/d/10Mr9dt2kpjn6B6V8FBI6DbweJIEqb2O2/view?usp=sharing", txt: "Reunião closer — gravação 3" }
     ]
+  },
+  {
+    name: "Lição de cadência — gravar vídeo curto",
+    tag: "do", tagTxt: "praticar",
+    desc: "Gravar um vídeo curto (2–3 min) mostrando a cadência no Pipedrive e ChatWoot em tempo real: abrir filtro de turno, clicar no lead, verificar ChatWoot, ticar atividade e avançar. Objetivo: fixar o fluxo padrão antes da primeira ligação real.",
+    links: [],
+    subSteps: [
+      { order: "1", title: "Abrir filtro de turno no Pipedrive", why: "BASE ou CADÊNCIA dependendo do turno. Mostrar os dois filtros e explicar quando cada um se aplica.", result: "SDR sabe qual filtro abrir sem precisar consultar." },
+      { order: "2", title: "Demonstrar o fluxo de uma atividade", why: "Clicar no lead → ligar → abrir ChatWoot → conferir se mensagem foi → ticar atividade → próximo. Mostrar isso ao vivo.", result: "Fluxo de 5 passos internalizado antes da primeira ligação." }
+    ]
+  },
+  {
+    name: "Primeiras ligações — 30 leads com a Daiane",
+    tag: "do", tagTxt: "praticar",
+    desc: "30 leads liberados por SDR para as primeiras ligações reais. Seguir o script 100% — sem improvisar ainda. Após a rodada, a Daiane e o time ouvirão as ligações juntos e darão feedback em tempo real.",
+    links: [],
+    subSteps: [
+      { order: "Regra", title: "Script 100% — sem desvio", why: "A primeira rodada é de calibração, não de resultado. Só é possível dar feedback preciso se o SDR seguiu o script. Quem improvisa não sabe o que errou.", result: "Foque na estrutura: N → A + CNPJ → B → T → agendamento." },
+      { order: "Depois", title: "Escuta conjunta com a Daiane", why: "Cada ligação será analisada: o que travou, onde o BANT foi perdido, como a objeção poderia ter sido tratada.", result: "O feedback em tempo real é o treinamento mais rápido que existe." }
+    ]
   }
 ];
 
 const TAG_CLS = { must: "tag-must", watch: "tag-watch", do: "tag-do", soon: "tag-soon" };
 const LINK_ICON = "↗";
 
-let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null") || new Array(11).fill(false);
-if (done.length < 11) { while (done.length < 11) done.push(false); }
+let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null") || new Array(15).fill(false);
+if (done.length < 15) { while (done.length < 15) done.push(false); }
 let openIdx = -1;
 
 function save() {
@@ -538,10 +599,10 @@ function save() {
 
 function updateProgress() {
   const n = done.filter(Boolean).length;
-  const pct = Math.round(n / 11 * 100);
-  document.getElementById("prog-label").textContent = n + " de 11 etapas concluídas";
+  const pct = Math.round(n / 15 * 100);
+  document.getElementById("prog-label").textContent = n + " de 15 etapas concluídas";
   document.getElementById("prog-fill").style.width = pct + "%";
-  document.getElementById("prog-count").innerHTML = n + ' <span>/ 11</span>';
+  document.getElementById("prog-count").innerHTML = n + ' <span>/ 15</span>';
 }
 
 function renderSteps() {
@@ -550,8 +611,8 @@ function renderSteps() {
 
   const groups = [
     { label: "Produto e ecossistema", indices: [0, 1, 2, 3] },
-    { label: "Ferramentas e operação", indices: [4, 5, 6, 7, 8] },
-    { label: "Imersão em campo", indices: [9, 10] }
+    { label: "Ferramentas e operação", indices: [4, 5, 6, 7, 8, 9] },
+    { label: "Imersão em campo", indices: [10, 11, 12, 13, 14] }
   ];
 
   groups.forEach(group => {
