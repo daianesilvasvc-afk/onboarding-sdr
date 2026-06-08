@@ -376,7 +376,7 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Pré-Vendas · SDR</p>
     <h1 class="hero-title">Trilha de Onboarding</h1>
-    <p class="hero-sub">15 passos em sequência para você entender o produto, dominar a operação e fazer sua primeira ligação com confiança.</p>
+    <p class="hero-sub">14 passos em sequência para você entender o produto, dominar a operação e fazer sua primeira ligação com confiança.</p>
   </div>
 </div>
 
@@ -388,7 +388,7 @@
         <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
       </div>
     </div>
-    <div class="progress-count" id="prog-count">0 <span>/ 15</span></div>
+    <div class="progress-count" id="prog-count">0 <span>/ 14</span></div>
   </div>
 </div>
 
@@ -405,13 +405,14 @@ const STEPS = [
     links: []
   },
   {
-    name: "Assistir os vídeos do ecossistema Cash Barber",
+    name: "Assistir reuniões de closer",
     tag: "watch", tagTxt: "assistir",
-    desc: "3 vídeos no YouTube para entender o produto antes de qualquer ferramenta. Assista com bloco de notas aberto — anote as dores do barbeiro que o produto resolve e os principais diferenciais.",
+    desc: "Entender o que acontece depois do agendamento. Anotar: quais objeções aparecem na reunião que já poderiam ter sido tratadas na qualificação? Uma boa entrega do SDR define o sucesso do closer.",
     links: [
-      { url: "https://www.youtube.com/watch?v=ty7TkzVutRY&t=466s", txt: "Vídeo 1 — Visão geral do produto" },
-      { url: "https://www.youtube.com/watch?v=V9mbvvWOzYs&t=10s", txt: "Vídeo 2 — Demonstração do sistema" },
-      { url: "https://www.youtube.com/watch?v=OD98tPi1Kbo&t=1s", txt: "Vídeo 3 — Diferencial competitivo" }
+      { url: "https://drive.google.com/file/d/1nTvnrUlJf26QOMKwad2Gqv4bXig0J77b/view?usp=sharing", txt: "Reunião closer — gravação 1" },
+      { url: "https://drive.google.com/file/d/1Fr7fxwOdM8tbd2YkBRC5YRGzSp3IYzHF/view?usp=sharing", txt: "Reunião closer — gravação 2" },
+      { url: "https://drive.google.com/file/d/1CKfejPl6kpT8jhm_Ql6hwWmkP4-cTFlp/view?usp=sharing", txt: "Reunião closer — gravação 3" },
+      { url: "https://drive.google.com/file/d/1lhztSdRzpwndEDkTZaHk28g1If5iIzz3/view?usp=sharing", txt: "Reunião closer — gravação 4" }
     ]
   },
   {
@@ -455,6 +456,14 @@ const STEPS = [
     desc: "Ler ao mínimo 5 depoimentos. Para cada um, anotar: qual dor aparece? Qual resultado foi entregue? Esses padrões viram argumentos reais na abordagem — não decorar, internalizar.",
     links: [
       { url: "https://www.notion.so/2853bbf5b1e180d88485eec426ca8de6", txt: "Abrir Central de Depoimentos" }
+    ]
+  },
+  {
+    name: "Ouvir ligações reais — biblioteca de chamadas",
+    tag: "watch", tagTxt: "ouvir",
+    desc: "Ouvir no mínimo 5 ligações. Para cada uma anotar: o que funcionou, onde o SDR travou, como contornou a objeção. Não é para copiar estilo — é para calibrar o ouvido antes da primeira ligação real.",
+    links: [
+      { url: "https://podiumeducacao.notion.site/?v=2693bbf5b1e181fe9752000c981a0c08", txt: "Abrir biblioteca de ligações" }
     ]
   },
   {
@@ -550,25 +559,6 @@ const STEPS = [
     links: []
   },
   {
-    name: "Ouvir ligações reais — biblioteca de chamadas",
-    tag: "watch", tagTxt: "ouvir",
-    desc: "Ouvir no mínimo 5 ligações. Para cada uma anotar: o que funcionou, onde o SDR travou, como contornou a objeção. Não é para copiar estilo — é para calibrar o ouvido antes da primeira ligação real.",
-    links: [
-      { url: "https://podiumeducacao.notion.site/?v=2693bbf5b1e181fe9752000c981a0c08", txt: "Abrir biblioteca de ligações" }
-    ]
-  },
-  {
-    name: "Assistir reuniões de closer",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Entender o que acontece depois do agendamento. Anotar: quais objeções aparecem na reunião que já poderiam ter sido tratadas na qualificação? Uma boa entrega do SDR define o sucesso do closer.",
-    links: [
-      { url: "https://drive.google.com/file/d/1nTvnrUlJf26QOMKwad2Gqv4bXig0J77b/view?usp=sharing", txt: "Reunião closer — gravação 1" },
-      { url: "https://drive.google.com/file/d/1Fr7fxwOdM8tbd2YkBRC5YRGzSp3IYzHF/view?usp=sharing", txt: "Reunião closer — gravação 2" },
-      { url: "https://drive.google.com/file/d/1CKfejPl6kpT8jhm_Ql6hwWmkP4-cTFlp/view?usp=sharing", txt: "Reunião closer — gravação 3" },
-      { url: "https://drive.google.com/file/d/1lhztSdRzpwndEDkTZaHk28g1If5iIzz3/view?usp=sharing", txt: "Reunião closer — gravação 4" }
-    ]
-  },
-  {
     name: "Lição de cadência — gravar vídeo curto",
     tag: "do", tagTxt: "praticar",
     desc: "Gravar um vídeo curto (2–3 min) mostrando a cadência no Pipedrive e ChatWoot em tempo real: abrir filtro de turno, clicar no lead, verificar ChatWoot, ticar atividade e avançar. Objetivo: fixar o fluxo padrão antes da primeira ligação real.",
@@ -593,7 +583,7 @@ const STEPS = [
 const TAG_CLS = { must: "tag-must", watch: "tag-watch", do: "tag-do", soon: "tag-soon" };
 const LINK_ICON = "↗";
 
-const TOTAL = 15;
+const TOTAL = 14;
 let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null");
 if (!done || done.length !== TOTAL) { done = new Array(TOTAL).fill(false); localStorage.setItem("podium-onboarding-done", JSON.stringify(done)); }
 let openIdx = -1;
@@ -615,9 +605,9 @@ function renderSteps() {
   container.innerHTML = "";
 
   const groups = [
-    { label: "Produto e ecossistema", indices: [0, 1, 2, 3] },
-    { label: "Ferramentas e operação", indices: [4, 5, 6, 7, 8, 9] },
-    { label: "Imersão em campo", indices: [10, 11, 12, 13, 14] }
+    { label: "Produto e ecossistema", indices: [0, 1, 2, 3, 4] },
+    { label: "Ferramentas e operação", indices: [5, 6, 7, 8, 9, 10] },
+    { label: "Imersão em campo", indices: [11, 12, 13] }
   ];
 
   groups.forEach(group => {
