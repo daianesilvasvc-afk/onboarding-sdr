@@ -455,6 +455,20 @@
 <script>
 const STEPS = [
   {
+    name: "Entender o papel do Executivo de Vendas",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "O Executivo atende o lead do início ao fim: recebe, qualifica, conduz a consultoria e fecha. Turno único, dono único — não existe passagem de bastão. Dois compromissos de disciplina e três metas de resultado sustentam esse papel.",
+    links: [],
+    subSteps: [
+      { order: "Papel", title: "Atender o lead do início ao fim", why: "O mesmo Executivo que recebe o lead é quem qualifica, conduz a consultoria e fecha. Não existe repasse — o contexto inteiro fica com você, da primeira ligação ao pagamento.", result: "Um dono por lead, do primeiro contato à venda." },
+      { order: "Disciplina", title: "LRT de 10 minutos", why: "Lead Response Time: o prazo para responder o lead depois que ele entra, contado pela conclusão da atividade. Passou disso, o interesse esfria e a chance de conversa cai — velocidade aqui vale mais que qualquer argumento.", result: "Todo lead novo respondido dentro da janela de 10 minutos." },
+      { order: "Disciplina", title: "100% das atividades do dia", why: "Trabalhar todas as atividades do dia, em todos os negócios. Não existe número mínimo de ligações — a meta é zerar o filtro CADÊNCIA DIÁRIA, na ordem de vencimento, sem escolher lead e sem pular fila. E o CRM fica sempre atualizado e limpo: atividade não finalizada ou etapa errada quebra o funil e distorce os números de todo mundo.", result: "Filtro zerado no fim do dia e Pipedrive como retrato real da sua carteira." },
+      { order: "Resultado", title: "30% de Base → SQL no mesmo dia", why: "Dos leads que entram no dia, 30% precisam chegar a Oportunidade ou adiante ainda hoje — é coorte de D0. Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje. Mede a qualidade da sua qualificação.", result: "SQL é o card movido para 3 - Oportunidade, não o lead agendado." },
+      { order: "Resultado", title: "65% de presença nas reuniões", why: "Das reuniões agendadas, 65% precisam acontecer. Cancelada dentro do padrão não conta contra você; No Show conta — por isso registrar o status certo na atividade importa.", result: "Mede a qualidade do seu agendamento e da confirmação." },
+      { order: "Resultado", title: "50% dos SQL viram venda", why: "Metade das oportunidades de compra precisa fechar. Essa é a meta da sua condução — consultoria, apresentação e fechamento.", result: "Mede a qualidade da sua consultoria." }
+    ]
+  },
+  {
     name: "Plataforma — Formação B10X, Barbearia Lucrativa e MVC",
     tag: "watch", tagTxt: "assistir",
     desc: "As aulas da plataforma, nesta ordem. Você estuda o que o cliente vai receber, para sustentar valor na consultoria e no fechamento. Login: daiane.podiumeducacao@gmail.com · Senha: Senha@123 (solicite à liderança caso não funcione).",
@@ -590,20 +604,6 @@ const STEPS = [
     desc: "Assim que o pagamento for confirmado, envie esta mensagem. Ela fecha o seu papel e faz a passagem para o suporte de forma clara — sem ela, o cliente fica sem saber com quem falar e a experiência de compra afunda logo no início. Troque E-MAIL DE COMPRA e CNPJ pelos dados do cliente antes de enviar.",
     links: [],
     snippet: "✅ Pagamento Confirmado!\n\nParabéns! Seu pagamento foi processado com sucesso. Agora vamos iniciar juntos essa nova fase. Confira abaixo os próximos passos:\n\n📌 O que você precisa fazer agora:\n\n1. Estudar o módulo de cursos:\nAcesse a plataforma e inicie pelos módulos \"Cash Barber\" e \"B10X\". Eles são fundamentais para o bom uso do sistema.\n\n2. Aguarde o contato do Suporte:\nEm até 3 dias úteis, nossa equipe de suporte entrará em contato com você para:\n• Iniciar o processo de implantação\n• Agendar as reuniões de alinhamento\n\n3. Criação do processo personalizado:\nApós as reuniões, o suporte irá construir com você o processo ideal de uso da ferramenta, totalmente adaptado à sua realidade.\n\nℹ️ Importante:\nMeu papel neste momento já foi concluído. A partir de agora, todo o acompanhamento será feito diretamente com a equipe de suporte, que está preparada para te conduzir em cada etapa.\n\nEm caso de dúvidas, o contato com o suporte pode ser feito pelo WhatsApp: 41988210296.\nAtendimento durante a semana e no final de semana:\nSegunda à sexta, 08h00 às 18h00\nSábado, 08h30 às 12h30\n\nAssim que o suporte entrar em contato me avise, por gentileza.\nEstamos felizes em ter você com a gente! 🚀\n\nSEGUE SEUS ACESSOS:\n\nLink Cash Barber: painel.cashbarber.com.br\nLogin: E-MAIL DE COMPRA\nSenha: CNPJ\n\nPUMP: https://pump.cashbarber.com.br/dashboard\nLogin: E-MAIL DE COMPRA\nSenha: CNPJ\n\nLink plataforma de cursos: https://anovabarbearia.cademi.com.br\nLogin: E-MAIL DE COMPRA\nSenha: CNPJ"
-  },
-  {
-    name: "Entender o papel do Executivo de Vendas",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "O Executivo atende o lead do início ao fim: recebe, qualifica, conduz a consultoria e fecha. Turno único, dono único — não existe passagem de bastão. Dois compromissos de disciplina e três metas de resultado sustentam esse papel.",
-    links: [],
-    subSteps: [
-      { order: "Papel", title: "Atender o lead do início ao fim", why: "O mesmo Executivo que recebe o lead é quem qualifica, conduz a consultoria e fecha. Não existe repasse — o contexto inteiro fica com você, da primeira ligação ao pagamento.", result: "Um dono por lead, do primeiro contato à venda." },
-      { order: "Disciplina", title: "LRT de 10 minutos", why: "Lead Response Time: o prazo para responder o lead depois que ele entra, contado pela conclusão da atividade. Passou disso, o interesse esfria e a chance de conversa cai — velocidade aqui vale mais que qualquer argumento.", result: "Todo lead novo respondido dentro da janela de 10 minutos." },
-      { order: "Disciplina", title: "100% das atividades do dia", why: "Trabalhar todas as atividades do dia, em todos os negócios. Não existe número mínimo de ligações — a meta é zerar o filtro CADÊNCIA DIÁRIA, na ordem de vencimento, sem escolher lead e sem pular fila. E o CRM fica sempre atualizado e limpo: atividade não finalizada ou etapa errada quebra o funil e distorce os números de todo mundo.", result: "Filtro zerado no fim do dia e Pipedrive como retrato real da sua carteira." },
-      { order: "Resultado", title: "30% de Base → SQL no mesmo dia", why: "Dos leads que entram no dia, 30% precisam chegar a Oportunidade ou adiante ainda hoje — é coorte de D0. Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje. Mede a qualidade da sua qualificação.", result: "SQL é o card movido para 3 - Oportunidade, não o lead agendado." },
-      { order: "Resultado", title: "65% de presença nas reuniões", why: "Das reuniões agendadas, 65% precisam acontecer. Cancelada dentro do padrão não conta contra você; No Show conta — por isso registrar o status certo na atividade importa.", result: "Mede a qualidade do seu agendamento e da confirmação." },
-      { order: "Resultado", title: "50% dos SQL viram venda", why: "Metade das oportunidades de compra precisa fechar. Essa é a meta da sua condução — consultoria, apresentação e fechamento.", result: "Mede a qualidade da sua consultoria." }
-    ]
   },
   {
     name: "Ler o Playbook do Executivo de Vendas",
@@ -757,11 +757,12 @@ function renderSteps() {
   openInner = null;
 
   const groups = [
-    { label: "Produto e ecossistema", indices: [0, 1, 2],
+    { label: "Fundamentos", indices: [0] },
+    { label: "Produto e ecossistema", indices: [1, 2, 3],
       intro: "Entendendo o mercado da barbearia: como o cliente ganha e perde dinheiro, o que trava o crescimento dele e o que o produto resolve. É o contexto que sustenta tudo o que vem depois — sem ele, a consultoria vira apresentação de sistema." },
-    { label: "Método e consultoria", indices: [3, 4, 5, 6, 7] },
-    { label: "Materiais, operação e pós-venda", indices: [8, 9, 10, 11] },
-    { label: "Operação e prática", indices: [12, 13, 14, 15, 16, 17, 18] }
+    { label: "Método e consultoria", indices: [4, 5, 6, 7, 8] },
+    { label: "Materiais, operação e pós-venda", indices: [9, 10, 11, 12] },
+    { label: "Operação e prática", indices: [13, 14, 15, 16, 17, 18] }
   ];
 
   groups.forEach(group => {
