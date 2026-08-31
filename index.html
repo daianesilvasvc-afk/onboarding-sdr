@@ -455,92 +455,6 @@
 <script>
 const STEPS = [
   {
-    name: "Entender o papel do Executivo de Vendas",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "O Executivo atende o lead do início ao fim: recebe, qualifica, conduz a consultoria e fecha. Turno único, dono único — não existe passagem de bastão. Dois compromissos de disciplina e três metas de resultado sustentam esse papel.",
-    links: [],
-    subSteps: [
-      { order: "Papel", title: "Atender o lead do início ao fim", why: "O mesmo Executivo que recebe o lead é quem qualifica, conduz a consultoria e fecha. Não existe repasse — o contexto inteiro fica com você, da primeira ligação ao pagamento.", result: "Um dono por lead, do primeiro contato à venda." },
-      { order: "Disciplina", title: "LRT de 10 minutos", why: "Lead Response Time: o prazo para responder o lead depois que ele entra, contado pela conclusão da atividade. Passou disso, o interesse esfria e a chance de conversa cai — velocidade aqui vale mais que qualquer argumento.", result: "Todo lead novo respondido dentro da janela de 10 minutos." },
-      { order: "Disciplina", title: "100% das atividades do dia", why: "Trabalhar todas as atividades do dia, em todos os negócios. Não existe número mínimo de ligações — a meta é zerar o filtro CADÊNCIA DIÁRIA, na ordem de vencimento, sem escolher lead e sem pular fila. E o CRM fica sempre atualizado e limpo: atividade não finalizada ou etapa errada quebra o funil e distorce os números de todo mundo.", result: "Filtro zerado no fim do dia e Pipedrive como retrato real da sua carteira." },
-      { order: "Resultado", title: "30% de Base → SQL no mesmo dia", why: "Dos leads que entram no dia, 30% precisam chegar a Oportunidade ou adiante ainda hoje — é coorte de D0. Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje. Mede a qualidade da sua qualificação.", result: "SQL é o card movido para 3 - Oportunidade, não o lead agendado." },
-      { order: "Resultado", title: "65% de presença nas reuniões", why: "Das reuniões agendadas, 65% precisam acontecer. Cancelada dentro do padrão não conta contra você; No Show conta — por isso registrar o status certo na atividade importa.", result: "Mede a qualidade do seu agendamento e da confirmação." },
-      { order: "Resultado", title: "50% dos SQL viram venda", why: "Metade das oportunidades de compra precisa fechar. Essa é a meta da sua condução — consultoria, apresentação e fechamento.", result: "Mede a qualidade da sua consultoria." }
-    ]
-  },
-  {
-    name: "Ler o Playbook do Executivo de Vendas",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "Documento base da operação, da entrada do lead na landing page ao pagamento confirmado. Regra que atravessa tudo: o trabalho é feito pela aba Atividades no Pipedrive — se não está numa atividade, não existe. Você trabalha um funil só, o [COM] Comercial, pelo filtro CADÊNCIA DIÁRIA, na ordem de vencimento — sem escolher lead e sem pular fila.",
-    links: [
-      { url: "Playbook_Executivo_de_Vendas_v1.pdf", txt: "Abrir Playbook do Executivo de Vendas v1.0 (PDF)" }
-    ],
-    subSteps: [
-      { order: "01–02", title: "Como o lead chega e as 6 etapas do funil", why: "Cadastro na landing page dispara Pipedrive e Optin em paralelo, sem ninguém apertar nada. O corte de R$ 5.000 decide o caminho: abaixo disso a LIA qualifica, de R$ 5k para cima o Executivo liga direto. Confira o Step no Chatwoot antes de escrever qualquer mensagem.", result: "Você sabe o que já foi feito automaticamente e não duplica trabalho." },
-      { order: "03", title: "Os 4 critérios de ICP", why: "Tem barbearia · tem CNPJ · tem dor que ele mesmo reconhece · quer o produto. Bateram os quatro na ligação, move para 3 - Oportunidade na hora — em qualquer etapa, sem esperar a cadência acabar.", result: "Mover o card é o que registra o SQL. Lead ICP parado em Prospectando não conta." },
-      { order: "04", title: "As cadências e o corte de D2", why: "Prospectando tem prazo: sem avanço em dois dias, o sistema marca Perdido sozinho — o prazo corre mesmo com a cadência em andamento. Da etapa 2 - Conexão em diante, nenhuma atividade é encerrada sem combinar o horário do retorno e editar a data.", result: "As 6 atividades são o teto, não a garantia. Mover para Oportunidade interrompe o D2." },
-      { order: "05", title: "Reunião, no-show e reagendamento", why: "Máximo 2 reagendamentos; na terceira solicitação, encerra o atendimento. No Show é o lead que não confirmou com menos de 1h; Cancelada é aviso com 3h ou mais. Critério: se não dá para colocar outro lead no horário, é No Show. O status vai na atividade que já existe — criar outra em paralelo distorce a métrica.", result: "A presença do time só é confiável se o status for registrado certo." },
-      { order: "06", title: "Fechamento — 13 campos obrigatórios", why: "O pagamento cai na Guru e o Pipedrive não fecha a venda sem os 13 campos: 4 com prefixo [COM], 7 de [Handoff] para quem recebe o cliente, e 2 confirmações de processo. O produto adquirido sai da coluna Produto da Guru — confira lá antes de preencher.", result: "A venda termina no registro correto, não no pagamento. Erro aqui pode fazer a venda não contabilizar." },
-      { order: "07", title: "As 4 metas", why: "Duas de disciplina, que você controla sozinho: LRT de 10 minutos e 100% das atividades do dia (não há número mínimo — a meta é zerar o filtro). Duas de resultado: 65% de presença nas reuniões e 30% de Base → SQL no mesmo dia de entrada (coorte D0).", result: "Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje." },
-      { order: "08", title: "Os 38 motivos de perda", why: "O motivo de perda é o dado mais valioso da operação — mostra se o problema está no tráfego, no perfil, no preço ou na conversa. Atenção às distinções: 1491 Nunca respondeu (falha na abordagem) × 1492 Tentativas esgotadas (falha na qualificação). Os motivos 1525, 1526 e 1527 descrevem a operação antiga com SDR e closer: não usar.", result: "Negócio fechado sem motivo é aprendizado que a operação perde." }
-    ]
-  },
-  {
-    name: "Treinamento Pipedrive e ChatWoot",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Vídeos gravados pela liderança mostrando as duas plataformas e como usá-las no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA, como registrar atividades e o que fazer (e não fazer) no ChatWoot.",
-    links: [
-      { url: "https://www.loom.com/share/11d8a753f31f41bfb4fa95c39401f34e", txt: "Treinamento ChatWoot" },
-      { url: "https://www.loom.com/share/ca2f9e8a7fcf4f28a721dc84513c6ea3", txt: "Treinamento Pipedrive" }
-    ]
-  },
-  {
-    name: "Ouvir ligações reais — biblioteca de chamadas",
-    tag: "watch", tagTxt: "ouvir",
-    desc: "Ouvir no mínimo 5 ligações. Para cada uma anotar: o que funcionou, onde o Executivo travou, como contornou a objeção. Não é para copiar estilo — é para calibrar o ouvido antes da primeira ligação real.",
-    links: [
-      { url: "https://podiumeducacao.notion.site/?v=2693bbf5b1e181fe9752000c981a0c08", txt: "Abrir biblioteca de ligações" }
-    ]
-  },
-  {
-    name: "Treinamento BANT — framework de qualificação",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "BANT é o filtro que decide se o lead avança para a consultoria. Cada letra é uma informação que você precisa ter em mãos antes de conduzir a reunião. Sem BANT completo, você entra na própria consultoria às cegas.",
-    links: [],
-    subSteps: [
-      {
-        order: "N · 1º",
-        title: "Need — comece sempre aqui",
-        why: "Descubra a dor antes de qualquer coisa. Script: \"Me conta o que te trouxe até aqui — o que você tá buscando com a gente?\" Sonde mais: \"Você já trabalha com assinatura hoje? Como você faz essa cobrança?\" Evite assumir a dor antes de ouvir.",
-        result: "Registre no Pipedrive a dor específica com as palavras do próprio dono. Nunca só 'desorganizado'."
-      },
-      {
-        order: "A · 2º",
-        title: "Authority + CNPJ — confirmação obrigatória",
-        why: "Script authority: \"Você toca a barbearia sozinho ou tem sócio envolvido na parte financeira?\" Script CNPJ: \"O CNPJ aí tá ativo, tudo certinho?\" Se CNPJ inativo: \"Para ter acesso ao sistema, você precisa ter empresa regularizada. Assim que regularizar, a gente retoma!\"",
-        result: "⚠ Nunca avance para a consultoria sem CNPJ confirmado. Isso queima o seu horário e o do cliente."
-      },
-      {
-        order: "B · 3º",
-        title: "Budget — ancore, não pergunte direto",
-        why: "Âncora estrutura: \"Quantas cadeiras você tem hoje? A agenda tá cheia?\" Âncora faturamento: \"O faturamento mensal tá em que faixa, mais ou menos?\" Dica: barbearia com 2+ cadeiras ocupadas e sem sistema = budget existe. O problema é urgência, não verba.",
-        result: "Nunca pergunte sobre dinheiro diretamente. Use âncoras para calibrar a conversa de forma natural."
-      },
-      {
-        order: "T · 4º",
-        title: "Timeline — use o sonho dele para criar urgência",
-        why: "Script: \"Se você resolver esse problema de cobrança, quando queria já estar funcionando?\" Lead frio: \"Não tenho pressa\" sem justificativa = sem urgência real. Empurre para cadência de follow-up.",
-        result: "Urgência inventada afasta. Urgência conectada ao sonho dele fecha."
-      },
-      {
-        order: "✓",
-        title: "Checklist pós-call — antes de conduzir a consultoria",
-        why: "Dor identificada com palavras do dono · Decisor confirmado · CNPJ ativo confirmado · Faturamento/estrutura mapeada · Urgência criada · Perfil comportamental identificado · Agendamento com escassez (2 horários específicos) · Confirmação enviada no WhatsApp · Tudo registrado no Pipedrive.",
-        result: "Se algum item está faltando, o lead ainda não está pronto para a consultoria."
-      }
-    ]
-  },
-  {
     name: "Plataforma — Formação B10X, Barbearia Lucrativa e MVC",
     tag: "watch", tagTxt: "assistir",
     desc: "As aulas da plataforma, nesta ordem. Você estuda o que o cliente vai receber, para sustentar valor na consultoria e no fechamento. Login: daiane.podiumeducacao@gmail.com · Senha: Senha@123 (solicite à liderança caso não funcione).",
@@ -678,6 +592,92 @@ const STEPS = [
     snippet: "✅ Pagamento Confirmado!\n\nParabéns! Seu pagamento foi processado com sucesso. Agora vamos iniciar juntos essa nova fase. Confira abaixo os próximos passos:\n\n📌 O que você precisa fazer agora:\n\n1. Estudar o módulo de cursos:\nAcesse a plataforma e inicie pelos módulos \"Cash Barber\" e \"B10X\". Eles são fundamentais para o bom uso do sistema.\n\n2. Aguarde o contato do Suporte:\nEm até 3 dias úteis, nossa equipe de suporte entrará em contato com você para:\n• Iniciar o processo de implantação\n• Agendar as reuniões de alinhamento\n\n3. Criação do processo personalizado:\nApós as reuniões, o suporte irá construir com você o processo ideal de uso da ferramenta, totalmente adaptado à sua realidade.\n\nℹ️ Importante:\nMeu papel neste momento já foi concluído. A partir de agora, todo o acompanhamento será feito diretamente com a equipe de suporte, que está preparada para te conduzir em cada etapa.\n\nEm caso de dúvidas, o contato com o suporte pode ser feito pelo WhatsApp: 41988210296.\nAtendimento durante a semana e no final de semana:\nSegunda à sexta, 08h00 às 18h00\nSábado, 08h30 às 12h30\n\nAssim que o suporte entrar em contato me avise, por gentileza.\nEstamos felizes em ter você com a gente! 🚀\n\nSEGUE SEUS ACESSOS:\n\nLink Cash Barber: painel.cashbarber.com.br\nLogin: E-MAIL DE COMPRA\nSenha: CNPJ\n\nPUMP: https://pump.cashbarber.com.br/dashboard\nLogin: E-MAIL DE COMPRA\nSenha: CNPJ\n\nLink plataforma de cursos: https://anovabarbearia.cademi.com.br\nLogin: E-MAIL DE COMPRA\nSenha: CNPJ"
   },
   {
+    name: "Entender o papel do Executivo de Vendas",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "O Executivo atende o lead do início ao fim: recebe, qualifica, conduz a consultoria e fecha. Turno único, dono único — não existe passagem de bastão. Dois compromissos de disciplina e três metas de resultado sustentam esse papel.",
+    links: [],
+    subSteps: [
+      { order: "Papel", title: "Atender o lead do início ao fim", why: "O mesmo Executivo que recebe o lead é quem qualifica, conduz a consultoria e fecha. Não existe repasse — o contexto inteiro fica com você, da primeira ligação ao pagamento.", result: "Um dono por lead, do primeiro contato à venda." },
+      { order: "Disciplina", title: "LRT de 10 minutos", why: "Lead Response Time: o prazo para responder o lead depois que ele entra, contado pela conclusão da atividade. Passou disso, o interesse esfria e a chance de conversa cai — velocidade aqui vale mais que qualquer argumento.", result: "Todo lead novo respondido dentro da janela de 10 minutos." },
+      { order: "Disciplina", title: "100% das atividades do dia", why: "Trabalhar todas as atividades do dia, em todos os negócios. Não existe número mínimo de ligações — a meta é zerar o filtro CADÊNCIA DIÁRIA, na ordem de vencimento, sem escolher lead e sem pular fila. E o CRM fica sempre atualizado e limpo: atividade não finalizada ou etapa errada quebra o funil e distorce os números de todo mundo.", result: "Filtro zerado no fim do dia e Pipedrive como retrato real da sua carteira." },
+      { order: "Resultado", title: "30% de Base → SQL no mesmo dia", why: "Dos leads que entram no dia, 30% precisam chegar a Oportunidade ou adiante ainda hoje — é coorte de D0. Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje. Mede a qualidade da sua qualificação.", result: "SQL é o card movido para 3 - Oportunidade, não o lead agendado." },
+      { order: "Resultado", title: "65% de presença nas reuniões", why: "Das reuniões agendadas, 65% precisam acontecer. Cancelada dentro do padrão não conta contra você; No Show conta — por isso registrar o status certo na atividade importa.", result: "Mede a qualidade do seu agendamento e da confirmação." },
+      { order: "Resultado", title: "50% dos SQL viram venda", why: "Metade das oportunidades de compra precisa fechar. Essa é a meta da sua condução — consultoria, apresentação e fechamento.", result: "Mede a qualidade da sua consultoria." }
+    ]
+  },
+  {
+    name: "Ler o Playbook do Executivo de Vendas",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Documento base da operação, da entrada do lead na landing page ao pagamento confirmado. Regra que atravessa tudo: o trabalho é feito pela aba Atividades no Pipedrive — se não está numa atividade, não existe. Você trabalha um funil só, o [COM] Comercial, pelo filtro CADÊNCIA DIÁRIA, na ordem de vencimento — sem escolher lead e sem pular fila.",
+    links: [
+      { url: "Playbook_Executivo_de_Vendas_v1.pdf", txt: "Abrir Playbook do Executivo de Vendas v1.0 (PDF)" }
+    ],
+    subSteps: [
+      { order: "01–02", title: "Como o lead chega e as 6 etapas do funil", why: "Cadastro na landing page dispara Pipedrive e Optin em paralelo, sem ninguém apertar nada. O corte de R$ 5.000 decide o caminho: abaixo disso a LIA qualifica, de R$ 5k para cima o Executivo liga direto. Confira o Step no Chatwoot antes de escrever qualquer mensagem.", result: "Você sabe o que já foi feito automaticamente e não duplica trabalho." },
+      { order: "03", title: "Os 4 critérios de ICP", why: "Tem barbearia · tem CNPJ · tem dor que ele mesmo reconhece · quer o produto. Bateram os quatro na ligação, move para 3 - Oportunidade na hora — em qualquer etapa, sem esperar a cadência acabar.", result: "Mover o card é o que registra o SQL. Lead ICP parado em Prospectando não conta." },
+      { order: "04", title: "As cadências e o corte de D2", why: "Prospectando tem prazo: sem avanço em dois dias, o sistema marca Perdido sozinho — o prazo corre mesmo com a cadência em andamento. Da etapa 2 - Conexão em diante, nenhuma atividade é encerrada sem combinar o horário do retorno e editar a data.", result: "As 6 atividades são o teto, não a garantia. Mover para Oportunidade interrompe o D2." },
+      { order: "05", title: "Reunião, no-show e reagendamento", why: "Máximo 2 reagendamentos; na terceira solicitação, encerra o atendimento. No Show é o lead que não confirmou com menos de 1h; Cancelada é aviso com 3h ou mais. Critério: se não dá para colocar outro lead no horário, é No Show. O status vai na atividade que já existe — criar outra em paralelo distorce a métrica.", result: "A presença do time só é confiável se o status for registrado certo." },
+      { order: "06", title: "Fechamento — 13 campos obrigatórios", why: "O pagamento cai na Guru e o Pipedrive não fecha a venda sem os 13 campos: 4 com prefixo [COM], 7 de [Handoff] para quem recebe o cliente, e 2 confirmações de processo. O produto adquirido sai da coluna Produto da Guru — confira lá antes de preencher.", result: "A venda termina no registro correto, não no pagamento. Erro aqui pode fazer a venda não contabilizar." },
+      { order: "07", title: "As 4 metas", why: "Duas de disciplina, que você controla sozinho: LRT de 10 minutos e 100% das atividades do dia (não há número mínimo — a meta é zerar o filtro). Duas de resultado: 65% de presença nas reuniões e 30% de Base → SQL no mesmo dia de entrada (coorte D0).", result: "Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje." },
+      { order: "08", title: "Os 38 motivos de perda", why: "O motivo de perda é o dado mais valioso da operação — mostra se o problema está no tráfego, no perfil, no preço ou na conversa. Atenção às distinções: 1491 Nunca respondeu (falha na abordagem) × 1492 Tentativas esgotadas (falha na qualificação). Os motivos 1525, 1526 e 1527 descrevem a operação antiga com SDR e closer: não usar.", result: "Negócio fechado sem motivo é aprendizado que a operação perde." }
+    ]
+  },
+  {
+    name: "Treinamento Pipedrive e ChatWoot",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Vídeos gravados pela liderança mostrando as duas plataformas e como usá-las no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA, como registrar atividades e o que fazer (e não fazer) no ChatWoot.",
+    links: [
+      { url: "https://www.loom.com/share/11d8a753f31f41bfb4fa95c39401f34e", txt: "Treinamento ChatWoot" },
+      { url: "https://www.loom.com/share/ca2f9e8a7fcf4f28a721dc84513c6ea3", txt: "Treinamento Pipedrive" }
+    ]
+  },
+  {
+    name: "Ouvir ligações reais — biblioteca de chamadas",
+    tag: "watch", tagTxt: "ouvir",
+    desc: "Ouvir no mínimo 5 ligações. Para cada uma anotar: o que funcionou, onde o Executivo travou, como contornou a objeção. Não é para copiar estilo — é para calibrar o ouvido antes da primeira ligação real.",
+    links: [
+      { url: "https://podiumeducacao.notion.site/?v=2693bbf5b1e181fe9752000c981a0c08", txt: "Abrir biblioteca de ligações" }
+    ]
+  },
+  {
+    name: "Treinamento BANT — framework de qualificação",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "BANT é o filtro que decide se o lead avança para a consultoria. Cada letra é uma informação que você precisa ter em mãos antes de conduzir a reunião. Sem BANT completo, você entra na própria consultoria às cegas.",
+    links: [],
+    subSteps: [
+      {
+        order: "N · 1º",
+        title: "Need — comece sempre aqui",
+        why: "Descubra a dor antes de qualquer coisa. Script: \"Me conta o que te trouxe até aqui — o que você tá buscando com a gente?\" Sonde mais: \"Você já trabalha com assinatura hoje? Como você faz essa cobrança?\" Evite assumir a dor antes de ouvir.",
+        result: "Registre no Pipedrive a dor específica com as palavras do próprio dono. Nunca só 'desorganizado'."
+      },
+      {
+        order: "A · 2º",
+        title: "Authority + CNPJ — confirmação obrigatória",
+        why: "Script authority: \"Você toca a barbearia sozinho ou tem sócio envolvido na parte financeira?\" Script CNPJ: \"O CNPJ aí tá ativo, tudo certinho?\" Se CNPJ inativo: \"Para ter acesso ao sistema, você precisa ter empresa regularizada. Assim que regularizar, a gente retoma!\"",
+        result: "⚠ Nunca avance para a consultoria sem CNPJ confirmado. Isso queima o seu horário e o do cliente."
+      },
+      {
+        order: "B · 3º",
+        title: "Budget — ancore, não pergunte direto",
+        why: "Âncora estrutura: \"Quantas cadeiras você tem hoje? A agenda tá cheia?\" Âncora faturamento: \"O faturamento mensal tá em que faixa, mais ou menos?\" Dica: barbearia com 2+ cadeiras ocupadas e sem sistema = budget existe. O problema é urgência, não verba.",
+        result: "Nunca pergunte sobre dinheiro diretamente. Use âncoras para calibrar a conversa de forma natural."
+      },
+      {
+        order: "T · 4º",
+        title: "Timeline — use o sonho dele para criar urgência",
+        why: "Script: \"Se você resolver esse problema de cobrança, quando queria já estar funcionando?\" Lead frio: \"Não tenho pressa\" sem justificativa = sem urgência real. Empurre para cadência de follow-up.",
+        result: "Urgência inventada afasta. Urgência conectada ao sonho dele fecha."
+      },
+      {
+        order: "✓",
+        title: "Checklist pós-call — antes de conduzir a consultoria",
+        why: "Dor identificada com palavras do dono · Decisor confirmado · CNPJ ativo confirmado · Faturamento/estrutura mapeada · Urgência criada · Perfil comportamental identificado · Agendamento com escassez (2 horários específicos) · Confirmação enviada no WhatsApp · Tudo registrado no Pipedrive.",
+        result: "Se algum item está faltando, o lead ainda não está pronto para a consultoria."
+      }
+    ]
+  },
+  {
     name: "Roleplay interno",
     tag: "do", tagTxt: "praticar",
     desc: "Simulação com colega ou líder no papel do barbeiro. Agora o roleplay cobre o ciclo inteiro, não só a qualificação: abertura, BANT, NPQL, consultoria e fechamento. Fazer ao mínimo 2 rodadas — uma como Executivo, uma como barbeiro para ouvir de fora.",
@@ -757,12 +757,11 @@ function renderSteps() {
   openInner = null;
 
   const groups = [
-    { label: "Antes de começar", indices: [0, 1, 2, 3, 4] },
-    { label: "Produto e ecossistema", indices: [5, 6, 7],
+    { label: "Produto e ecossistema", indices: [0, 1, 2],
       intro: "Entendendo o mercado da barbearia: como o cliente ganha e perde dinheiro, o que trava o crescimento dele e o que o produto resolve. É o contexto que sustenta tudo o que vem depois — sem ele, a consultoria vira apresentação de sistema." },
-    { label: "Método e consultoria", indices: [8, 9, 10, 11, 12] },
-    { label: "Materiais, operação e pós-venda", indices: [13, 14, 15, 16] },
-    { label: "Prática", indices: [17, 18] }
+    { label: "Método e consultoria", indices: [3, 4, 5, 6, 7] },
+    { label: "Materiais, operação e pós-venda", indices: [8, 9, 10, 11] },
+    { label: "Operação e prática", indices: [12, 13, 14, 15, 16, 17, 18] }
   ];
 
   groups.forEach(group => {
