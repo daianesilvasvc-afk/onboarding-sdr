@@ -390,6 +390,14 @@
     height: 1px;
     background: var(--gray-200);
   }
+  .section-intro {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    max-width: 62ch;
+    margin: 2px auto 6px;
+    text-align: center;
+  }
   .section-divider-label {
     font-size: 11px;
     font-weight: 500;
@@ -424,19 +432,19 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Comercial · Executivo de Vendas</p>
     <h1 class="hero-title">Trilha de Onboarding</h1>
-    <p class="hero-sub">20 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas.</p>
+    <p class="hero-sub">19 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas.</p>
   </div>
 </div>
 
 <div class="progress-section">
   <div class="progress-card">
     <div class="progress-text">
-      <p class="progress-label" id="prog-label">0 de 20 etapas concluídas</p>
+      <p class="progress-label" id="prog-label">0 de 19 etapas concluídas</p>
       <div class="progress-track">
         <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
       </div>
     </div>
-    <div class="progress-count" id="prog-count">0 <span>/ 20</span></div>
+    <div class="progress-count" id="prog-count">0 <span>/ 19</span></div>
   </div>
 </div>
 
@@ -459,13 +467,6 @@ const STEPS = [
       { order: "Resultado", title: "65% de presença nas reuniões", why: "Das reuniões agendadas, 65% precisam acontecer. Cancelada dentro do padrão não conta contra você; No Show conta — por isso registrar o status certo na atividade importa.", result: "Mede a qualidade do seu agendamento e da confirmação." },
       { order: "Resultado", title: "50% dos SQL viram venda", why: "Metade das oportunidades de compra precisa fechar. Essa é a meta da sua condução — consultoria, apresentação e fechamento.", result: "Mede a qualidade da sua consultoria." }
     ]
-  },
-  {
-    name: "Entendendo o mercado da Barbearia",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "Antes de qualquer produto: entender o mercado em que o cliente opera. Como uma barbearia ganha e perde dinheiro, o que trava o crescimento dela e o que o dono já tentou antes de falar com você. Sem esse contexto, a consultoria vira apresentação de sistema.",
-    links: [],
-    missing: ["Material de apoio sobre o mercado de barbearia"]
   },
   {
     name: "Plataforma — Formação B10X, Barbearia Lucrativa e MVC",
@@ -697,7 +698,7 @@ const STEPS = [
 const TAG_CLS = { must: "tag-must", watch: "tag-watch", do: "tag-do", soon: "tag-soon" };
 const LINK_ICON = "↗";
 
-const TOTAL = 20;
+const TOTAL = 19;
 let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null");
 if (!done || done.length !== TOTAL) { done = new Array(TOTAL).fill(false); localStorage.setItem("podium-onboarding-done", JSON.stringify(done)); }
 let openIdx = -1;
@@ -757,11 +758,12 @@ function renderSteps() {
 
   const groups = [
     { label: "Fundamentos", indices: [0] },
-    { label: "Produto e ecossistema", indices: [1, 2, 3, 4] },
-    { label: "Ferramentas e operação", indices: [5, 6, 7] },
-    { label: "Qualificação", indices: [8, 9, 10, 11] },
-    { label: "Consultoria e fechamento", indices: [12, 13, 14, 15, 16] },
-    { label: "Prática e pós-venda", indices: [17, 18, 19] }
+    { label: "Produto e ecossistema", indices: [1, 2, 3],
+      intro: "Entendendo o mercado da barbearia: como o cliente ganha e perde dinheiro, o que trava o crescimento dele e o que o produto resolve. É o contexto que sustenta tudo o que vem depois — sem ele, a consultoria vira apresentação de sistema." },
+    { label: "Ferramentas e operação", indices: [4, 5, 6] },
+    { label: "Qualificação", indices: [7, 8, 9, 10] },
+    { label: "Consultoria e fechamento", indices: [11, 12, 13, 14, 15] },
+    { label: "Prática e pós-venda", indices: [16, 17, 18] }
   ];
 
   groups.forEach(group => {
@@ -769,6 +771,13 @@ function renderSteps() {
     div.className = "section-divider";
     div.innerHTML = '<div class="section-divider-line"></div><span class="section-divider-label">' + group.label + '</span><div class="section-divider-line"></div>';
     container.appendChild(div);
+
+    if (group.intro) {
+      const introEl = document.createElement("p");
+      introEl.className = "section-intro";
+      introEl.textContent = group.intro;
+      container.appendChild(introEl);
+    }
 
     group.indices.forEach(i => {
       const s = STEPS[i];
