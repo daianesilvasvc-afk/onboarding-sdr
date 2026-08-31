@@ -424,19 +424,19 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Comercial · Executivo de Vendas</p>
     <h1 class="hero-title">Trilha de Onboarding</h1>
-    <p class="hero-sub">29 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas.</p>
+    <p class="hero-sub">20 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas.</p>
   </div>
 </div>
 
 <div class="progress-section">
   <div class="progress-card">
     <div class="progress-text">
-      <p class="progress-label" id="prog-label">0 de 29 etapas concluídas</p>
+      <p class="progress-label" id="prog-label">0 de 20 etapas concluídas</p>
       <div class="progress-track">
         <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
       </div>
     </div>
-    <div class="progress-count" id="prog-count">0 <span>/ 29</span></div>
+    <div class="progress-count" id="prog-count">0 <span>/ 20</span></div>
   </div>
 </div>
 
@@ -461,68 +461,37 @@ const STEPS = [
     ]
   },
   {
-    name: "Entender o ecossistema — A Nova Barbearia Academy",
+    name: "Entendendo o mercado da Barbearia",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Antes de qualquer produto: entender o mercado em que o cliente opera. Como uma barbearia ganha e perde dinheiro, o que trava o crescimento dela e o que o dono já tentou antes de falar com você. Sem esse contexto, a consultoria vira apresentação de sistema.",
+    links: [],
+    missing: ["Material de apoio sobre o mercado de barbearia"]
+  },
+  {
+    name: "Plataforma — Formação B10X, Barbearia Lucrativa e MVC",
     tag: "watch", tagTxt: "assistir",
-    desc: "São três aulas, nesta ordem — e só essas. Você estuda o que o cliente vai receber, para sustentar valor na consultoria e no fechamento. Login: daiane.podiumeducacao@gmail.com · Senha: Senha@123 (solicite à liderança caso não funcione).",
+    desc: "As aulas da plataforma, nesta ordem. Você estuda o que o cliente vai receber, para sustentar valor na consultoria e no fechamento. Login: daiane.podiumeducacao@gmail.com · Senha: Senha@123 (solicite à liderança caso não funcione).",
     links: [
-      { url: "https://anovabarbearia.cademi.com.br/area/vitrine/home", txt: "Acessar A Nova Barbearia Academy" },
-      { url: "https://daianesilvasvc-afk.github.io/playbook-5-passos/", txt: "Playbook 5 Passos — material do cliente" }
+      { url: "https://anovabarbearia.cademi.com.br/area/conteudo/aula/4037505", txt: "1º Formação B10X" },
+      { url: "https://anovabarbearia.cademi.com.br/area/conteudo/aula/1265959", txt: "Entendendo mais do mercado e dos clientes" },
+      { url: "https://anovabarbearia.cademi.com.br/area/conteudo/listagem/86066", txt: "2º Barbearia Lucrativa" },
+      { url: "https://anovabarbearia.cademi.com.br/area/conteudo/aula/2849883", txt: "3º MVC / Venda +" }
     ],
     subSteps: [
-      {
-        order: "1º",
-        title: "Formação B10X",
-        why: "É o produto principal do funil. Você precisa saber o que tem dentro para sustentar o preço e quebrar a objeção de que é caro.",
-        result: "Você descreve entregas concretas, não promessas genéricas."
-      },
-      {
-        order: "2º",
-        title: "Barbearia Lucrativa",
-        why: "Complementa o B10X e amplia o repertório de argumentos por perfil de cliente.",
-        result: "Mais caminhos de valor para leads em estágios diferentes."
-      },
-      {
-        order: "3º",
-        title: "PUMP",
-        why: "São as duas aulas do próximo passo da trilha. É o conteúdo que sustenta a prévia do PUMP na call.",
-        result: "Você conhece o produto antes de precisar apresentá-lo ao vivo."
-      }
+      { order: "1º", title: "Formação B10X", why: "É o produto principal do funil. Você precisa saber o que tem dentro para sustentar o preço e quebrar a objeção de que é caro. Inclui a aula sobre mercado e clientes, que complementa o passo anterior.", result: "Você descreve entregas concretas, não promessas genéricas." },
+      { order: "2º", title: "Barbearia Lucrativa", why: "Complementa o B10X e amplia o repertório de argumentos por perfil de cliente.", result: "Mais caminhos de valor para leads em estágios diferentes." },
+      { order: "3º", title: "MVC / Venda +", why: "Veja o MVC dentro da escola — aqui interessa somente a técnica de vendas, não o conteúdo de gestão. É a base do raciocínio usado na consultoria.", result: "A lógica de venda internalizada antes de entrar em call." }
     ]
   },
   {
-    name: "PUMP — as duas aulas da plataforma",
+    name: "Cash Barber — sistema, workshop, concorrentes e PUMP",
     tag: "watch", tagTxt: "assistir",
-    desc: "As duas aulas do PUMP dentro da plataforma. São elas que dão base para a etapa de prévia do PUMP no Mapa de Explicação — sem esse conteúdo, a prévia na call fica rasa.",
+    desc: "O Cash Barber é o sistema que sustenta boa parte da consultoria. Percorra o passo a passo dentro do próprio sistema, estude o workshop, entenda com o que você está sendo comparado no mapa dos concorrentes e veja o treinamento atualizado do PUMP.",
     links: [
-      { url: "https://anovabarbearia.cademi.com.br/area/conteudo/aula/2693115", txt: "PUMP — aula 1" },
-      { url: "https://anovabarbearia.cademi.com.br/area/conteudo/aula/3502528", txt: "PUMP — aula 2" }
-    ]
-  },
-  {
-    name: "Cash Barber — workshop, concorrentes e sistema",
-    tag: "watch", tagTxt: "assistir",
-    desc: "O Cash Barber é o sistema que sustenta boa parte da consultoria. Estude o workshop, entenda o mapa dos concorrentes (para saber com o que você está sendo comparado) e as aulas sobre o funcionamento do sistema.",
-    links: [
-      { url: "https://anovabarbearia.cademi.com.br/area/produto/item/1587549", txt: "Workshop Cash Barber" },
-      { url: "https://whimsical.com/treinamento-dos-concorrentes-4Jnh6m977EXBcK7iDE2WuG", txt: "Mapa dos concorrentes" }
-    ],
-    missing: ["Aula sobre o sistema — 2 vídeos"]
-  },
-  {
-    name: "PUMP — como o Lincohn conduz a prévia",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Explicação do Lincohn sobre as funções do PUMP e do Cash. Atenção ao assistir: não foque nos detalhes técnicos — foque em COMO o Lincohn conduz a prévia e apresenta as funções. É o modelo de condução que você vai repetir na call.",
-    links: [
-      { url: "https://drive.google.com/file/d/1cKrNs4GU37h0UoZIzcQ0P9lOZdVTuL8o/view?usp=sharing", txt: "Lincohn — funções do PUMP e Cash" },
-      { url: "https://drive.google.com/file/d/1SiArL-LMx2vYnHnVhYexMhjjNWKEisX9/view", txt: "PUMP — material complementar" }
-    ]
-  },
-  {
-    name: "Método MVC / Venda +",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "Ler a página inteira e assistir aos vídeos. O MVC é a base do raciocínio de venda usado na consultoria — sem ele, os passos de fechamento mais à frente não fazem sentido.",
-    links: [
-      { url: "https://barbeiroevolucao.com.br/barbeiro10k", txt: "Método MVC — Barbeiro 10k" }
+      { url: "https://painel.cashbarber.com.br/skills/player/1?c=33&at=20&play", txt: "Passo a passo dentro do sistema" },
+      { url: "https://player-vz-1fdeee82-e8c.tv.pandavideo.com.br/embed/?v=cfdde48e-4950-49f3-8b1e-327edc37a2d1", txt: "Workshop Cash Barber" },
+      { url: "https://whimsical.com/treinamento-dos-concorrentes-4Jnh6m977EXBcK7iDE2WuG", txt: "Mapa dos concorrentes" },
+      { url: "https://drive.google.com/file/d/1SiArL-LMx2vYnHnVhYexMhjjNWKEisX9/view", txt: "Treinamento atualizado do PUMP" }
     ]
   },
   {
@@ -531,50 +500,6 @@ const STEPS = [
     desc: "Pasta com o material que explica a venda de futuro: como projetar o cenário do cliente daqui a alguns meses e vender a transformação, não o produto. Usado principalmente com quem trava no preço.",
     links: [
       { url: "https://drive.google.com/drive/folders/1Rl09mApwDqmiV1TSIgm7a06KnO8MDP5a?usp=share_link", txt: "Venda de Futuro — pasta completa" }
-    ]
-  },
-  {
-    name: "Central de Depoimentos e prova social",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "Ler ao mínimo 5 depoimentos. Para cada um, anotar: qual dor aparece? Qual resultado foi entregue? Esses padrões viram argumentos reais na abordagem — não decorar, internalizar. Conheça também os outros formatos de prova social: você vai escolher qual mandar dependendo do momento da conversa.",
-    links: [
-      { url: "https://www.notion.so/2853bbf5b1e180d88485eec426ca8de6", txt: "Abrir Central de Depoimentos" },
-      { url: "https://evento.lincohnagner.com.br/cpl2-shelby/", txt: "Depoimentos médios e longos" },
-      { url: "https://atlantic-snap-298.notion.site/Depoimentos-2853bbf5b1e1806e9095e76c4bd339b1", txt: "Depoimentos curtos" },
-      { url: "https://depoimentos-mentor-v2.vercel.app", txt: "Depoimentos de Mentor" }
-    ]
-  },
-  {
-    name: "Treinamento Pipedrive e ChatWoot",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Vídeos gravados pela liderança mostrando as duas plataformas e como usá-las no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA, como registrar atividades e o que fazer (e não fazer) no ChatWoot.",
-    links: [
-      { url: "https://www.loom.com/share/11d8a753f31f41bfb4fa95c39401f34e", txt: "Treinamento ChatWoot" },
-      { url: "https://www.loom.com/share/ca2f9e8a7fcf4f28a721dc84513c6ea3", txt: "Treinamento Pipedrive" }
-    ]
-  },
-  {
-    name: "Fluxo de ações e finalizações de atividades no pipe",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Como registrar e finalizar cada atividade no Pipedrive corretamente. É o que mantém o funil confiável — atividade mal finalizada vira lead perdido no relatório e some da sua fila.",
-    links: [
-      { url: "https://drive.google.com/file/d/1dy1yRQ4vk-bNeOpadREReviR1Fa0kgrH/view?usp=sharing", txt: "Fluxo de ações e finalizações no pipe" }
-    ]
-  },
-  {
-    name: "Assinatura de contrato pelo Docs dentro do Pipedrive",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Passo operacional do fechamento: como gerar e enviar o documento para assinatura sem sair do Pipedrive. Você vai precisar disso na primeira venda — veja antes, não na hora.",
-    links: [
-      { url: "https://drive.google.com/file/d/12A3MDzEiyXPwC6o_8ieDMuT1Fjo4FYwW/view?usp=sharing", txt: "Como usar o Docs para assinatura no Pipedrive" }
-    ]
-  },
-  {
-    name: "Ferramenta de auditoria",
-    tag: "do", tagTxt: "praticar",
-    desc: "Ferramenta usada para auditar os próprios atendimentos. Abra, rode uma auditoria em uma ligação sua e entenda o que ela avalia — os mesmos critérios são usados no acompanhamento da liderança.",
-    links: [
-      { url: "https://helper-marbled-helmet.ngrok-free.dev", txt: "Abrir ferramenta de auditoria" }
     ]
   },
   {
@@ -592,6 +517,23 @@ const STEPS = [
       { order: "06", title: "Fechamento — 13 campos obrigatórios", why: "O pagamento cai na Guru e o Pipedrive não fecha a venda sem os 13 campos: 4 com prefixo [COM], 7 de [Handoff] para quem recebe o cliente, e 2 confirmações de processo. O produto adquirido sai da coluna Produto da Guru — confira lá antes de preencher.", result: "A venda termina no registro correto, não no pagamento. Erro aqui pode fazer a venda não contabilizar." },
       { order: "07", title: "As 4 metas", why: "Duas de disciplina, que você controla sozinho: LRT de 10 minutos e 100% das atividades do dia (não há número mínimo — a meta é zerar o filtro). Duas de resultado: 65% de presença nas reuniões e 30% de Base → SQL no mesmo dia de entrada (coorte D0).", result: "Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje." },
       { order: "08", title: "Os 38 motivos de perda", why: "O motivo de perda é o dado mais valioso da operação — mostra se o problema está no tráfego, no perfil, no preço ou na conversa. Atenção às distinções: 1491 Nunca respondeu (falha na abordagem) × 1492 Tentativas esgotadas (falha na qualificação). Os motivos 1525, 1526 e 1527 descrevem a operação antiga com SDR e closer: não usar.", result: "Negócio fechado sem motivo é aprendizado que a operação perde." }
+    ]
+  },
+  {
+    name: "Treinamento Pipedrive e ChatWoot",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Vídeos gravados pela liderança mostrando as duas plataformas e como usá-las no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA, como registrar atividades e o que fazer (e não fazer) no ChatWoot.",
+    links: [
+      { url: "https://www.loom.com/share/11d8a753f31f41bfb4fa95c39401f34e", txt: "Treinamento ChatWoot" },
+      { url: "https://www.loom.com/share/ca2f9e8a7fcf4f28a721dc84513c6ea3", txt: "Treinamento Pipedrive" }
+    ]
+  },
+  {
+    name: "Fluxo de ações e finalizações de atividades no pipe",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Como registrar e finalizar cada atividade no Pipedrive corretamente. É o que mantém o funil confiável — atividade mal finalizada vira lead perdido no relatório e some da sua fila.",
+    links: [
+      { url: "https://drive.google.com/file/d/1dy1yRQ4vk-bNeOpadREReviR1Fa0kgrH/view?usp=sharing", txt: "Fluxo de ações e finalizações no pipe" }
     ]
   },
   {
@@ -675,30 +617,11 @@ const STEPS = [
     ]
   },
   {
-    name: "Alinhamento — como fazer o NPQL e a consultoria",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Gravação do alinhamento que costura as duas pontas: como o NPQL desemboca na consultoria. É a ponte entre o que você acabou de estudar e o bloco de consultoria que vem a seguir.",
-    links: [
-      { url: "https://drive.google.com/file/d/1_jaECXwSMamSj9iHBnknqCFgFkAFoTQB/view?usp=drivesdk", txt: "Alinhamento NPQL + consultoria" }
-    ]
-  },
-  {
-    name: "Assistir reuniões de fechamento — 4 gravações",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Agora essas reuniões são suas. Assista às 4 gravações observando: quais objeções aparecem, como o especialista conduz e o que na qualificação anterior facilitou ou atrapalhou o fechamento.",
-    links: [
-      { url: "https://drive.google.com/file/d/1nTvnrUlJf26QOMKwad2Gqv4bXig0J77b/view?usp=sharing", txt: "Reunião de fechamento — gravação 1" },
-      { url: "https://drive.google.com/file/d/1Fr7fxwOdM8tbd2YkBRC5YRGzSp3IYzHF/view?usp=sharing", txt: "Reunião de fechamento — gravação 2" },
-      { url: "https://drive.google.com/file/d/1CKfejPl6kpT8jhm_Ql6hwWmkP4-cTFlp/view?usp=sharing", txt: "Reunião de fechamento — gravação 3" },
-      { url: "https://drive.google.com/file/d/1lhztSdRzpwndEDkTZaHk28g1If5iIzz3/view?usp=sharing", txt: "Reunião de fechamento — gravação 4" }
-    ]
-  },
-  {
     name: "Consultoria para clientes de baixo faturamento",
     tag: "must", tagTxt: "obrigatório",
-    desc: "O direcionamento de como conduzir a consultoria quando o cliente fatura pouco — o cenário mais comum e o mais fácil de perder. Estude o mapa de explicação e a consultoria do Lincohn como referência de condução.",
+    desc: "O direcionamento de como conduzir a consultoria quando o cliente fatura pouco — o cenário mais comum e o mais fácil de perder. Assista à call do Lucas com a Alycia observando o método aplicado do início ao fim, e siga para o Mapa de Explicação no passo seguinte.",
     links: [
-      { url: "https://drive.google.com/file/d/1W_YMmqxPgyh7jvLE5DSpRCk4p1X7OdBB/view", txt: "Consultoria Lincohn" }
+      { url: "https://drive.google.com/file/d/1bvMQiQ00JPusaaOnawwPionBGFw_SbzQ/view?usp=sharing", txt: "Call de vendas — Lucas / Alycia" }
     ]
   },
   {
@@ -720,37 +643,22 @@ const STEPS = [
     ]
   },
   {
-    name: "Calls direcionando no mapa mental",
+    name: "Alinhamento — como fazer o NPQL e a consultoria",
     tag: "watch", tagTxt: "assistir",
-    desc: "Calls de venda do Lucas com o mapa mental sendo usado ao vivo na condução. Assista observando o mesmo método aplicado a três clientes diferentes — é aí que se aprende a adaptar sem perder a estrutura.",
+    desc: "Gravação do alinhamento que costura as duas pontas: como o NPQL desemboca na consultoria. É a ponte entre o que você acabou de estudar e o bloco de consultoria que vem a seguir.",
     links: [
-      { url: "https://drive.google.com/file/d/1Tt8bxZi6z2w_JdNdEXckZtGHE8nKI2sT/view?t=1894", txt: "Call direcionando no mapa mental" },
-      { url: "https://drive.google.com/file/d/1y-Dg0hiSJMFahTQuMv0HQGarkOCvLkMk/view", txt: "Call de vendas — Lucas / Wesley" },
-      { url: "https://drive.google.com/file/d/19dHe5_c9TrNPYSuwABErTaSQNevK0deX/view", txt: "Call de vendas — Lucas / Laura" },
-      { url: "https://drive.google.com/file/d/1bvMQiQ00JPusaaOnawwPionBGFw_SbzQ/view?usp=sharing", txt: "Call de vendas — Lucas / Alycia" }
+      { url: "https://drive.google.com/file/d/1_jaECXwSMamSj9iHBnknqCFgFkAFoTQB/view?usp=drivesdk", txt: "Alinhamento NPQL + consultoria" }
     ]
   },
   {
-    name: "Consultorias gravadas — Luiz",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Cinco consultorias completas do Luiz. Assista com o script do NPQL do lado e marque em que minuto cada etapa do método aparece. Objetivo: reconhecer a estrutura por baixo da conversa.",
+    name: "Scripts e materiais de apoio",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "O que você usa durante a consultoria e no fechamento. Abra cada um antes da primeira reunião real — procurar link no meio da call derruba a condução. Nos depoimentos, escolha o formato conforme o momento da conversa: curto para mandar no WhatsApp, médio ou longo para quem precisa de mais prova.",
     links: [
-      { url: "https://drive.google.com/file/d/10zDiKxDerga-_vJj3Bwa6u65tg4R0T1W/view?ts=69417209&pli=1", txt: "Luiz — consultoria 1" },
-      { url: "https://drive.google.com/drive/folders/18F1ujRIrGIz8hlIuoywqaQkLb0W_MHeY", txt: "Luiz — consultoria 2 (pasta)" },
-      { url: "https://drive.google.com/file/d/1FgSCmrD0ObLgpl450wt-isIXTtFCWvBg/view?usp=sharing", txt: "Luiz — consultoria 3" },
-      { url: "https://drive.google.com/file/d/1pGt0xHDGQqoyJA3FIC0oHWnUD-n8yuTA/view?usp=sharing", txt: "Luiz — consultoria 4" },
-      { url: "https://drive.google.com/file/d/19AIG3h0Ay5MvyZLxkTY6iS0py5W_XAS9/view?usp=sharing", txt: "Luiz — consultoria 5" }
-    ]
-  },
-  {
-    name: "Consultorias gravadas — Paulo",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Consultorias do Paulo, para contraste com as do Luiz. Dois estilos diferentes conduzindo o mesmo método — comparar os dois é o que mostra o que é estrutura e o que é estilo pessoal.",
-    links: [
-      { url: "https://drive.google.com/file/d/1kt7zkuTkornFv74qYN3mRNZXwnWLBpk6/view?usp=sharing", txt: "Paulo — consultoria 1" },
-      { url: "https://drive.google.com/file/d/1Cz5dBmTxcA9HbOirTWqWyBm45U4PgfYH/view?usp=sharing", txt: "Paulo — consultoria 2" },
-      { url: "https://drive.google.com/file/d/1HD9rIgM3kIL9E1o7ziKUYSP19YQUepQ_/view?usp=sharing", txt: "Paulo — consultoria 3" },
-      { url: "https://drive.google.com/file/d/1ek8cnEvvWLRoZikqrv9dN0n9WWrCVIiQ/view?usp=sharing", txt: "Paulo — consultoria 4" }
+      { url: "https://evento.lincohnagner.com.br/cpl2-shelby/", txt: "Depoimentos médios e longos" },
+      { url: "https://atlantic-snap-298.notion.site/Depoimentos-2853bbf5b1e1806e9095e76c4bd339b1", txt: "Depoimentos curtos" },
+      { url: "https://canva.link/vaiu4zu5eygunp9", txt: "Slide da apresentação" },
+      { url: "https://www.valebonus.com.br/", txt: "Vale bônus" }
     ]
   },
   {
@@ -759,16 +667,6 @@ const STEPS = [
     desc: "Camada avançada de condução — para depois que a estrutura básica já está internalizada. Assista só quando os passos anteriores estiverem realmente concluídos, senão vira informação solta.",
     links: [
       { url: "https://www.loom.com/share/577d5c63edbb490fb77473f2c2e15353?sid=c17cd88a-6340-4ef0-b50e-000d0da08180", txt: "Direcionamento estratégico avançado" }
-    ]
-  },
-  {
-    name: "Kit do Executivo — scripts e materiais de apoio",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "Os materiais que você vai usar durante a consultoria e no fechamento. Abra cada um antes da primeira reunião real — procurar link no meio da call derruba a condução.",
-    links: [
-      { url: "https://canva.link/vaiu4zu5eygunp9", txt: "Slide da apresentação" },
-      { url: "https://www.valebonus.com.br/", txt: "Vale bônus" },
-      { url: "https://docs.google.com/spreadsheets/d/1DTEzAvqlA482jGpCg7qrbi1r2SlJqVeECUMC6Mls-Ak/edit?usp=sharing", txt: "Planilha de indicação" }
     ]
   },
   {
@@ -799,7 +697,7 @@ const STEPS = [
 const TAG_CLS = { must: "tag-must", watch: "tag-watch", do: "tag-do", soon: "tag-soon" };
 const LINK_ICON = "↗";
 
-const TOTAL = 29;
+const TOTAL = 20;
 let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null");
 if (!done || done.length !== TOTAL) { done = new Array(TOTAL).fill(false); localStorage.setItem("podium-onboarding-done", JSON.stringify(done)); }
 let openIdx = -1;
@@ -859,11 +757,11 @@ function renderSteps() {
 
   const groups = [
     { label: "Fundamentos", indices: [0] },
-    { label: "Produto e ecossistema", indices: [1, 2, 3, 4, 5, 6, 7] },
-    { label: "Ferramentas e operação", indices: [8, 9, 10, 11] },
-    { label: "Qualificação", indices: [12, 13, 14, 15, 16, 17] },
-    { label: "Consultoria e fechamento", indices: [18, 19, 20, 21, 22, 23, 24, 25] },
-    { label: "Prática e pós-venda", indices: [26, 27, 28] }
+    { label: "Produto e ecossistema", indices: [1, 2, 3, 4] },
+    { label: "Ferramentas e operação", indices: [5, 6, 7] },
+    { label: "Qualificação", indices: [8, 9, 10, 11] },
+    { label: "Consultoria e fechamento", indices: [12, 13, 14, 15, 16] },
+    { label: "Prática e pós-venda", indices: [17, 18, 19] }
   ];
 
   groups.forEach(group => {
