@@ -7,26 +7,40 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Trilha de Onboarding — Executivo de Vendas · Podium Educação</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #123A63;
-    --navy-light: #2E6FA8;
-    --navy-pale: #E8F0F9;
-    --navy-mid: #9CC5E8;
+    /* Identidade Podium — cores compartilhadas em todos os produtos */
+    --gold: #D7AB5C;
+    --night: #16273C;
+    --ink: #0A1422;
+    --light: #F2F2F2;
+    /* exclusiva Podium e mentorias */
+    --cream: #F8F1A5;
+
+    /* O dourado da marca nao atinge contraste de leitura sobre fundo claro
+       (fica em ~2:1), entao texto em fundo claro usa estas versoes. */
+    --gold-deep: #7A5A17;
+    --gold-pale: #F6EEDC;
+
+    --navy: var(--night);
+    --navy-light: #2E4A70;
+    --navy-pale: #E4E8EE;
+    --navy-mid: var(--gold);
+
     --amber: #BA7517;
     --amber-pale: #FAEEDA;
     --teal: #0E6E7D;
     --teal-pale: #E2F1F4;
     --red-pale: #FCEBEB;
     --red: #791F1F;
-    --gray-50: #f8f7f4;
-    --gray-100: #f0ede8;
-    --gray-200: #e0dcd4;
-    --gray-400: #9e9a93;
-    --gray-600: #5f5c56;
-    --gray-800: #2c2a26;
-    --text: #1a1916;
+    --gray-50: #F2F2F2;
+    --gray-100: #E8E8E8;
+    --gray-200: #D8D8D8;
+    --gray-400: #9A9A9A;
+    --gray-600: #5A5A5A;
+    --gray-800: #262626;
+    --text: #141414;
     --radius: 12px;
     --radius-sm: 8px;
   }
@@ -43,7 +57,7 @@
 
   /* TOP BAR */
   .topbar {
-    background: var(--navy);
+    background: var(--ink);
     padding: 0 2rem;
     display: flex;
     align-items: center;
@@ -53,7 +67,7 @@
     z-index: 100;
   }
   .topbar-logo {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 17px;
     color: white;
     letter-spacing: 0.01em;
@@ -91,7 +105,7 @@
     margin-bottom: 12px;
   }
   .hero-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 5vw, 40px);
     color: white;
     line-height: 1.15;
@@ -133,12 +147,12 @@
   }
   .progress-fill {
     height: 100%;
-    background: var(--navy-light);
+    background: var(--gold);
     border-radius: 99px;
     transition: width 0.4s ease;
   }
   .progress-count {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 32px;
     color: var(--navy);
     white-space: nowrap;
@@ -172,7 +186,7 @@
     border-color: var(--navy-light);
   }
   .step.is-open {
-    box-shadow: 0 4px 20px rgba(18, 58, 99, 0.10);
+    box-shadow: 0 4px 20px rgba(10, 20, 34, 0.10);
   }
 
   .step-header {
@@ -227,8 +241,69 @@
   }
   .tag-must { background: var(--red-pale); color: var(--red); }
   .tag-watch { background: var(--teal-pale); color: var(--teal); }
-  .tag-do { background: var(--navy-pale); color: var(--navy); }
+  .tag-do { background: var(--gold-pale); color: var(--gold-deep); }
   .tag-soon { background: var(--amber-pale); color: var(--amber); }
+
+  .step.is-locked {
+    opacity: 0.55;
+    background: var(--gray-100);
+    border-style: dashed;
+  }
+  .step.is-locked .step-header { cursor: default; }
+  .step.is-locked .step-chevron { visibility: hidden; }
+  .step.is-locked .step-num {
+    background: transparent;
+    color: var(--gray-400);
+    font-size: 13px;
+  }
+  .step-locked-hint {
+    display: block;
+    font-size: 11px;
+    color: var(--gray-600);
+    margin-top: 3px;
+  }
+
+  .trilha-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 0 auto 18px;
+    max-width: 680px;
+    padding: 0 1rem;
+  }
+  .trilha-tab {
+    flex: 1;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 9px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+  }
+  .trilha-tab:hover { border-color: var(--gold); }
+  .trilha-tab.is-active {
+    background: var(--night);
+    border-color: var(--night);
+    color: #fff;
+  }
+  .trilha-tab-count {
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    border-radius: 20px;
+    padding: 1px 7px;
+  }
+  .trilha-tab.is-active .trilha-tab-count {
+    background: var(--gold);
+    color: var(--ink);
+  }
 
   .step-chevron {
     width: 20px;
@@ -291,7 +366,7 @@
   .sub-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
   .sub-step { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 10px 12px; }
   .sub-step-hdr { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .sub-step-order { font-size: 10px; font-weight: 500; background: var(--navy-pale); color: var(--navy); border-radius: 20px; padding: 2px 8px; }
+  .sub-step-order { font-size: 10px; font-weight: 500; background: var(--gold-pale); color: var(--gold-deep); border-radius: 20px; padding: 2px 8px; }
   .sub-step-title { font-size: 13px; font-weight: 500; color: var(--text); }
   .sub-step-why { font-size: 12px; color: var(--gray-600); line-height: 1.6; margin-bottom: 4px; }
   .sub-step-result { font-size: 12px; color: var(--navy); font-weight: 500; }
@@ -331,7 +406,7 @@
     padding: 5px 12px;
     cursor: pointer;
   }
-  .snippet-copy:hover { background: var(--navy-pale); border-color: var(--navy-mid); }
+  .snippet-copy:hover { background: var(--gold-pale); border-color: var(--gold); }
   .snippet-copy.is-copied { background: var(--navy); border-color: var(--navy); color: #fff; }
   .snippet-text {
     margin: 0;
@@ -430,11 +505,13 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <p class="hero-eyebrow">Comercial · Executivo de Vendas</p>
+    <p class="hero-eyebrow" id="hero-eyebrow">Comercial · Executivo de Vendas</p>
     <h1 class="hero-title">Trilha de Onboarding</h1>
-    <p class="hero-sub">19 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas.</p>
+    <p class="hero-sub" id="hero-sub">19 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas.</p>
   </div>
 </div>
+
+<nav class="trilha-tabs" id="trilha-tabs" aria-label="Escolher trilha"></nav>
 
 <div class="progress-section">
   <div class="progress-card">
@@ -450,10 +527,10 @@
 
 <div class="steps-section" id="steps-container"></div>
 
-<footer>Podium Educação · Uso interno · Comercial</footer>
+<footer>Podium Educação · Uso interno</footer>
 
 <script>
-const STEPS = [
+const STEPS_COMERCIAL = [
   {
     name: "Entender o papel do Executivo de Vendas",
     tag: "must", tagTxt: "obrigatório",
@@ -695,16 +772,176 @@ const STEPS = [
   }
 ];
 
+const STEPS_FARMER = [
+  {
+    name: "Lincohn Agner — lives sobre assinaturas",
+    tag: "watch", tagTxt: "assistir",
+    desc: "O ponto de partida: entender assinatura pela explicação do Lincohn. Assista e pare sempre que surgir dúvida — anote e leve para a liderança. Não é para correr, é para sair daqui sabendo explicar assinatura com as suas palavras.",
+    links: [
+      { url: "https://www.youtube.com/@lincohnagnerbarbearia/streams", txt: "Lives do Lincohn Agner" }
+    ]
+  },
+  {
+    name: "Depoimentos de alunos",
+    tag: "watch", tagTxt: "assistir",
+    desc: "A playlist de depoimentos mostra o resultado na voz de quem já passou pelo processo. Assista e pare para tirar dúvidas. Para cada depoimento, anote: qual dor aparece e qual resultado foi entregue — é o que vira argumento real na conversa.",
+    links: [
+      { url: "https://www.youtube.com/playlist?list=PLdw0OokZ4ubPhB1Ux8B3MzheDkIu19u5N", txt: "Playlist de depoimentos de alunos" }
+    ]
+  },
+  {
+    name: "Criar acesso ao CashBarber",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Antes das aulas, você precisa do acesso à plataforma — é dentro dela que está toda a linha de estudo dos próximos passos. Solicite à liderança e confirme que consegue entrar antes de seguir.",
+    links: [],
+    missing: ["Link ou instruções para criar o acesso"]
+  },
+  {
+    name: "Aula 1 — Cash Barber: configurações",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Primeira aula da linha de estudo dentro do CashBarber. Assista e pare para tirar dúvidas. Configuração é a base: sem entender como o sistema é montado, as aulas seguintes ficam soltas.",
+    links: []
+  },
+  {
+    name: "Aula 2 — Assinaturas",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Agora dentro do sistema: como a assinatura funciona na prática. Faz par com as lives do Lincohn do passo 1 — lá você entendeu o conceito, aqui vê a mecânica. Assista e pare para tirar dúvidas.",
+    links: []
+  },
+  {
+    name: "Aula 3 — Cash.IA",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Terceira aula da linha de estudo. Assista e pare para tirar dúvidas.",
+    links: []
+  },
+  {
+    name: "Aula 4 — Cadeira de Dono",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Quarta aula da linha de estudo. Assista e pare para tirar dúvidas.",
+    links: []
+  },
+  {
+    name: "Aula 5 — Podium Pro",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Última aula da linha de estudo dentro do CashBarber. Assista e pare para tirar dúvidas.",
+    links: []
+  },
+  {
+    name: "Assistir calls — como apresentamos",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Depois de todas as aulas, assista às calls para ver como a Podium apresenta na prática. É a ponte entre o que você estudou e o que você vai fazer: observe a condução, não decore frases.",
+    links: [],
+    missing: ["Calls de referência para assistir"]
+  }
+];
+
+const GROUPS_COMERCIAL = [
+    { label: "Fundamentos", indices: [0] },
+    { label: "Produto e ecossistema", indices: [1, 2, 3],
+      intro: "Entendendo o mercado da barbearia: como o cliente ganha e perde dinheiro, o que trava o crescimento dele e o que o produto resolve. É o contexto que sustenta tudo o que vem depois — sem ele, a consultoria vira apresentação de sistema." },
+    { label: "Método e consultoria", indices: [4, 5, 6, 7, 8] },
+    { label: "Materiais, operação e pós-venda", indices: [9, 10, 11, 12] },
+    { label: "Operação e prática", indices: [13, 14, 15, 16, 17, 18] }
+];
+
+const GROUPS_FARMER = [
+  { label: "Contexto do produto", indices: [0, 1] },
+  { label: "Aulas no CashBarber", indices: [2, 3, 4, 5, 6, 7] },
+  { label: "Prática", indices: [8] }
+];
+
+const TRILHAS = {
+  comercial: { label: "Comercial", steps: STEPS_COMERCIAL, groups: GROUPS_COMERCIAL },
+  farmer:    { label: "Farmer",    steps: STEPS_FARMER,    groups: GROUPS_FARMER }
+};
+
+const TEXTOS = {
+  comercial: {
+    eyebrow: "Comercial · Executivo de Vendas",
+    sub: "19 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas."
+  },
+  farmer: {
+    eyebrow: "Revenue · Farmer",
+    sub: "9 passos em sequência para você entender assinatura, dominar o CashBarber e ver como a Podium apresenta. Cada passo libera o próximo."
+  }
+};
+
+const TRILHA_PADRAO = "comercial";
+let trilhaAtual = TRILHA_PADRAO;
+try {
+  const salva = localStorage.getItem("podium-onboarding-trilha");
+  if (salva && TRILHAS[salva]) trilhaAtual = salva;
+} catch (e) {}
+
 const TAG_CLS = { must: "tag-must", watch: "tag-watch", do: "tag-do", soon: "tag-soon" };
 const LINK_ICON = "↗";
 
-const TOTAL = 19;
-let done = JSON.parse(localStorage.getItem("podium-onboarding-done") || "null");
-if (!done || done.length !== TOTAL) { done = new Array(TOTAL).fill(false); localStorage.setItem("podium-onboarding-done", JSON.stringify(done)); }
+let STEPS = TRILHAS[trilhaAtual].steps;
+let TOTAL = STEPS.length;
+let done = [];
 let openIdx = -1;
 
+function chaveProgresso(t) { return "podium-onboarding-done-" + t; }
+
+function carregarProgresso() {
+  STEPS = TRILHAS[trilhaAtual].steps;
+  TOTAL = STEPS.length;
+  let lido = null;
+  try { lido = JSON.parse(localStorage.getItem(chaveProgresso(trilhaAtual)) || "null"); } catch (e) {}
+  done = (Array.isArray(lido) && lido.length === TOTAL) ? lido : new Array(TOTAL).fill(false);
+  openIdx = -1;
+}
+carregarProgresso();
+
+// Desbloqueio progressivo: um passo so abre depois que todos os anteriores
+// foram concluidos. O primeiro esta sempre liberado.
+function liberado(i) {
+  for (let k = 0; k < i; k++) { if (!done[k]) return false; }
+  return true;
+}
+
+function proximoLiberado() {
+  for (let i = 0; i < TOTAL; i++) { if (!done[i]) return i; }
+  return -1;
+}
+
+function trocarTrilha(t) {
+  if (!TRILHAS[t] || t === trilhaAtual) return;
+  trilhaAtual = t;
+  try { localStorage.setItem("podium-onboarding-trilha", t); } catch (e) {}
+  carregarProgresso();
+  renderTabs();
+  aplicarTextos();
+  renderSteps();
+}
+
+function aplicarTextos() {
+  const t = TEXTOS[trilhaAtual];
+  if (!t) return;
+  const eb = document.getElementById("hero-eyebrow");
+  const sb = document.getElementById("hero-sub");
+  if (eb) eb.textContent = t.eyebrow;
+  if (sb) sb.textContent = t.sub;
+}
+
+function renderTabs() {
+  const nav = document.getElementById("trilha-tabs");
+  if (!nav) return;
+  nav.innerHTML = "";
+  Object.keys(TRILHAS).forEach(function(t) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "trilha-tab" + (t === trilhaAtual ? " is-active" : "");
+    b.setAttribute("aria-pressed", t === trilhaAtual ? "true" : "false");
+    const n = TRILHAS[t].steps.length;
+    b.innerHTML = TRILHAS[t].label + ' <span class="trilha-tab-count">' + n + '</span>';
+    b.addEventListener("click", function() { trocarTrilha(t); });
+    nav.appendChild(b);
+  });
+}
+
 function save() {
-  try { localStorage.setItem("podium-onboarding-done", JSON.stringify(done)); } catch(e) {}
+  try { localStorage.setItem(chaveProgresso(trilhaAtual), JSON.stringify(done)); } catch(e) {}
 }
 
 function updateProgress() {
@@ -756,14 +993,7 @@ function renderSteps() {
   openBody = null;
   openInner = null;
 
-  const groups = [
-    { label: "Fundamentos", indices: [0] },
-    { label: "Produto e ecossistema", indices: [1, 2, 3],
-      intro: "Entendendo o mercado da barbearia: como o cliente ganha e perde dinheiro, o que trava o crescimento dele e o que o produto resolve. É o contexto que sustenta tudo o que vem depois — sem ele, a consultoria vira apresentação de sistema." },
-    { label: "Método e consultoria", indices: [4, 5, 6, 7, 8] },
-    { label: "Materiais, operação e pós-venda", indices: [9, 10, 11, 12] },
-    { label: "Operação e prática", indices: [13, 14, 15, 16, 17, 18] }
-  ];
+  const groups = TRILHAS[trilhaAtual].groups;
 
   groups.forEach(group => {
     const div = document.createElement("div");
@@ -780,8 +1010,9 @@ function renderSteps() {
 
     group.indices.forEach(i => {
       const s = STEPS[i];
+      const aberto = liberado(i);
       const card = document.createElement("div");
-      card.className = "step" + (done[i] ? " is-done" : "") + (openIdx === i ? " is-open" : "");
+      card.className = "step" + (done[i] ? " is-done" : "") + (openIdx === i ? " is-open" : "") + (aberto ? "" : " is-locked");
 
       const hdr = document.createElement("div");
       hdr.className = "step-header";
@@ -790,7 +1021,7 @@ function renderSteps() {
 
       const numEl = document.createElement("div");
       numEl.className = "step-num";
-      numEl.textContent = done[i] ? "✓" : (i + 1);
+      numEl.textContent = done[i] ? "✓" : (aberto ? (i + 1) : "🔒");
 
       const info = document.createElement("div");
       info.className = "step-info";
@@ -900,9 +1131,26 @@ function renderSteps() {
         btn.textContent = done[i] ? "✓ Concluído — desfazer" : "Marcar como concluído";
         btn.addEventListener("click", function(e) {
           e.stopPropagation();
-          done[i] = !done[i];
+          const marcando = !done[i];
+
+          if (!marcando) {
+            // Desmarcar tranca os passos seguintes. Deixa-los marcados criaria
+            // card concluido e trancado ao mesmo tempo, com o contador mentindo,
+            // entao os posteriores voltam a zero junto.
+            const posteriores = done.slice(i + 1).filter(Boolean).length;
+            if (posteriores > 0) {
+              const msg = posteriores === 1
+                ? "Desmarcar este passo também desmarca o passo seguinte, que já estava concluído. Continuar?"
+                : "Desmarcar este passo também desmarca os " + posteriores + " passos seguintes, que já estavam concluídos. Continuar?";
+              if (!window.confirm(msg)) return;
+              for (let k = i + 1; k < TOTAL; k++) done[k] = false;
+            }
+          }
+
+          done[i] = marcando;
           save();
           updateProgress();
+          openIdx = marcando ? proximoLiberado() : i;
           renderSteps();
         });
         inner.appendChild(btn);
@@ -915,10 +1163,19 @@ function renderSteps() {
         openInner = inner;
       }
 
-      hdr.addEventListener("click", function() {
-        openIdx = openIdx === i ? -1 : i;
-        renderSteps();
-      });
+      if (aberto) {
+        hdr.addEventListener("click", function() {
+          openIdx = openIdx === i ? -1 : i;
+          renderSteps();
+        });
+      } else {
+        hdr.setAttribute("aria-disabled", "true");
+        hdr.removeAttribute("role");
+        const cadeado = document.createElement("span");
+        cadeado.className = "step-locked-hint";
+        cadeado.textContent = "Conclua o passo " + i + " para liberar";
+        info.appendChild(cadeado);
+      }
 
       card.appendChild(hdr);
       card.appendChild(body);
@@ -944,6 +1201,8 @@ function renderSteps() {
 
 window.addEventListener("resize", syncOpenHeight);
 
+renderTabs();
+aplicarTextos();
 renderSteps();
 </script>
 </body>
