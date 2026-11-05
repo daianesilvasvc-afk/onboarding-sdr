@@ -902,6 +902,61 @@
     .modulo-hdr { gap: 0.5rem; }
   }
 
+  /* Aula em partes: um palco e a lista de partes embaixo */
+  .partes { margin: 0 0 1.25rem; }
+  .partes-palco > .video-capa,
+  .partes-palco > .video-frame { margin-bottom: 0.75rem; }
+  .partes-nota {
+    margin: 0 0 0.85rem;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--gray-600);
+    max-width: 86ch;
+    border-left: 3px solid var(--gold);
+    padding-left: 0.8rem;
+  }
+  .partes-lista {
+    display: grid;
+    /* auto-fit para que tres partes preencham a linha como quatro preenchem */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+  }
+  .parte-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    background: white;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .parte-btn:hover { border-color: var(--gold); }
+  .parte-btn.is-ativa {
+    background: var(--night);
+    border-color: var(--night);
+    color: white;
+    box-shadow: 0 3px 14px rgba(10,20,34,0.14);
+  }
+  .parte-n {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .parte-btn.is-ativa .parte-n { color: var(--gold); }
+  .parte-titulo { font-size: 13px; line-height: 1.35; font-weight: 500; }
+  .parte-dur { font-size: 11px; color: var(--gray-600); }
+  .parte-btn.is-ativa .parte-dur { color: rgba(255,255,255,0.65); }
+  @media (max-width: 480px) {
+    .partes-lista { grid-template-columns: 1fr; }
+  }
+
   /* Galeria: links de video viram capa clicavel */
   .video-galeria {
     display: grid;
@@ -1449,9 +1504,15 @@ const STEPS_COMERCIAL = [
   {
     name: "Novo formato de call — as 9 etapas",
     trilha: true,
-    tipo: "Método", dur: "9 etapas",
+    tipo: "Método", dur: "20 min + 9 etapas",
     tag: "must", tagTxt: "obrigatório",
-    desc: "A estrutura da call inteira, do rapport ao pitch, com os pontos de atenção de cada etapa. É o roteiro que você vai seguir em toda reunião — siga as nove na ordem.",
+    desc: "A estrutura da call inteira, do rapport ao pitch, com os pontos de atenção de cada etapa. É o roteiro que você vai seguir em toda reunião. Comece pela explicação em vídeo, dividida em quatro partes de cinco minutos, e só depois percorra as nove etapas — o vídeo conta o porquê, a trilha é a consulta do dia a dia.",
+    videos: [
+      { kind: "loom", id: "a97d655475e94e1ba06da056dbb88d2c", titulo: "Abertura e investigação", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/a97d655475e94e1ba06da056dbb88d2c-015b9ac1fc235b0a.gif" },
+      { kind: "loom", id: "bada55f415e04bca8f1b3dd9131c0925", titulo: "Quadro branco e depoimento", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/bada55f415e04bca8f1b3dd9131c0925-72cc0c6d190dcfcb.gif" },
+      { kind: "loom", id: "1c0e07b7d8214a14a517c1782358fe6c", titulo: "Pilares e apresentação", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/1c0e07b7d8214a14a517c1782358fe6c-1892f9ff63f16fb1.gif" },
+      { kind: "loom", id: "22aaba0cd666441fb819d5c03625bbd4", titulo: "Suporte, evento e pitch", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/22aaba0cd666441fb819d5c03625bbd4-de643f2700a1a957.gif" }
+    ],
     links: [],
     subSteps: [
       {
@@ -1573,6 +1634,32 @@ const STEPS_COMERCIAL = [
         ]
       }
     ]
+  },
+  {
+    name: "Três calls reais para assistir depois do formato",
+    tipo: "Call", dur: "3 calls",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Agora que você sabe o roteiro, veja ele acontecendo. São três calls de verdade, com perfis de lead bem diferentes — e as três fecharam. Antes de dar play em cada uma, leia o contexto do lead e tente prever onde o executivo vai ter que ajustar o roteiro. Depois confira se foi isso mesmo.",
+    rotuloParte: "Call",
+    passoPartes: "Assista às três calls, uma de cada vez",
+    videos: [
+      {
+        kind: "drive", id: "1w6tI27d_7LiYH08lZ-QeILipzcp93MlB",
+        titulo: "Dor de sistema, lead calado",
+        nota: "Lead com dor de sistema, queria muito só o Cash. Se comunicava pouco na call, mas estava muito interessado. Repare em como se conduz um lead que fala pouco sem transformar a call em monólogo."
+      },
+      {
+        kind: "drive", id: "1k4Wh0x11NleB6il6Pr2L9VZmQF5b3zRv",
+        titulo: "Escada de valores até 3k",
+        nota: "Lead com muita dor de sistema, veio da mentoria do Rapha e já sabia sobre assinatura. Equipe pouco engajada e muito pouco tempo no dia. Não tinha os 5k: foi feita a escada e pegou-se o valor de 3k que ele tinha disponível na hora — pagou na própria call. É um perfil que, se deixasse, comandava a reunião."
+      },
+      {
+        kind: "drive", id: "1c3umFHNCEhKynIh61Zy4GUxPEn7GCjTE",
+        titulo: "Rede de 5 unidades",
+        nota: "Lead grande, 5 unidades e bom faturamento. Não acreditava na assinatura na cidade dele, tinha pouco tempo no dia a dia, dificuldade com sistema e não sabia ser gestor estratégico. Tirou bastante dúvida. A call começou por vendas, porque foi por essas funções que ele veio e a dor era fazer o time vender — mas o poder da assinatura foi mostrado e ele fechou no fim, já pensando em como colocar o plano nas 5 unidades. Pagou reserva de R$ 500 na call."
+      }
+    ],
+    links: []
   },
   {
     name: "Consultoria para clientes de baixo faturamento",
@@ -1787,9 +1874,9 @@ const GROUPS_COMERCIAL = [
     { label: "Fundamentos", indices: [0] },
     { label: "Produto e ecossistema", indices: [1, 2],
       intro: "Entendendo o mercado da barbearia: como o cliente ganha e perde dinheiro, o que trava o crescimento dele e o que o produto resolve. É o contexto que sustenta tudo o que vem depois — sem ele, a consultoria vira apresentação de sistema." },
-    { label: "Método e consultoria", indices: [3, 4, 5, 6, 7] },
-    { label: "Materiais, operação e pós-venda", indices: [8, 9, 10] },
-    { label: "Operação e prática", indices: [11, 12, 13, 14, 15] }
+    { label: "Método e consultoria", indices: [3, 4, 5, 6, 7, 8] },
+    { label: "Materiais, operação e pós-venda", indices: [9, 10, 11] },
+    { label: "Operação e prática", indices: [12, 13, 14, 15, 16] }
 ];
 
 const GROUPS_FARMER = [
@@ -1913,6 +2000,7 @@ const ICONE_TIPO = {
   "Prática":    '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 2v3M8 11v3M2 8h3M11 8h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg>',
   "Validação":  '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1.8 13.5 4v4.2c0 3-2.3 5.1-5.5 6-3.2-.9-5.5-3-5.5-6V4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m5.8 8 1.6 1.6 3-3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   "Acesso":     '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.4"/></svg>',
+  "Call":       '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 4.2c0-.7.6-1.3 1.3-1.3h1.2c.5 0 1 .4 1.1.9l.4 1.8c.1.4 0 .8-.3 1l-.9.7c.8 1.6 2.1 2.9 3.7 3.7l.7-.9c.2-.3.6-.4 1-.3l1.8.4c.5.1.9.6.9 1.1v1.2c0 .7-.6 1.3-1.3 1.3C7.3 13.8 2.2 8.7 3 4.2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',
   "Fundamento": '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 2.2 14 5.4 8 8.6 2 5.4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M3.4 7.6v3.1c0 .9 2.1 2.1 4.6 2.1s4.6-1.2 4.6-2.1V7.6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>'
 };
 
@@ -2079,15 +2167,13 @@ function urlCapa(v) {
   return null;
 }
 
-function montarVideo(inner, s) {
-  const v = s.video;
-  const embed = urlEmbed(v);
-  if (!embed) return;
-
+// Capa clicavel de um video. Serve tanto para a aula de video unico quanto
+// para cada parte de uma aula dividida.
+function capaDeVideo(v, rotulo, aria) {
   const capa = document.createElement("button");
   capa.className = "video-capa";
   capa.type = "button";
-  capa.setAttribute("aria-label", "Assistir: " + s.name);
+  capa.setAttribute("aria-label", aria);
 
   const src = urlCapa(v);
   if (src) {
@@ -2115,21 +2201,102 @@ function montarVideo(inner, s) {
 
   const rot = document.createElement("span");
   rot.className = "video-rotulo";
-  rot.textContent = s.dur ? ("Assistir · " + s.dur) : "Assistir aqui";
+  rot.textContent = rotulo;
   capa.appendChild(rot);
 
+  return capa;
+}
+
+function quadroDeVideo(embed) {
+  const frame = document.createElement("iframe");
+  frame.className = "video-frame";
+  frame.src = embed;
+  frame.allow = "fullscreen";
+  frame.allowFullscreen = true;
+  return frame;
+}
+
+function montarVideo(inner, s) {
+  const v = s.video;
+  const embed = urlEmbed(v);
+  if (!embed) return;
+
+  const capa = capaDeVideo(v, s.dur ? ("Assistir · " + s.dur) : "Assistir aqui", "Assistir: " + s.name);
   capa.addEventListener("click", function(ev) {
     ev.stopPropagation();
-    const frame = document.createElement("iframe");
-    frame.className = "video-frame";
-    frame.src = embed;
-    frame.allow = "fullscreen";
-    frame.allowFullscreen = true;
-    capa.replaceWith(frame);
+    capa.replaceWith(quadroDeVideo(embed));
     syncOpenHeight();
   });
 
   inner.appendChild(capa);
+}
+
+// Aula dividida em partes: um palco so, e a lista embaixo troca qual parte
+// esta no palco. Evita varios players empilhados e deixa clara a ordem.
+function montarPartes(inner, s) {
+  const rotulo = s.rotuloParte || "Parte";
+  const wrap = document.createElement("div");
+  wrap.className = "partes";
+
+  const palco = document.createElement("div");
+  palco.className = "partes-palco";
+  wrap.appendChild(palco);
+
+  const nota = document.createElement("p");
+  nota.className = "partes-nota";
+  wrap.appendChild(nota);
+
+  const lista = document.createElement("div");
+  lista.className = "partes-lista";
+  const botoes = [];
+
+  function abrir(n, tocar) {
+    const v = s.videos[n];
+    botoes.forEach(function(b, k) { b.classList.toggle("is-ativa", k === n); });
+
+    nota.textContent = v.nota || "";
+    nota.hidden = !v.nota;
+
+    palco.innerHTML = "";
+    if (tocar) {
+      palco.appendChild(quadroDeVideo(urlEmbed(v)));
+    } else {
+      const r = rotulo + " " + (n + 1);
+      const capa = capaDeVideo(v, v.dur ? (r + " · " + v.dur) : r, "Assistir " + r + ": " + (v.titulo || s.name));
+      capa.addEventListener("click", function(ev) { ev.stopPropagation(); abrir(n, true); });
+      palco.appendChild(capa);
+    }
+    syncOpenHeight();
+  }
+
+  s.videos.forEach(function(v, n) {
+    const b = document.createElement("button");
+    b.className = "parte-btn";
+    b.type = "button";
+    const et = document.createElement("span");
+    et.className = "parte-n";
+    et.textContent = rotulo + " " + (n + 1);
+    b.appendChild(et);
+    if (v.titulo) {
+      const t = document.createElement("span");
+      t.className = "parte-titulo";
+      t.textContent = v.titulo;
+      b.appendChild(t);
+    }
+    if (v.dur) {
+      const d = document.createElement("span");
+      d.className = "parte-dur";
+      d.textContent = v.dur;
+      b.appendChild(d);
+    }
+    b.addEventListener("click", function(ev) { ev.stopPropagation(); abrir(n, false); });
+    botoes.push(b);
+    lista.appendChild(b);
+  });
+
+  wrap.appendChild(lista);
+  inner.appendChild(wrap);
+  abrir(0, false);
 }
 
 // Link de video do YouTube vira capa. O id sai do v= da URL; playlist e canal
@@ -2192,8 +2359,16 @@ function moduloDaAula(i) {
 
 // Miniatura da aula: a capa do proprio video, a do primeiro video da galeria,
 // ou nada — nesse caso entra o icone do tipo sobre o azul-noite.
+function idsDeVideo(s) {
+  const ids = [];
+  if (s.video) ids.push(s.video.id);
+  if (s.videos) s.videos.forEach(function(v) { ids.push(v.id); });
+  return ids;
+}
+
 function miniatura(s) {
   if (s.video) return urlCapa(s.video);
+  if (s.videos && s.videos.length > 0) return urlCapa(s.videos[0]);
   if (s.links) {
     for (const l of s.links) {
       const yt = idYoutube(l.url);
@@ -2379,6 +2554,11 @@ function renderPainel() {
     montarVideo(painel, s);
   }
 
+  if (s.videos && s.videos.length > 0) {
+    passo = cabecaDePasso(painel, passo, s.passoPartes || ("Assista à explicação, nas " + s.videos.length + " partes"));
+    montarPartes(painel, s);
+  }
+
   if (s.subSteps && s.trilha) {
     passo = cabecaDePasso(painel, passo, "Percorra as etapas, uma de cada vez");
     montarTrilha(painel, s, i);
@@ -2404,10 +2584,11 @@ function renderPainel() {
   if (s.links && s.links.length > 0) {
     const comCapa = [];
     const semCapa = [];
+    const jaEmbutidos = idsDeVideo(s);
     s.links.forEach(function(l) {
       // O video ja toca embutido acima; repetir o mesmo link como "material"
       // so faz a aula parecer ter dois passos onde ha um.
-      if (s.video && l.url.indexOf(s.video.id) >= 0) return;
+      if (jaEmbutidos.some(function(id) { return l.url.indexOf(id) >= 0; })) return;
       const yt = idYoutube(l.url);
       if (yt) comCapa.push({ url: l.url, txt: l.txt, ytId: yt });
       else semCapa.push(l);
