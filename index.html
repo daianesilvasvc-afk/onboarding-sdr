@@ -335,6 +335,33 @@
     line-height: 1.7;
   }
 
+  .falas {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .falas li {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--gray-800);
+    background: #fff;
+    border-left: 2px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 7px 10px;
+  }
+  .fala-etiqueta {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 3px;
+  }
+
   .step-links {
     display: flex;
     flex-direction: column;
@@ -569,15 +596,101 @@ const STEPS_COMERCIAL = [
   {
     name: "NPQL — as 5 etapas da conversa",
     tag: "must", tagTxt: "obrigatório",
-    desc: "Depois do BANT vem o NPQL: é ele que estrutura a conversa que leva à consultoria. O objetivo é fazer com que a venda se torne leve — não é você empurrando uma venda, é o cliente comprando. Estude o script e siga as 5 etapas na ordem.",
+    desc: "Depois do BANT vem o NPQL: é ele que estrutura a conversa que leva à consultoria. O objetivo é fazer com que a venda se torne leve — não é você empurrando uma venda, é o cliente comprando. Duas regras atravessam tudo: o objetivo não é sobre nós, é sobre o cliente; e quando estamos emotivos, nosso cérebro não consegue ser racional. As perguntas abaixo são o script — não decore, internalize a lógica de cada etapa.",
     links: [],
-    missing: ["Texto do script NPQL, para ficar dentro da trilha"],
     subSteps: [
-      { order: "1º", title: "Conexão", why: "Abrir a conversa criando relação antes de qualquer pergunta de negócio. Sem conexão, todas as respostas seguintes vêm defensivas.", result: "O cliente está à vontade para falar da operação dele de verdade." },
-      { order: "2º", title: "Situação", why: "Entender como a barbearia funciona hoje: estrutura, rotina, números, como ele toca o dia a dia.", result: "Você tem o retrato atual, com as palavras dele." },
-      { order: "3º", title: "Problema", why: "Trazer à tona o que não está funcionando. Não é você apontando — é ele reconhecendo.", result: "O problema fica dito em voz alta pelo próprio cliente." },
-      { order: "4º", title: "Solução", why: "Conectar o problema reconhecido ao que a solução resolve. Aqui a apresentação começa a fazer sentido para ele.", result: "A solução aparece como resposta ao que ele acabou de dizer." },
-      { order: "5º", title: "Consequência", why: "Mostrar o custo de não resolver — e o cenário de quem resolve. É o que gera a decisão.", result: "A urgência vem do raciocínio dele, não da sua pressão." }
+      {
+        order: "1º",
+        title: "Conexão",
+        why: "Objetivo: extrair uma informação — o que ele está fazendo aqui com você hoje. Abra leve, sem entrar em negócio.",
+        result: "A primeira resposta costuma vir rasa. Insista: é na segunda que aparece a motivação real.",
+        perguntas: [
+          "E aí [nome], beleza?",
+          "Está falando de onde?",
+          "O que você viu lá na rede social que fez você parar aqui comigo hoje? Porque ninguém está na rede social para marcar reunião, né.",
+          "E, de curiosidade, o que te fez procurar uma solução agora?",
+          "O que te motivou a bater esse bate-papo hoje?",
+          "Qual foi a principal motivação que te levou a abrir essa barbearia?"
+        ]
+      },
+      {
+        order: "2º",
+        title: "Situação",
+        why: "Objetivo: descobrir a situação atual dele — estrutura, rotina, números e o que já tentou. Se ele disser que não tem problema nenhum, afronte com educação: ninguém marca uma call porque está tudo certo.",
+        result: "Resposta vaga? Use a técnica: \"[nome], é que eu sou visual — conseguiria me explicar melhor o que seria isso?\"",
+        perguntas: [
+          "Quantas pessoas trabalham com você na sua barbearia?",
+          "Quais problemas você tem enfrentado na barbearia hoje?",
+          "Quantos clientes atende?",
+          "Possui assinatura?",
+          "Quais estratégias de vendas você já implementou?",
+          "Você está satisfeito com [o desafio que o lead trouxe]?",
+          "Aparentemente você está indo muito bem aí — o que você faria de diferente?",
+          "Tem alguma coisa do que você está fazendo hoje que você mudaria?"
+        ]
+      },
+      {
+        order: "3º",
+        title: "Problema",
+        why: "Fazer o cara admitir qual é o problema dele — em quatro frentes: o que é, há quanto tempo, qual a causa e como isso o afeta. Quando ele tiver dificuldade de se abrir, use a informação que o SDR já levantou.",
+        result: "Na pergunta emocional, dê pausas verbais: ela não pode soar scriptada, precisa ter sentimento.",
+        perguntas: [
+          "O que é — Eu vi que você estava falando com [fulano] e estava passando por [situação], certo? Consegue me explicar um pouco melhor sobre isso?",
+          "O que é — Olhando tudo o que você vem enfrentando na barbearia, tem algo que, se você resolvesse, começaria a mudar tudo aí?",
+          "O que é — O que você gosta e o que não gosta na barbearia?",
+          "Tempo — Acredito que você não acordou com esse problema. Há quanto tempo você está passando por isso?",
+          "Tempo — Você se lembra há quanto tempo isso vem te incomodando?",
+          "Causa — Na sua visão, o que você acredita que gerou esse problema?",
+          "Emocional — Isso tem te afetado de alguma forma?",
+          "Emocional — E fora da barbearia, isso tem te afetado de alguma forma?",
+          "Emocional — [nome], posso te fazer uma pergunta mais pessoal? Vendo que alguns problemas que vivemos afetam nosso lado emocional, o que você acredita que esse problema vem afetando no seu?"
+        ]
+      },
+      {
+        order: "4º",
+        title: "Solução",
+        why: "Entender o que ele já tentou, o que considera essencial numa solução e — principalmente — fazer ele se imaginar no cenário resolvido. Precisa de emoção e de número: leve para o lugar perfeito e quantifique.",
+        result: "Se ele falar em comprar casa ou carro, aprofunde (\"e você já sabe qual bairro?\", \"qual cor você escolheria?\"). O objetivo é ele se imaginando, com emoção de alívio.",
+        perguntas: [
+          "Já buscou resolver isso antes?",
+          "Antes de conversarmos, você já buscou outra solução para resolver isso?",
+          "Você me falou que está com esse problema há [tempo] — o que te travou para viver com isso esse tempo todo?",
+          "O que você tem visto no [app atual] que vem te ajudando hoje?",
+          "O que você julga essencial em uma solução para te ajudar?",
+          "O que não pode faltar numa solução para que valha a pena investir?",
+          "Se daqui a 3 a 6 meses você já tivesse solucionado esse problema, como seria a sua vida?",
+          "Se você já vivesse aquilo que mencionou pra mim no começo, como seria sua vida?",
+          "Se você tivesse o resultado que está buscando, o que conseguiria fazer que não consegue hoje?",
+          "Quantificar — Caso você consiga alcançar isso, o que traria de realização pessoal pra você?",
+          "Quantificar — [nome], se isso já estivesse resolvido, quanto você acredita que estaria faturando?",
+          "Quantificar — E se conseguisse resolver isso, quanto de retorno traria pra você?"
+        ]
+      },
+      {
+        order: "4º ·",
+        title: "Transição",
+        why: "Fecha a etapa de solução e prepara a consequência. Aqui o tom de voz muda: fica mais preocupado, mais lento.",
+        result: "É a ponte para o cliente sentir o custo de não agir.",
+        perguntas: [
+          "E se a gente não fizer nada, como seria?",
+          "O que está te impedindo de alcançar isso é o que você está fazendo hoje, certo?",
+          "Eu só tenho uma preocupação: me preocupei com aquele ponto que você trouxe pra mim hoje. Se você desligar a call agora e não fizer nada, como será a sua vida daqui a [X] meses?",
+          "O que você vem fazendo hoje deixa você mais perto ou mais longe do que está buscando?"
+        ]
+      },
+      {
+        order: "5º",
+        title: "Consequência",
+        why: "Pegar os números que ele mesmo deu e fazer a conta na frente dele. É a etapa da calculadora: projeção de produtividade vezes o ano.",
+        result: "Fale o resultado com pausa e fala lenta, para criar um clima reflexivo. Depois da pergunta sobre o quanto ele perdeu, faça silêncio — o silêncio é parte da técnica.",
+        perguntas: [
+          "Calculadora — [nome], está com a calculadora aí? Vamos pegar os seus números e fazer uma conta.",
+          "Calculadora — Então você perdeu [valor]? (e aqui você faz silêncio)",
+          "Projeção — Fazendo o cálculo de produtividade vezes o ano, isso dá [resultado].",
+          "O que pode acontecer se você não resolver esse problema agora?",
+          "Se você adiar resolver isso, o que pode acontecer com você?"
+        ]
+      }
     ]
   },
   {
@@ -1069,6 +1182,27 @@ function renderSteps() {
           const subCard = document.createElement("div");
           subCard.className = "sub-step";
           subCard.innerHTML = '<div class="sub-step-hdr"><span class="sub-step-order">' + sub.order + '</span><span class="sub-step-title">' + sub.title + '</span></div><p class="sub-step-why">' + sub.why + '</p><p class="sub-step-result">' + sub.result + '</p>';
+
+          if (sub.perguntas && sub.perguntas.length > 0) {
+            const ul = document.createElement("ul");
+            ul.className = "falas";
+            sub.perguntas.forEach(function(p) {
+              const li = document.createElement("li");
+              const corte = p.indexOf(" — ");
+              if (corte > 0 && corte < 28) {
+                const et = document.createElement("span");
+                et.className = "fala-etiqueta";
+                et.textContent = p.slice(0, corte);
+                li.appendChild(et);
+                li.appendChild(document.createTextNode(p.slice(corte + 3)));
+              } else {
+                li.textContent = p;
+              }
+              ul.appendChild(li);
+            });
+            subCard.appendChild(ul);
+          }
+
           subDiv.appendChild(subCard);
         });
         inner.appendChild(subDiv);
