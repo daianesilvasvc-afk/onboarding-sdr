@@ -658,6 +658,302 @@
   border-radius: 3px;
   font-size: 0.95em;
 }
+
+  /* ======= CURSO: retomada, modulos, aulas, video ======= */
+
+  .progress-section, .steps-section { max-width: 760px; }
+
+  /* Cartao de retomada — onde a pessoa parou */
+  .retomada {
+    background: var(--night);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    color: #E8EDF4;
+    position: relative;
+    overflow: hidden;
+  }
+  .retomada::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .retomada-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+  }
+  .retomada-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .retomada-prog { font-size: 12px; color: #9FB0C4; white-space: nowrap; }
+  .retomada-modulo {
+    font-size: 12px;
+    color: #9FB0C4;
+    margin-bottom: 0.3rem;
+  }
+  .retomada-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 0.65rem;
+  }
+  .retomada-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 12px;
+    color: #9FB0C4;
+    margin-bottom: 1.1rem;
+  }
+  .retomada-track {
+    height: 5px;
+    background: rgba(255,255,255,0.14);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 1.1rem;
+  }
+  .retomada-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+  .retomada-btn {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.65rem 1.25rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s;
+  }
+  .retomada-btn:hover { filter: brightness(1.08); }
+  .retomada.is-completa::after { background: var(--cream); }
+  .retomada.is-completa .retomada-eyebrow { color: var(--cream); }
+
+  /* Modulos */
+  .modulo { margin-top: 2.25rem; }
+  .modulo:first-child { margin-top: 0.5rem; }
+  .modulo-hdr {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--gray-200);
+    margin-bottom: 1rem;
+  }
+  .modulo-id {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gold-deep);
+    background: var(--gold-pale);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .modulo-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    flex: 1;
+    min-width: 0;
+  }
+  .modulo-meta {
+    font-size: 12px;
+    color: var(--gray-600);
+    white-space: nowrap;
+  }
+  .modulo-track {
+    flex-basis: 100%;
+    height: 3px;
+    background: var(--gray-100);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+  .modulo-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+  .modulo-intro {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+    padding-left: 0.85rem;
+    border-left: 2px solid var(--gold-pale);
+  }
+  .modulo-aulas { display: flex; flex-direction: column; gap: 10px; }
+
+  /* Aula — linha de meta com tipo e duracao */
+  .aula-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 5px;
+    font-size: 11.5px;
+    color: var(--gray-600);
+  }
+  .aula-tipo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+  }
+  .aula-tipo svg { flex-shrink: 0; opacity: 0.75; }
+  .aula-sep { color: var(--gray-200); }
+  .step.is-done .aula-meta { opacity: 0.6; }
+
+  /* Validacao fecha a trilha */
+  .step.is-validacao { border-color: var(--gold); }
+  .step.is-validacao .step-num {
+    background: var(--gold-pale);
+    color: var(--gold-deep);
+  }
+  .step.is-validacao.is-done .step-num { background: var(--navy-light); color: #fff; }
+
+  /* Capa e player de video */
+  .video-capa {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--night);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    display: block;
+    margin: 0 0 1rem;
+  }
+  .video-capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, filter 0.25s;
+  }
+  .video-capa:hover img { transform: scale(1.03); filter: brightness(0.85); }
+  .video-capa-vazia {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--night), var(--ink));
+  }
+  .video-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(10,20,34,0.45);
+    transition: transform 0.2s;
+    pointer-events: none;
+  }
+  .video-capa:hover .video-play { transform: translate(-50%, -50%) scale(1.08); }
+  .video-rotulo {
+    position: absolute;
+    left: 10px; bottom: 10px;
+    background: rgba(10,20,34,0.82);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  .video-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: var(--radius-sm);
+    display: block;
+    margin: 0 0 1rem;
+    background: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .retomada { padding: 1.25rem 1.1rem; }
+    .retomada-titulo { font-size: 20px; }
+    .modulo-titulo { font-size: 18px; }
+    .modulo-hdr { gap: 0.5rem; }
+  }
+
+  /* Galeria: links de video viram capa clicavel */
+  .video-galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .video-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .video-item:hover {
+    border-color: var(--gold);
+    box-shadow: 0 3px 14px rgba(10,20,34,0.10);
+  }
+  .video-item-capa {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--night);
+    overflow: hidden;
+  }
+  .video-item-capa img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.35s ease;
+  }
+  .video-item:hover .video-item-capa img { transform: scale(1.05); }
+  .video-item-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(215,171,92,0.95);
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .video-item-txt {
+    padding: 8px 10px 10px;
+    font-size: 12px;
+    line-height: 1.35;
+    font-weight: 500;
+  }
+  @media (max-width: 560px) {
+    .video-galeria { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -674,23 +970,13 @@
   <div class="hero-inner">
     <p class="hero-eyebrow" id="hero-eyebrow">Comercial · Executivo de Vendas</p>
     <h1 class="hero-title">Trilha de Onboarding</h1>
-    <p class="hero-sub" id="hero-sub">16 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas.</p>
+    <p class="hero-sub" id="hero-sub">16 aulas em 5 módulos: entender o produto, dominar a operação, conduzir a consultoria e fechar. Cada aula libera a próxima, e a trilha termina na validação com a liderança.</p>
   </div>
 </div>
 
 <nav class="trilha-tabs" id="trilha-tabs" aria-label="Escolher trilha"></nav>
 
-<div class="progress-section">
-  <div class="progress-card">
-    <div class="progress-text">
-      <p class="progress-label" id="prog-label">0 de 19 etapas concluídas</p>
-      <div class="progress-track">
-        <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
-      </div>
-    </div>
-    <div class="progress-count" id="prog-count">0 <span>/ 19</span></div>
-  </div>
-</div>
+<div class="progress-section" id="retomada-section"></div>
 
 <div class="steps-section" id="steps-container"></div>
 
@@ -700,20 +986,25 @@
 const STEPS_COMERCIAL = [
   {
     name: "Entender o papel do Executivo de Vendas",
+    tipo: "Fundamento",
     tag: "must", tagTxt: "obrigatório",
-    desc: "O Executivo atende o lead do início ao fim: recebe, qualifica, conduz a consultoria e fecha. Turno único, dono único — não existe passagem de bastão. Dois compromissos de disciplina e três metas de resultado sustentam esse papel.",
+    desc: "O Executivo atende o lead do início ao fim: recebe, qualifica, conduz a consultoria e fecha. Turno único, dono único — não existe passagem de bastão, e todas as faixas de faturamento são suas. Antes das metas, a régua: todo lead percorre Lead → SAL → SQL → Ganho, e é esse o vocabulário que a gestão usa.",
     links: [],
     subSteps: [
-      { order: "Papel", title: "Atender o lead do início ao fim", why: "O mesmo Executivo que recebe o lead é quem qualifica, conduz a consultoria e fecha. Não existe repasse — o contexto inteiro fica com você, da primeira ligação ao pagamento.", result: "Um dono por lead, do primeiro contato à venda." },
-      { order: "Disciplina", title: "LRT de 10 minutos", why: "Lead Response Time: o prazo para responder o lead depois que ele entra, contado pela conclusão da atividade. Passou disso, o interesse esfria e a chance de conversa cai — velocidade aqui vale mais que qualquer argumento.", result: "Todo lead novo respondido dentro da janela de 10 minutos." },
-      { order: "Disciplina", title: "100% das atividades do dia", why: "Trabalhar todas as atividades do dia, em todos os negócios. Não existe número mínimo de ligações — a meta é zerar o filtro CADÊNCIA DIÁRIA, na ordem de vencimento, sem escolher lead e sem pular fila. E o CRM fica sempre atualizado e limpo: atividade não finalizada ou etapa errada quebra o funil e distorce os números de todo mundo.", result: "Filtro zerado no fim do dia e Pipedrive como retrato real da sua carteira." },
-      { order: "Resultado", title: "30% de Base → SQL no mesmo dia", why: "Dos leads que entram no dia, 30% precisam chegar a Oportunidade ou adiante ainda hoje — é coorte de D0. Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje. Mede a qualidade da sua qualificação.", result: "SQL é o card movido para 3 - Oportunidade, não o lead agendado." },
+      { order: "Papel", title: "Atender o lead do início ao fim", why: "O mesmo Executivo que recebe o lead é quem qualifica, conduz a consultoria e fecha. Não existe repasse — o contexto inteiro fica com você, da primeira ligação ao pagamento. O randomizador distribui conforme o seu nível e a faixa de faturamento, e o lead que caiu com você é seu até fechar ou perder.", result: "Um dono por lead, do primeiro contato à venda." },
+      { order: "Régua", title: "Lead → SAL → SQL → Ganho", why: "Lead é quem entrou e ainda não sabemos se tem perfil. SAL é o lead qualificado, que bateu os quatro critérios de ICP e foi para 3 - Qualificado/Reunião Agendada. SQL é quem já recebeu o pitch: teve a call e ouviu o valor. Ganho é quem pagou. Todo SQL já foi SAL — agendar reunião não faz do lead um SQL, quem faz é a reunião acontecer com valor apresentado.", result: "O campo [COM] QUALIFICAÇÃO no card mostra em que ponto o lead está: LEAD, SAL ou SQL." },
+      { order: "Disciplina", title: "100% das atividades do dia", why: "Trabalhar todas as atividades do dia, na ordem de vencimento do filtro CADÊNCIA DIÁRIA — sem escolher lead e sem pular fila. Cada atividade de contato tem uma regra de toque: pelo menos 2 ligações pela API4COM, depois ligação no WhatsApp, depois mensagem no WhatsApp. E o CRM fica sempre atualizado e limpo: atividade não finalizada ou etapa errada quebra o funil e distorce os números de todo mundo.", result: "Filtro zerado no fim do dia e Pipedrive como retrato real da sua carteira." },
+      { order: "Disciplina", title: "Lead D0: dois contatos no mesmo dia", why: "O lead mais quente é o que caiu hoje. Todo lead que entrou no dia recebe dois contatos: o primeiro de preferência logo depois de cair, e um segundo ainda no mesmo dia. Esse é o mínimo inegociável da disciplina.", result: "Nenhum lead do dia termina o dia com menos de duas tentativas." },
+      { order: "Disciplina", title: "SLA de 10 minutos — o ideal, não a régua", why: "Dez minutos é o tempo ideal entre o lead entrar e receber o primeiro contato, contado pela conclusão da atividade. É referência, não cobrança rígida: ninguém interrompe uma apresentação para responder um lead que acabou de entrar. Fora da call, o lead novo é a prioridade.", result: "Fora de call, lead novo na frente. O que não se negocia é o D0 com dois contatos." },
+      { order: "Resultado", title: "6 SAL por dia", why: "Seis leads qualificados por dia, com todos os critérios do ICP batidos. É o piso do aproveitamento da base — mede quanto da sua carteira você consegue transformar em conversa de verdade.", result: "Mover o card para 3 - Qualificado/Reunião Agendada é o que registra o SAL." },
+      { order: "Resultado", title: "50% de SAL → SQL", why: "Dos leads que você qualificou, metade precisa receber o pitch: ter a call de atendimento e ouvir o valor. Mede se você está qualificando de verdade ou carimbando card.", result: "SQL é a reunião realizada com valor apresentado, não a reunião marcada." },
       { order: "Resultado", title: "65% de presença nas reuniões", why: "Das reuniões agendadas, 65% precisam acontecer. Cancelada dentro do padrão não conta contra você; No Show conta — por isso registrar o status certo na atividade importa.", result: "Mede a qualidade do seu agendamento e da confirmação." },
-      { order: "Resultado", title: "50% dos SQL viram venda", why: "Metade das oportunidades de compra precisa fechar. Essa é a meta da sua condução — consultoria, apresentação e fechamento.", result: "Mede a qualidade da sua consultoria." }
+      { order: "Resultado", title: "50% de SQL → Ganho", why: "Metade de quem recebeu o pitch precisa fechar. Com 10 SAL no dia, 5 comparecem e recebem o pitch, e dessas 5 reuniões 2 a 3 viram venda. Com o piso de 6 SAL, são 3 SQL e pelo menos 1 a 2 vendas.", result: "Mede a qualidade da sua consultoria." }
     ]
   },
   {
     name: "Trilhas do CashBarber — os produtos por dentro",
+    tipo: "Vídeo", dur: "6 trilhas",
     tag: "watch", tagTxt: "assistir",
     desc: "As linhas de estudo dentro do painel do CashBarber, uma por produto. Você não precisa operar o sistema como o cliente opera, mas precisa saber o que cada produto entrega — é isso que sustenta valor na consultoria e derruba a objeção de preço. Faça na ordem abaixo.",
     links: [
@@ -727,6 +1018,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Método de Venda de Futuro",
+    tipo: "Vídeo",
     tag: "watch", tagTxt: "assistir",
     desc: "Pasta com o material que explica a venda de futuro: como projetar o cenário do cliente daqui a alguns meses e vender a transformação, não o produto. Usado principalmente com quem trava no preço.",
     links: [
@@ -735,6 +1027,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Alinhamento — como fazer o NPQL e a consultoria",
+    tipo: "Vídeo", video: { kind: "drive", id: "1_jaECXwSMamSj9iHBnknqCFgFkAFoTQB" },
     tag: "watch", tagTxt: "assistir",
     desc: "Comece por aqui: a gravação do alinhamento costura as duas pontas e mostra como o NPQL desemboca na consultoria. Assista antes de entrar nas etapas — é o mapa do caminho que os próximos passos percorrem em detalhe.",
     links: [
@@ -743,6 +1036,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "NPQL — as 5 etapas da conversa",
+    tipo: "Método", dur: "6 etapas",
     tag: "must", tagTxt: "obrigatório",
     trilha: true,
     desc: "O NPQL é o que estrutura a conversa que leva à consultoria. O objetivo é fazer com que a venda se torne leve — não é você empurrando uma venda, é o cliente comprando. Duas regras atravessam tudo: o objetivo não é sobre nós, é sobre o cliente; e quando estamos emotivos, nosso cérebro não consegue ser racional. As perguntas abaixo são o script — não decore, internalize a lógica de cada etapa.",
@@ -844,6 +1138,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Novo formato de call — as 9 etapas",
+    tipo: "Método", dur: "9 etapas",
     tag: "must", tagTxt: "obrigatório",
     desc: "A estrutura da call inteira, do rapport ao pitch, com os pontos de atenção de cada etapa. É o roteiro que você vai seguir em toda reunião — siga as nove na ordem.",
     links: [],
@@ -970,6 +1265,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Consultoria para clientes de baixo faturamento",
+    tipo: "Vídeo", video: { kind: "drive", id: "1bvMQiQ00JPusaaOnawwPionBGFw_SbzQ" },
     tag: "must", tagTxt: "obrigatório",
     desc: "O direcionamento de como conduzir a consultoria quando o cliente fatura pouco — o cenário mais comum e o mais fácil de perder. Assista à call do Lucas com a Alycia observando o método aplicado do início ao fim, e siga para o Mapa de Explicação no passo seguinte.",
     links: [
@@ -978,6 +1274,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Mapa de Explicação — os 7 momentos da apresentação",
+    tipo: "Método", dur: "7 momentos",
     tag: "must", tagTxt: "obrigatório",
     desc: "Encerrou o NPQL: agradeça, faça uma frase de abertura e contexto, e inicie os slides. A partir daí a apresentação segue 7 momentos na ordem abaixo. Regras de slide: o slide 1 inicia e o 2 encerra — faça uma nova intro, porque vai começar a consultoria. Do 3 ao 6, NÃO apresente sistema nem entregáveis: foque em perguntas para entender como o cliente faz as coisas no dia a dia. Ao encerrar, faça a última pergunta de transação e só então a intro para mostrar os entregáveis. E passe o depoimento antes de entrar na apresentação.",
     links: [],
@@ -994,6 +1291,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Scripts e materiais de apoio",
+    tipo: "Material",
     tag: "must", tagTxt: "obrigatório",
     desc: "O que você usa durante a consultoria e no fechamento. Abra cada um antes da primeira reunião real — procurar link no meio da call derruba a condução. Nos depoimentos, escolha o formato conforme o momento da conversa: curto para mandar no WhatsApp, médio ou longo para quem precisa de mais prova.",
     links: [
@@ -1005,6 +1303,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Direcionamento estratégico avançado",
+    tipo: "Vídeo", dur: "38 min", video: { kind: "loom", id: "577d5c63edbb490fb77473f2c2e15353", thumb: "https://cdn.loom.com/sessions/thumbnails/577d5c63edbb490fb77473f2c2e15353-54164ca79dc30e36.gif" },
     tag: "watch", tagTxt: "assistir",
     desc: "Camada avançada de condução — para depois que a estrutura básica já está internalizada. Assista só quando os passos anteriores estiverem realmente concluídos, senão vira informação solta.",
     links: [
@@ -1013,6 +1312,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Pós-venda — mensagem ao cliente",
+    tipo: "Material",
     tag: "must", tagTxt: "obrigatório",
     desc: "Assim que o pagamento for confirmado, envie esta mensagem. Ela fecha o seu papel e faz a passagem para o time de Onboarding — sem ela, o cliente fica sem saber o que acontece em seguida logo depois de comprar. O texto vai inteiro, sem precisar preencher nada.",
     links: [],
@@ -1020,23 +1320,28 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Ler o Playbook do Executivo de Vendas",
+    tipo: "Leitura", dur: "14 seções",
     tag: "must", tagTxt: "obrigatório",
     desc: "Documento base da operação, da entrada do lead na landing page ao pagamento confirmado. Regra que atravessa tudo: o trabalho é feito pela aba Atividades no Pipedrive — se não está numa atividade, não existe. Você trabalha um funil só, o [COM] Comercial, pelo filtro CADÊNCIA DIÁRIA, na ordem de vencimento — sem escolher lead e sem pular fila.",
     links: [
-      { url: "Playbook_Executivo_de_Vendas_v1.pdf", txt: "Abrir Playbook do Executivo de Vendas v1.0 (PDF)" }
+      { url: "Playbook_Executivo_de_Vendas.html", txt: "Abrir o Playbook Operacional do Executivo de Vendas" }
     ],
     subSteps: [
-      { order: "01–02", title: "Como o lead chega e as 6 etapas do funil", why: "Cadastro na landing page dispara Pipedrive e Optin em paralelo, sem ninguém apertar nada. O corte de R$ 5.000 decide o caminho: abaixo disso a LIA qualifica, de R$ 5k para cima o Executivo liga direto. Confira o Step no Chatwoot antes de escrever qualquer mensagem.", result: "Você sabe o que já foi feito automaticamente e não duplica trabalho." },
-      { order: "03", title: "Os 4 critérios de ICP", why: "Tem barbearia · tem CNPJ · tem dor que ele mesmo reconhece · quer o produto. Bateram os quatro na ligação, move para 3 - Oportunidade na hora — em qualquer etapa, sem esperar a cadência acabar.", result: "Mover o card é o que registra o SQL. Lead ICP parado em Prospectando não conta." },
-      { order: "04", title: "As cadências e o corte de D2", why: "Prospectando tem prazo: sem avanço em dois dias, o sistema marca Perdido sozinho — o prazo corre mesmo com a cadência em andamento. Da etapa 2 - Conexão em diante, nenhuma atividade é encerrada sem combinar o horário do retorno e editar a data.", result: "As 6 atividades são o teto, não a garantia. Mover para Oportunidade interrompe o D2." },
-      { order: "05", title: "Reunião, no-show e reagendamento", why: "Máximo 2 reagendamentos; na terceira solicitação, encerra o atendimento. No Show é o lead que não confirmou com menos de 1h; Cancelada é aviso com 3h ou mais. Critério: se não dá para colocar outro lead no horário, é No Show. O status vai na atividade que já existe — criar outra em paralelo distorce a métrica.", result: "A presença do time só é confiável se o status for registrado certo." },
-      { order: "06", title: "Fechamento — 13 campos obrigatórios", why: "O pagamento cai na Guru e o Pipedrive não fecha a venda sem os 13 campos: 4 com prefixo [COM], 7 de [Handoff] para quem recebe o cliente, e 2 confirmações de processo. O produto adquirido sai da coluna Produto da Guru — confira lá antes de preencher.", result: "A venda termina no registro correto, não no pagamento. Erro aqui pode fazer a venda não contabilizar." },
-      { order: "07", title: "As 4 metas", why: "Duas de disciplina, que você controla sozinho: LRT de 10 minutos e 100% das atividades do dia (não há número mínimo — a meta é zerar o filtro). Duas de resultado: 65% de presença nas reuniões e 30% de Base → SQL no mesmo dia de entrada (coorte D0).", result: "Lead que entra hoje e vira Oportunidade amanhã não conta na coorte de hoje." },
-      { order: "08", title: "Os 38 motivos de perda", why: "O motivo de perda é o dado mais valioso da operação — mostra se o problema está no tráfego, no perfil, no preço ou na conversa. Atenção às distinções: 1491 Nunca respondeu (falha na abordagem) × 1492 Tentativas esgotadas (falha na qualificação). Os motivos 1525, 1526 e 1527 descrevem a operação antiga com SDR e closer: não usar.", result: "Negócio fechado sem motivo é aprendizado que a operação perde." }
+      { order: "01", title: "As nomenclaturas e a régua do funil", why: "Lead entrou e ainda não foi qualificado. SAL bateu os quatro critérios de ICP. SQL recebeu o pitch — teve a call e ouviu o valor. Ganho pagou. Além da régua, os termos do dia a dia: tier, campanha, D0, cadência, pool, cobertura da base, ativação D0, handoff, resgate.", result: "Todo mundo usando a mesma palavra para a mesma coisa — senão o seu número não bate com o da gestão." },
+      { order: "02", title: "Como o lead chega — e todas as faixas são suas", why: "O cadastro na landing page faz duas coisas em paralelo: cria o negócio no Pipedrive já com dono e com a primeira atividade, e leva o lead direto para o seu WhatsApp. Não existe mais qualificação por IA nem caminho separado para quem fatura menos — o Executivo atende todas as faixas, inclusive até R$ 5.000. Atenção ao número: no formulário o telefone é digitado, no WhatsApp ele fala do celular que está na mão.", result: "O primeiro contato é sempre entre o lead e você. Para dar match do WhatsApp, compare a hora da mensagem com a hora de entrada do negócio." },
+      { order: "03", title: "As 5 etapas do pipeline e o micro-fluxo", why: "0 - Base, 1 - Prospectando, 2 - Conexão, 3 - Qualificado/Reunião Agendada, 4 - Gerou Compromisso. Cada etapa tem a sua atividade, quem a cria e por onde se sai dela. Marcar como feito é o primeiro passo do micro-fluxo, e fez qualquer coisa no card, coloque anotação.", result: "Gerou Compromisso sem atividade fica invisível — o negócio some da sua fila de trabalho." },
+      { order: "04", title: "Os 4 critérios de ICP", why: "Tem barbearia (funcionando ou abrindo em até 15 dias) · tem CNPJ ativo, confirmado por você mesmo quando o lead já disse sim na LP, e MEI conta · tem dor que ele mesmo reconhece · quer o produto. Bateram os quatro, o lead é SAL e vai para 3 - Qualificado/Reunião Agendada na hora — em qualquer etapa, sem esperar a cadência acabar.", result: "Mover o card é o que registra o SAL. Lead ICP parado em Prospectando não conta." },
+      { order: "05", title: "As cadências e a regra de toque", why: "O critério de trabalho é vencimento, não etapa: você trabalha na ordem em que o filtro exibe. Toda atividade de contato tem pelo menos 2 ligações pela API4COM, depois ligação no WhatsApp, depois mensagem. Da etapa 2 - Conexão em diante, nenhuma atividade é encerrada sem combinar o horário do retorno e editar a data para esse horário.", result: "A data preenchida é o que determina quando o negócio volta a aparecer no filtro. Assunto e tipo são coisas diferentes — trocar o tipo estraga a sua própria fila." },
+      { order: "06", title: "Reunião, no-show e reagendamento", why: "Máximo 2 reagendamentos; na terceira solicitação, encerra o atendimento. No-show tolerado é 1: na primeira vez resgata e reagenda, na segunda vem o discurso de comprometimento, e não há terceira. No Show é o lead que não confirmou com menos de 1h; Cancelada é aviso com 3h ou mais, para reunião depois das 11h.", result: "Critério de decisão: se não dá para colocar outro lead naquele horário, é No Show. O status vai na atividade que já existe — criar outra em paralelo distorce a métrica." },
+      { order: "07", title: "Fechamento — checkout e os 11 campos", why: "A venda tem duas pontas: gerar o link no checkout (nova venda, cliente, oferta e cupom, forma de pagamento) e registrar o Ganho no Pipedrive. O Pipedrive não fecha sem os 11 campos obrigatórios: 2 com prefixo [COM], 5 de [Handoff] para quem recebe o cliente e 4 que amarram a venda ao checkout.", result: "Duas condições antes de clicar em Ganho: pagamento confirmado, e nome e e-mail conferidos contra o checkout. A venda termina no registro correto, não no pagamento." },
+      { order: "08", title: "Metas e indicadores", why: "Disciplina, que você controla sozinho: 100% das atividades do dia, 2 contatos em todo lead D0, SLA de 10 minutos como ideal e 65% de presença. Aproveitamento da base, que sai da qualidade da conversa: 6 SAL por dia, 50% de SAL → SQL e 50% de SQL → Ganho.", result: "Os números de conversão encadeiam: com 6 SAL no dia são 3 SQL e pelo menos 1 a 2 vendas." },
+      { order: "09", title: "Os 40 motivos de perda", why: "Oito famílias no formato Família - Motivo. Distinções que mudam a leitura: 1491 Nunca respondeu (falha na abordagem) × 1492 Tentativas esgotadas (falha na qualificação). As famílias Base, Pós-venda e Desqualificado na LP não são venda perdida — são higiene de CRM e filtro de entrada. Os motivos 1525, 1526 e 1527 descrevem a operação antiga com SDR e closer: não usar.", result: "Não existe segunda fila: lead perdido fica perdido, e o motivo é o único registro que sobra dele." },
+      { order: "10", title: "As ferramentas — Podium OS e 3C Plus", why: "O Podium OS é o seu painel: Forecast (pool e meta), Pace (o seu ritmo contra o time), On Track (as taxas do funil), Enablement (a nota das suas ligações pela IA), Focus (o que priorizar), Meet (a agenda), OTE (a calculadora de comissão) e Playbooks. O 3C Plus é a discadora onde recuperamos lead que não converteu — agendou pelo 3C, o resgate nasce como card novo.", result: "O topo do Podium OS é igual em todas as abas: cobertura da base, ativação D0 e pool recebido hoje." }
     ]
   },
   {
     name: "Treinamento Pipedrive",
+    tipo: "Vídeo", dur: "21 min", video: { kind: "loom", id: "ca2f9e8a7fcf4f28a721dc84513c6ea3", thumb: "https://cdn.loom.com/sessions/thumbnails/ca2f9e8a7fcf4f28a721dc84513c6ea3-bb88f2823020828f.gif" },
     tag: "watch", tagTxt: "assistir",
     desc: "Vídeo gravado pela liderança mostrando a plataforma e como usá-la no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA e como registrar atividades.",
     links: [
@@ -1045,6 +1350,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Ouvir ligações reais — biblioteca de chamadas",
+    tipo: "Prática",
     tag: "watch", tagTxt: "ouvir",
     desc: "Ouvir no mínimo 5 ligações. Para cada uma anotar: o que funcionou, onde o Executivo travou, como contornou a objeção. Não é para copiar estilo — é para calibrar o ouvido antes da primeira ligação real.",
     links: [
@@ -1053,12 +1359,14 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Roleplay interno",
+    tipo: "Validação",
     tag: "do", tagTxt: "praticar",
     desc: "Simulação com colega ou líder no papel do barbeiro. Agora o roleplay cobre o ciclo inteiro, não só a qualificação: abertura, NPQL, consultoria e fechamento. Fazer ao mínimo 2 rodadas — uma como Executivo, uma como barbeiro para ouvir de fora.",
     links: []
   },
   {
     name: "Primeiras ligações — 30 leads com a liderança",
+    tipo: "Validação",
     tag: "do", tagTxt: "praticar",
     desc: "30 leads liberados para as primeiras ligações reais. Seguir o script do NPQL 100% — sem improvisar ainda. Após a rodada, a liderança e o time ouvirão as ligações juntos e darão feedback em tempo real.",
     links: [],
@@ -1072,6 +1380,7 @@ const STEPS_COMERCIAL = [
 const STEPS_FARMER = [
   {
     name: "Lincohn Agner — assinaturas e o ecossistema",
+    tipo: "Vídeo", dur: "10 vídeos",
     tag: "watch", tagTxt: "assistir",
     desc: "O ponto de partida: entender assinatura pela explicação do Lincohn. Assista e pare sempre que surgir dúvida — anote e leve para a conversa com a liderança. Não é para correr: o objetivo é sair daqui sabendo explicar assinatura com as suas palavras. As três aulas de 'O Futuro é Recorrente' formam uma sequência — veja na ordem. Da Black Friday em diante a lista amplia de propósito, passando por lançamentos, Podium Mentor e gestão: é o contexto do mercado em que a assinatura é vendida.",
     links: [
@@ -1089,6 +1398,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Depoimentos de alunos",
+    tipo: "Vídeo", dur: "6 vídeos",
     tag: "watch", tagTxt: "assistir",
     desc: "Cinco depoimentos selecionados, na voz de quem já passou pelo processo. Assista e pare para tirar dúvidas. Para cada um, anote: qual dor aparece e qual resultado foi entregue — é o que vira argumento real na conversa com o cliente.",
     links: [
@@ -1102,6 +1412,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Criar acesso ao CashBarber",
+    tipo: "Acesso",
     tag: "must", tagTxt: "obrigatório",
     desc: "Antes das aulas, você precisa do acesso à plataforma — é dentro dela que está toda a linha de estudo dos próximos passos. Solicite à liderança e confirme que consegue entrar antes de seguir.",
     links: [],
@@ -1109,6 +1420,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Aula 1 — Cash Barber: configurações",
+    tipo: "Vídeo",
     tag: "watch", tagTxt: "assistir",
     desc: "Primeira aula da linha de estudo dentro do CashBarber. Assista e pare para tirar dúvidas. Configuração é a base: sem entender como o sistema é montado, as aulas seguintes ficam soltas.",
     links: [
@@ -1117,6 +1429,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Aula 2 — Assinaturas",
+    tipo: "Vídeo",
     tag: "watch", tagTxt: "assistir",
     desc: "Agora dentro do sistema: como a assinatura funciona na prática. Faz par com os vídeos do Lincohn do passo 1 — lá você entendeu o conceito, aqui vê a mecânica. Assista e pare para tirar dúvidas.",
     links: [
@@ -1125,6 +1438,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Aula 3 — Cash.IA",
+    tipo: "Vídeo",
     tag: "watch", tagTxt: "assistir",
     desc: "Terceira aula da linha de estudo. Assista e pare para tirar dúvidas.",
     links: [
@@ -1133,6 +1447,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Aula 4 — Cadeira de Dono",
+    tipo: "Vídeo",
     tag: "watch", tagTxt: "assistir",
     desc: "Quarta aula da linha de estudo. Assista e pare para tirar dúvidas.",
     links: [
@@ -1141,6 +1456,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Aula 5 — Podium Pro",
+    tipo: "Vídeo",
     tag: "watch", tagTxt: "assistir",
     desc: "Última aula da linha de estudo dentro do CashBarber. Assista e pare para tirar dúvidas.",
     links: [
@@ -1149,6 +1465,7 @@ const STEPS_FARMER = [
   },
   {
     name: "Assistir calls — como apresentamos",
+    tipo: "Prática",
     tag: "watch", tagTxt: "assistir",
     desc: "Depois de todas as aulas, assista às calls para ver como a Podium apresenta na prática. É a ponte entre o que você estudou e o que você vai fazer: observe a condução, não decore frases.",
     links: [],
@@ -1179,11 +1496,11 @@ const TRILHAS = {
 const TEXTOS = {
   comercial: {
     eyebrow: "Comercial · Executivo de Vendas",
-    sub: "16 passos em sequência para você entender o produto, dominar a operação, conduzir a consultoria e fechar — o ciclo completo do Executivo de Vendas."
+    sub: "16 aulas em 5 módulos: entender o produto, dominar a operação, conduzir a consultoria e fechar. Cada aula libera a próxima, e a trilha termina na validação com a liderança."
   },
   farmer: {
     eyebrow: "Revenue · Farmer",
-    sub: "9 passos em sequência para você entender assinatura, dominar o CashBarber e ver como a Podium apresenta. Cada passo libera o próximo."
+    sub: "9 aulas em 3 módulos: entender assinatura, dominar o CashBarber e ver como a Podium apresenta. Cada aula libera a próxima."
   }
 };
 
@@ -1275,12 +1592,127 @@ function save() {
   try { localStorage.setItem(chaveProgresso(trilhaAtual), JSON.stringify(done)); } catch(e) {}
 }
 
-function updateProgress() {
+// Icone por tipo de aula. Sem texto alternativo: o nome do tipo vem ao lado.
+const ICONE_TIPO = {
+  "Vídeo":      '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 6.2v3.6l3.2-1.8z" fill="currentColor"/></svg>',
+  "Leitura":    '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 2.5h6.5L13 6v7.5H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9.2 2.6V6H13" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>',
+  "Método":     '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="3.5" cy="8" r="1.8" stroke="currentColor" stroke-width="1.4"/><circle cx="12.5" cy="4" r="1.8" stroke="currentColor" stroke-width="1.4"/><circle cx="12.5" cy="12" r="1.8" stroke="currentColor" stroke-width="1.4"/><path d="M5.2 7.2 10.8 4.6M5.2 8.8l5.6 2.6" stroke="currentColor" stroke-width="1.4"/></svg>',
+  "Material":   '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 6.5h6M5 9.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
+  "Prática":    '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 2v3M8 11v3M2 8h3M11 8h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg>',
+  "Validação":  '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1.8 13.5 4v4.2c0 3-2.3 5.1-5.5 6-3.2-.9-5.5-3-5.5-6V4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m5.8 8 1.6 1.6 3-3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  "Acesso":     '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.4"/></svg>',
+  "Fundamento": '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 2.2 14 5.4 8 8.6 2 5.4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M3.4 7.6v3.1c0 .9 2.1 2.1 4.6 2.1s4.6-1.2 4.6-2.1V7.6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>'
+};
+
+function linhaMeta(s) {
+  const wrap = document.createElement("div");
+  wrap.className = "aula-meta";
+  const tipo = document.createElement("span");
+  tipo.className = "aula-tipo";
+  tipo.innerHTML = (ICONE_TIPO[s.tipo] || "") + "<span>" + (s.tipo || "Aula") + "</span>";
+  wrap.appendChild(tipo);
+  if (s.dur) {
+    const sep = document.createElement("span");
+    sep.className = "aula-sep";
+    sep.textContent = "·";
+    const d = document.createElement("span");
+    d.textContent = s.dur;
+    wrap.appendChild(sep);
+    wrap.appendChild(d);
+  }
+  return wrap;
+}
+
+// Em que modulo cada passo esta, para o cartao de retomada dizer de onde ele veio.
+function moduloDoPasso(i) {
+  const groups = TRILHAS[trilhaAtual].groups;
+  for (let g = 0; g < groups.length; g++) {
+    if (groups[g].indices.indexOf(i) >= 0) {
+      return { n: g + 1, label: groups[g].label };
+    }
+  }
+  return null;
+}
+
+// Cartao do topo: diz onde a pessoa parou e leva de volta para la.
+function renderRetomada() {
+  const box = document.getElementById("retomada-section");
+  box.innerHTML = "";
   const n = done.filter(Boolean).length;
   const pct = Math.round(n / TOTAL * 100);
-  document.getElementById("prog-label").textContent = n + " de " + TOTAL + " etapas concluídas";
-  document.getElementById("prog-fill").style.width = pct + "%";
-  document.getElementById("prog-count").innerHTML = n + ' <span>/ ' + TOTAL + '</span>';
+  const prox = proximoLiberado();
+  const completa = prox === -1;
+
+  const card = document.createElement("div");
+  card.className = "retomada" + (completa ? " is-completa" : "");
+
+  const topo = document.createElement("div");
+  topo.className = "retomada-topo";
+  const eyebrow = document.createElement("span");
+  eyebrow.className = "retomada-eyebrow";
+  eyebrow.textContent = completa ? "Trilha concluída" : (n === 0 ? "Comece por aqui" : "Continue de onde parou");
+  const prog = document.createElement("span");
+  prog.className = "retomada-prog";
+  prog.textContent = n + " de " + TOTAL + " aulas";
+  topo.appendChild(eyebrow);
+  topo.appendChild(prog);
+  card.appendChild(topo);
+
+  if (completa) {
+    const t = document.createElement("h2");
+    t.className = "retomada-titulo";
+    t.textContent = "Você percorreu a trilha inteira.";
+    card.appendChild(t);
+    const m = document.createElement("p");
+    m.className = "retomada-meta";
+    m.textContent = "A validação agora é com a liderança, na prática.";
+    card.appendChild(m);
+  } else {
+    const s = STEPS[prox];
+    const mod = moduloDoPasso(prox);
+    if (mod) {
+      const ml = document.createElement("p");
+      ml.className = "retomada-modulo";
+      ml.textContent = "Módulo " + mod.n + " · " + mod.label;
+      card.appendChild(ml);
+    }
+    const t = document.createElement("h2");
+    t.className = "retomada-titulo";
+    t.textContent = s.name;
+    card.appendChild(t);
+    const m = document.createElement("p");
+    m.className = "retomada-meta";
+    m.textContent = "Aula " + (prox + 1) + " de " + TOTAL + (s.tipo ? " · " + s.tipo : "") + (s.dur ? " · " + s.dur : "");
+    card.appendChild(m);
+  }
+
+  const track = document.createElement("div");
+  track.className = "retomada-track";
+  const fill = document.createElement("div");
+  fill.className = "retomada-fill";
+  fill.style.width = pct + "%";
+  track.appendChild(fill);
+  card.appendChild(track);
+
+  if (!completa) {
+    const btn = document.createElement("button");
+    btn.className = "retomada-btn";
+    btn.type = "button";
+    btn.textContent = (n === 0 ? "Começar" : "Continuar") + " →";
+    btn.addEventListener("click", function() {
+      openIdx = prox;
+      renderSteps();
+      const alvo = document.querySelector('.step[data-idx="' + prox + '"]');
+      if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    card.appendChild(btn);
+  }
+
+  box.appendChild(card);
+}
+
+function updateProgress() {
+  renderRetomada();
 }
 
 // Em que etapa cada passo-trilha esta. A chave carrega a trilha para que
@@ -1449,6 +1881,113 @@ function montarTrilha(inner, s, idx) {
   inner.appendChild(caixa);
 }
 
+// Capa do video no card aberto. Clicou, a capa vira o player embutido —
+// Loom e Drive permitem iframe, entao a aula roda sem sair da trilha.
+function urlEmbed(v) {
+  if (v.kind === "loom")  return "https://www.loom.com/embed/" + v.id;
+  if (v.kind === "drive") return "https://drive.google.com/file/d/" + v.id + "/preview";
+  return null;
+}
+function urlCapa(v) {
+  if (v.thumb) return v.thumb;
+  if (v.kind === "drive") return "https://drive.google.com/thumbnail?id=" + v.id + "&sz=w800";
+  return null;
+}
+
+function montarVideo(inner, s) {
+  const v = s.video;
+  const embed = urlEmbed(v);
+  if (!embed) return;
+
+  const capa = document.createElement("button");
+  capa.className = "video-capa";
+  capa.type = "button";
+  capa.setAttribute("aria-label", "Assistir: " + s.name);
+
+  const src = urlCapa(v);
+  if (src) {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "";
+    img.loading = "lazy";
+    // Capa do Loom tem hash na URL e pode expirar; sem ela fica o fundo escuro.
+    img.addEventListener("error", function() {
+      const vazio = document.createElement("div");
+      vazio.className = "video-capa-vazia";
+      img.replaceWith(vazio);
+    });
+    capa.appendChild(img);
+  } else {
+    const vazio = document.createElement("div");
+    vazio.className = "video-capa-vazia";
+    capa.appendChild(vazio);
+  }
+
+  const play = document.createElement("span");
+  play.className = "video-play";
+  play.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M7 4.5v11l9-5.5z"/></svg>';
+  capa.appendChild(play);
+
+  const rot = document.createElement("span");
+  rot.className = "video-rotulo";
+  rot.textContent = s.dur ? ("Assistir · " + s.dur) : "Assistir aqui";
+  capa.appendChild(rot);
+
+  capa.addEventListener("click", function(ev) {
+    ev.stopPropagation();
+    const frame = document.createElement("iframe");
+    frame.className = "video-frame";
+    frame.src = embed;
+    frame.allow = "fullscreen";
+    frame.allowFullscreen = true;
+    capa.replaceWith(frame);
+    syncOpenHeight();
+  });
+
+  inner.appendChild(capa);
+}
+
+// Link de video do YouTube vira capa. O id sai do v= da URL; playlist e canal
+// nao tem capa previsivel e seguem como link de texto.
+function idYoutube(url) {
+  const m = url.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
+  return m ? m[1] : null;
+}
+
+function montarGaleria(inner, links) {
+  const g = document.createElement("div");
+  g.className = "video-galeria";
+  links.forEach(function(l) {
+    const a = document.createElement("a");
+    a.className = "video-item";
+    a.href = l.url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.addEventListener("click", function(ev) { ev.stopPropagation(); });
+
+    const capa = document.createElement("div");
+    capa.className = "video-item-capa";
+    const img = document.createElement("img");
+    img.src = "https://img.youtube.com/vi/" + l.ytId + "/hqdefault.jpg";
+    img.alt = "";
+    img.loading = "lazy";
+    capa.appendChild(img);
+    const play = document.createElement("span");
+    play.className = "video-item-play";
+    play.innerHTML = '<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path d="M7 4.5v11l9-5.5z"/></svg>';
+    capa.appendChild(play);
+    a.appendChild(capa);
+
+    const t = document.createElement("div");
+    t.className = "video-item-txt";
+    t.textContent = l.txt;
+    a.appendChild(t);
+
+    g.appendChild(a);
+  });
+  inner.appendChild(g);
+}
+
 function renderSteps() {
   const container = document.getElementById("steps-container");
   container.innerHTML = "";
@@ -1457,24 +1996,53 @@ function renderSteps() {
 
   const groups = TRILHAS[trilhaAtual].groups;
 
-  groups.forEach(group => {
-    const div = document.createElement("div");
-    div.className = "section-divider";
-    div.innerHTML = '<div class="section-divider-line"></div><span class="section-divider-label">' + group.label + '</span><div class="section-divider-line"></div>';
-    container.appendChild(div);
+  groups.forEach((group, gi) => {
+    const mod = document.createElement("div");
+    mod.className = "modulo";
+
+    const feitas = group.indices.filter(k => done[k]).length;
+    const hdr = document.createElement("div");
+    hdr.className = "modulo-hdr";
+    const mid = document.createElement("span");
+    mid.className = "modulo-id";
+    mid.textContent = "Módulo " + (gi + 1);
+    const mt = document.createElement("h3");
+    mt.className = "modulo-titulo";
+    mt.textContent = group.label;
+    const mm = document.createElement("span");
+    mm.className = "modulo-meta";
+    const nAulas = group.indices.length;
+    mm.textContent = nAulas + (nAulas === 1 ? " aula" : " aulas") + (feitas > 0 ? " · " + feitas + " concluída" + (feitas > 1 ? "s" : "") : "");
+    const mtrack = document.createElement("div");
+    mtrack.className = "modulo-track";
+    const mfill = document.createElement("div");
+    mfill.className = "modulo-fill";
+    mfill.style.width = Math.round(feitas / nAulas * 100) + "%";
+    mtrack.appendChild(mfill);
+    hdr.appendChild(mid);
+    hdr.appendChild(mt);
+    hdr.appendChild(mm);
+    hdr.appendChild(mtrack);
+    mod.appendChild(hdr);
 
     if (group.intro) {
       const introEl = document.createElement("p");
-      introEl.className = "section-intro";
+      introEl.className = "modulo-intro";
       introEl.textContent = group.intro;
-      container.appendChild(introEl);
+      mod.appendChild(introEl);
     }
+
+    const lista = document.createElement("div");
+    lista.className = "modulo-aulas";
+    mod.appendChild(lista);
+    container.appendChild(mod);
 
     group.indices.forEach(i => {
       const s = STEPS[i];
       const aberto = liberado(i);
       const card = document.createElement("div");
-      card.className = "step" + (done[i] ? " is-done" : "") + (openIdx === i ? " is-open" : "") + (aberto ? "" : " is-locked");
+      card.className = "step" + (done[i] ? " is-done" : "") + (openIdx === i ? " is-open" : "") + (aberto ? "" : " is-locked") + (s.tipo === "Validação" ? " is-validacao" : "");
+      card.setAttribute("data-idx", i);
 
       const hdr = document.createElement("div");
       hdr.className = "step-header";
@@ -1492,12 +2060,8 @@ function renderSteps() {
       name.className = "step-name";
       name.textContent = s.name;
 
-      const tag = document.createElement("span");
-      tag.className = "step-tag " + TAG_CLS[s.tag];
-      tag.textContent = s.tagTxt;
-
       info.appendChild(name);
-      info.appendChild(tag);
+      info.appendChild(linhaMeta(s));
 
       const chevron = document.createElement("div");
       chevron.className = "step-chevron";
@@ -1517,6 +2081,8 @@ function renderSteps() {
       desc.className = "step-desc";
       desc.textContent = s.desc;
       inner.appendChild(desc);
+
+      if (s.video) montarVideo(inner, s);
 
       if (s.subSteps && s.trilha) {
         montarTrilha(inner, s, i);
@@ -1554,9 +2120,18 @@ function renderSteps() {
       }
 
       if (s.links && s.links.length > 0) {
+        const comCapa = [];
+        const semCapa = [];
+        s.links.forEach(l => {
+          const yt = idYoutube(l.url);
+          if (yt) comCapa.push({ url: l.url, txt: l.txt, ytId: yt });
+          else semCapa.push(l);
+        });
+        if (comCapa.length > 0) montarGaleria(inner, comCapa);
+
         const linksDiv = document.createElement("div");
         linksDiv.className = "step-links";
-        s.links.forEach(l => {
+        semCapa.forEach(l => {
           const a = document.createElement("a");
           a.className = "step-link";
           a.href = l.url;
@@ -1565,7 +2140,8 @@ function renderSteps() {
           a.innerHTML = '<span class="step-link-icon">' + LINK_ICON + '</span>' + l.txt;
           linksDiv.appendChild(a);
         });
-        inner.appendChild(linksDiv);
+        // Sem link de texto sobrando a lista fica vazia e so somaria espaco.
+        if (semCapa.length > 0) inner.appendChild(linksDiv);
       }
 
       if (s.snippet) {
@@ -1658,13 +2234,13 @@ function renderSteps() {
         hdr.removeAttribute("role");
         const cadeado = document.createElement("span");
         cadeado.className = "step-locked-hint";
-        cadeado.textContent = "Conclua o passo " + i + " para liberar";
+        cadeado.textContent = "Conclua a aula " + i + " para liberar";
         info.appendChild(cadeado);
       }
 
       card.appendChild(hdr);
       card.appendChild(body);
-      container.appendChild(card);
+      lista.appendChild(card);
     });
   });
 
