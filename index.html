@@ -642,12 +642,32 @@
     .step-body-inner { padding-left: 16px; }
     .progress-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
   }
+.faixa-gestao {
+  background: var(--night);
+  color: #E8EDF4;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  border-bottom: 3px solid var(--gold);
+}
+.faixa-gestao strong { color: var(--gold); font-weight: 600; }
+.faixa-gestao code {
+  background: rgba(255,255,255,0.12);
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.95em;
+}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-logo">Podium <span>Educação</span></div>
+</div>
+
+<div class="faixa-gestao" id="faixa-gestao" hidden>
+  <strong>Modo de revisão</strong> — todos os passos estão abertos para você conferir o conteúdo. Nada que você marcar aqui é gravado. Quem abre o link sem <code>?gestao</code> continua destravando um passo por vez.
 </div>
 
 <div class="hero">
@@ -1194,9 +1214,18 @@ function carregarProgresso() {
 }
 carregarProgresso();
 
+// Modo de revisao da gestao: abrir a pagina com ?gestao destrava todos os
+// passos para conferir conteudo, sem gravar progresso no navegador de quem abre.
+const MODO_GESTAO = /[?&]gestao(=|&|$)/.test(location.search);
+if (MODO_GESTAO) {
+  const faixa = document.getElementById("faixa-gestao");
+  if (faixa) faixa.hidden = false;
+}
+
 // Desbloqueio progressivo: um passo so abre depois que todos os anteriores
 // foram concluidos. O primeiro esta sempre liberado.
 function liberado(i) {
+  if (MODO_GESTAO) return true;
   for (let k = 0; k < i; k++) { if (!done[k]) return false; }
   return true;
 }
@@ -1242,6 +1271,7 @@ function renderTabs() {
 }
 
 function save() {
+  if (MODO_GESTAO) return;
   try { localStorage.setItem(chaveProgresso(trilhaAtual), JSON.stringify(done)); } catch(e) {}
 }
 
