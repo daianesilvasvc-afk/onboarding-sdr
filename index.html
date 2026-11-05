@@ -972,6 +972,291 @@
   @media (max-width: 760px) {
     .progress-section, .steps-section, .trilha-tabs { padding: 0 1.25rem; }
   }
+
+  /* ============ LAYOUT DE CURSO: cabeca, modulos, lado, painel ============ */
+
+  .cabeca { background: var(--night); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .cabeca-inner {
+    max-width: var(--largura);
+    margin: 0 auto;
+    padding: 1.1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .cabeca-txt { flex: 1; min-width: 200px; }
+  .cabeca-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .cabeca-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.1;
+  }
+  .cabeca-prog { display: flex; align-items: center; gap: 10px; min-width: 150px; }
+  .cabeca-prog-track {
+    width: 110px; height: 5px;
+    background: rgba(255,255,255,0.16);
+    border-radius: 99px; overflow: hidden;
+  }
+  .cabeca-prog-fill { height: 100%; width: 0; background: var(--gold); border-radius: 99px; transition: width 0.4s ease; }
+  .cabeca-prog-num { font-size: 12px; color: var(--gold); font-weight: 600; }
+
+  /* abas de trilha dentro da cabeca escura */
+  .cabeca .trilha-tabs { margin: 0; padding: 0; max-width: none; width: auto; gap: 6px; }
+  .cabeca .trilha-tab {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #C9D4E2;
+    padding: 7px 14px;
+    font-size: 12.5px;
+  }
+  .cabeca .trilha-tab.is-active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .cabeca .trilha-tab.is-active .trilha-tab-count { background: rgba(10,20,34,0.22); color: var(--ink); }
+  .cabeca .trilha-tab-count { background: rgba(255,255,255,0.14); color: #C9D4E2; }
+
+  /* Navegacao de modulos — as "ondas" no topo */
+  .mod-nav {
+    background: var(--ink);
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 0.85rem 2.5rem;
+    max-width: var(--largura);
+    margin: 0 auto;
+    scrollbar-width: thin;
+  }
+  .mod-btn {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 99px;
+    padding: 7px 15px 7px 7px;
+    color: #C9D4E2;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s, border-color 0.18s, color 0.18s;
+  }
+  .mod-btn:hover { background: rgba(255,255,255,0.12); }
+  .mod-btn.is-ativo { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .mod-btn-n {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.14);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600;
+    flex-shrink: 0;
+  }
+  .mod-btn.is-ativo .mod-btn-n { background: rgba(10,20,34,0.2); }
+  .mod-btn.is-completo .mod-btn-n { background: var(--gold); color: var(--ink); }
+  .mod-btn.is-ativo.is-completo .mod-btn-n { background: rgba(10,20,34,0.2); color: var(--ink); }
+  .mod-btn-cont { font-size: 11px; opacity: 0.72; }
+
+  /* Duas colunas: lista de aulas e painel */
+  .curso {
+    max-width: var(--largura);
+    margin: 1.5rem auto 4rem;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .curso-lado {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 10px;
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+  .lado-topo {
+    padding: 8px 8px 12px;
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: 8px;
+  }
+  .lado-modulo {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 700;
+  }
+  .lado-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--navy);
+    margin-top: 2px;
+    line-height: 1.2;
+  }
+  .lado-meta { font-size: 11.5px; color: var(--gray-600); margin-top: 4px; }
+
+  .aula-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background: none;
+    border: 0;
+    border-radius: var(--radius-sm);
+    padding: 7px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .aula-item:hover { background: var(--gray-50); }
+  .aula-item.is-atual { background: var(--gold-pale); }
+  .aula-item.is-travada { cursor: not-allowed; opacity: 0.5; }
+  .aula-item.is-travada:hover { background: none; }
+
+  .aula-mini {
+    width: 62px; height: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--night);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    position: relative;
+  }
+  .aula-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .aula-mini-n {
+    position: absolute;
+    left: 3px; bottom: 3px;
+    background: rgba(10,20,34,0.82);
+    color: #fff;
+    font-size: 9.5px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  .aula-item-txt { flex: 1; min-width: 0; }
+  .aula-item-nome {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .aula-item.is-atual .aula-item-nome { color: var(--gold-deep); font-weight: 600; }
+  .aula-item-sub {
+    font-size: 10.5px;
+    color: var(--gray-600);
+    margin-top: 2px;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .aula-item-check { color: var(--navy-light); font-size: 13px; flex-shrink: 0; }
+
+  /* Painel da aula */
+  .curso-painel {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem 2rem;
+    min-width: 0;
+  }
+  .painel-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .painel-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .painel-meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--gray-600);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  /* "Passo 1: ..." dentro da aula */
+  .passo-hdr {
+    background: var(--night);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .passo-hdr:first-of-type { margin-top: 0; }
+  .passo-hdr-n { color: var(--gold); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .painel-rodape {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--gray-100);
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .painel-prox {
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+  .painel-prox strong { color: var(--navy); font-weight: 600; }
+
+  .painel-travado {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--gray-600);
+  }
+  .painel-travado-ico { font-size: 28px; display: block; margin-bottom: 10px; }
+
+  .painel-fim {
+    background: var(--night);
+    color: #E8EDF4;
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+    border-top: 3px solid var(--cream);
+  }
+  .painel-fim h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px; font-weight: 500; color: #fff; margin-bottom: 6px;
+  }
+  .painel-fim p { font-size: 13.5px; line-height: 1.6; color: #9FB0C4; }
+
+  @media (max-width: 980px) {
+    .curso { grid-template-columns: 1fr; }
+    .curso-lado { position: static; max-height: none; }
+    .aula-item { padding: 8px; }
+  }
+  @media (max-width: 760px) {
+    .cabeca-inner, .mod-nav, .curso { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .cabeca-inner { gap: 0.9rem; }
+    .cabeca-titulo { font-size: 20px; }
+    .curso-painel { padding: 1.25rem 1.1rem 1.5rem; }
+    .painel-titulo { font-size: 22px; }
+    .passo-hdr { font-size: 14px; padding: 9px 13px; }
+  }
 </style>
 </head>
 <body>
@@ -984,19 +1269,26 @@
   <strong>Modo de revisão</strong> — todos os passos estão abertos para você conferir o conteúdo. Nada que você marcar aqui é gravado. Quem abre o link sem <code>?gestao</code> continua destravando um passo por vez.
 </div>
 
-<div class="hero">
-  <div class="hero-inner">
-    <p class="hero-eyebrow" id="hero-eyebrow">Comercial · Executivo de Vendas</p>
-    <h1 class="hero-title">Trilha de Onboarding</h1>
-    <p class="hero-sub" id="hero-sub">16 aulas em 5 módulos: entender o produto, dominar a operação, conduzir a consultoria e fechar. Cada aula libera a próxima, e a trilha termina na validação com a liderança.</p>
+<header class="cabeca">
+  <div class="cabeca-inner">
+    <div class="cabeca-txt">
+      <p class="cabeca-eyebrow" id="hero-eyebrow">Comercial · Executivo de Vendas</p>
+      <h1 class="cabeca-titulo">Trilha de Onboarding</h1>
+    </div>
+    <nav class="trilha-tabs" id="trilha-tabs" aria-label="Escolher trilha"></nav>
+    <div class="cabeca-prog">
+      <div class="cabeca-prog-track"><div class="cabeca-prog-fill" id="prog-fill"></div></div>
+      <span class="cabeca-prog-num" id="prog-num">0%</span>
+    </div>
   </div>
+</header>
+
+<nav class="mod-nav" id="mod-nav" aria-label="Módulos"></nav>
+
+<div class="curso">
+  <aside class="curso-lado" id="curso-lado" aria-label="Aulas do módulo"></aside>
+  <main class="curso-painel" id="curso-painel"></main>
 </div>
-
-<nav class="trilha-tabs" id="trilha-tabs" aria-label="Escolher trilha"></nav>
-
-<div class="progress-section" id="retomada-section"></div>
-
-<div class="steps-section" id="steps-container"></div>
 
 <footer>Podium Educação · Uso interno</footer>
 
@@ -1537,7 +1829,10 @@ const LINK_ICON = "↗";
 let STEPS = TRILHAS[trilhaAtual].steps;
 let TOTAL = STEPS.length;
 let done = [];
-let openIdx = -1;
+// Qual aula esta aberta. Declarado aqui porque carregarProgresso() zera isso
+// e roda antes de qualquer render.
+let aulaAtual = -1;
+let moduloAtual = 0;
 
 function chaveProgresso(t) { return "podium-onboarding-done-" + t; }
 
@@ -1547,7 +1842,8 @@ function carregarProgresso() {
   let lido = null;
   try { lido = JSON.parse(localStorage.getItem(chaveProgresso(trilhaAtual)) || "null"); } catch (e) {}
   done = (Array.isArray(lido) && lido.length === TOTAL) ? lido : new Array(TOTAL).fill(false);
-  openIdx = -1;
+  // a aula aberta e de outra trilha e nao vale nesta
+  aulaAtual = -1;
 }
 carregarProgresso();
 
@@ -1586,9 +1882,7 @@ function aplicarTextos() {
   const t = TEXTOS[trilhaAtual];
   if (!t) return;
   const eb = document.getElementById("hero-eyebrow");
-  const sb = document.getElementById("hero-sub");
   if (eb) eb.textContent = t.eyebrow;
-  if (sb) sb.textContent = t.sub;
 }
 
 function renderTabs() {
@@ -1643,137 +1937,10 @@ function linhaMeta(s) {
   return wrap;
 }
 
-// Em que modulo cada passo esta, para o cartao de retomada dizer de onde ele veio.
-function moduloDoPasso(i) {
-  const groups = TRILHAS[trilhaAtual].groups;
-  for (let g = 0; g < groups.length; g++) {
-    if (groups[g].indices.indexOf(i) >= 0) {
-      return { n: g + 1, label: groups[g].label };
-    }
-  }
-  return null;
-}
-
-// Cartao do topo: diz onde a pessoa parou e leva de volta para la.
-function renderRetomada() {
-  const box = document.getElementById("retomada-section");
-  box.innerHTML = "";
-  const n = done.filter(Boolean).length;
-  const pct = Math.round(n / TOTAL * 100);
-  const prox = proximoLiberado();
-  const completa = prox === -1;
-
-  const card = document.createElement("div");
-  card.className = "retomada" + (completa ? " is-completa" : "");
-
-  const topo = document.createElement("div");
-  topo.className = "retomada-topo";
-  const eyebrow = document.createElement("span");
-  eyebrow.className = "retomada-eyebrow";
-  eyebrow.textContent = completa ? "Trilha concluída" : (n === 0 ? "Comece por aqui" : "Continue de onde parou");
-  const prog = document.createElement("span");
-  prog.className = "retomada-prog";
-  prog.textContent = n + " de " + TOTAL + " aulas";
-  topo.appendChild(eyebrow);
-  topo.appendChild(prog);
-  card.appendChild(topo);
-
-  if (completa) {
-    const t = document.createElement("h2");
-    t.className = "retomada-titulo";
-    t.textContent = "Você percorreu a trilha inteira.";
-    card.appendChild(t);
-    const m = document.createElement("p");
-    m.className = "retomada-meta";
-    m.textContent = "A validação agora é com a liderança, na prática.";
-    card.appendChild(m);
-  } else {
-    const s = STEPS[prox];
-    const mod = moduloDoPasso(prox);
-    if (mod) {
-      const ml = document.createElement("p");
-      ml.className = "retomada-modulo";
-      ml.textContent = "Módulo " + mod.n + " · " + mod.label;
-      card.appendChild(ml);
-    }
-    const t = document.createElement("h2");
-    t.className = "retomada-titulo";
-    t.textContent = s.name;
-    card.appendChild(t);
-    const m = document.createElement("p");
-    m.className = "retomada-meta";
-    m.textContent = "Aula " + (prox + 1) + " de " + TOTAL + (s.tipo ? " · " + s.tipo : "") + (s.dur ? " · " + s.dur : "");
-    card.appendChild(m);
-  }
-
-  const track = document.createElement("div");
-  track.className = "retomada-track";
-  const fill = document.createElement("div");
-  fill.className = "retomada-fill";
-  fill.style.width = pct + "%";
-  track.appendChild(fill);
-  card.appendChild(track);
-
-  if (!completa) {
-    const btn = document.createElement("button");
-    btn.className = "retomada-btn";
-    btn.type = "button";
-    btn.textContent = (n === 0 ? "Começar" : "Continuar") + " →";
-    btn.addEventListener("click", function() {
-      openIdx = prox;
-      renderSteps();
-      const alvo = document.querySelector('.step[data-idx="' + prox + '"]');
-      if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-    card.appendChild(btn);
-  }
-
-  box.appendChild(card);
-}
-
-function updateProgress() {
-  renderRetomada();
-}
-
 // Em que etapa cada passo-trilha esta. A chave carrega a trilha para que
 // Comercial e Farmer nao disputem o mesmo passo.
 const etapaAberta = {};
 function chaveEtapa(i) { return trilhaAtual + ":" + i; }
-
-let openBody = null;
-let openInner = null;
-
-// Com o card fechado o body fica em max-height:0 + overflow:hidden, e nesse
-// estado o scrollHeight do conteudo vem errado (layout colapsado). Medir so
-// vale com a altura liberada — por isso o none temporario.
-function measureOpen() {
-  const anterior = openBody.style.maxHeight;
-  openBody.style.maxHeight = "none";
-  const altura = openInner.scrollHeight;
-  openBody.style.maxHeight = anterior;
-  return altura;
-}
-
-function syncOpenHeight() {
-  if (!openBody || !openInner) return;
-  if (openBody.style.maxHeight === "none") return;
-  openBody.style.maxHeight = measureOpen() + "px";
-}
-
-// Terminada a animacao, solta a trava de altura: a partir dai o card acompanha
-// o conteudo sozinho, mesmo que a fonte carregue atrasada ou o texto reflua.
-function liberarAltura(body) {
-  function fim(ev) {
-    if (ev.propertyName !== "max-height") return;
-    body.removeEventListener("transitionend", fim);
-    if (openBody === body) body.style.maxHeight = "none";
-  }
-  body.addEventListener("transitionend", fim);
-}
-
-if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(syncOpenHeight);
-}
 
 function cartaoFala(p) {
   const li = document.createElement("li");
@@ -2008,283 +2175,387 @@ function montarGaleria(inner, links) {
   inner.appendChild(g);
 }
 
-function renderSteps() {
-  const container = document.getElementById("steps-container");
-  container.innerHTML = "";
-  openBody = null;
-  openInner = null;
+// ======= LAYOUT DE CURSO =======
+// A pagina deixou de ser uma sanfona: os modulos ficam no topo, as aulas do
+// modulo na lateral e a aula escolhida ocupa o painel.
 
-  const groups = TRILHAS[trilhaAtual].groups;
+// Sem sanfona nao ha altura para animar; montarTrilha ainda chama isso.
+function syncOpenHeight() {}
 
-  groups.forEach((group, gi) => {
-    const mod = document.createElement("div");
-    mod.className = "modulo";
+function grupos() { return TRILHAS[trilhaAtual].groups; }
 
-    const feitas = group.indices.filter(k => done[k]).length;
-    const hdr = document.createElement("div");
-    hdr.className = "modulo-hdr";
-    const mid = document.createElement("span");
-    mid.className = "modulo-id";
-    mid.textContent = "Módulo " + (gi + 1);
-    const mt = document.createElement("h3");
-    mt.className = "modulo-titulo";
-    mt.textContent = group.label;
-    const mm = document.createElement("span");
-    mm.className = "modulo-meta";
-    const nAulas = group.indices.length;
-    mm.textContent = nAulas + (nAulas === 1 ? " aula" : " aulas") + (feitas > 0 ? " · " + feitas + " concluída" + (feitas > 1 ? "s" : "") : "");
-    const mtrack = document.createElement("div");
-    mtrack.className = "modulo-track";
-    const mfill = document.createElement("div");
-    mfill.className = "modulo-fill";
-    mfill.style.width = Math.round(feitas / nAulas * 100) + "%";
-    mtrack.appendChild(mfill);
-    hdr.appendChild(mid);
-    hdr.appendChild(mt);
-    hdr.appendChild(mm);
-    hdr.appendChild(mtrack);
-    mod.appendChild(hdr);
+function moduloDaAula(i) {
+  const g = grupos();
+  for (let k = 0; k < g.length; k++) {
+    if (g[k].indices.indexOf(i) >= 0) return k;
+  }
+  return 0;
+}
 
-    if (group.intro) {
-      const introEl = document.createElement("p");
-      introEl.className = "modulo-intro";
-      introEl.textContent = group.intro;
-      mod.appendChild(introEl);
+// Miniatura da aula: a capa do proprio video, a do primeiro video da galeria,
+// ou nada — nesse caso entra o icone do tipo sobre o azul-noite.
+function miniatura(s) {
+  if (s.video) return urlCapa(s.video);
+  if (s.links) {
+    for (const l of s.links) {
+      const yt = idYoutube(l.url);
+      if (yt) return "https://img.youtube.com/vi/" + yt + "/mqdefault.jpg";
     }
+  }
+  return null;
+}
 
-    const lista = document.createElement("div");
-    lista.className = "modulo-aulas";
-    mod.appendChild(lista);
-    container.appendChild(mod);
-
-    group.indices.forEach(i => {
-      const s = STEPS[i];
-      const aberto = liberado(i);
-      const card = document.createElement("div");
-      card.className = "step" + (done[i] ? " is-done" : "") + (openIdx === i ? " is-open" : "") + (aberto ? "" : " is-locked") + (s.tipo === "Validação" ? " is-validacao" : "");
-      card.setAttribute("data-idx", i);
-
-      const hdr = document.createElement("div");
-      hdr.className = "step-header";
-      hdr.setAttribute("role", "button");
-      hdr.setAttribute("aria-expanded", openIdx === i ? "true" : "false");
-
-      const numEl = document.createElement("div");
-      numEl.className = "step-num";
-      numEl.textContent = done[i] ? "✓" : (aberto ? (i + 1) : "🔒");
-
-      const info = document.createElement("div");
-      info.className = "step-info";
-
-      const name = document.createElement("div");
-      name.className = "step-name";
-      name.textContent = s.name;
-
-      info.appendChild(name);
-      info.appendChild(linhaMeta(s));
-
-      const chevron = document.createElement("div");
-      chevron.className = "step-chevron";
-      chevron.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-      hdr.appendChild(numEl);
-      hdr.appendChild(info);
-      hdr.appendChild(chevron);
-
-      const body = document.createElement("div");
-      body.className = "step-body";
-
-      const inner = document.createElement("div");
-      inner.className = "step-body-inner";
-
-      const desc = document.createElement("p");
-      desc.className = "step-desc";
-      desc.textContent = s.desc;
-      inner.appendChild(desc);
-
-      if (s.video) montarVideo(inner, s);
-
-      if (s.subSteps && s.trilha) {
-        montarTrilha(inner, s, i);
-      } else if (s.subSteps) {
-        const subDiv = document.createElement("div");
-        subDiv.className = "sub-steps";
-        s.subSteps.forEach(sub => {
-          const subCard = document.createElement("div");
-          subCard.className = "sub-step";
-          subCard.innerHTML = '<div class="sub-step-hdr"><span class="sub-step-order">' + sub.order + '</span><span class="sub-step-title">' + sub.title + '</span></div><p class="sub-step-why">' + sub.why + '</p><p class="sub-step-result">' + sub.result + '</p>';
-
-          if (sub.falas && sub.falas.length > 0) {
-            const ul = document.createElement("ul");
-            ul.className = "falas";
-            sub.falas.forEach(function(p) {
-              const li = document.createElement("li");
-              const corte = p.indexOf(" :: ");
-              if (corte > 0) {
-                const et = document.createElement("span");
-                et.className = "fala-etiqueta";
-                et.textContent = p.slice(0, corte);
-                li.appendChild(et);
-                li.appendChild(document.createTextNode(p.slice(corte + 4)));
-              } else {
-                li.textContent = p;
-              }
-              ul.appendChild(li);
-            });
-            subCard.appendChild(ul);
-          }
-
-          subDiv.appendChild(subCard);
-        });
-        inner.appendChild(subDiv);
-      }
-
-      if (s.links && s.links.length > 0) {
-        const comCapa = [];
-        const semCapa = [];
-        s.links.forEach(l => {
-          const yt = idYoutube(l.url);
-          if (yt) comCapa.push({ url: l.url, txt: l.txt, ytId: yt });
-          else semCapa.push(l);
-        });
-        if (comCapa.length > 0) montarGaleria(inner, comCapa);
-
-        const linksDiv = document.createElement("div");
-        linksDiv.className = "step-links";
-        semCapa.forEach(l => {
-          const a = document.createElement("a");
-          a.className = "step-link";
-          a.href = l.url;
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          a.innerHTML = '<span class="step-link-icon">' + LINK_ICON + '</span>' + l.txt;
-          linksDiv.appendChild(a);
-        });
-        // Sem link de texto sobrando a lista fica vazia e so somaria espaco.
-        if (semCapa.length > 0) inner.appendChild(linksDiv);
-      }
-
-      if (s.snippet) {
-        const box = document.createElement("div");
-        box.className = "snippet";
-        const shdr = document.createElement("div");
-        shdr.className = "snippet-hdr";
-        const slab = document.createElement("span");
-        slab.className = "snippet-label";
-        slab.textContent = "Mensagem pronta";
-        const scopy = document.createElement("button");
-        scopy.className = "snippet-copy";
-        scopy.type = "button";
-        scopy.textContent = "Copiar";
-        scopy.addEventListener("click", function(ev) {
-          ev.stopPropagation();
-          navigator.clipboard.writeText(s.snippet).then(function() {
-            scopy.textContent = "Copiado ✓";
-            scopy.classList.add("is-copied");
-            setTimeout(function() { scopy.textContent = "Copiar"; scopy.classList.remove("is-copied"); }, 2000);
-          });
-        });
-        shdr.appendChild(slab);
-        shdr.appendChild(scopy);
-        const stxt = document.createElement("pre");
-        stxt.className = "snippet-text";
-        stxt.textContent = s.snippet;
-        box.appendChild(shdr);
-        box.appendChild(stxt);
-        inner.appendChild(box);
-      }
-
-      if (s.missing && s.missing.length > 0) {
-        const mnote = document.createElement("div");
-        mnote.className = "step-pending-note";
-        mnote.textContent = "Material ainda sem link: " + s.missing.join(" · ") + ". Solicite à liderança.";
-        inner.appendChild(mnote);
-      }
-
-      if (s.pending) {
-        const note = document.createElement("div");
-        note.className = "step-pending-note";
-        note.textContent = "Os vídeos serão adicionados assim que gravados. Aguarde a notificação da liderança.";
-        inner.appendChild(note);
-      } else {
-        const btn = document.createElement("button");
-        btn.className = "mark-btn" + (done[i] ? " is-done-btn" : "");
-        btn.textContent = done[i] ? "✓ Concluído — desfazer" : "Marcar como concluído";
-        btn.addEventListener("click", function(e) {
-          e.stopPropagation();
-          const marcando = !done[i];
-
-          if (!marcando) {
-            // Desmarcar tranca os passos seguintes. Deixa-los marcados criaria
-            // card concluido e trancado ao mesmo tempo, com o contador mentindo,
-            // entao os posteriores voltam a zero junto.
-            const posteriores = done.slice(i + 1).filter(Boolean).length;
-            if (posteriores > 0) {
-              const msg = posteriores === 1
-                ? "Desmarcar este passo também desmarca o passo seguinte, que já estava concluído. Continuar?"
-                : "Desmarcar este passo também desmarca os " + posteriores + " passos seguintes, que já estavam concluídos. Continuar?";
-              if (!window.confirm(msg)) return;
-              for (let k = i + 1; k < TOTAL; k++) done[k] = false;
-            }
-          }
-
-          done[i] = marcando;
-          save();
-          updateProgress();
-          openIdx = marcando ? proximoLiberado() : i;
-          renderSteps();
-        });
-        inner.appendChild(btn);
-      }
-
-      body.appendChild(inner);
-
-      if (openIdx === i) {
-        openBody = body;
-        openInner = inner;
-      }
-
-      if (aberto) {
-        hdr.addEventListener("click", function() {
-          openIdx = openIdx === i ? -1 : i;
-          renderSteps();
-        });
-      } else {
-        hdr.setAttribute("aria-disabled", "true");
-        hdr.removeAttribute("role");
-        const cadeado = document.createElement("span");
-        cadeado.className = "step-locked-hint";
-        cadeado.textContent = "Conclua a aula " + i + " para liberar";
-        info.appendChild(cadeado);
-      }
-
-      card.appendChild(hdr);
-      card.appendChild(body);
-      lista.appendChild(card);
-    });
-  });
-
-  updateProgress();
-
-  if (openBody) {
-    const body = openBody;
-    // Sincrono: requestAnimationFrame nao roda com a aba oculta e o card
-    // ficaria aberto e vazio, preso no max-height:0 do CSS.
-    body.style.maxHeight = measureOpen() + "px";
-    liberarAltura(body);
-    // Rede de seguranca: sem a transicao (aba oculta, prefers-reduced-motion)
-    // o transitionend nunca dispara e a altura ficaria travada na medida.
-    setTimeout(function() {
-      if (openBody === body) body.style.maxHeight = "none";
-    }, 500);
+function irParaAula(i) {
+  if (!liberado(i)) return;
+  aulaAtual = i;
+  moduloAtual = moduloDaAula(i);
+  renderCurso();
+  if (window.innerWidth <= 980) {
+    const p = document.getElementById("curso-painel");
+    if (p) p.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
-window.addEventListener("resize", syncOpenHeight);
+// ---------- navegacao de modulos ----------
+function renderModNav() {
+  const nav = document.getElementById("mod-nav");
+  nav.innerHTML = "";
+  grupos().forEach(function(g, gi) {
+    const feitas = g.indices.filter(k => done[k]).length;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "mod-btn" + (gi === moduloAtual ? " is-ativo" : "") + (feitas === g.indices.length ? " is-completo" : "");
+    const n = document.createElement("span");
+    n.className = "mod-btn-n";
+    n.textContent = feitas === g.indices.length ? "✓" : (gi + 1);
+    const t = document.createElement("span");
+    t.textContent = g.label;
+    const c = document.createElement("span");
+    c.className = "mod-btn-cont";
+    c.textContent = feitas + "/" + g.indices.length;
+    b.appendChild(n); b.appendChild(t); b.appendChild(c);
+    b.addEventListener("click", function() {
+      moduloAtual = gi;
+      // ao trocar de modulo, cai na primeira aula dele que estiver liberada
+      const livre = g.indices.find(k => liberado(k));
+      aulaAtual = livre !== undefined ? livre : g.indices[0];
+      renderCurso();
+    });
+    nav.appendChild(b);
+  });
+}
+
+// ---------- lista lateral de aulas ----------
+function renderLado() {
+  const lado = document.getElementById("curso-lado");
+  lado.innerHTML = "";
+  const g = grupos()[moduloAtual];
+  const feitas = g.indices.filter(k => done[k]).length;
+
+  const topo = document.createElement("div");
+  topo.className = "lado-topo";
+  const mid = document.createElement("p");
+  mid.className = "lado-modulo";
+  mid.textContent = "Módulo " + (moduloAtual + 1);
+  const mt = document.createElement("p");
+  mt.className = "lado-titulo";
+  mt.textContent = g.label;
+  const mm = document.createElement("p");
+  mm.className = "lado-meta";
+  mm.textContent = g.indices.length + (g.indices.length === 1 ? " aula" : " aulas") + " · " + feitas + " concluída" + (feitas === 1 ? "" : "s");
+  topo.appendChild(mid); topo.appendChild(mt); topo.appendChild(mm);
+  lado.appendChild(topo);
+
+  g.indices.forEach(function(i) {
+    const s = STEPS[i];
+    const aberto = liberado(i);
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "aula-item" + (i === aulaAtual ? " is-atual" : "") + (aberto ? "" : " is-travada");
+    b.disabled = !aberto;
+
+    const mini = document.createElement("div");
+    mini.className = "aula-mini";
+    const src = aberto ? miniatura(s) : null;
+    if (src) {
+      const img = document.createElement("img");
+      img.src = src; img.alt = ""; img.loading = "lazy";
+      img.addEventListener("error", function() {
+        img.remove();
+        mini.insertAdjacentHTML("afterbegin", ICONE_TIPO[s.tipo] || "");
+      });
+      mini.appendChild(img);
+    } else {
+      mini.innerHTML = aberto ? (ICONE_TIPO[s.tipo] || "") : '<span style="font-size:13px">🔒</span>';
+    }
+    const num = document.createElement("span");
+    num.className = "aula-mini-n";
+    num.textContent = i + 1;
+    mini.appendChild(num);
+    b.appendChild(mini);
+
+    const txt = document.createElement("div");
+    txt.className = "aula-item-txt";
+    const nome = document.createElement("div");
+    nome.className = "aula-item-nome";
+    nome.textContent = s.name;
+    const sub = document.createElement("div");
+    sub.className = "aula-item-sub";
+    sub.textContent = (s.tipo || "Aula") + (s.dur ? " · " + s.dur : "");
+    txt.appendChild(nome); txt.appendChild(sub);
+    b.appendChild(txt);
+
+    if (done[i]) {
+      const ck = document.createElement("span");
+      ck.className = "aula-item-check";
+      ck.textContent = "✓";
+      b.appendChild(ck);
+    }
+
+    b.addEventListener("click", function() { irParaAula(i); });
+    lado.appendChild(b);
+  });
+}
+
+// ---------- painel da aula ----------
+function cabecaDePasso(painel, n, texto) {
+  const h = document.createElement("div");
+  h.className = "passo-hdr";
+  const et = document.createElement("span");
+  et.className = "passo-hdr-n";
+  et.textContent = "Passo " + n;
+  const t = document.createElement("span");
+  t.textContent = texto;
+  h.appendChild(et); h.appendChild(t);
+  painel.appendChild(h);
+  return n + 1;
+}
+
+function renderPainel() {
+  const painel = document.getElementById("curso-painel");
+  painel.innerHTML = "";
+
+  if (aulaAtual < 0 || !STEPS[aulaAtual]) {
+    const vazio = document.createElement("div");
+    vazio.className = "painel-travado";
+    vazio.innerHTML = '<span class="painel-travado-ico">📘</span>Escolha uma aula na lista ao lado.';
+    painel.appendChild(vazio);
+    return;
+  }
+
+  const i = aulaAtual;
+  const s = STEPS[i];
+
+  if (!liberado(i)) {
+    const t = document.createElement("div");
+    t.className = "painel-travado";
+    t.innerHTML = '<span class="painel-travado-ico">🔒</span>Conclua a aula ' + i + ' para liberar esta.';
+    painel.appendChild(t);
+    return;
+  }
+
+  const eb = document.createElement("p");
+  eb.className = "painel-eyebrow";
+  eb.textContent = "Módulo " + (moduloAtual + 1) + " · Aula " + (i + 1) + " de " + TOTAL;
+  painel.appendChild(eb);
+
+  const tit = document.createElement("h2");
+  tit.className = "painel-titulo";
+  tit.textContent = s.name;
+  painel.appendChild(tit);
+
+  const meta = document.createElement("div");
+  meta.className = "painel-meta";
+  meta.appendChild(linhaMeta(s));
+  painel.appendChild(meta);
+
+  const desc = document.createElement("p");
+  desc.className = "step-desc";
+  desc.textContent = s.desc;
+  painel.appendChild(desc);
+
+  let passo = 1;
+
+  if (s.video) {
+    passo = cabecaDePasso(painel, passo, "Assista à aula abaixo");
+    montarVideo(painel, s);
+  }
+
+  if (s.subSteps && s.trilha) {
+    passo = cabecaDePasso(painel, passo, "Percorra as etapas, uma de cada vez");
+    montarTrilha(painel, s, i);
+  } else if (s.subSteps) {
+    passo = cabecaDePasso(painel, passo, "Estude os blocos abaixo");
+    const subDiv = document.createElement("div");
+    subDiv.className = "sub-steps";
+    s.subSteps.forEach(function(sub) {
+      const subCard = document.createElement("div");
+      subCard.className = "sub-step";
+      subCard.innerHTML = '<div class="sub-step-hdr"><span class="sub-step-order">' + sub.order + '</span><span class="sub-step-title">' + sub.title + '</span></div><p class="sub-step-why">' + sub.why + '</p><p class="sub-step-result">' + sub.result + '</p>';
+      if (sub.falas && sub.falas.length > 0) {
+        const ul = document.createElement("ul");
+        ul.className = "falas";
+        sub.falas.forEach(function(f) { ul.appendChild(cartaoFala(f)); });
+        subCard.appendChild(ul);
+      }
+      subDiv.appendChild(subCard);
+    });
+    painel.appendChild(subDiv);
+  }
+
+  if (s.links && s.links.length > 0) {
+    const comCapa = [];
+    const semCapa = [];
+    s.links.forEach(function(l) {
+      // O video ja toca embutido acima; repetir o mesmo link como "material"
+      // so faz a aula parecer ter dois passos onde ha um.
+      if (s.video && l.url.indexOf(s.video.id) >= 0) return;
+      const yt = idYoutube(l.url);
+      if (yt) comCapa.push({ url: l.url, txt: l.txt, ytId: yt });
+      else semCapa.push(l);
+    });
+    if (comCapa.length > 0) {
+      passo = cabecaDePasso(painel, passo, comCapa.length === 1 ? "Assista ao vídeo" : "Assista aos vídeos, na ordem");
+      montarGaleria(painel, comCapa);
+    }
+    if (semCapa.length > 0) {
+      passo = cabecaDePasso(painel, passo, semCapa.length === 1 ? "Abra o material" : "Abra os materiais");
+      const linksDiv = document.createElement("div");
+      linksDiv.className = "step-links";
+      semCapa.forEach(function(l) {
+        const a = document.createElement("a");
+        a.className = "step-link";
+        a.href = l.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerHTML = '<span class="step-link-icon">' + LINK_ICON + '</span>' + l.txt;
+        linksDiv.appendChild(a);
+      });
+      painel.appendChild(linksDiv);
+    }
+  }
+
+  if (s.snippet) {
+    passo = cabecaDePasso(painel, passo, "Use a mensagem pronta");
+    const box = document.createElement("div");
+    box.className = "snippet";
+    const shdr = document.createElement("div");
+    shdr.className = "snippet-hdr";
+    const slab = document.createElement("span");
+    slab.className = "snippet-label";
+    slab.textContent = "Mensagem pronta";
+    const scopy = document.createElement("button");
+    scopy.className = "snippet-copy";
+    scopy.type = "button";
+    scopy.textContent = "Copiar";
+    scopy.addEventListener("click", function() {
+      navigator.clipboard.writeText(s.snippet).then(function() {
+        scopy.textContent = "Copiado ✓";
+        scopy.classList.add("is-copied");
+        setTimeout(function() { scopy.textContent = "Copiar"; scopy.classList.remove("is-copied"); }, 2000);
+      });
+    });
+    shdr.appendChild(slab); shdr.appendChild(scopy);
+    const stxt = document.createElement("pre");
+    stxt.className = "snippet-text";
+    stxt.textContent = s.snippet;
+    box.appendChild(shdr); box.appendChild(stxt);
+    painel.appendChild(box);
+  }
+
+  if (s.missing && s.missing.length > 0) {
+    const mnote = document.createElement("div");
+    mnote.className = "step-pending-note";
+    mnote.textContent = "Material ainda sem link: " + s.missing.join(" · ") + ". Solicite à liderança.";
+    painel.appendChild(mnote);
+  }
+
+  // rodape: concluir e o que vem depois
+  const rod = document.createElement("div");
+  rod.className = "painel-rodape";
+
+  if (s.pending) {
+    const note = document.createElement("div");
+    note.className = "step-pending-note";
+    note.textContent = "Os vídeos serão adicionados assim que gravados. Aguarde a notificação da liderança.";
+    rod.appendChild(note);
+  } else {
+    cabecaDePasso(painel, passo, done[i] ? "Aula concluída" : "Marque como concluída para liberar a próxima");
+    const btn = document.createElement("button");
+    btn.className = "mark-btn" + (done[i] ? " is-done-btn" : "");
+    btn.textContent = done[i] ? "✓ Concluída — desfazer" : "Marcar como concluída";
+    btn.addEventListener("click", function() {
+      const marcando = !done[i];
+      if (!marcando) {
+        // Desmarcar tranca as seguintes: senao a aula fica concluida e travada
+        // ao mesmo tempo, e o contador mente.
+        const posteriores = done.slice(i + 1).filter(Boolean).length;
+        if (posteriores > 0) {
+          const msg = posteriores === 1
+            ? "Desmarcar esta aula também desmarca a aula seguinte, que já estava concluída. Continuar?"
+            : "Desmarcar esta aula também desmarca as " + posteriores + " aulas seguintes, que já estavam concluídas. Continuar?";
+          if (!window.confirm(msg)) return;
+          for (let k = i + 1; k < TOTAL; k++) done[k] = false;
+        }
+      }
+      done[i] = marcando;
+      save();
+      if (marcando) {
+        const prox = proximoLiberado();
+        if (prox >= 0) { aulaAtual = prox; moduloAtual = moduloDaAula(prox); }
+      }
+      renderCurso();
+      if (window.innerWidth <= 980) {
+        document.getElementById("curso-painel").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+    rod.appendChild(btn);
+
+    if (i + 1 < TOTAL) {
+      const prox = document.createElement("span");
+      prox.className = "painel-prox";
+      prox.innerHTML = "A seguir: <strong>" + STEPS[i + 1].name + "</strong>";
+      rod.appendChild(prox);
+    } else if (done[i]) {
+      const fim = document.createElement("span");
+      fim.className = "painel-prox";
+      fim.innerHTML = "<strong>Trilha concluída.</strong> A validação agora é com a liderança, na prática.";
+      rod.appendChild(fim);
+    }
+  }
+
+  painel.appendChild(rod);
+}
+
+function updateProgress() {
+  const n = done.filter(Boolean).length;
+  const pct = Math.round(n / TOTAL * 100);
+  const fill = document.getElementById("prog-fill");
+  const num = document.getElementById("prog-num");
+  if (fill) fill.style.width = pct + "%";
+  if (num) num.textContent = pct + "%";
+}
+
+function renderCurso() {
+  if (aulaAtual < 0 || aulaAtual > TOTAL - 1) {
+    const prox = proximoLiberado();
+    aulaAtual = prox >= 0 ? prox : TOTAL - 1;
+  }
+  // Uma fonte so: o modulo em foco e sempre o da aula aberta. Sem isso, trocar
+  // de trilha deixava a lateral num modulo e o painel numa aula de outro.
+  moduloAtual = moduloDaAula(aulaAtual);
+  renderModNav();
+  renderLado();
+  renderPainel();
+  updateProgress();
+}
+
+// trocarTrilha chama renderSteps; mantido como apelido para nao duplicar logica
+function renderSteps() { renderCurso(); }
 
 renderTabs();
 aplicarTextos();
-renderSteps();
+renderCurso();
 </script>
 </body>
 </html>
