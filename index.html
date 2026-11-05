@@ -41,6 +41,8 @@
     --gray-600: #5A5A5A;
     --gray-800: #262626;
     --text: #141414;
+    /* largura do miolo: perto das laterais no monitor, com folga no celular */
+    --largura: 1440px;
     --radius: 12px;
     --radius-sm: 8px;
   }
@@ -93,7 +95,7 @@
     border-radius: 48px 48px 0 0;
   }
   .hero-inner {
-    max-width: 680px;
+    max-width: var(--largura);
     margin: 0 auto;
   }
   .hero-eyebrow {
@@ -115,14 +117,14 @@
     font-size: 15px;
     color: rgba(255,255,255,0.65);
     line-height: 1.6;
-    max-width: 480px;
+    max-width: 62ch;
   }
 
   /* PROGRESS */
   .progress-section {
-    max-width: 680px;
+    max-width: var(--largura);
     margin: 2rem auto 0;
-    padding: 0 2rem;
+    padding: 0 2.5rem;
   }
   .progress-card {
     background: white;
@@ -167,9 +169,9 @@
 
   /* STEPS */
   .steps-section {
-    max-width: 680px;
+    max-width: var(--largura);
     margin: 1.5rem auto 4rem;
-    padding: 0 2rem;
+    padding: 0 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -267,8 +269,8 @@
     display: flex;
     gap: 8px;
     margin: 0 auto 18px;
-    max-width: 680px;
-    padding: 0 1rem;
+    max-width: var(--largura);
+    padding: 0 2.5rem;
   }
   .trilha-tab {
     flex: 1;
@@ -616,7 +618,7 @@
     font-size: 13px;
     line-height: 1.65;
     color: var(--gray-600);
-    max-width: 62ch;
+    max-width: 78ch;
     margin: 2px auto 6px;
     text-align: center;
   }
@@ -661,7 +663,6 @@
 
   /* ======= CURSO: retomada, modulos, aulas, video ======= */
 
-  .progress-section, .steps-section { max-width: 760px; }
 
   /* Cartao de retomada — onde a pessoa parou */
   .retomada {
@@ -954,6 +955,23 @@
   @media (max-width: 560px) {
     .video-galeria { grid-template-columns: 1fr; }
   }
+
+  /* A caixa cresce ate a lateral, mas a linha de texto para antes:
+     linha longa demais cansa e faz perder a proxima. */
+  .step-desc, .sub-step-why, .sub-step-result, .modulo-intro,
+  .etapa-recall p, .snippet-text { max-width: 86ch; }
+  .retomada-titulo { max-width: 24ch; }
+
+  /* Com a pagina larga cabe uma terceira capa por linha */
+  @media (min-width: 900px) {
+    .video-galeria { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 1300px) {
+    .video-galeria { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .progress-section, .steps-section, .trilha-tabs { padding: 0 1.25rem; }
+  }
 </style>
 </head>
 <body>
@@ -1138,6 +1156,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Novo formato de call — as 9 etapas",
+    trilha: true,
     tipo: "Método", dur: "9 etapas",
     tag: "must", tagTxt: "obrigatório",
     desc: "A estrutura da call inteira, do rapport ao pitch, com os pontos de atenção de cada etapa. É o roteiro que você vai seguir em toda reunião — siga as nove na ordem.",
@@ -1145,7 +1164,7 @@ const STEPS_COMERCIAL = [
     subSteps: [
       {
         order: "1º",
-        title: "Rapport + clareza do que vai acontecer na call",
+        title: "Rapport + clareza do que vai acontecer na call", curto: "Rapport",
         why: "Criar relação e já combinar o roteiro da reunião. O cliente que sabe o que vem não fica ansioso pelo preço.",
         result: "Ao explicar o que vai acontecer, os quatro avisos abaixo não podem faltar.",
         falas: [
@@ -1223,7 +1242,7 @@ const STEPS_COMERCIAL = [
       },
       {
         order: "7º",
-        title: "Suporte + Guardião",
+        title: "Suporte + Guardião", curto: "Suporte",
         why: "Mostrar que ele não fica sozinho depois da compra. Derruba a objeção de que não vai conseguir implantar.",
         result: "Risco percebido cai.",
         falas: [
@@ -1274,19 +1293,20 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Mapa de Explicação — os 7 momentos da apresentação",
+    trilha: true,
     tipo: "Método", dur: "7 momentos",
     tag: "must", tagTxt: "obrigatório",
     desc: "Encerrou o NPQL: agradeça, faça uma frase de abertura e contexto, e inicie os slides. A partir daí a apresentação segue 7 momentos na ordem abaixo. Regras de slide: o slide 1 inicia e o 2 encerra — faça uma nova intro, porque vai começar a consultoria. Do 3 ao 6, NÃO apresente sistema nem entregáveis: foque em perguntas para entender como o cliente faz as coisas no dia a dia. Ao encerrar, faça a última pergunta de transação e só então a intro para mostrar os entregáveis. E passe o depoimento antes de entrar na apresentação.",
     links: [],
     subSteps: [
-      { order: "1º", title: "Cash Barber → Subs", why: "Quando chegar na porcentagem ou na tabela, faça a transição para o B10X, mostrando na plataforma de cursos onde está o conhecimento. Traga também as informações que mostram facilidade e vincule ao acompanhamento (slide de implementação).", result: "O cliente entende o produto e já vê onde vai aprender a usar." },
-      { order: "2º", title: "PUMP → Frequência", why: "Mesma transição: da frequência para o B10X, mostrando na plataforma de cursos onde está o conhecimento.", result: "Frequência deixa de ser um número e vira algo que ele sabe operar." },
-      { order: "3º", title: "Cash Barber — funções e usuário", why: "Mostre as informações que temos na agenda para assinantes. Funções incríveis: bloqueios, recompra e gateway. Usuário do cliente: venda, reconhecimento automático e segurança de bloqueio. Depois de falar tudo, volte à plataforma para mostrar que o conhecimento está lá e vá para o slide de acompanhamento.", result: "Profundidade de produto demonstrada, não prometida." },
-      { order: "3º ·", title: "Transição para a imersão", why: "Antes de falar da imersão, faça uma transição. Fale do 0 aos 100 assinantes e vincule as skills ao vivo como fonte de acompanhamento depois que ele lançar as assinaturas.", result: "A imersão entra como continuidade, não como upsell solto." },
-      { order: "4º", title: "Perguntas de dúvidas", why: "Pergunte se faltou algo para ele aderir à assinatura ou para corrigir. Pontos a cobrir: D-Pote, calendário, gateway e vale bônus — este último sempre atrelado ao aumento de faturamento.", result: "Objeções aparecem agora, não no fechamento." },
-      { order: "5º", title: "Cash Barber — recompra + MVC", why: "Recompra somada à plataforma de treinamento de vendas (MVC). Faça perguntas para entender como ele direciona o time, como olha os números e como faz alinhamentos.", result: "Você mapeia a gestão dele, não só a operação." },
-      { order: "6º", title: "PUMP — prévia", why: "Mostre os cursos e os sprints. Faça perguntas matemáticas: cálculos de quanto ele pode aumentar o faturamento apenas melhorando o que já existe.", result: "O ganho vira número, calculado com ele." },
-      { order: "7º", title: "Transação e fechamento", why: "Perguntas de transação mais a apresentação final de suporte, acompanhamento e entregáveis bônus. Em seguida, 3 perguntas de transação para fechamento e a oferta na sequência.", result: "A oferta chega no fim, com tudo já sustentado." }
+      { order: "1º", title: "Cash Barber → Subs", curto: "Subs", why: "Quando chegar na porcentagem ou na tabela, faça a transição para o B10X, mostrando na plataforma de cursos onde está o conhecimento. Traga também as informações que mostram facilidade e vincule ao acompanhamento (slide de implementação).", result: "O cliente entende o produto e já vê onde vai aprender a usar." },
+      { order: "2º", title: "PUMP → Frequência", curto: "Frequência", why: "Mesma transição: da frequência para o B10X, mostrando na plataforma de cursos onde está o conhecimento.", result: "Frequência deixa de ser um número e vira algo que ele sabe operar." },
+      { order: "3º", title: "Cash Barber — funções e usuário", curto: "Funções", why: "Mostre as informações que temos na agenda para assinantes. Funções incríveis: bloqueios, recompra e gateway. Usuário do cliente: venda, reconhecimento automático e segurança de bloqueio. Depois de falar tudo, volte à plataforma para mostrar que o conhecimento está lá e vá para o slide de acompanhamento.", result: "Profundidade de produto demonstrada, não prometida." },
+      { order: "3º ·", title: "Transição para a imersão", curto: "Transição", why: "Antes de falar da imersão, faça uma transição. Fale do 0 aos 100 assinantes e vincule as skills ao vivo como fonte de acompanhamento depois que ele lançar as assinaturas.", result: "A imersão entra como continuidade, não como upsell solto." },
+      { order: "4º", title: "Perguntas de dúvidas", curto: "Dúvidas", why: "Pergunte se faltou algo para ele aderir à assinatura ou para corrigir. Pontos a cobrir: D-Pote, calendário, gateway e vale bônus — este último sempre atrelado ao aumento de faturamento.", result: "Objeções aparecem agora, não no fechamento." },
+      { order: "5º", title: "Cash Barber — recompra + MVC", curto: "Recompra", why: "Recompra somada à plataforma de treinamento de vendas (MVC). Faça perguntas para entender como ele direciona o time, como olha os números e como faz alinhamentos.", result: "Você mapeia a gestão dele, não só a operação." },
+      { order: "6º", title: "PUMP — prévia", curto: "Prévia PUMP", why: "Mostre os cursos e os sprints. Faça perguntas matemáticas: cálculos de quanto ele pode aumentar o faturamento apenas melhorando o que já existe.", result: "O ganho vira número, calculado com ele." },
+      { order: "7º", title: "Transação e fechamento", curto: "Fechamento", why: "Perguntas de transação mais a apresentação final de suporte, acompanhamento e entregáveis bônus. Em seguida, 3 perguntas de transação para fechamento e a oferta na sequência.", result: "A oferta chega no fim, com tudo já sustentado." }
     ]
   },
   {
@@ -1794,7 +1814,8 @@ function montarTrilha(inner, s, idx) {
       bolha.textContent = n < atual ? "✓" : (n + 1);
       const rot = document.createElement("span");
       rot.className = "mapa-rotulo";
-      rot.textContent = e.title;
+      // No mapa cabe pouco texto; "curto" existe so onde o titulo e longo demais.
+      rot.textContent = e.curto || e.title;
       no.appendChild(bolha);
       no.appendChild(rot);
       no.addEventListener("click", function(ev) {
@@ -1836,14 +1857,12 @@ function montarTrilha(inner, s, idx) {
     }
 
     // recuperacao ativa: a pessoa tenta repetir antes de seguir
-    if (e.falas && e.falas.length) {
-      const rec = document.createElement("div");
-      rec.className = "etapa-recall";
-      const p = document.createElement("p");
-      p.innerHTML = "<strong>Antes de avançar:</strong> feche os olhos e tente repetir, com as suas palavras, o que você faria nesta etapa. Se travar, leia de novo — é a tentativa de lembrar que fixa, não a releitura.";
-      rec.appendChild(p);
-      caixa.appendChild(rec);
-    }
+    const rec = document.createElement("div");
+    rec.className = "etapa-recall";
+    const pRec = document.createElement("p");
+    pRec.innerHTML = "<strong>Antes de avançar:</strong> feche os olhos e tente repetir, com as suas palavras, o que você faria nesta etapa. Se travar, leia de novo — é a tentativa de lembrar que fixa, não a releitura.";
+    rec.appendChild(pRec);
+    caixa.appendChild(rec);
 
     const nav = document.createElement("div");
     nav.className = "etapa-nav";
@@ -1862,7 +1881,8 @@ function montarTrilha(inner, s, idx) {
       const avancar = document.createElement("button");
       avancar.type = "button";
       avancar.className = "etapa-btn is-principal";
-      avancar.textContent = "Próxima: " + etapas[atual + 1].title + " →";
+      const prox = etapas[atual + 1];
+      avancar.textContent = "Próxima: " + (prox.curto || prox.title) + " →";
       avancar.addEventListener("click", function(ev) {
         ev.stopPropagation();
         atual++; etapaAberta[chave] = atual; desenhar(); syncOpenHeight();
