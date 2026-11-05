@@ -335,6 +335,126 @@
     line-height: 1.7;
   }
 
+  /* ---- Passo em formato de trilha: mapa de etapas + uma etapa por vez ---- */
+  .mapa {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin: 4px 0 18px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .mapa-no {
+    flex: 1 0 auto;
+    min-width: 92px;
+    background: none;
+    border: 0;
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+  }
+  /* a linha que liga um no ao proximo */
+  .mapa-no::before {
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    background: var(--gray-200);
+  }
+  .mapa-no:first-child::before { display: none; }
+  .mapa-no.is-feito::before { background: var(--gold); }
+  .mapa-bolha {
+    position: relative;
+    z-index: 1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--gray-200);
+    color: var(--gray-400);
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mapa-rotulo {
+    font-size: 10.5px;
+    line-height: 1.3;
+    color: var(--gray-600);
+    text-align: center;
+    max-width: 96px;
+  }
+  .mapa-no.is-feito .mapa-bolha { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .mapa-no.is-atual .mapa-bolha { background: var(--night); border-color: var(--night); color: #fff; transform: scale(1.12); }
+  .mapa-no.is-atual .mapa-rotulo { color: var(--night); font-weight: 600; }
+
+  .etapa-topo {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .etapa-contador {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .etapa-nome {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--night);
+  }
+  .etapa-nav {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    align-items: center;
+  }
+  .etapa-btn {
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gray-200);
+    background: #fff;
+    color: var(--gray-800);
+    cursor: pointer;
+  }
+  .etapa-btn:hover:not(:disabled) { border-color: var(--gold); }
+  .etapa-btn:disabled { opacity: 0.4; cursor: default; }
+  .etapa-btn.is-principal { background: var(--night); border-color: var(--night); color: #fff; }
+  .etapa-btn.is-principal:hover { background: var(--ink); border-color: var(--ink); }
+
+  .etapa-recall {
+    margin-top: 14px;
+    border: 1px dashed var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 11px 13px;
+    background: var(--gray-50);
+  }
+  .etapa-recall p {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--gray-600);
+  }
+  .etapa-recall strong { color: var(--night); }
+
+  @media (max-width: 640px) {
+    .mapa-no { min-width: 76px; }
+    .mapa-rotulo { font-size: 9.5px; }
+  }
+
   .falas {
     list-style: none;
     margin: 10px 0 0;
@@ -604,6 +724,7 @@ const STEPS_COMERCIAL = [
   {
     name: "NPQL — as 5 etapas da conversa",
     tag: "must", tagTxt: "obrigatório",
+    trilha: true,
     desc: "O NPQL é o que estrutura a conversa que leva à consultoria. O objetivo é fazer com que a venda se torne leve — não é você empurrando uma venda, é o cliente comprando. Duas regras atravessam tudo: o objetivo não é sobre nós, é sobre o cliente; e quando estamos emotivos, nosso cérebro não consegue ser racional. As perguntas abaixo são o script — não decore, internalize a lógica de cada etapa.",
     links: [],
     subSteps: [
@@ -1132,6 +1253,11 @@ function updateProgress() {
   document.getElementById("prog-count").innerHTML = n + ' <span>/ ' + TOTAL + '</span>';
 }
 
+// Em que etapa cada passo-trilha esta. A chave carrega a trilha para que
+// Comercial e Farmer nao disputem o mesmo passo.
+const etapaAberta = {};
+function chaveEtapa(i) { return trilhaAtual + ":" + i; }
+
 let openBody = null;
 let openInner = null;
 
@@ -1165,6 +1291,132 @@ function liberarAltura(body) {
 
 if (document.fonts && document.fonts.ready) {
   document.fonts.ready.then(syncOpenHeight);
+}
+
+function cartaoFala(p) {
+  const li = document.createElement("li");
+  const corte = p.indexOf(" :: ");
+  if (corte > 0) {
+    const et = document.createElement("span");
+    et.className = "fala-etiqueta";
+    et.textContent = p.slice(0, corte);
+    li.appendChild(et);
+    li.appendChild(document.createTextNode(p.slice(corte + 4)));
+  } else {
+    li.textContent = p;
+  }
+  return li;
+}
+
+function montarTrilha(inner, s, idx) {
+  const etapas = s.subSteps;
+  const chave = chaveEtapa(idx);
+  let atual = etapaAberta[chave] || 0;
+  if (atual > etapas.length - 1) atual = 0;
+
+  const caixa = document.createElement("div");
+
+  function desenhar() {
+    caixa.innerHTML = "";
+
+    // mapa: todas as etapas de relance, a atual em destaque
+    const mapa = document.createElement("div");
+    mapa.className = "mapa";
+    etapas.forEach(function(e, n) {
+      const no = document.createElement("button");
+      no.type = "button";
+      no.className = "mapa-no" + (n === atual ? " is-atual" : "") + (n < atual ? " is-feito" : "");
+      no.setAttribute("aria-current", n === atual ? "step" : "false");
+      const bolha = document.createElement("span");
+      bolha.className = "mapa-bolha";
+      bolha.textContent = n < atual ? "✓" : (n + 1);
+      const rot = document.createElement("span");
+      rot.className = "mapa-rotulo";
+      rot.textContent = e.title;
+      no.appendChild(bolha);
+      no.appendChild(rot);
+      no.addEventListener("click", function(ev) {
+        ev.stopPropagation();
+        atual = n; etapaAberta[chave] = n; desenhar(); syncOpenHeight();
+      });
+      mapa.appendChild(no);
+    });
+    caixa.appendChild(mapa);
+
+    const e = etapas[atual];
+
+    const topo = document.createElement("div");
+    topo.className = "etapa-topo";
+    const cont = document.createElement("span");
+    cont.className = "etapa-contador";
+    cont.textContent = "Etapa " + (atual + 1) + " de " + etapas.length;
+    const nome = document.createElement("span");
+    nome.className = "etapa-nome";
+    nome.textContent = e.title;
+    topo.appendChild(cont); topo.appendChild(nome);
+    caixa.appendChild(topo);
+
+    const why = document.createElement("p");
+    why.className = "sub-step-why";
+    why.textContent = e.why;
+    caixa.appendChild(why);
+
+    const res = document.createElement("p");
+    res.className = "sub-step-result";
+    res.textContent = e.result;
+    caixa.appendChild(res);
+
+    if (e.falas && e.falas.length) {
+      const ul = document.createElement("ul");
+      ul.className = "falas";
+      e.falas.forEach(function(p) { ul.appendChild(cartaoFala(p)); });
+      caixa.appendChild(ul);
+    }
+
+    // recuperacao ativa: a pessoa tenta repetir antes de seguir
+    if (e.falas && e.falas.length) {
+      const rec = document.createElement("div");
+      rec.className = "etapa-recall";
+      const p = document.createElement("p");
+      p.innerHTML = "<strong>Antes de avançar:</strong> feche os olhos e tente repetir, com as suas palavras, o que você faria nesta etapa. Se travar, leia de novo — é a tentativa de lembrar que fixa, não a releitura.";
+      rec.appendChild(p);
+      caixa.appendChild(rec);
+    }
+
+    const nav = document.createElement("div");
+    nav.className = "etapa-nav";
+    const voltar = document.createElement("button");
+    voltar.type = "button";
+    voltar.className = "etapa-btn";
+    voltar.textContent = "← Anterior";
+    voltar.disabled = atual === 0;
+    voltar.addEventListener("click", function(ev) {
+      ev.stopPropagation();
+      if (atual > 0) { atual--; etapaAberta[chave] = atual; desenhar(); syncOpenHeight(); }
+    });
+    nav.appendChild(voltar);
+
+    if (atual < etapas.length - 1) {
+      const avancar = document.createElement("button");
+      avancar.type = "button";
+      avancar.className = "etapa-btn is-principal";
+      avancar.textContent = "Próxima: " + etapas[atual + 1].title + " →";
+      avancar.addEventListener("click", function(ev) {
+        ev.stopPropagation();
+        atual++; etapaAberta[chave] = atual; desenhar(); syncOpenHeight();
+      });
+      nav.appendChild(avancar);
+    } else {
+      const fim = document.createElement("span");
+      fim.className = "etapa-contador";
+      fim.textContent = "Fim das etapas";
+      nav.appendChild(fim);
+    }
+    caixa.appendChild(nav);
+  }
+
+  desenhar();
+  inner.appendChild(caixa);
 }
 
 function renderSteps() {
@@ -1236,7 +1488,9 @@ function renderSteps() {
       desc.textContent = s.desc;
       inner.appendChild(desc);
 
-      if (s.subSteps) {
+      if (s.subSteps && s.trilha) {
+        montarTrilha(inner, s, i);
+      } else if (s.subSteps) {
         const subDiv = document.createElement("div");
         subDiv.className = "sub-steps";
         s.subSteps.forEach(sub => {
