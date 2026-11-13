@@ -1308,6 +1308,81 @@
   .video-item.is-visto .video-visto { background: rgba(215,171,92,0.14); color: var(--gold-deep); }
   .video-item.is-visto .video-visto-mark { background: var(--gold); border-color: var(--gold); color: var(--ink); }
 
+  /* Quem e voce: perguntado uma vez, no primeiro acesso */
+  .quem-fundo {
+    position: fixed; inset: 0; z-index: 90;
+    background: rgba(10,20,34,0.96);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .quem-caixa {
+    background: white; border-radius: 18px; padding: 34px 32px;
+    max-width: 480px; width: 100%;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .quem-olho {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 700; margin: 0 0 6px;
+  }
+  .quem-titulo { font-family: "Playfair Display", serif; font-size: 27px; margin: 0 0 10px; color: var(--night); }
+  .quem-txt { font-size: 14px; line-height: 1.55; color: var(--gray-600); margin: 0 0 20px; }
+  .quem-campo {
+    width: 100%; box-sizing: border-box; font: inherit; font-size: 16px;
+    padding: 12px 14px; border: 1px solid var(--gray-200); border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .quem-campo:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(215,171,92,0.25); }
+  .quem-btn {
+    width: 100%; appearance: none; border: 0; cursor: pointer;
+    background: var(--night); color: white; font: inherit; font-weight: 600;
+    padding: 13px; border-radius: 10px;
+  }
+  .quem-btn:hover { background: var(--ink); }
+  .quem-erro { color: #B3261E; font-size: 13px; margin: 10px 0 0; }
+  .topbar-quem {
+    margin-left: auto; font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.82);
+    border: 1px solid rgba(255,255,255,0.22); border-radius: 999px; padding: 4px 12px;
+  }
+
+  /* Painel de uso: so aparece com ?gestao */
+  .logs {
+    background: white; border: 1px solid var(--gray-200); border-radius: 14px;
+    margin: 18px auto; padding: 20px 22px; max-width: 1400px;
+  }
+  .logs-topo { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .logs-titulo { font-family: "Playfair Display", serif; font-size: 21px; margin: 0; color: var(--night); }
+  .logs-btn {
+    appearance: none; border: 1px solid var(--gray-200); background: var(--night);
+    color: white; font: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  }
+  .logs-btn:hover { background: var(--ink); }
+  .logs-btn:disabled { opacity: 0.55; cursor: default; }
+  .logs-aviso { font-size: 13px; color: var(--gray-600); margin: 8px 0 14px; line-height: 1.5; }
+  .logs-vazio { font-size: 14px; color: var(--gray-600); margin: 0; }
+  .logs-vazio.is-erro { color: #B3261E; }
+  .logs-tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .logs-tab th {
+    text-align: left; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--gray-600); font-weight: 700; padding: 8px 10px; border-bottom: 1px solid var(--gray-200);
+  }
+  .logs-tab td { padding: 10px; border-bottom: 1px solid var(--gray-100); }
+  .logs-linha { cursor: pointer; }
+  .logs-linha:hover td { background: var(--gray-50); }
+  .logs-linha.is-aberta td { background: rgba(215,171,92,0.12); }
+  .logs-linhas { list-style: none; margin: 0; padding: 0; max-height: 360px; overflow-y: auto; }
+  .logs-linhas li {
+    display: grid; grid-template-columns: 112px 150px 1fr 1fr; gap: 10px;
+    padding: 6px 4px; border-bottom: 1px solid var(--gray-100); font-size: 12.5px;
+  }
+  .logs-hora { color: var(--gray-600); font-variant-numeric: tabular-nums; }
+  .logs-tipo { font-weight: 600; color: var(--night); }
+  .logs-aula, .logs-extra { color: var(--gray-600); }
+  @media (max-width: 760px) {
+    .logs { margin: 14px 12px; padding: 16px; overflow-x: auto; }
+    .logs-linhas li { grid-template-columns: 1fr; gap: 2px; }
+  }
+
   /* Quiz fechado: o lugar das perguntas enquanto faltam videos */
   .quiz-trava {
     border: 1px dashed var(--gray-200);
@@ -3131,7 +3206,10 @@ function montarGaleria(inner, links, aoMarcar) {
     a.href = l.url;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
-    a.addEventListener("click", function(ev) { ev.stopPropagation(); });
+    a.addEventListener("click", function(ev) {
+      ev.stopPropagation();
+      registrar("video_abriu", { detalhe: { txt: l.txt, url: l.url } });
+    });
 
     const capa = document.createElement("div");
     capa.className = "video-item-capa";
@@ -3171,8 +3249,10 @@ function montarGaleria(inner, links, aoMarcar) {
     pintar();
     b.addEventListener("click", function(ev) {
       ev.stopPropagation();
-      if (assistido(l.url)) delete vistos[l.url]; else vistos[l.url] = true;
+      const marcando = !assistido(l.url);
+      if (marcando) vistos[l.url] = true; else delete vistos[l.url];
       saveVistos();
+      registrar(marcando ? "video_assistido" : "video_desmarcou", { detalhe: { txt: l.txt, url: l.url } });
       pintar();
       if (aoMarcar) aoMarcar();
     });
@@ -3498,6 +3578,7 @@ function montarQuiz(painel, s, i) {
       });
       if (passou) b.porque.hidden = !b.porque.textContent;
     });
+    registrar("quiz_tentativa", { aula: i, detalhe: { acertos: acertos, total: total, passou: passou } });
     nota.hidden = false;
     nota.className = "quiz-nota " + (passou ? "is-ok" : "is-nao");
     nota.textContent = acertos + " de " + total + (passou ? " — aprovado" : " — abaixo do mínimo");
@@ -4022,6 +4103,7 @@ function renderPainel() {
       }
       done[i] = marcando;
       save();
+      registrar(marcando ? "aula_concluiu" : "aula_desmarcou", { aula: i });
       if (marcando) {
         const prox = proximoLiberado();
         if (prox >= 0) { aulaAtual = prox; moduloAtual = moduloDaAula(prox); }
@@ -4068,6 +4150,7 @@ function renderCurso() {
   // Uma fonte so: o modulo em foco e sempre o da aula aberta. Sem isso, trocar
   // de trilha deixava a lateral num modulo e o painel numa aula de outro.
   moduloAtual = moduloDaAula(aulaAtual);
+  aoAbrirAula(aulaAtual);
   renderModNav();
   renderLado();
   renderPainel();
@@ -4077,9 +4160,419 @@ function renderCurso() {
 // trocarTrilha chama renderSteps; mantido como apelido para nao duplicar logica
 function renderSteps() { renderCurso(); }
 
+
+// ======= REGISTRO DE USO =======
+// A pagina e estatica: sem o Worker, nada do que o executivo faz sai do
+// navegador dele. Aqui os cliques viram eventos, vao para a fila e sobem em
+// lote. Em modo gestao nada e gravado — a gestao le, nao gera registro.
+const API_PADRAO = "https://onboarding-api.podium-playbook.workers.dev";
+const API = (function () {
+  // ?api= so vale rodando local, para testar contra um dublê. Publicado, o
+  // endereco e fixo: senao bastava trocar a URL para nao aparecer no registro.
+  const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const m = location.search.match(/[?&]api=([^&]+)/);
+  return ((local && m) ? decodeURIComponent(m[1]) : API_PADRAO).replace(/\/+$/, "");
+})();
+
+const CHAVE_QUEM = "podium-onboarding-quem";
+const CHAVE_FILA = "podium-onboarding-fila";
+const MAX_FILA = 400;
+
+let quem = null;
+let fila = [];
+
+function novoId() {
+  try {
+    if (crypto && crypto.randomUUID) return crypto.randomUUID();
+  } catch (e) {}
+  return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
+}
+
+function carregarQuem() {
+  let q = null;
+  try { q = JSON.parse(localStorage.getItem(CHAVE_QUEM) || "null"); } catch (e) {}
+  quem = (q && typeof q === "object" && q.id) ? q : null;
+}
+function guardarQuem() {
+  try { localStorage.setItem(CHAVE_QUEM, JSON.stringify(quem)); } catch (e) {}
+}
+function carregarFila() {
+  let f = null;
+  try { f = JSON.parse(localStorage.getItem(CHAVE_FILA) || "null"); } catch (e) {}
+  fila = Array.isArray(f) ? f.slice(-MAX_FILA) : [];
+}
+function guardarFila() {
+  try { localStorage.setItem(CHAVE_FILA, JSON.stringify(fila.slice(-MAX_FILA))); } catch (e) {}
+}
+
+function registrar(tipo, opts) {
+  if (MODO_GESTAO || !quem) return;
+  const o = opts || {};
+  const aula = (typeof o.aula === "number") ? o.aula : aulaAtual;
+  const ev = {
+    quando: new Date().toISOString(),
+    tipo: tipo,
+    trilha: trilhaAtual,
+  };
+  if (aula >= 0 && aula < TOTAL) {
+    ev.aula = aula;
+    ev.titulo = (STEPS[aula] && STEPS[aula].name) || null;
+  }
+  if (o.detalhe) ev.detalhe = o.detalhe;
+  fila.push(ev);
+  if (fila.length > MAX_FILA) fila = fila.slice(-MAX_FILA);
+  guardarFila();
+  agendarEnvio();
+}
+
+let envioMarcado = null;
+function agendarEnvio() {
+  if (envioMarcado) return;
+  envioMarcado = setTimeout(function () { envioMarcado = null; enviarFila(false); }, 8000);
+}
+
+// Lote so sai inteiro: ou o Worker confirma e a fila esvazia, ou tudo fica
+// guardado para a proxima visita. Meio termo perde evento.
+let enviando = false;
+function enviarFila(porBeacon) {
+  if (MODO_GESTAO || !quem || fila.length === 0) return;
+  const lote = fila.slice(0, 200);
+  const corpo = JSON.stringify({ pessoa: quem.id, nome: quem.nome || null, trilha: trilhaAtual, eventos: lote });
+
+  if (porBeacon) {
+    try {
+      // sendBeacon nao faz preflight; por isso text/plain, e o Worker da o parse.
+      const ok = navigator.sendBeacon(API + "/eventos", new Blob([corpo], { type: "text/plain;charset=UTF-8" }));
+      if (ok) { fila = fila.slice(lote.length); guardarFila(); }
+    } catch (e) {}
+    return;
+  }
+
+  if (enviando) return;
+  enviando = true;
+  fetch(API + "/eventos", {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=UTF-8" },
+    body: corpo,
+    keepalive: true,
+  }).then(function (r) {
+    enviando = false;
+    if (!r.ok) return;
+    fila = fila.slice(lote.length);
+    guardarFila();
+    if (fila.length > 0) agendarEnvio();
+  }).catch(function () {
+    enviando = false;
+  });
+}
+
+// ---- cronometro por aula ----
+// So conta com a aba na frente e a janela em foco: aba esquecida aberta
+// durante a noite nao pode virar oito horas de estudo.
+const MAX_TRECHO = 45 * 60;
+let crono = { aula: -1, desde: 0 };
+
+function cronoFecha() {
+  if (crono.aula < 0 || !crono.desde) return;
+  const s = Math.round((Date.now() - crono.desde) / 1000);
+  crono.desde = 0;
+  if (s >= 5) registrar("tempo", { aula: crono.aula, detalhe: { segundos: Math.min(s, MAX_TRECHO) } });
+}
+function cronoAbre(i) {
+  cronoFecha();
+  crono = { aula: i, desde: (i >= 0 && visivel()) ? Date.now() : 0 };
+}
+function cronoRetoma() {
+  if (crono.aula >= 0 && !crono.desde && visivel()) crono.desde = Date.now();
+}
+// Aba na frente basta. Exigir foco da janela tambem parece mais honesto, mas
+// derruba o cronometro de quem le com outra janela por cima, e o tempo todo
+// aparece como zero. O teto por trecho ja resolve a aba esquecida aberta.
+function visivel() {
+  return document.visibilityState === "visible";
+}
+
+let ultimaAulaVista = -1;
+function aoAbrirAula(i) {
+  if (i === ultimaAulaVista) return;
+  ultimaAulaVista = i;
+  registrar("aula_abriu", { aula: i });
+  cronoAbre(i);
+}
+
+document.addEventListener("visibilitychange", function () {
+  if (document.visibilityState === "visible") cronoRetoma();
+  else { cronoFecha(); enviarFila(true); }
+});
+window.addEventListener("pagehide", function () { cronoFecha(); enviarFila(true); });
+
+// ---- quem e voce ----
+function pedirNome() {
+  const fundo = document.createElement("div");
+  fundo.className = "quem-fundo";
+  const cx = document.createElement("div");
+  cx.className = "quem-caixa";
+  cx.innerHTML =
+    '<p class="quem-olho">Trilha de Onboarding</p>' +
+    '<h2 class="quem-titulo">Como você se chama?</h2>' +
+    '<p class="quem-txt">Seu nome fica no topo da trilha e identifica o seu avanço para a liderança: ' +
+    'aulas abertas e concluídas, vídeos marcados como assistidos, tentativas do quiz e tempo em cada aula.</p>';
+  const campo = document.createElement("input");
+  campo.className = "quem-campo";
+  campo.type = "text";
+  campo.placeholder = "Nome e sobrenome";
+  campo.setAttribute("aria-label", "Seu nome");
+  campo.maxLength = 80;
+  const btn = document.createElement("button");
+  btn.className = "quem-btn";
+  btn.type = "button";
+  btn.textContent = "Começar a trilha";
+  const erro = document.createElement("p");
+  erro.className = "quem-erro";
+  erro.hidden = true;
+  erro.textContent = "Escreva seu nome e sobrenome para continuar.";
+
+  function entrar() {
+    const nome = campo.value.trim().replace(/\s+/g, " ");
+    if (nome.length < 3 || nome.indexOf(" ") < 0) { erro.hidden = false; campo.focus(); return; }
+    quem = { id: novoId(), nome: nome };
+    guardarQuem();
+    fundo.remove();
+    mostrarQuem();
+    registrar("entrou", { aula: -1 });
+    ultimaAulaVista = -1;
+    aoAbrirAula(aulaAtual);
+    enviarFila(false);
+  }
+  btn.addEventListener("click", entrar);
+  campo.addEventListener("keydown", function (e) { if (e.key === "Enter") entrar(); });
+
+  cx.appendChild(campo);
+  cx.appendChild(btn);
+  cx.appendChild(erro);
+  fundo.appendChild(cx);
+  document.body.appendChild(fundo);
+  setTimeout(function () { campo.focus(); }, 60);
+}
+
+function mostrarQuem() {
+  if (!quem) return;
+  const barra = document.querySelector(".topbar");
+  if (!barra || barra.querySelector(".topbar-quem")) return;
+  const tag = document.createElement("span");
+  tag.className = "topbar-quem";
+  tag.textContent = quem.nome;
+  barra.appendChild(tag);
+}
+
+function iniciarRegistro() {
+  if (MODO_GESTAO) return;
+  carregarQuem();
+  carregarFila();
+  if (!quem) { pedirNome(); return; }
+  mostrarQuem();
+  registrar("entrou", { aula: -1 });
+  ultimaAulaVista = -1;
+  aoAbrirAula(aulaAtual);
+  enviarFila(false);
+}
+
+// ======= PAINEL DE USO (so com ?gestao) =======
+const ROTULO_EV = {
+  entrou: "Abriu a trilha",
+  aula_abriu: "Abriu a aula",
+  aula_concluiu: "Concluiu a aula",
+  aula_desmarcou: "Desmarcou a aula",
+  video_abriu: "Clicou para assistir",
+  video_assistido: "Marcou como assistido",
+  video_desmarcou: "Desmarcou o vídeo",
+  quiz_tentativa: "Quiz",
+  tempo: "Tempo na aula",
+};
+
+// Tudo que a pagina mostra de data e hora e horario de Brasilia; o banco
+// guarda em UTC.
+function horaBRT(iso) {
+  const d = new Date(iso);
+  if (isNaN(d)) return "—";
+  return d.toLocaleString("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    day: "2-digit", month: "2-digit", year: "2-digit",
+    hour: "2-digit", minute: "2-digit",
+  });
+}
+
+function duracao(s) {
+  s = Math.round(Number(s) || 0);
+  if (s < 60) return s + "s";
+  const h = Math.floor(s / 3600);
+  const m = Math.round((s % 3600) / 60);
+  if (h > 0) return h + "h" + (m > 0 ? (m < 10 ? "0" + m : m) : "");
+  return m + "min";
+}
+
+function detalheDoEvento(e) {
+  const d = e.detalhe || {};
+  if (e.tipo === "tempo") return duracao(d.segundos);
+  if (e.tipo === "quiz_tentativa") {
+    return d.acertos + " de " + d.total + (d.passou ? " — aprovado" : " — abaixo do mínimo");
+  }
+  if (e.tipo.indexOf("video") === 0) return d.txt || d.url || "";
+  return "";
+}
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+  });
+}
+
+function montarPainelLogs() {
+  if (!MODO_GESTAO) return;
+  const sec = document.createElement("section");
+  sec.className = "logs";
+  sec.id = "logs";
+
+  const topo = document.createElement("div");
+  topo.className = "logs-topo";
+  const tit = document.createElement("h2");
+  tit.className = "logs-titulo";
+  tit.textContent = "Registros de uso";
+  const bt = document.createElement("button");
+  bt.className = "logs-btn";
+  bt.type = "button";
+  bt.textContent = "Carregar";
+  topo.appendChild(tit);
+  topo.appendChild(bt);
+  sec.appendChild(topo);
+
+  const aviso = document.createElement("p");
+  aviso.className = "logs-aviso";
+  aviso.textContent = "Quem abriu a trilha, o que assistiu, como foi no quiz e quanto tempo ficou em cada aula. O seu acesso com ?gestao não entra na lista.";
+  sec.appendChild(aviso);
+
+  const corpo = document.createElement("div");
+  corpo.className = "logs-corpo";
+  sec.appendChild(corpo);
+
+  const faixa = document.getElementById("faixa-gestao");
+  if (faixa && faixa.parentNode) faixa.parentNode.insertBefore(sec, faixa.nextSibling);
+  else document.body.insertBefore(sec, document.body.firstChild);
+
+  function aviso_(txt, erro) {
+    corpo.textContent = "";
+    const p = document.createElement("p");
+    p.className = "logs-vazio" + (erro ? " is-erro" : "");
+    p.textContent = txt;
+    corpo.appendChild(p);
+  }
+
+  function carregar() {
+    bt.disabled = true;
+    bt.textContent = "Carregando…";
+    fetch(API + "/pessoas")
+      .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(function (lista) {
+        bt.disabled = false;
+        bt.textContent = "Atualizar";
+        if (!Array.isArray(lista) || lista.length === 0) {
+          aviso_("Ninguém abriu a trilha ainda — ou o registro ainda não foi publicado.");
+          return;
+        }
+        desenhar(lista);
+      })
+      .catch(function (e) {
+        bt.disabled = false;
+        bt.textContent = "Tentar de novo";
+        aviso_("Não consegui falar com o registro (" + e.message + "). Confira se o Worker está no ar.", true);
+      });
+  }
+
+  function desenhar(lista) {
+    corpo.textContent = "";
+    const tab = document.createElement("table");
+    tab.className = "logs-tab";
+    const thead = document.createElement("thead");
+    thead.innerHTML = "<tr><th>Pessoa</th><th>Trilha</th><th>Aulas abertas</th><th>Concluídas</th>"
+      + "<th>Vídeos</th><th>Quiz</th><th>Tempo</th><th>Última atividade</th></tr>";
+    tab.appendChild(thead);
+    const tb = document.createElement("tbody");
+
+    lista.forEach(function (p) {
+      const tr = document.createElement("tr");
+      tr.className = "logs-linha";
+      tr.innerHTML =
+        "<td><strong>" + esc(p.nome || "sem nome") + "</strong></td>" +
+        "<td>" + esc(p.trilha || "—") + "</td>" +
+        "<td>" + p.abertas + "</td>" +
+        "<td>" + p.concluidas + "</td>" +
+        "<td>" + p.videos + "</td>" +
+        "<td>" + p.quizzes + "</td>" +
+        "<td>" + duracao(p.segundos) + "</td>" +
+        "<td>" + horaBRT(p.visto) + "</td>";
+      const det = document.createElement("tr");
+      det.className = "logs-det";
+      det.hidden = true;
+      const td = document.createElement("td");
+      td.colSpan = 8;
+      det.appendChild(td);
+
+      let carregado = false;
+      tr.addEventListener("click", function () {
+        det.hidden = !det.hidden;
+        tr.classList.toggle("is-aberta", !det.hidden);
+        if (det.hidden || carregado) return;
+        td.textContent = "Carregando o histórico…";
+        fetch(API + "/pessoas/" + encodeURIComponent(p.id))
+          .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+          .then(function (dados) {
+            carregado = true;
+            td.textContent = "";
+            if (!dados.eventos || dados.eventos.length === 0) {
+              td.textContent = "Sem eventos.";
+              return;
+            }
+            const ul = document.createElement("ul");
+            ul.className = "logs-linhas";
+            dados.eventos.forEach(function (e) {
+              const li = document.createElement("li");
+              const h = document.createElement("span");
+              h.className = "logs-hora";
+              h.textContent = horaBRT(e.quando);
+              const t = document.createElement("span");
+              t.className = "logs-tipo";
+              t.textContent = ROTULO_EV[e.tipo] || e.tipo;
+              const a = document.createElement("span");
+              a.className = "logs-aula";
+              a.textContent = e.titulo ? ((e.aula + 1) + ". " + e.titulo) : "";
+              const d = document.createElement("span");
+              d.className = "logs-extra";
+              d.textContent = detalheDoEvento(e);
+              li.appendChild(h); li.appendChild(t); li.appendChild(a); li.appendChild(d);
+              ul.appendChild(li);
+            });
+            td.appendChild(ul);
+          })
+          .catch(function (e) { td.textContent = "Não consegui carregar: " + e.message; });
+      });
+
+      tb.appendChild(tr);
+      tb.appendChild(det);
+    });
+
+    tab.appendChild(tb);
+    corpo.appendChild(tab);
+  }
+
+  bt.addEventListener("click", carregar);
+  aviso_("Clique em Carregar para ver quem passou pela trilha.");
+}
+
 renderTabs();
 aplicarTextos();
 renderCurso();
+montarPainelLogs();
+iniciarRegistro();
 </script>
 </body>
 </html>
