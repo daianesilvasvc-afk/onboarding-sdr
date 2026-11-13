@@ -5,4 +5,4 @@ compatibility_date = "2026-11-13"
 [[d1_databases]]
 binding = "DB"
 database_name = "onboarding_trilha_db"
-database_id = "PREENCHER_APOS_d1_create"
+database_id = "779a44b3-a01c-4ff3-a048-726ea9b2af85"
