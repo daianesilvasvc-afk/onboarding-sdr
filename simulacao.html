@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>SIMULAÇÃO — Trilha de Onboarding — Executivo de Vendas · Podium Educação</title>
+<title>Trilha de Onboarding — Executivo de Vendas · Podium Educação</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1275,7 +1275,56 @@
     font-size: 12px;
     line-height: 1.35;
     font-weight: 500;
+    flex: 1;
   }
+
+  /* Botao de assistido em cada capa. Enquanto faltar um, o quiz da aula
+     nao abre: quiz antes do video e chute, nao estudo. */
+  .video-item { display: flex; flex-direction: column; }
+  .video-item-link { display: flex; flex-direction: column; flex: 1; text-decoration: none; color: inherit; }
+  .video-visto {
+    appearance: none;
+    border: 0;
+    border-top: 1px solid var(--gray-200);
+    background: var(--gray-50);
+    color: var(--gray-600);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 9px 10px;
+    cursor: pointer;
+    text-align: left;
+    display: flex; align-items: center; gap: 7px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .video-visto:hover { background: var(--gray-100); color: var(--night); }
+  .video-visto-mark {
+    width: 15px; height: 15px; border-radius: 4px; flex: none;
+    border: 1.5px solid var(--gray-400);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; line-height: 1; color: transparent;
+  }
+  .video-item.is-visto { border-color: var(--gold); }
+  .video-item.is-visto .video-visto { background: rgba(215,171,92,0.14); color: var(--gold-deep); }
+  .video-item.is-visto .video-visto-mark { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  /* Quiz fechado: o lugar das perguntas enquanto faltam videos */
+  .quiz-trava {
+    border: 1px dashed var(--gray-200);
+    border-radius: var(--radius-sm);
+    background: var(--gray-50);
+    padding: 20px 22px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    justify-content: space-between;
+  }
+  .quiz-trava-txt { font-size: 14px; color: var(--gray-600); line-height: 1.5; max-width: 62ch; }
+  .quiz-trava-txt strong { display: block; color: var(--night); font-size: 15px; margin-bottom: 3px; }
+  .quiz-trava-btn {
+    appearance: none; border: 1px solid var(--gray-200); background: white;
+    color: var(--gray-600); font: inherit; font-size: 12px; font-weight: 600;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer; white-space: nowrap;
+  }
+  .quiz-trava-btn:hover { border-color: var(--gold); color: var(--night); }
   @media (max-width: 560px) {
     .video-galeria { grid-template-columns: 1fr; }
   }
@@ -1591,7 +1640,7 @@
 </div>
 
 <div class="faixa-gestao" id="faixa-gestao" hidden>
-  <strong>Simulação — modo de revisão</strong> — tudo aberto: você navega por qualquer aula, vê os quizzes sem precisar responder e nada do que marcar é gravado. Para sentir como o recém-chegado vive a trilha (desbloqueio aula por aula e quiz trancando a conclusão), abra a mesma página com <code>?travado</code> no fim do endereço.
+  <strong>Modo de revisão da gestão</strong> — tudo aberto: você navega por qualquer aula, vê os quizzes sem precisar responder e nada do que marcar é gravado. O executivo abre o mesmo endereço sem <code>?gestao</code> e vive a trilha travada: uma aula de cada vez, e o quiz segurando a conclusão.
 </div>
 
 <header class="cabeca">
@@ -1623,7 +1672,7 @@ const STEPS_COMERCIAL = [
     name: "Cadeira do Dono — o modelo de assinatura",
     tipo: "Vídeo", dur: "4 aulas + quiz",
     tag: "watch", tagTxt: "assistir",
-    desc: "O ponto de partida é entender o que a gente vende. São quatro aulas da trilha Cadeira do Dono, dentro do painel do CashBarber, na ordem abaixo. Assista com calma e pare sempre que surgir dúvida — anote e leve para a conversa com a liderança. O objetivo não é decorar: é sair daqui sabendo explicar assinatura com as suas palavras, porque é isso que sustenta a ligação e derruba a objeção de preço. No fim tem um quiz: você precisa acertar 3 das 4 perguntas para liberar a próxima aula.",
+    desc: "O ponto de partida é entender o que a gente vende. São quatro aulas da trilha Cadeira do Dono, dentro do painel do CashBarber, na ordem abaixo. Assista com calma e pare sempre que surgir dúvida — anote e leve para a conversa com a liderança. O objetivo não é decorar: é sair daqui sabendo explicar assinatura com as suas palavras, porque é isso que sustenta a ligação e derruba a objeção de preço. Marque cada vídeo como assistido ao terminar: com os quatro marcados o quiz abre, e aí você precisa acertar 3 das 4 perguntas para liberar a próxima aula.",
     links: [
       { url: "https://painel.cashbarber.com.br/skills/player/7?v=1958&play", txt: "Cadeira do Dono 01 — Assinatura vale a pena?", capa: "img/cadeira-do-dono.webp" },
       { url: "https://painel.cashbarber.com.br/skills/player/7?v=1959&play", txt: "Cadeira do Dono 02 — Assinatura é desconto?", capa: "img/cadeira-do-dono.webp" },
@@ -1684,7 +1733,7 @@ const STEPS_COMERCIAL = [
     name: "Depoimentos de alunos",
     tipo: "Vídeo", dur: "6 vídeos + quiz",
     tag: "watch", tagTxt: "assistir",
-    desc: "Seis casos reais, na voz de quem já passou pelo processo. Para cada um, anote duas coisas: qual era a dor e qual foi o resultado. É esse par que vira argumento na ligação — você não cita número solto, você liga o caso à dor que o lead acabou de contar. O quiz no fim cobra exatamente isso: 3 acertos em 4 para seguir.",
+    desc: "Seis casos reais, na voz de quem já passou pelo processo. Para cada um, anote duas coisas: qual era a dor e qual foi o resultado. É esse par que vira argumento na ligação — você não cita número solto, você liga o caso à dor que o lead acabou de contar. Marque cada vídeo como assistido ao terminar: com os seis marcados o quiz abre, e ele cobra exatamente isso — 3 acertos em 4 para seguir.",
     links: [
       { url: "https://www.youtube.com/watch?v=yhU8RMo5mz0", txt: "Triplicou o faturamento e somou mais R$ 8 mil com a prévia" },
       { url: "https://www.youtube.com/watch?v=apzQpaEsfFU", txt: "Estava estagnado e cresceu 3x em um ano" },
@@ -2590,6 +2639,20 @@ function saveQuiz() {
   try { localStorage.setItem(chaveQuiz(trilhaAtual), JSON.stringify(quizOk)); } catch (e) {}
 }
 
+// Video assistido: marcado a mao, uma capa de cada vez.
+function chaveVistos(t) { return "podium-onboarding-vistos-" + t; }
+let vistos = {};
+function carregarVistos() {
+  let v = null;
+  try { v = JSON.parse(localStorage.getItem(chaveVistos(trilhaAtual)) || "null"); } catch (e) {}
+  vistos = (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+}
+function saveVistos() {
+  if (MODO_GESTAO) return;
+  try { localStorage.setItem(chaveVistos(trilhaAtual), JSON.stringify(vistos)); } catch (e) {}
+}
+function assistido(url) { return !!vistos[url]; }
+
 function carregarProgresso() {
   STEPS = TRILHAS[trilhaAtual].steps;
   TOTAL = STEPS.length;
@@ -2599,17 +2662,16 @@ function carregarProgresso() {
   let notas = null;
   try { notas = JSON.parse(localStorage.getItem(chaveQuiz(trilhaAtual)) || "null"); } catch (e) {}
   quizOk = (Array.isArray(notas) && notas.length === TOTAL) ? notas : new Array(TOTAL).fill(false);
+  carregarVistos();
   // a aula aberta e de outra trilha e nao vale nesta
   aulaAtual = -1;
 }
 carregarProgresso();
 
-// Modo de revisao da gestao: abrir a pagina com ?gestao destrava todos os
-// passos para conferir conteudo, sem gravar progresso no navegador de quem abre.
-// SIMULACAO: aberta por padrao, para conferir conteudo sem responder quiz nem
-// concluir aula. Abrir com ?travado roda a experiencia real do recem-chegado:
-// desbloqueio passo a passo e quiz trancando a conclusao.
-const MODO_GESTAO = !/[?&]travado(=|&|$)/.test(location.search);
+// Esta pagina e a trilha de verdade: o executivo entra travado, aula por aula,
+// com o quiz segurando a conclusao de quem tem quiz. A gestao abre com ?gestao
+// para conferir conteudo sem responder nada e sem gravar progresso.
+const MODO_GESTAO = /[?&]gestao(=|&|$)/.test(location.search);
 if (MODO_GESTAO) {
   const faixa = document.getElementById("faixa-gestao");
   if (faixa) faixa.hidden = false;
@@ -3057,12 +3119,15 @@ function idYoutube(url) {
   return m ? m[1] : null;
 }
 
-function montarGaleria(inner, links) {
+function montarGaleria(inner, links, aoMarcar) {
   const g = document.createElement("div");
   g.className = "video-galeria";
   links.forEach(function(l) {
+    const card = document.createElement("div");
+    card.className = "video-item";
+
     const a = document.createElement("a");
-    a.className = "video-item";
+    a.className = "video-item-link";
     a.href = l.url;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
@@ -3086,8 +3151,34 @@ function montarGaleria(inner, links) {
     t.className = "video-item-txt";
     t.textContent = l.txt;
     a.appendChild(t);
+    card.appendChild(a);
 
-    g.appendChild(a);
+    const b = document.createElement("button");
+    b.className = "video-visto";
+    b.type = "button";
+    const marca = document.createElement("span");
+    marca.className = "video-visto-mark";
+    marca.textContent = "✓";
+    const rot = document.createElement("span");
+    b.appendChild(marca);
+    b.appendChild(rot);
+    function pintar() {
+      const ok = assistido(l.url);
+      card.classList.toggle("is-visto", ok);
+      rot.textContent = ok ? "Assistido" : "Marcar como assistido";
+      b.setAttribute("aria-pressed", ok ? "true" : "false");
+    }
+    pintar();
+    b.addEventListener("click", function(ev) {
+      ev.stopPropagation();
+      if (assistido(l.url)) delete vistos[l.url]; else vistos[l.url] = true;
+      saveVistos();
+      pintar();
+      if (aoMarcar) aoMarcar();
+    });
+    card.appendChild(b);
+
+    g.appendChild(card);
   });
   inner.appendChild(g);
 }
@@ -3757,8 +3848,12 @@ function renderPainel() {
     painel.appendChild(subDiv);
   }
 
+  // Capas da aula: o quiz la embaixo so abre com todas marcadas.
+  const videosDaAula = [];
+  const avisarVisto = { fn: null };
+
   if (s.links && s.links.length > 0) {
-    const comCapa = [];
+    const comCapa = videosDaAula;
     const semCapa = [];
     const jaEmbutidos = idsDeVideo(s);
     s.links.forEach(function(l) {
@@ -3772,7 +3867,7 @@ function renderPainel() {
     });
     if (comCapa.length > 0) {
       passo = cabecaDePasso(painel, passo, comCapa.length === 1 ? "Assista ao vídeo" : "Assista aos vídeos, na ordem");
-      montarGaleria(painel, comCapa);
+      montarGaleria(painel, comCapa, function() { if (avisarVisto.fn) avisarVisto.fn(); });
     }
     if (semCapa.length > 0) {
       passo = cabecaDePasso(painel, passo, semCapa.length === 1 ? "Abra o material" : "Abra os materiais");
@@ -3825,8 +3920,53 @@ function renderPainel() {
   }
 
   if (temQuiz(s)) {
-    passo = cabecaDePasso(painel, passo, "Responda o quiz — " + (s.quiz.minimo || s.quiz.perguntas.length) + " acertos em " + s.quiz.perguntas.length);
-    montarQuiz(painel, s, i);
+    const nQuiz = passo;
+    passo = nQuiz + 1;
+    const regra = "Responda o quiz — " + (s.quiz.minimo || s.quiz.perguntas.length) + " acertos em " + s.quiz.perguntas.length;
+    const secao = document.createElement("div");
+    painel.appendChild(secao);
+    const pintarQuiz = function() {
+      secao.textContent = "";
+      cabecaDePasso(secao, nQuiz, regra);
+      const faltam = videosDaAula.filter(function(l) { return !assistido(l.url); }).length;
+      if (faltam === 0) {
+        montarQuiz(secao, s, i);
+        return;
+      }
+      const tr = document.createElement("div");
+      tr.className = "quiz-trava";
+      const tx = document.createElement("div");
+      tx.className = "quiz-trava-txt";
+      const forte = document.createElement("strong");
+      forte.textContent = faltam === 1
+        ? "Falta 1 vídeo para o quiz abrir"
+        : "Faltam " + faltam + " vídeos para o quiz abrir";
+      tx.appendChild(forte);
+      tx.appendChild(document.createTextNode(
+        "Assista a cada vídeo acima e marque “Assistido” no card. Com os "
+        + videosDaAula.length + " marcados, as perguntas aparecem aqui."));
+      tr.appendChild(tx);
+      if (MODO_GESTAO) {
+        const bt = document.createElement("button");
+        bt.className = "quiz-trava-btn";
+        bt.type = "button";
+        bt.textContent = "Marcar todos (revisão)";
+        bt.addEventListener("click", function() {
+          videosDaAula.forEach(function(l) { vistos[l.url] = true; });
+          saveVistos();
+          document.querySelectorAll(".video-item").forEach(function(c) { c.classList.add("is-visto"); });
+          document.querySelectorAll(".video-visto").forEach(function(x) {
+            x.setAttribute("aria-pressed", "true");
+            if (x.lastChild) x.lastChild.textContent = "Assistido";
+          });
+          if (avisarVisto.fn) avisarVisto.fn();
+        });
+        tr.appendChild(bt);
+      }
+      secao.appendChild(tr);
+    };
+    avisarVisto.fn = pintarQuiz;
+    pintarQuiz();
   }
 
   if (s.missing && s.missing.length > 0) {
