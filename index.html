@@ -340,10 +340,14 @@
   /* ---- Passo em formato de trilha: mapa de etapas + uma etapa por vez ---- */
   .mapa {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 0;
+    row-gap: 14px;
     margin: 4px 0 18px;
-    overflow-x: auto;
+    /* quebra em linhas em vez de esconder as ultimas etapas num scroll lateral;
+       o overflow corta a sobra da linha que liga os nos no inicio de cada fila */
+    overflow: hidden;
     padding-bottom: 4px;
   }
   .mapa-no {
@@ -856,8 +860,27 @@
   .video-capa-vazia {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--night), var(--ink));
+    background: linear-gradient(135deg, #1d3350, var(--ink));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 1.1rem 1.3rem;
+    text-align: left;
   }
+  .capa-marca {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .video-capa.tem-capa-desenhada .video-rotulo { display: none; }
+  .capa-titulo {
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem; line-height: 1.25; color: #fff;
+  }
+
+
+
   .video-play {
     position: absolute;
     top: 50%; left: 50%;
@@ -876,7 +899,8 @@
   .video-capa:hover .video-play { transform: translate(-50%, -50%) scale(1.08); }
   .video-rotulo {
     position: absolute;
-    left: 10px; bottom: 10px;
+    /* no topo: as artes das capas trazem titulo e subtitulo no rodape */
+    left: 10px; top: 10px;
     background: rgba(10,20,34,0.82);
     color: #fff;
     font-size: 11px;
@@ -942,6 +966,21 @@
     color: white;
     box-shadow: 0 3px 14px rgba(10,20,34,0.14);
   }
+  .parte-capa {
+    display: block;
+    aspect-ratio: 16 / 9;
+    margin: -10px -12px 6px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    overflow: hidden;
+    background: var(--gray-100);
+  }
+  .parte-capa img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  img.is-retrato { object-fit: contain; }
+  .capa-retrato { background: var(--capa-fundo, #010522); }
+  .parte-capa.is-vazia {
+    background: linear-gradient(135deg, var(--night), #24405f);
+  }
+
   .parte-n {
     font-size: 11px;
     font-weight: 700;
@@ -956,6 +995,236 @@
   @media (max-width: 480px) {
     .partes-lista { grid-template-columns: 1fr; }
   }
+
+  /* Aula em regravacao: o material atual continua valendo, so avisa */
+  .aula-item-selo, .painel-selo {
+    display: inline-block;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 2px 7px; border-radius: 999px;
+    background: var(--amber-pale); color: var(--amber);
+  }
+  .aula-item-selo { margin-top: 3px; }
+  .painel-selo { font-size: 11px; }
+
+  .selo-presencial { background: var(--gold-pale); color: var(--gold-deep); }
+  .step-presencial-note {
+    font-size: 12px;
+    color: var(--gold-deep);
+    background: var(--gold-pale);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    line-height: 1.5;
+  }
+
+  /* O bloco de video e um cartao fechado: deixa claro onde ele acaba e que
+     a aula continua embaixo. */
+  .partes {
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 0.9rem;
+    background: #fff;
+  }
+  .continua {
+    display: flex; align-items: center; gap: 0.6rem;
+    width: 100%; margin-top: 0.9rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px dashed var(--gold);
+    border-radius: 10px;
+    background: var(--gold-pale);
+    color: var(--gold-deep);
+    font: inherit; font-size: 0.86rem; font-weight: 600;
+    text-align: left; cursor: pointer;
+  }
+  .continua:hover { background: #fff; }
+  .continua-seta {
+    flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--gold); color: var(--night); font-size: 0.9rem;
+  }
+
+  /* Mapa mental: o desenho inteiro da apresentacao numa olhada so, antes de
+     percorrer etapa por etapa. Tronco e galhos em CSS, texto em HTML — assim
+     o nome de cada momento continua legivel em tela pequena. */
+  .mm {
+    display: grid;
+    grid-template-columns: minmax(140px, 210px) 1fr;
+    gap: 26px;
+    align-items: center;
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 1.1rem 1.2rem;
+    background: #fff;
+  }
+  .mm-centro {
+    position: relative;
+    background: var(--night);
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+  }
+  .mm-centro-tit {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem; line-height: 1.2;
+  }
+  .mm-centro-sub {
+    display: block; margin-top: 4px;
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  /* o traco que sai do centro ate o tronco */
+  .mm-centro::after {
+    content: "";
+    position: absolute; left: 100%; top: 50%;
+    width: 26px; height: 2px;
+    background: var(--gray-200);
+  }
+  .mm-ramos {
+    display: grid; gap: 6px;
+    border-left: 2px solid var(--gray-200);
+    padding-left: 22px;
+  }
+  .mm-ramo {
+    position: relative;
+    display: flex; align-items: baseline; gap: 0.6rem;
+    text-align: left; width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-200); border-radius: 9px;
+    background: #fff; cursor: pointer;
+    font: inherit; font-size: 0.88rem; line-height: 1.35; color: var(--gray-800);
+    transition: border-color .15s, background .15s;
+  }
+  /* o galho que liga o tronco a cada momento */
+  .mm-ramo::before {
+    content: "";
+    position: absolute; right: 100%; top: 50%;
+    width: 22px; height: 2px;
+    background: var(--gray-200);
+  }
+  .mm-ramo:hover { border-color: var(--gold); }
+  .mm-ramo.is-atual { background: var(--night); border-color: var(--night); color: #fff; }
+  .mm-ramo-n {
+    flex: none;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--gold-deep);
+  }
+  .mm-ramo.is-atual .mm-ramo-n { color: var(--gold); }
+  @media (max-width: 680px) {
+    .mm { grid-template-columns: 1fr; gap: 14px; }
+    .mm-centro::after { display: none; }
+    .mm-ramos { border-left: 0; padding-left: 0; }
+    .mm-ramo::before { display: none; }
+  }
+
+  /* Placar das rodadas de roleplay: o executivo anota a nota de cada ligacao
+     simulada e enxerga a propria evolucao em linha. Fica no navegador dele. */
+  .placar {
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .placar-topo {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem;
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .placar-titulo { font-weight: 700; font-size: 0.95rem; color: var(--night); }
+  .placar-resumo { font-size: 0.82rem; color: var(--gray-600); }
+  .placar-linha {
+    display: grid;
+    grid-template-columns: 76px 1fr 86px;
+    gap: 10px; align-items: center;
+    padding: 7px 1.1rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .placar-linha:last-child { border-bottom: 0; }
+  .placar-linha.is-feita { background: var(--gray-50); }
+  .placar-n {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--gold-deep);
+  }
+  .placar-campo {
+    width: 100%;
+    font: inherit; font-size: 0.86rem; color: var(--gray-800);
+    padding: 6px 9px;
+    border: 1px solid var(--gray-200); border-radius: 8px;
+    background: #fff;
+  }
+  .placar-campo:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .placar-nota { text-align: center; font-weight: 700; }
+  .placar-rodape {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.8rem; line-height: 1.5; color: var(--gray-600);
+    background: var(--gray-50);
+  }
+  @media (max-width: 560px) {
+    .placar-linha { grid-template-columns: 62px 1fr 72px; padding: 7px 0.7rem; gap: 7px; }
+  }
+
+  /* Quiz de fim de aula: so libera a conclusao com a nota minima */
+  .quiz {
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 1.25rem 1.25rem 1rem;
+    background: #fff;
+  }
+  .quiz-topo {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.75rem;
+    padding-bottom: 0.9rem; margin-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .quiz-titulo { font-weight: 700; font-size: 0.95rem; color: var(--night); }
+  .quiz-regra { font-size: 0.8rem; color: var(--gray-600); }
+  .quiz-q { margin-bottom: 1.1rem; }
+  .quiz-q:last-of-type { margin-bottom: 0.4rem; }
+  .quiz-q-txt {
+    font-size: 0.92rem; font-weight: 600; color: var(--night);
+    margin-bottom: 0.6rem; line-height: 1.45;
+  }
+  .quiz-q-n { color: var(--gold-deep); margin-right: 0.4rem; }
+  .quiz-ops { display: grid; gap: 6px; }
+  .quiz-op {
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    text-align: left; width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--gray-200); border-radius: 10px;
+    background: #fff; cursor: pointer;
+    font: inherit; font-size: 0.88rem; line-height: 1.45; color: var(--gray-800);
+    transition: border-color .15s, background .15s;
+  }
+  .quiz-op:hover { border-color: var(--gold); }
+  .quiz-op-letra {
+    flex: none; width: 1.3rem; height: 1.3rem; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1px solid var(--gray-200);
+    font-size: 0.72rem; font-weight: 700; color: var(--gray-600);
+  }
+  .quiz-op.is-sel { border-color: var(--night); background: var(--gray-50); }
+  .quiz-op.is-sel .quiz-op-letra { background: var(--night); border-color: var(--night); color: #fff; }
+  .quiz-op.is-certa { border-color: #2f7d58; background: #f1f9f4; }
+  .quiz-op.is-certa .quiz-op-letra { background: #2f7d58; border-color: #2f7d58; color: #fff; }
+  .quiz-op.is-errada { border-color: #b4453b; background: #fdf3f2; }
+  .quiz-op.is-errada .quiz-op-letra { background: #b4453b; border-color: #b4453b; color: #fff; }
+  .quiz-corrigido .quiz-op { cursor: default; }
+  .quiz-porque {
+    margin-top: 0.55rem; padding-left: 0.75rem;
+    border-left: 2px solid var(--gold);
+    font-size: 0.84rem; line-height: 1.55; color: var(--gray-600);
+  }
+  .quiz-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 1rem; }
+  .quiz-btn {
+    border: none; border-radius: 999px; cursor: pointer;
+    padding: 0.6rem 1.3rem; font: inherit; font-size: 0.85rem; font-weight: 700;
+    background: var(--night); color: #fff;
+  }
+  .quiz-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .quiz-btn.is-sec { background: transparent; color: var(--night); border: 1px solid var(--gray-200); }
+  .quiz-nota { font-size: 0.86rem; font-weight: 600; }
+  .quiz-nota.is-ok { color: #2f7d58; }
+  .quiz-nota.is-nao { color: #b4453b; }
+  .quiz-falta { font-size: 0.82rem; color: var(--gray-600); }
 
   /* Galeria: links de video viram capa clicavel */
   .video-galeria {
@@ -1006,7 +1275,56 @@
     font-size: 12px;
     line-height: 1.35;
     font-weight: 500;
+    flex: 1;
   }
+
+  /* Botao de assistido em cada capa. Enquanto faltar um, o quiz da aula
+     nao abre: quiz antes do video e chute, nao estudo. */
+  .video-item { display: flex; flex-direction: column; }
+  .video-item-link { display: flex; flex-direction: column; flex: 1; text-decoration: none; color: inherit; }
+  .video-visto {
+    appearance: none;
+    border: 0;
+    border-top: 1px solid var(--gray-200);
+    background: var(--gray-50);
+    color: var(--gray-600);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 9px 10px;
+    cursor: pointer;
+    text-align: left;
+    display: flex; align-items: center; gap: 7px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .video-visto:hover { background: var(--gray-100); color: var(--night); }
+  .video-visto-mark {
+    width: 15px; height: 15px; border-radius: 4px; flex: none;
+    border: 1.5px solid var(--gray-400);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; line-height: 1; color: transparent;
+  }
+  .video-item.is-visto { border-color: var(--gold); }
+  .video-item.is-visto .video-visto { background: rgba(215,171,92,0.14); color: var(--gold-deep); }
+  .video-item.is-visto .video-visto-mark { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  /* Quiz fechado: o lugar das perguntas enquanto faltam videos */
+  .quiz-trava {
+    border: 1px dashed var(--gray-200);
+    border-radius: var(--radius-sm);
+    background: var(--gray-50);
+    padding: 20px 22px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    justify-content: space-between;
+  }
+  .quiz-trava-txt { font-size: 14px; color: var(--gray-600); line-height: 1.5; max-width: 62ch; }
+  .quiz-trava-txt strong { display: block; color: var(--night); font-size: 15px; margin-bottom: 3px; }
+  .quiz-trava-btn {
+    appearance: none; border: 1px solid var(--gray-200); background: white;
+    color: var(--gray-600); font: inherit; font-size: 12px; font-weight: 600;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer; white-space: nowrap;
+  }
+  .quiz-trava-btn:hover { border-color: var(--gold); color: var(--night); }
   @media (max-width: 560px) {
     .video-galeria { grid-template-columns: 1fr; }
   }
@@ -1082,12 +1400,13 @@
   .mod-nav {
     background: var(--ink);
     display: flex;
+    /* Com oito modulos a barra nao cabe em uma linha nem no monitor largo.
+       Quebrar e melhor que rolar: so se ve o caminho inteiro se ele esta na tela. */
+    flex-wrap: wrap;
     gap: 8px;
-    overflow-x: auto;
     padding: 0.85rem 2.5rem;
     max-width: var(--largura);
     margin: 0 auto;
-    scrollbar-width: thin;
   }
   .mod-btn {
     flex: 0 0 auto;
@@ -1321,7 +1640,7 @@
 </div>
 
 <div class="faixa-gestao" id="faixa-gestao" hidden>
-  <strong>Modo de revisão</strong> — todos os passos estão abertos para você conferir o conteúdo. Nada que você marcar aqui é gravado. Quem abre o link sem <code>?gestao</code> continua destravando um passo por vez.
+  <strong>Modo de revisão da gestão</strong> — tudo aberto: você navega por qualquer aula, vê os quizzes sem precisar responder e nada do que marcar é gravado. O executivo abre o mesmo endereço sem <code>?gestao</code> e vive a trilha travada: uma aula de cada vez, e o quiz segurando a conclusão.
 </div>
 
 <header class="cabeca">
@@ -1350,8 +1669,166 @@
 <script>
 const STEPS_COMERCIAL = [
   {
+    name: "Cadeira do Dono — o modelo de assinatura",
+    tipo: "Vídeo", dur: "4 aulas + quiz",
+    tag: "watch", tagTxt: "assistir",
+    desc: "O ponto de partida é entender o que a gente vende. São quatro aulas da trilha Cadeira do Dono, dentro do painel do CashBarber, na ordem abaixo. Assista com calma e pare sempre que surgir dúvida — anote e leve para a conversa com a liderança. O objetivo não é decorar: é sair daqui sabendo explicar assinatura com as suas palavras, porque é isso que sustenta a ligação e derruba a objeção de preço. Marque cada vídeo como assistido ao terminar: com os quatro marcados o quiz abre, e aí você precisa acertar 3 das 4 perguntas para liberar a próxima aula.",
+    links: [
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1958&play", txt: "Cadeira do Dono 01 — Assinatura vale a pena?", capa: "img/cadeira-do-dono.webp" },
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1959&play", txt: "Cadeira do Dono 02 — Assinatura é desconto?", capa: "img/cadeira-do-dono.webp" },
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1960&play", txt: "Cadeira do Dono 03 — Assinatura fases 2, 3 e 4", capa: "img/cadeira-do-dono.webp" },
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1961&play", txt: "Cadeira do Dono 04 — Construção e metas", capa: "img/cadeira-do-dono.webp" }
+    ],
+    quiz: {
+      minimo: 3,
+      perguntas: [
+        {
+          q: "Um barbeiro diz na ligação: \u0022assinatura é só dar desconto pro cliente\u0022. Qual é a resposta certa?",
+          ops: [
+            "É desconto mesmo, mas compensa no volume de clientes.",
+            "Não é desconto, é recorrência: o cliente passa a voltar mais vezes e a barbearia troca faturamento imprevisível por receita que se repete todo mês.",
+            "É desconto, e por isso só funciona em barbearia de preço alto.",
+            "Depende: vira desconto quando a agenda já está cheia."
+          ],
+          certa: 1,
+          porque: "O argumento do desconto olha só o ticket de um corte. A assinatura se vende pela frequência e pela previsibilidade — é isso que muda o caixa do dono."
+        },
+        {
+          q: "Qual é o ganho principal que a assinatura traz para o dono da barbearia?",
+          ops: [
+            "Poder aumentar o preço do corte avulso.",
+            "Receita previsível todo mês e cadeira ocupada nos horários vazios.",
+            "Reduzir o número de barbeiros da equipe.",
+            "Substituir o marketing da barbearia."
+          ],
+          certa: 1,
+          porque: "Previsibilidade e ocupação são as duas pontas do modelo: o dono sabe quanto entra e deixa de ter cadeira parada."
+        },
+        {
+          q: "Por que a Cadeira do Dono trata a assinatura em fases, e não como uma ação única?",
+          ops: [
+            "Porque cada fase é um produto diferente do CashBarber.",
+            "Porque só barbearia grande chega na fase 2.",
+            "Porque o modelo se constrói por etapas: lançar a base é só o começo, e as fases seguintes tratam de sustentar e crescer a carteira de assinantes.",
+            "Porque cada fase corresponde a um mês do ano."
+          ],
+          certa: 2,
+          porque: "Vender a primeira leva de assinaturas é o começo. O que mantém o resultado é o que vem depois — e é por isso que existe fase 2, 3 e 4."
+        },
+        {
+          q: "Qual é o uso certo desse conteúdo na conversa com o lead?",
+          ops: [
+            "Repetir trechos das aulas na call para mostrar conhecimento.",
+            "Mandar os links das aulas para o lead antes da reunião.",
+            "Usar só se o lead perguntar sobre assinatura.",
+            "Entender o modelo a ponto de explicar com as suas palavras e sustentar valor quando aparecer objeção de preço."
+          ],
+          certa: 3,
+          porque: "O conteúdo é seu repertório, não roteiro. Quem repete aula soa decorado; quem entendeu o modelo responde a objeção com a realidade daquele lead."
+        }
+      ]
+    }
+  },
+  {
+    name: "Depoimentos de alunos",
+    tipo: "Vídeo", dur: "6 vídeos + quiz",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Seis casos reais, na voz de quem já passou pelo processo. Para cada um, anote duas coisas: qual era a dor e qual foi o resultado. É esse par que vira argumento na ligação — você não cita número solto, você liga o caso à dor que o lead acabou de contar. Marque cada vídeo como assistido ao terminar: com os seis marcados o quiz abre, e ele cobra exatamente isso — 3 acertos em 4 para seguir.",
+    links: [
+      { url: "https://www.youtube.com/watch?v=yhU8RMo5mz0", txt: "Triplicou o faturamento e somou mais R$ 8 mil com a prévia" },
+      { url: "https://www.youtube.com/watch?v=apzQpaEsfFU", txt: "Estava estagnado e cresceu 3x em um ano" },
+      { url: "https://www.youtube.com/watch?v=1TK6hxd3ESA", txt: "Chegou a 513 assinantes" },
+      { url: "https://www.youtube.com/watch?v=3kWjHIMoKy8", txt: "Cash.IA — Leandro Beserra" },
+      { url: "https://www.youtube.com/watch?v=OS-9NLZBPVs", txt: "Saiu de R$ 17 mil para R$ 105 mil por mês" },
+      { url: "https://www.youtube.com/watch?v=A5FB8CQ0aMc", txt: "Faturava no máximo R$ 10 mil, hoje fatura R$ 60 mil com assinatura" }
+    ],
+    quiz: {
+      minimo: 3,
+      perguntas: [
+        {
+          q: "Qual resultado aparece ligado à prévia (a pré-venda da assinatura)?",
+          ops: [
+            "O aluno triplicou o faturamento e, depois de implementar a prévia, somou mais R$ 8 mil.",
+            "O aluno chegou a 513 assinantes já no primeiro mês.",
+            "O aluno dobrou o número de cadeiras da barbearia.",
+            "O aluno cortou pela metade o custo da equipe."
+          ],
+          certa: 0,
+          porque: "A prévia é a venda que acontece antes de abrir o clube. No caso do depoimento, ela entrou por cima de um faturamento que já tinha triplicado."
+        },
+        {
+          q: "Um dos depoimentos mostra um aluno que chegou a 513 assinantes. Qual é o uso certo desse caso na call?",
+          ops: [
+            "Prometer ao lead que ele também vai chegar a 513 assinantes.",
+            "Usar como prova de que o modelo escala e perguntar quantos assinantes fariam diferença na realidade dele.",
+            "Citar o número para encerrar a objeção de preço.",
+            "Guardar o caso só para lead de rede grande."
+          ],
+          certa: 1,
+          porque: "Caso é prova, não promessa. O número serve para abrir a pergunta sobre a realidade do lead, não para prometer o mesmo resultado."
+        },
+        {
+          q: "Os depoimentos trazem dores diferentes: estagnação, faturamento baixo, equipe desengajada. Por que anotar a dor de cada caso?",
+          ops: [
+            "Para montar um ranking dos melhores alunos.",
+            "Porque a liderança cobra o resumo por escrito.",
+            "Para ter, na hora da call, o caso que combina com a dor que o lead acabou de contar.",
+            "Para calcular a média de faturamento dos alunos."
+          ],
+          certa: 2,
+          porque: "Depoimento genérico não move ninguém. O que convence é o lead se reconhecer no caso — e isso só acontece se você escolher o caso certo na hora certa."
+        },
+        {
+          q: "O lead diz: \u0022já tentei de tudo, minha barbearia está parada\u0022. Qual depoimento cai melhor?",
+          ops: [
+            "O do Cash.IA, com o Leandro Beserra.",
+            "O do aluno que chegou a 513 assinantes.",
+            "O do aluno que estava estagnado e cresceu 3x em um ano depois da assinatura.",
+            "Nenhum: esse lead não tem perfil."
+          ],
+          certa: 2,
+          porque: "A dor que ele descreveu é estagnação, e existe um caso que começa exatamente daí. Espelhar a dor vale mais do que mostrar o maior número da lista."
+        }
+      ]
+    }
+  },
+  {
+    name: "Treinamento Pipedrive",
+    tipo: "Vídeo", dur: "4 vídeos · 18 min",
+    presencial: "O Pipedrive também é mostrado ao vivo no treinamento presencial, junto com o Podium OS e o 3C Plus. Os vídeos abaixo são o seu review, para rever depois na sua velocidade.",
+    tag: "watch", tagTxt: "assistir",
+    desc: "A plataforma e como usá-la no dia a dia operacional: o que cada etapa significa, como trabalhar a fila de atividades, o que a reunião move sozinha e o que você registra ao ganhar ou perder. São quatro vídeos curtos, na ordem — assista com o Pipedrive aberto em outra aba e vá repetindo os passos enquanto assiste.",
+    rotuloParte: "Vídeo",
+    passoPartes: "Assista aos 4 vídeos, na ordem",
+    videos: [
+      { kind: "arquivo", src: "video/pipedrive-01.mp4", thumb: "img/pipedrive-p1.jpg", titulo: "As etapas e o card do lead", dur: "4 min",
+        nota: "O que cada etapa do [COM] Comercial significa, o que você faz em cada uma e como ler o card." },
+      { kind: "arquivo", src: "video/pipedrive-02.mp4", thumb: "img/pipedrive-p2.jpg", titulo: "A cadência do dia a dia", dur: "5 min",
+        nota: "Como trabalhar a fila de atividades: marcar como feito, ligar, mandar mensagem e mover o card." },
+      { kind: "arquivo", src: "video/pipedrive-03.mp4", thumb: "img/pipedrive-p3.jpg", titulo: "Reunião: agendar, no-show, reagendar e realizar", dur: "5 min",
+        nota: "Como a reunião move o card sozinha e como registrar o que realmente aconteceu." },
+      { kind: "arquivo", src: "video/pipedrive-04.mp4", thumb: "img/pipedrive-p4.jpg", titulo: "Gerou Compromisso, Ganho e Perdido", dur: "4 min",
+        nota: "O retorno de fechamento, o registro da venda e a perda com motivo." }
+    ],
+    links: []
+  },
+  {
+    name: "Podium OS e 3C Plus — onde você trabalha",
+    tipo: "Prática", dur: "ao vivo + resumo",
+    presencial: "Esta aula não tem vídeo: a liderança mostra as duas ferramentas ao vivo, no mesmo treinamento presencial do Pipedrive. O resumo abaixo fica aqui para você consultar depois. Marque como concluída quando o treinamento acontecer.",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "As duas ferramentas que você abre todo dia além do Pipedrive: o Podium OS, que concentra a operação, e o 3C Plus, o discador por onde saem as suas ligações. Abra as duas durante o treinamento e deixe logado — é delas que você precisa já na primeira ligação.",
+    links: [
+      { url: "Playbook_Executivo_de_Vendas.html", txt: "Abrir o Playbook Operacional do Executivo de Vendas" }
+    ],
+    subSteps: [
+      { order: "10", title: "As ferramentas — Podium OS e 3C Plus", why: "O Podium OS é o seu painel: Forecast (pool e meta), Pace (o seu ritmo contra o time), On Track (as taxas do funil), Enablement (a nota das suas ligações pela IA), Focus (o que priorizar), Meet (a agenda), OTE (a calculadora de comissão) e Playbooks. O 3C Plus é a discadora onde recuperamos lead que não converteu — agendou pelo 3C, o resgate nasce como card novo.", result: "O topo do Podium OS é igual em todas as abas: cobertura da base, ativação D0 e pool recebido hoje." }
+    ]
+  },
+  {
     name: "Entender o papel do Executivo de Vendas",
-    tipo: "Fundamento",
+    tipo: "Fundamento", dur: "ao vivo + review",
+    presencial: "A liderança apresenta isso ao vivo, no treinamento. O que está escrito abaixo é o seu review: leia depois do treinamento, com o que foi dito ainda fresco, e marque como concluída.",
     tag: "must", tagTxt: "obrigatório",
     desc: "O Executivo atende o lead do início ao fim: recebe, qualifica, conduz a consultoria e fecha. Turno único, dono único — não existe passagem de bastão, e todas as faixas de faturamento são suas. Antes das metas, a régua: todo lead percorre Lead → SAL → SQL → Ganho, e é esse o vocabulário que a gestão usa.",
     links: [],
@@ -1368,13 +1845,265 @@ const STEPS_COMERCIAL = [
     ]
   },
   {
+    name: "Playbook, parte 1 — nomenclaturas e o caminho do lead",
+    tipo: "Leitura", dur: "6 seções + quiz",
+    presencial: "A liderança apresenta o playbook ao vivo, no treinamento. Aqui você faz o review das seis seções com calma e fecha o módulo no quiz — são as quatro aulas do treinamento que caem nele.",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "O vocabulário e o caminho que todo lead percorre, antes de você falar com alguém. Regra que atravessa tudo: o trabalho é feito pela aba Atividades no Pipedrive — se não está numa atividade, não existe. Você trabalha um funil só, o [COM] Comercial, pelo filtro CADÊNCIA DIÁRIA, na ordem de vencimento — sem escolher lead e sem pular fila. O que fica para a parte 2, lá no fim da trilha, é fechamento, metas e motivos de perda — você só precisa disso quando já estiver conduzindo call.",
+    links: [
+      { url: "Playbook_Executivo_de_Vendas.html", txt: "Abrir o Playbook Operacional do Executivo de Vendas" }
+    ],
+    subSteps: [
+      { order: "01", title: "As nomenclaturas e a régua do funil", why: "Lead entrou e ainda não foi qualificado. SAL bateu os quatro critérios de ICP. SQL recebeu o pitch — teve a call e ouviu o valor. Ganho pagou. Além da régua, os termos do dia a dia: tier, campanha, D0, cadência, pool, cobertura da base, ativação D0, handoff, resgate.", result: "Todo mundo usando a mesma palavra para a mesma coisa — senão o seu número não bate com o da gestão." },
+      { order: "02", title: "Como o lead chega — e todas as faixas são suas", why: "O cadastro na landing page faz duas coisas em paralelo: cria o negócio no Pipedrive já com dono e com a primeira atividade, e leva o lead direto para o seu WhatsApp. Não existe mais qualificação por IA nem caminho separado para quem fatura menos — o Executivo atende todas as faixas, inclusive até R$ 5.000. Atenção ao número: no formulário o telefone é digitado, no WhatsApp ele fala do celular que está na mão.", result: "O primeiro contato é sempre entre o lead e você. Para dar match do WhatsApp, compare a hora da mensagem com a hora de entrada do negócio." },
+      { order: "03", title: "As 5 etapas do pipeline e o micro-fluxo", why: "0 - Base, 1 - Prospectando, 2 - Conexão, 3 - Qualificado/Reunião Agendada, 4 - Gerou Compromisso. Cada etapa tem a sua atividade, quem a cria e por onde se sai dela. Marcar como feito é o primeiro passo do micro-fluxo, e fez qualquer coisa no card, coloque anotação.", result: "Gerou Compromisso sem atividade fica invisível — o negócio some da sua fila de trabalho." },
+      { order: "04", title: "Os 4 critérios de ICP", why: "Tem barbearia (funcionando ou abrindo em até 15 dias) · tem CNPJ ativo, confirmado por você mesmo quando o lead já disse sim na LP, e MEI conta · tem dor que ele mesmo reconhece · quer o produto. Bateram os quatro, o lead é SAL e vai para 3 - Qualificado/Reunião Agendada na hora — em qualquer etapa, sem esperar a cadência acabar.", result: "Mover o card é o que registra o SAL. Lead ICP parado em Prospectando não conta." },
+      { order: "05", title: "As cadências e a regra de toque", why: "O critério de trabalho é vencimento, não etapa: você trabalha na ordem em que o filtro exibe. Toda atividade de contato tem pelo menos 2 ligações pela API4COM, depois ligação no WhatsApp, depois mensagem. Da etapa 2 - Conexão em diante, nenhuma atividade é encerrada sem combinar o horário do retorno e editar a data para esse horário.", result: "A data preenchida é o que determina quando o negócio volta a aparecer no filtro. Assunto e tipo são coisas diferentes — trocar o tipo estraga a sua própria fila." },
+      { order: "06", title: "Reunião, no-show e reagendamento", why: "Máximo 2 reagendamentos; na terceira solicitação, encerra o atendimento. No-show tolerado é 1: na primeira vez resgata e reagenda, na segunda vem o discurso de comprometimento, e não há terceira. No Show é o lead que não confirmou com menos de 1h; Cancelada é aviso com 3h ou mais, para reunião depois das 11h.", result: "Critério de decisão: se não dá para colocar outro lead naquele horário, é No Show. O status vai na atividade que já existe — criar outra em paralelo distorce a métrica." }
+    ],
+    quiz: {
+      minimo: 3,
+      perguntas: [
+        {
+          q: "O lead aceitou a reunião e você moveu o card para 3 - Qualificado/Reunião Agendada. Ele já é SQL?",
+          ops: [
+            "Sim: agendar a reunião é o que transforma o SAL em SQL.",
+            "Não: nesse momento ele é SAL. Vira SQL quando a reunião acontece e ele ouve o valor.",
+            "Sim, desde que ele tenha confirmado presença.",
+            "Depende do tier do lead."
+          ],
+          certa: 1,
+          porque: "Todo SQL já foi SAL, mas reunião marcada não é reunião feita. O que registra o SQL é a call acontecer com o valor apresentado."
+        },
+        {
+          q: "O lead tem barbearia funcionando, reconhece a dor e quer o produto — mas ainda não abriu CNPJ. Ele é SAL?",
+          ops: [
+            "É SAL: três dos quatro critérios já bastam.",
+            "É SAL, e o CNPJ você confere depois da reunião.",
+            "Não é SAL: sem CNPJ ativo o ICP não fecha. MEI conta, então o caminho é ele abrir e voltar.",
+            "Não é SAL, e o lead deve ser descartado na hora, sem retorno."
+          ],
+          certa: 2,
+          porque: "São quatro critérios e todos precisam bater: barbearia, CNPJ ativo, dor reconhecida e querer o produto. Pedir para abrir o MEI e voltar é condução correta, não descarte."
+        },
+        {
+          q: "Você abre o dia com a fila cheia. Qual é o critério para decidir qual lead trabalhar primeiro?",
+          ops: [
+            "A ordem de vencimento no filtro CADÊNCIA DIÁRIA — sem escolher lead e sem pular fila.",
+            "A etapa do funil: primeiro os que estão mais perto do fechamento.",
+            "O tier: os leads de faturamento maior primeiro.",
+            "Os que você já conhece, porque a conversa anda mais rápido."
+          ],
+          certa: 0,
+          porque: "O critério é vencimento, não etapa nem tamanho do lead. Escolher lead desorganiza a própria fila e deixa o resto da carteira parada."
+        },
+        {
+          q: "Um lead entrou hoje. Qual é o mínimo inegociável para o dia dele?",
+          ops: [
+            "Uma tentativa de contato, desde que dentro do SLA de 10 minutos.",
+            "Dois contatos no mesmo dia: um logo que ele cai e outro ainda no mesmo dia.",
+            "Três ligações pela API4COM antes de qualquer mensagem.",
+            "Nenhum: o lead D0 pode ser trabalhado no dia seguinte, na cadência."
+          ],
+          certa: 1,
+          porque: "O lead mais quente é o que caiu hoje. O SLA de 10 minutos é o ideal e pode ceder quando você está em call; o D0 com dois contatos é o que não cede."
+        }
+      ]
+    }
+  },
+  {
+    name: "Script de prospecção — a ligação do 3C",
+    trilha: true, mapaMental: true, mapaCentro: "Script da ligação", mapaRotulo: "passos",
+    passoMapa: "Veja a ligação inteira, do alô ao compromisso",
+    tipo: "Método", dur: "7 passos · 100 pontos",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "O que você fala na ligação, do primeiro \u0022alô\u0022 até o compromisso firmado. Os sete passos abaixo são o script — e o peso de cada um, em porcentagem, é a mesma régua com que a liderança ouve a sua ligação: soma 100. Não é sugestão de roteiro, é o que vai ser cobrado. Estude com o script aberto, leia em voz alta até sair natural e repare nos erros marcados como tira ponto: alguns derrubam a nota inteira sozinhos. O que mais pesa para chegar a 100: a consultoria vendida com passo a passo, exclusividade, sem custo e ganhos; o \u0022posso contar com você?\u0022 respondido com um sim explícito; e os quatro dados do negócio validados. Nos Playbooks do Podium OS existe um segundo script, o FDO (Fora de Operação), usado quando você trabalha a lista de leads frios — gente que já entrou em algum momento e não avançou. A liderança avisa quando essa lista entra na sua rotina; até lá, o script é este aqui.",
+    links: [
+      { url: "https://sales-os.cashbarber.com.br/podium/sales-os/admin/playbooks", txt: "Playbooks no Podium OS — Script novo para Ligação e Script FDO (leads frios)" }
+    ],
+    subSteps: [
+      {
+        order: "1º · 10%",
+        title: "Abertura com energia", curto: "Abertura",
+        why: "Os primeiros 30 segundos decidem se a ligação continua. Voz alta e segura, sem pedir desculpa por estar ligando.",
+        result: "O lead entende quem é você, por que você ligou e dá o aval para seguir.",
+        falas: [
+          "Fala :: \u0022Fala, [nome], tudo certo? Aqui é o [Executivo], da Podium Educação. Mas por que eu tô te ligando, irmão? Porque o Rafa selecionou um grupo de donos de barbearia pra receber um contato da nossa equipe. E ele pediu pra mim, que sou quem tá fazendo esse contato, pra trazer um direcionamento pra você. Você tá conseguindo falar agora?\u0022",
+          "Regra :: Voz alta e segura. Nada de \u0022desculpa incomodar\u0022.",
+          "Regra :: Envolva o lead nos primeiros 30 segundos."
+        ]
+      },
+      {
+        order: "2º · 15%",
+        title: "Validar o negócio", curto: "Validar",
+        why: "Quatro dados obrigatórios, em tom de conversa e não de formulário. Cada um que faltar tira um ponto.",
+        result: "CNPJ, faturamento, formato e atendimento confirmados pela boca do lead.",
+        falas: [
+          "Fala :: \u0022Pra eu entender o seu cenário: hoje você toca a barbearia sozinho ou tem equipe? Quantas cadeiras?\u0022",
+          "Fala :: \u0022E o atendimento, é com agendamento, por sistema, ou por ordem de chegada?\u0022",
+          "Fala :: \u0022A barbearia já tem CNPJ ou MEI?\u0022",
+          "Fala :: \u0022Mais ou menos quanto ela tá faturando por mês hoje?\u0022",
+          "Tira ponto :: Deixar de validar qualquer um dos quatro."
+        ]
+      },
+      {
+        order: "3º · 10%",
+        title: "Mapear e acolher, sem implicação", curto: "Acolher",
+        why: "Aqui você ouve e acolhe. A dor fica para a consultoria — cutucar agora derruba a nota.",
+        result: "O lead desabafa e sente que vai ser olhado com calma depois.",
+        falas: [
+          "Fala :: \u0022E hoje, onde você sente que precisa de mais apoio? O que você gostaria de melhorar aí?\u0022",
+          "Se ele desabafar :: \u0022Pô, irmão, faz total sentido. Você tá carregando muita coisa sozinho. Isso é exatamente o que a gente vai olhar com calma lá na consultoria.\u0022",
+          "Tira ponto :: Perguntar \u0022quanto você perde com isso?\u0022, \u0022o que acontece se continuar assim?\u0022 ou \u0022como seria se…\u0022.",
+          "Tira ponto :: Uma única pergunta de implicação já limita a nota deste passo a 2."
+        ]
+      },
+      {
+        order: "4º · 25%",
+        title: "Vender a consultoria", curto: "Consultoria",
+        why: "O passo de maior peso, junto com o compromisso. A consultoria se vende pelo passo a passo, pela exclusividade, por ser sem custo e pelos ganhos.",
+        result: "O lead entende o que vai acontecer na hora e por que aquilo vale o tempo dele.",
+        falas: [
+          "Fala :: \u0022Então, o que eu quero te propor é o seguinte: uma consultoria de uma hora, focada só no seu negócio. A gente vai olhar seus números e a sua operação, entender onde estão os gaps, onde dá pra melhorar, e você sai com um plano de ação exclusivo pra sua barbearia.\u0022",
+          "Fala :: \u0022É um momento de troca, pra falar do seu crescimento e dos seus objetivos. E não tem custo nenhum.\u0022",
+          "Fala :: \u0022A ideia é você se organizar, ter uma gestão mais completa, faturar mais sem trabalhar o dobro (sei que você já faz 12, 14 horas por dia), ser empresário do seu negócio e conseguir contratar com qualidade.\u0022",
+          "Regra :: Conecte com o que ele disse no passo 3 — \u0022aquilo que você falou de [X]…\u0022.",
+          "Tira ponto :: Usar \u0022apresentação\u0022, \u0022demonstração\u0022 ou \u0022te mostrar o sistema\u0022.",
+          "Tira ponto :: Falar de preço, de sistema ou do App Barber. Isso é assunto da consultoria."
+        ]
+      },
+      {
+        order: "5º · 10%",
+        title: "Objeções com acolhimento", curto: "Objeções",
+        why: "A fórmula é sempre a mesma: acolher e voltar ao valor. Sem rebater e sem recuar na primeira objeção.",
+        result: "A objeção vira motivo para fazer a consultoria, não para desmarcar.",
+        falas: [
+          "Fala :: \u0022Entendo total, irmão, a rotina é puxada mesmo. É justamente por isso que é só uma hora, sem custo, e você sai com um plano pronto pra sua barbearia. Bora encaixar?\u0022",
+          "Tira ponto :: Rebater, discutir ou recuar logo na primeira objeção."
+        ]
+      },
+      {
+        order: "6º · 10%",
+        title: "Próximo passo: D0, D1 ou no máximo D2", curto: "Agenda",
+        why: "Quanto mais perto, mais gente aparece. Empurrar para longe é o que gera o no-show.",
+        result: "Dia e hora combinados, recapitulados na ligação e confirmados por WhatsApp.",
+        falas: [
+          "Fala :: \u0022Eu tenho horário pra agora, ou hoje às [X]h. Qual fica melhor pra você?\u0022",
+          "Se ele empurrar para D3 ou mais :: \u0022Olha, a agenda de [dia] ainda não abriu. A gente não agenda com tanta antecedência porque as pessoas acabam esquecendo, normalmente ela só abre no domingo. Mas eu tenho pra agora. Que tal fazer agora, ou hoje mais tarde? Ou eu abro uma exceção e faço depois das 18h.\u0022",
+          "Se ele realmente não puder :: \u0022Então eu vou deixar pré-agendado pra [dia] às [hora], e te ligo [véspera] às [hora] pra confirmar. É importante você me dar esse retorno, porque eu só confirmo a consultoria nessa ligação.\u0022",
+          "Regra :: Sexta com consultoria na segunda está ok, desde que você reforce o valor e o compromisso.",
+          "Tira ponto :: Agendar longe sem esse reforço — a nota fica em no máximo 3.",
+          "Regra :: Feche recapitulando o dia e a hora e confirme por WhatsApp."
+        ]
+      },
+      {
+        order: "7º · 20%",
+        title: "Compromisso firmado", curto: "Compromisso",
+        why: "O segundo passo de maior peso. Aqui você não pede presença, você reserva o compromisso junto com o lead.",
+        result: "Um sim claro, dito por ele, à pergunta \u0022posso contar com você?\u0022.",
+        falas: [
+          "Fala :: \u0022[Nome], estou reservando aqui uma hora da minha agenda pra você. E eu conto com você pra reservar também esse momento: venha com a cabeça organizada, sem cliente na cadeira, focado em falar do seu objetivo.\u0022",
+          "Fala :: \u0022A agenda é muito concorrida, a gente está liberando essa consultoria gratuitamente e eu não consigo reagendar se você faltar.\u0022",
+          "Fala :: \u0022Eu não quero o seu dinheiro, eu quero o seu tempo pra falar do seu negócio. Posso contar com você mesmo? Posso reservar esse horário?\u0022",
+          "Tira ponto :: Aceitar um \u0022tá, combinado\u0022. É vago e conta como compromisso fraco — espere um sim explícito."
+        ]
+      }
+    ]
+  },
+  {
+    name: "Roleplay com a IA — ligações simuladas",
+    tipo: "Prática", dur: "nota por rodada",
+    tag: "do", tagTxt: "praticar",
+    desc: "Antes de ligar para um lead de verdade, treine no simulador: você fala, a IA responde como barbeiro e devolve uma nota no fim. É aqui que o script da aula anterior deixa de ser leitura e vira ligação — vá com os sete passos na cabeça, não na tela. Faça no mínimo 3 rodadas e repita até a abertura e a qualificação saírem sem consultar o script. Cada rodada fica gravada com a nota, e a liderança acompanha esse histórico: não é treino às escondidas, é o que mostra se você está seguindo o script. Quem libera o 3C é essa evolução, não a quantidade de rodadas.",
+    links: [
+      { url: "https://daianesilvasvc-afk.github.io/sdr-roleplay/", txt: "Abrir o simulador de ligação" }
+    ],
+    notas: 10, notasId: "roleplay",
+    passoNotas: "Anote a nota de cada uma das 10 rodadas",
+    notasNota: "Este quadro fica salvo só no seu navegador — é a sua conta da evolução, não o que a liderança lê. O histórico oficial é o do próprio simulador, e é lá que a liderança confere se você está seguindo o script."
+  },
+  {
+    name: "Primeiras ligações no 3C — agendar para o time",
+    tipo: "Validação", dur: "—",
+    tag: "do", tagTxt: "praticar",
+    desc: "Agora é ligação de verdade, pelo 3C Plus. Nesta fase você qualifica e agenda — quem conduz a call é um Executivo já treinado. Seguir o script 100%, sem improvisar ainda, e registrar tudo pela aba Atividades do Pipedrive.",
+    links: [],
+    subSteps: [
+      {
+        order: "1º",
+        title: "Script 100% — sem desvio",
+        why: "Improviso na primeira semana esconde o que precisa ser corrigido: não dá para saber se a objeção veio do lead ou do desvio.",
+        result: "Toda ligação sai comparável com a anterior."
+      },
+      {
+        order: "2º",
+        title: "Agendar para um Executivo treinado",
+        why: "A call é conduzida por quem já passou pela fase 2. Seu trabalho aqui termina no agendamento bem feito — lead qualificado, contexto anotado e horário confirmado.",
+        result: "O Executivo recebe a reunião com o contexto pronto, sem precisar requalificar."
+      },
+      {
+        order: "3º",
+        title: "Escuta conjunta com a liderança",
+        why: "Depois da rodada, a liderança ouve as ligações com você e devolve o feedback em cima do que foi dito.",
+        result: "Você sabe exatamente o que ajustar na próxima rodada."
+      }
+    ]
+  },
+  {
+    name: "Acompanhar a call como ouvinte",
+    tipo: "Prática", dur: "—",
+    tag: "do", tagTxt: "praticar",
+    desc: "Toda reunião que você agendar, acompanhe como ouvinte. É assim que a fase 2 começa a fazer sentido antes de você estudá-la: você vê a consultoria acontecer em cima de um lead que você mesmo qualificou, e descobre na prática o que faltou perguntar na ligação.",
+    links: [],
+    subSteps: [
+      {
+        order: "1º",
+        title: "Entrar com a câmera e o microfone fechados",
+        why: "A call é do Executivo. Ouvinte que interrompe tira a condução do lugar.",
+        result: "O lead nem percebe que havia mais alguém."
+      },
+      {
+        order: "2º",
+        title: "Anotar o que o seu briefing deixou passar",
+        why: "O ponto não é avaliar o Executivo, é auditar a sua própria qualificação: o que ele teve que perguntar porque você não perguntou?",
+        result: "Cada call assistida melhora a sua próxima ligação."
+      },
+      {
+        order: "3º",
+        title: "Fechar com cinco minutos de conversa",
+        why: "Logo depois da call, pergunte ao Executivo como chegou o lead que você mandou.",
+        result: "O retorno vem quente, enquanto os dois lembram da conversa."
+      }
+    ]
+  },
+  {
+    name: "Validação da liderança — libera a fase 2",
+    tipo: "Validação", dur: "—",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "A fase 2 não abre por tempo de casa: abre quando a sua ligação tem qualidade. Procure a liderança para a conversa de validação — e só marque esta aula como concluída depois de receber o ok. Marcar por conta própria só adianta o acesso a um conteúdo que você ainda não vai conseguir usar.",
+    links: [],
+    subSteps: [
+      {
+        order: "1º",
+        title: "O que a liderança olha",
+        why: "Qualidade de abertura, qualificação completa, agenda confirmada e registro no Pipedrive — nas suas ligações reais, não no roleplay.",
+        result: "A conversa é sobre ligações gravadas, então não há surpresa."
+      },
+      {
+        order: "2º",
+        title: "Se ainda não for a hora",
+        why: "Volta para o roleplay e para mais uma rodada de ligações, com o ponto específico a corrigir combinado na conversa.",
+        result: "Ninguém entra em call sem saber conduzir uma ligação."
+      }
+    ]
+  },
+  {
     name: "Trilhas do CashBarber — os produtos por dentro",
-    tipo: "Vídeo", dur: "6 trilhas",
+    tipo: "Vídeo", dur: "5 trilhas",
     tag: "watch", tagTxt: "assistir",
-    desc: "As linhas de estudo dentro do painel do CashBarber, uma por produto. Você não precisa operar o sistema como o cliente opera, mas precisa saber o que cada produto entrega — é isso que sustenta valor na consultoria e derruba a objeção de preço. Faça na ordem abaixo.",
+    desc: "Agora que você já conduz conversa, volte ao painel do CashBarber e percorra as linhas de estudo, uma por produto. A Cadeira do Dono você já viu no passo 1; aqui entra o resto. Você não precisa operar o sistema como o cliente opera, mas precisa saber o que cada produto entrega — é isso que sustenta valor na consultoria e derruba a objeção de preço. Faça na ordem abaixo.",
     links: [
       { url: "https://painel.cashbarber.com.br/skills/trilha/5", txt: "Assinatura" },
-      { url: "https://painel.cashbarber.com.br/skills/trilha/7", txt: "Cadeira do Dono — 3 aulas" },
       { url: "https://painel.cashbarber.com.br/skills/trilha/6", txt: "Podium Pro" },
       { url: "https://painel.cashbarber.com.br/skills/trilha/4", txt: "Barbearia Lucrativa" },
       { url: "https://painel.cashbarber.com.br/skills/trilha/1", txt: "Cash Barber" },
@@ -1383,16 +2112,17 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Método de Venda de Futuro",
-    tipo: "Vídeo",
+    tipo: "Vídeo", dur: "1 vídeo",
+    video: { kind: "drive", id: "1ngAyII88cOrMzTUgAmSnuA2u4y-YFjbs", titulo: "Método de Venda de Futuro", thumb: "img/venda-de-futuro.jpg" },
     tag: "watch", tagTxt: "assistir",
-    desc: "Pasta com o material que explica a venda de futuro: como projetar o cenário do cliente daqui a alguns meses e vender a transformação, não o produto. Usado principalmente com quem trava no preço.",
+    desc: "Como projetar o cenário do cliente daqui a alguns meses e vender a transformação, não o produto. É o método que você usa principalmente com quem trava no preço: em vez de defender o valor, mostrar o que a barbearia dele vira se a decisão for tomada hoje.",
     links: [
-      { url: "https://drive.google.com/drive/folders/1Rl09mApwDqmiV1TSIgm7a06KnO8MDP5a?usp=share_link", txt: "Venda de Futuro — pasta completa" }
+      { url: "https://drive.google.com/drive/folders/1Rl09mApwDqmiV1TSIgm7a06KnO8MDP5a?usp=share_link", txt: "Venda de Futuro — pasta completa no Drive" }
     ]
   },
   {
     name: "Alinhamento — como fazer o NPQL e a consultoria",
-    tipo: "Vídeo", video: { kind: "drive", id: "1_jaECXwSMamSj9iHBnknqCFgFkAFoTQB" },
+    tipo: "Vídeo", video: { kind: "drive", id: "1_jaECXwSMamSj9iHBnknqCFgFkAFoTQB", thumb: "img/alinhamento-npql.jpg" },
     tag: "watch", tagTxt: "assistir",
     desc: "Comece por aqui: a gravação do alinhamento costura as duas pontas e mostra como o NPQL desemboca na consultoria. Assista antes de entrar nas etapas — é o mapa do caminho que os próximos passos percorrem em detalhe.",
     links: [
@@ -1400,118 +2130,17 @@ const STEPS_COMERCIAL = [
     ]
   },
   {
-    name: "NPQL — as 5 etapas da conversa",
-    tipo: "Método", dur: "6 etapas",
-    tag: "must", tagTxt: "obrigatório",
-    trilha: true,
-    desc: "O NPQL é o que estrutura a conversa que leva à consultoria. O objetivo é fazer com que a venda se torne leve — não é você empurrando uma venda, é o cliente comprando. Duas regras atravessam tudo: o objetivo não é sobre nós, é sobre o cliente; e quando estamos emotivos, nosso cérebro não consegue ser racional. As perguntas abaixo são o script — não decore, internalize a lógica de cada etapa.",
-    links: [],
-    subSteps: [
-      {
-        order: "1º",
-        title: "Conexão",
-        why: "Objetivo: extrair uma informação — o que ele está fazendo aqui com você hoje. Abra leve, sem entrar em negócio.",
-        result: "A primeira resposta costuma vir rasa. Insista: é na segunda que aparece a motivação real.",
-        falas: [
-          "E aí [nome], beleza?",
-          "Está falando de onde?",
-          "O que você viu lá na rede social que fez você parar aqui comigo hoje? Porque ninguém está na rede social para marcar reunião, né.",
-          "E, de curiosidade, o que te fez procurar uma solução agora?",
-          "O que te motivou a bater esse bate-papo hoje?",
-          "Qual foi a principal motivação que te levou a abrir essa barbearia?"
-        ]
-      },
-      {
-        order: "2º",
-        title: "Situação",
-        why: "Objetivo: descobrir a situação atual dele — estrutura, rotina, números e o que já tentou. Se ele disser que não tem problema nenhum, afronte com educação: ninguém marca uma call porque está tudo certo.",
-        result: "Resposta vaga? Use a técnica: \"[nome], é que eu sou visual — conseguiria me explicar melhor o que seria isso?\"",
-        falas: [
-          "Quantas pessoas trabalham com você na sua barbearia?",
-          "Quais problemas você tem enfrentado na barbearia hoje?",
-          "Quantos clientes atende?",
-          "Possui assinatura?",
-          "Quais estratégias de vendas você já implementou?",
-          "Você está satisfeito com [o desafio que o lead trouxe]?",
-          "Aparentemente você está indo muito bem aí — o que você faria de diferente?",
-          "Tem alguma coisa do que você está fazendo hoje que você mudaria?"
-        ]
-      },
-      {
-        order: "3º",
-        title: "Problema",
-        why: "Fazer o cara admitir qual é o problema dele — em quatro frentes: o que é, há quanto tempo, qual a causa e como isso o afeta. Quando ele tiver dificuldade de se abrir, use a informação que o SDR já levantou.",
-        result: "Na pergunta emocional, dê pausas verbais: ela não pode soar scriptada, precisa ter sentimento.",
-        falas: [
-          "O que é :: Eu vi que você estava falando com [fulano] e estava passando por [situação], certo? Consegue me explicar um pouco melhor sobre isso?",
-          "O que é :: Olhando tudo o que você vem enfrentando na barbearia, tem algo que, se você resolvesse, começaria a mudar tudo aí?",
-          "O que é :: O que você gosta e o que não gosta na barbearia?",
-          "Tempo :: Acredito que você não acordou com esse problema. Há quanto tempo você está passando por isso?",
-          "Tempo :: Você se lembra há quanto tempo isso vem te incomodando?",
-          "Causa :: Na sua visão, o que você acredita que gerou esse problema?",
-          "Emocional :: Isso tem te afetado de alguma forma?",
-          "Emocional :: E fora da barbearia, isso tem te afetado de alguma forma?",
-          "Emocional :: [nome], posso te fazer uma pergunta mais pessoal? Vendo que alguns problemas que vivemos afetam nosso lado emocional, o que você acredita que esse problema vem afetando no seu?"
-        ]
-      },
-      {
-        order: "4º",
-        title: "Solução",
-        why: "Entender o que ele já tentou, o que considera essencial numa solução e — principalmente — fazer ele se imaginar no cenário resolvido. Precisa de emoção e de número: leve para o lugar perfeito e quantifique.",
-        result: "Se ele falar em comprar casa ou carro, aprofunde (\"e você já sabe qual bairro?\", \"qual cor você escolheria?\"). O objetivo é ele se imaginando, com emoção de alívio.",
-        falas: [
-          "Já buscou resolver isso antes?",
-          "Antes de conversarmos, você já buscou outra solução para resolver isso?",
-          "Você me falou que está com esse problema há [tempo] — o que te travou para viver com isso esse tempo todo?",
-          "O que você tem visto no [app atual] que vem te ajudando hoje?",
-          "O que você julga essencial em uma solução para te ajudar?",
-          "O que não pode faltar numa solução para que valha a pena investir?",
-          "Se daqui a 3 a 6 meses você já tivesse solucionado esse problema, como seria a sua vida?",
-          "Se você já vivesse aquilo que mencionou pra mim no começo, como seria sua vida?",
-          "Se você tivesse o resultado que está buscando, o que conseguiria fazer que não consegue hoje?",
-          "Quantificar :: Caso você consiga alcançar isso, o que traria de realização pessoal pra você?",
-          "Quantificar :: [nome], se isso já estivesse resolvido, quanto você acredita que estaria faturando?",
-          "Quantificar :: E se conseguisse resolver isso, quanto de retorno traria pra você?"
-        ]
-      },
-      {
-        order: "4º ·",
-        title: "Transição",
-        why: "Fecha a etapa de solução e prepara a consequência. Aqui o tom de voz muda: fica mais preocupado, mais lento.",
-        result: "É a ponte para o cliente sentir o custo de não agir.",
-        falas: [
-          "E se a gente não fizer nada, como seria?",
-          "O que está te impedindo de alcançar isso é o que você está fazendo hoje, certo?",
-          "Eu só tenho uma preocupação: me preocupei com aquele ponto que você trouxe pra mim hoje. Se você desligar a call agora e não fizer nada, como será a sua vida daqui a [X] meses?",
-          "O que você vem fazendo hoje deixa você mais perto ou mais longe do que está buscando?"
-        ]
-      },
-      {
-        order: "5º",
-        title: "Consequência",
-        why: "Pegar os números que ele mesmo deu e fazer a conta na frente dele. É a etapa da calculadora: projeção de produtividade vezes o ano.",
-        result: "Fale o resultado com pausa e fala lenta, para criar um clima reflexivo. Depois da pergunta sobre o quanto ele perdeu, faça silêncio — o silêncio é parte da técnica.",
-        falas: [
-          "Calculadora :: [nome], está com a calculadora aí? Vamos pegar os seus números e fazer uma conta.",
-          "Calculadora :: Então você perdeu [valor]? (e aqui você faz silêncio)",
-          "Projeção :: Fazendo o cálculo de produtividade vezes o ano, isso dá [resultado].",
-          "O que pode acontecer se você não resolver esse problema agora?",
-          "Se você adiar resolver isso, o que pode acontecer com você?"
-        ]
-      }
-    ]
-  },
-  {
     name: "Novo formato de call — as 9 etapas",
-    trilha: true,
+    trilha: true, mapaMental: true, mapaCentro: "Novo formato de call", mapaRotulo: "etapas",
+    passoMapa: "Veja o mapa inteiro da call",
     tipo: "Método", dur: "20 min + 9 etapas",
     tag: "must", tagTxt: "obrigatório",
     desc: "A estrutura da call inteira, do rapport ao pitch, com os pontos de atenção de cada etapa. É o roteiro que você vai seguir em toda reunião. Comece pela explicação em vídeo, dividida em quatro partes de cinco minutos, e só depois percorra as nove etapas — o vídeo conta o porquê, a trilha é a consulta do dia a dia.",
     videos: [
-      { kind: "loom", id: "a97d655475e94e1ba06da056dbb88d2c", titulo: "Abertura e investigação", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/a97d655475e94e1ba06da056dbb88d2c-015b9ac1fc235b0a.gif" },
-      { kind: "loom", id: "bada55f415e04bca8f1b3dd9131c0925", titulo: "Quadro branco e depoimento", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/bada55f415e04bca8f1b3dd9131c0925-72cc0c6d190dcfcb.gif" },
-      { kind: "loom", id: "1c0e07b7d8214a14a517c1782358fe6c", titulo: "Pilares e apresentação", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/1c0e07b7d8214a14a517c1782358fe6c-1892f9ff63f16fb1.gif" },
-      { kind: "loom", id: "22aaba0cd666441fb819d5c03625bbd4", titulo: "Suporte, evento e pitch", dur: "5 min", thumb: "https://cdn.loom.com/sessions/thumbnails/22aaba0cd666441fb819d5c03625bbd4-de643f2700a1a957.gif" }
+      { kind: "loom", id: "a97d655475e94e1ba06da056dbb88d2c", titulo: "Abertura e investigação", dur: "5 min", thumb: "img/call-parte1.jpg" },
+      { kind: "loom", id: "bada55f415e04bca8f1b3dd9131c0925", titulo: "Quadro branco e depoimento", dur: "5 min", thumb: "img/call-parte2.jpg" },
+      { kind: "loom", id: "1c0e07b7d8214a14a517c1782358fe6c", titulo: "Pilares e apresentação", dur: "5 min", thumb: "img/call-parte3.jpg" },
+      { kind: "loom", id: "22aaba0cd666441fb819d5c03625bbd4", titulo: "Suporte, evento e pitch", dur: "5 min", thumb: "img/call-parte4.jpg" }
     ],
     links: [],
     subSteps: [
@@ -1636,25 +2265,123 @@ const STEPS_COMERCIAL = [
     ]
   },
   {
-    name: "Três calls reais para assistir depois do formato",
-    tipo: "Call", dur: "3 calls",
+    name: "NPQL — as 5 etapas da conversa",
+    tipo: "Método", dur: "6 etapas",
     tag: "must", tagTxt: "obrigatório",
-    desc: "Agora que você sabe o roteiro, veja ele acontecendo. São três calls de verdade, com perfis de lead bem diferentes — e as três fecharam. Antes de dar play em cada uma, leia o contexto do lead e tente prever onde o executivo vai ter que ajustar o roteiro. Depois confira se foi isso mesmo.",
-    rotuloParte: "Call",
-    passoPartes: "Assista às três calls, uma de cada vez",
-    videos: [
+    trilha: true, mapaMental: true, mapaCentro: "NPQL", mapaRotulo: "etapas",
+    passoMapa: "Veja o mapa inteiro da conversa",
+    desc: "O NPQL é o que estrutura a conversa que leva à consultoria. O objetivo é fazer com que a venda se torne leve — não é você empurrando uma venda, é o cliente comprando. Duas regras atravessam tudo: o objetivo não é sobre nós, é sobre o cliente; e quando estamos emotivos, nosso cérebro não consegue ser racional. As perguntas abaixo são o script — não decore, internalize a lógica de cada etapa.",
+    links: [],
+    subSteps: [
       {
-        kind: "drive", id: "1w6tI27d_7LiYH08lZ-QeILipzcp93MlB",
-        titulo: "Dor de sistema, lead calado",
-        nota: "Lead com dor de sistema, queria muito só o Cash. Se comunicava pouco na call, mas estava muito interessado. Repare em como se conduz um lead que fala pouco sem transformar a call em monólogo."
+        order: "1º",
+        title: "Conexão",
+        why: "Objetivo: extrair uma informação — o que ele está fazendo aqui com você hoje. Abra leve, sem entrar em negócio.",
+        result: "A primeira resposta costuma vir rasa. Insista: é na segunda que aparece a motivação real.",
+        falas: [
+          "E aí [nome], beleza?",
+          "Está falando de onde?",
+          "O que você viu lá na rede social que fez você parar aqui comigo hoje? Porque ninguém está na rede social para marcar reunião, né.",
+          "E, de curiosidade, o que te fez procurar uma solução agora?",
+          "O que te motivou a bater esse bate-papo hoje?",
+          "Qual foi a principal motivação que te levou a abrir essa barbearia?"
+        ]
       },
       {
-        kind: "drive", id: "1k4Wh0x11NleB6il6Pr2L9VZmQF5b3zRv",
+        order: "2º",
+        title: "Situação",
+        why: "Objetivo: descobrir a situação atual dele — estrutura, rotina, números e o que já tentou. Se ele disser que não tem problema nenhum, afronte com educação: ninguém marca uma call porque está tudo certo.",
+        result: "Resposta vaga? Use a técnica: \"[nome], é que eu sou visual — conseguiria me explicar melhor o que seria isso?\"",
+        falas: [
+          "Quantas pessoas trabalham com você na sua barbearia?",
+          "Quais problemas você tem enfrentado na barbearia hoje?",
+          "Quantos clientes atende?",
+          "Possui assinatura?",
+          "Quais estratégias de vendas você já implementou?",
+          "Você está satisfeito com [o desafio que o lead trouxe]?",
+          "Aparentemente você está indo muito bem aí — o que você faria de diferente?",
+          "Tem alguma coisa do que você está fazendo hoje que você mudaria?"
+        ]
+      },
+      {
+        order: "3º",
+        title: "Problema",
+        why: "Fazer o cara admitir qual é o problema dele — em quatro frentes: o que é, há quanto tempo, qual a causa e como isso o afeta. Quando ele tiver dificuldade de se abrir, use a informação que o SDR já levantou.",
+        result: "Na pergunta emocional, dê pausas verbais: ela não pode soar scriptada, precisa ter sentimento.",
+        falas: [
+          "O que é :: Eu vi que você estava falando com [fulano] e estava passando por [situação], certo? Consegue me explicar um pouco melhor sobre isso?",
+          "O que é :: Olhando tudo o que você vem enfrentando na barbearia, tem algo que, se você resolvesse, começaria a mudar tudo aí?",
+          "O que é :: O que você gosta e o que não gosta na barbearia?",
+          "Tempo :: Acredito que você não acordou com esse problema. Há quanto tempo você está passando por isso?",
+          "Tempo :: Você se lembra há quanto tempo isso vem te incomodando?",
+          "Causa :: Na sua visão, o que você acredita que gerou esse problema?",
+          "Emocional :: Isso tem te afetado de alguma forma?",
+          "Emocional :: E fora da barbearia, isso tem te afetado de alguma forma?",
+          "Emocional :: [nome], posso te fazer uma pergunta mais pessoal? Vendo que alguns problemas que vivemos afetam nosso lado emocional, o que você acredita que esse problema vem afetando no seu?"
+        ]
+      },
+      {
+        order: "4º",
+        title: "Solução",
+        why: "Entender o que ele já tentou, o que considera essencial numa solução e — principalmente — fazer ele se imaginar no cenário resolvido. Precisa de emoção e de número: leve para o lugar perfeito e quantifique.",
+        result: "Se ele falar em comprar casa ou carro, aprofunde (\"e você já sabe qual bairro?\", \"qual cor você escolheria?\"). O objetivo é ele se imaginando, com emoção de alívio.",
+        falas: [
+          "Já buscou resolver isso antes?",
+          "Antes de conversarmos, você já buscou outra solução para resolver isso?",
+          "Você me falou que está com esse problema há [tempo] — o que te travou para viver com isso esse tempo todo?",
+          "O que você tem visto no [app atual] que vem te ajudando hoje?",
+          "O que você julga essencial em uma solução para te ajudar?",
+          "O que não pode faltar numa solução para que valha a pena investir?",
+          "Se daqui a 3 a 6 meses você já tivesse solucionado esse problema, como seria a sua vida?",
+          "Se você já vivesse aquilo que mencionou pra mim no começo, como seria sua vida?",
+          "Se você tivesse o resultado que está buscando, o que conseguiria fazer que não consegue hoje?",
+          "Quantificar :: Caso você consiga alcançar isso, o que traria de realização pessoal pra você?",
+          "Quantificar :: [nome], se isso já estivesse resolvido, quanto você acredita que estaria faturando?",
+          "Quantificar :: E se conseguisse resolver isso, quanto de retorno traria pra você?"
+        ]
+      },
+      {
+        order: "4º ·",
+        title: "Transição",
+        why: "Fecha a etapa de solução e prepara a consequência. Aqui o tom de voz muda: fica mais preocupado, mais lento.",
+        result: "É a ponte para o cliente sentir o custo de não agir.",
+        falas: [
+          "E se a gente não fizer nada, como seria?",
+          "O que está te impedindo de alcançar isso é o que você está fazendo hoje, certo?",
+          "Eu só tenho uma preocupação: me preocupei com aquele ponto que você trouxe pra mim hoje. Se você desligar a call agora e não fizer nada, como será a sua vida daqui a [X] meses?",
+          "O que você vem fazendo hoje deixa você mais perto ou mais longe do que está buscando?"
+        ]
+      },
+      {
+        order: "5º",
+        title: "Consequência",
+        why: "Pegar os números que ele mesmo deu e fazer a conta na frente dele. É a etapa da calculadora: projeção de produtividade vezes o ano.",
+        result: "Fale o resultado com pausa e fala lenta, para criar um clima reflexivo. Depois da pergunta sobre o quanto ele perdeu, faça silêncio — o silêncio é parte da técnica.",
+        falas: [
+          "Calculadora :: [nome], está com a calculadora aí? Vamos pegar os seus números e fazer uma conta.",
+          "Calculadora :: Então você perdeu [valor]? (e aqui você faz silêncio)",
+          "Projeção :: Fazendo o cálculo de produtividade vezes o ano, isso dá [resultado].",
+          "O que pode acontecer se você não resolver esse problema agora?",
+          "Se você adiar resolver isso, o que pode acontecer com você?"
+        ]
+      }
+    ]
+  },
+  {
+    name: "Duas calls reais para assistir depois do formato",
+    tipo: "Call", dur: "2 calls",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Agora que você sabe o roteiro, veja ele acontecendo. São duas calls de verdade, com perfis de lead bem diferentes — e as duas fecharam. Antes de dar play em cada uma, leia o contexto do lead e tente prever onde o executivo vai ter que ajustar o roteiro. Depois confira se foi isso mesmo.",
+    rotuloParte: "Call",
+    passoPartes: "Assista às duas calls, uma de cada vez",
+    videos: [
+      {
+        kind: "drive", id: "1k4Wh0x11NleB6il6Pr2L9VZmQF5b3zRv", thumb: "img/calls-reais.jpg",
         titulo: "Escada de valores até 3k",
         nota: "Lead com muita dor de sistema, veio da mentoria do Rapha e já sabia sobre assinatura. Equipe pouco engajada e muito pouco tempo no dia. Não tinha os 5k: foi feita a escada e pegou-se o valor de 3k que ele tinha disponível na hora — pagou na própria call. É um perfil que, se deixasse, comandava a reunião."
       },
       {
-        kind: "drive", id: "1c3umFHNCEhKynIh61Zy4GUxPEn7GCjTE",
+        kind: "drive", id: "1c3umFHNCEhKynIh61Zy4GUxPEn7GCjTE", thumb: "img/calls-reais.jpg",
         titulo: "Rede de 5 unidades",
         nota: "Lead grande, 5 unidades e bom faturamento. Não acreditava na assinatura na cidade dele, tinha pouco tempo no dia a dia, dificuldade com sistema e não sabia ser gestor estratégico. Tirou bastante dúvida. A call começou por vendas, porque foi por essas funções que ele veio e a dor era fazer o time vender — mas o poder da assinatura foi mostrado e ele fechou no fim, já pensando em como colocar o plano nas 5 unidades. Pagou reserva de R$ 500 na call."
       }
@@ -1663,7 +2390,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Consultoria para clientes de baixo faturamento",
-    tipo: "Vídeo", video: { kind: "drive", id: "1bvMQiQ00JPusaaOnawwPionBGFw_SbzQ" },
+    tipo: "Vídeo", video: { kind: "drive", id: "1bvMQiQ00JPusaaOnawwPionBGFw_SbzQ", thumb: "img/consultoria-baixo-faturamento.jpg" },
     tag: "must", tagTxt: "obrigatório",
     desc: "O direcionamento de como conduzir a consultoria quando o cliente fatura pouco — o cenário mais comum e o mais fácil de perder. Assista à call do Lucas com a Alycia observando o método aplicado do início ao fim, e siga para o Mapa de Explicação no passo seguinte.",
     links: [
@@ -1672,7 +2399,7 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Mapa de Explicação — os 7 momentos da apresentação",
-    trilha: true,
+    trilha: true, mapaMental: true, mapaCentro: "Mapa de Explicação",
     tipo: "Método", dur: "7 momentos",
     tag: "must", tagTxt: "obrigatório",
     desc: "Encerrou o NPQL: agradeça, faça uma frase de abertura e contexto, e inicie os slides. A partir daí a apresentação segue 7 momentos na ordem abaixo. Regras de slide: o slide 1 inicia e o 2 encerra — faça uma nova intro, porque vai começar a consultoria. Do 3 ao 6, NÃO apresente sistema nem entregáveis: foque em perguntas para entender como o cliente faz as coisas no dia a dia. Ao encerrar, faça a última pergunta de transação e só então a intro para mostrar os entregáveis. E passe o depoimento antes de entrar na apresentação.",
@@ -1689,6 +2416,17 @@ const STEPS_COMERCIAL = [
     ]
   },
   {
+    name: "Direcionamento estratégico avançado",
+    tipo: "Vídeo", dur: "38 min", video: { kind: "loom", id: "577d5c63edbb490fb77473f2c2e15353", thumb: "img/direcionamento-estrategico.jpg" },
+    atualizando: "O Lucas está regravando esta aula. O vídeo abaixo continua valendo até o novo entrar no ar — assista normalmente e siga a trilha.",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Camada avançada de condução — para depois que a estrutura básica já está internalizada. Assista só quando os passos anteriores estiverem realmente concluídos, senão vira informação solta.",
+    links: [
+      { url: "https://www.loom.com/share/577d5c63edbb490fb77473f2c2e15353?sid=c17cd88a-6340-4ef0-b50e-000d0da08180", txt: "Direcionamento estratégico avançado" }
+    ]
+  }
+,
+  {
     name: "Scripts e materiais de apoio",
     tipo: "Material",
     tag: "must", tagTxt: "obrigatório",
@@ -1701,12 +2439,17 @@ const STEPS_COMERCIAL = [
     ]
   },
   {
-    name: "Direcionamento estratégico avançado",
-    tipo: "Vídeo", dur: "38 min", video: { kind: "loom", id: "577d5c63edbb490fb77473f2c2e15353", thumb: "https://cdn.loom.com/sessions/thumbnails/577d5c63edbb490fb77473f2c2e15353-54164ca79dc30e36.gif" },
-    tag: "watch", tagTxt: "assistir",
-    desc: "Camada avançada de condução — para depois que a estrutura básica já está internalizada. Assista só quando os passos anteriores estiverem realmente concluídos, senão vira informação solta.",
+    name: "Playbook, parte 2 — fechamento, metas e perdas",
+    tipo: "Leitura", dur: "3 seções",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "A parte do Playbook que só faz sentido quando você já conduz a call inteira: o que preencher no fechamento, por quais números você é medido e como registrar uma perda. Releia a parte 1 se o vocabulário tiver esfriado.",
     links: [
-      { url: "https://www.loom.com/share/577d5c63edbb490fb77473f2c2e15353?sid=c17cd88a-6340-4ef0-b50e-000d0da08180", txt: "Direcionamento estratégico avançado" }
+      { url: "Playbook_Executivo_de_Vendas.html", txt: "Abrir o Playbook Operacional do Executivo de Vendas" }
+    ],
+    subSteps: [
+      { order: "07", title: "Fechamento — checkout e os 11 campos", why: "A venda tem duas pontas: gerar o link no checkout (nova venda, cliente, oferta e cupom, forma de pagamento) e registrar o Ganho no Pipedrive. O Pipedrive não fecha sem os 11 campos obrigatórios: 2 com prefixo [COM], 5 de [Handoff] para quem recebe o cliente e 4 que amarram a venda ao checkout.", result: "Duas condições antes de clicar em Ganho: pagamento confirmado, e nome e e-mail conferidos contra o checkout. A venda termina no registro correto, não no pagamento." },
+      { order: "08", title: "Metas e indicadores", why: "Disciplina, que você controla sozinho: 100% das atividades do dia, 2 contatos em todo lead D0, SLA de 10 minutos como ideal e 65% de presença. Aproveitamento da base, que sai da qualidade da conversa: 6 SAL por dia, 50% de SAL → SQL e 50% de SQL → Ganho.", result: "Os números de conversão encadeiam: com 6 SAL no dia são 3 SQL e pelo menos 1 a 2 vendas." },
+      { order: "09", title: "Os 40 motivos de perda", why: "Oito famílias no formato Família - Motivo. Distinções que mudam a leitura: 1491 Nunca respondeu (falha na abordagem) × 1492 Tentativas esgotadas (falha na qualificação). As famílias Base, Pós-venda e Desqualificado na LP não são venda perdida — são higiene de CRM e filtro de entrada. Os motivos 1525, 1526 e 1527 descrevem a operação antiga com SDR e closer: não usar.", result: "Não existe segunda fila: lead perdido fica perdido, e o motivo é o único registro que sobra dele." }
     ]
   },
   {
@@ -1718,60 +2461,18 @@ const STEPS_COMERCIAL = [
     snippet: "🎉 Parabéns pela sua decisão e seja muito bem-vindo ao Cash Barber!\n\nA partir de agora, começa uma nova etapa para deixar a gestão da sua barbearia mais organizada, profissional e preparada para crescer. 🚀\n\nNos próximos passos, nossa equipe de Onboarding entrará em contato com você para acompanhar toda a sua implementação e garantir que você aproveite ao máximo o Cash Barber.\n\n📲 Fique atento ao WhatsApp: em breve, nossa equipe vai falar com você e orientar todos os próximos passos.\n\nAntes da nossa reunião de implementação, você receberá algumas tarefas simples e importantes para realizar, como acessar o sistema, conhecer alguns recursos e fazer os primeiros cadastros da sua barbearia.\n\n✅ Essas etapas são fundamentais para que, quando chegarmos à reunião, possamos avançar de forma mais rápida e produtiva.\n\n💡 Nossa dica: reserve alguns minutos para realizar tudo com calma. Você não estará sozinho nesse processo — nossa equipe estará ao seu lado para ajudar em cada etapa.\n\n🚀 Agora é só aguardar o contato do nosso time de Onboarding. Vamos juntos transformar a gestão da sua barbearia!"
   },
   {
-    name: "Ler o Playbook do Executivo de Vendas",
-    tipo: "Leitura", dur: "14 seções",
-    tag: "must", tagTxt: "obrigatório",
-    desc: "Documento base da operação, da entrada do lead na landing page ao pagamento confirmado. Regra que atravessa tudo: o trabalho é feito pela aba Atividades no Pipedrive — se não está numa atividade, não existe. Você trabalha um funil só, o [COM] Comercial, pelo filtro CADÊNCIA DIÁRIA, na ordem de vencimento — sem escolher lead e sem pular fila.",
+    name: "Links úteis — os acessos do dia a dia",
+    tipo: "Acesso", dur: "6 links",
+    referencia: true,
+    tag: "do", tagTxt: "acesso",
+    desc: "Sua página de atalhos. Ela fica sempre aberta, não precisa ser concluída e não entra na conta do progresso — é para voltar aqui sempre que precisar de um acesso. Se faltar algum link, peça à liderança: a lista é atualizada.",
     links: [
-      { url: "Playbook_Executivo_de_Vendas.html", txt: "Abrir o Playbook Operacional do Executivo de Vendas" }
-    ],
-    subSteps: [
-      { order: "01", title: "As nomenclaturas e a régua do funil", why: "Lead entrou e ainda não foi qualificado. SAL bateu os quatro critérios de ICP. SQL recebeu o pitch — teve a call e ouviu o valor. Ganho pagou. Além da régua, os termos do dia a dia: tier, campanha, D0, cadência, pool, cobertura da base, ativação D0, handoff, resgate.", result: "Todo mundo usando a mesma palavra para a mesma coisa — senão o seu número não bate com o da gestão." },
-      { order: "02", title: "Como o lead chega — e todas as faixas são suas", why: "O cadastro na landing page faz duas coisas em paralelo: cria o negócio no Pipedrive já com dono e com a primeira atividade, e leva o lead direto para o seu WhatsApp. Não existe mais qualificação por IA nem caminho separado para quem fatura menos — o Executivo atende todas as faixas, inclusive até R$ 5.000. Atenção ao número: no formulário o telefone é digitado, no WhatsApp ele fala do celular que está na mão.", result: "O primeiro contato é sempre entre o lead e você. Para dar match do WhatsApp, compare a hora da mensagem com a hora de entrada do negócio." },
-      { order: "03", title: "As 5 etapas do pipeline e o micro-fluxo", why: "0 - Base, 1 - Prospectando, 2 - Conexão, 3 - Qualificado/Reunião Agendada, 4 - Gerou Compromisso. Cada etapa tem a sua atividade, quem a cria e por onde se sai dela. Marcar como feito é o primeiro passo do micro-fluxo, e fez qualquer coisa no card, coloque anotação.", result: "Gerou Compromisso sem atividade fica invisível — o negócio some da sua fila de trabalho." },
-      { order: "04", title: "Os 4 critérios de ICP", why: "Tem barbearia (funcionando ou abrindo em até 15 dias) · tem CNPJ ativo, confirmado por você mesmo quando o lead já disse sim na LP, e MEI conta · tem dor que ele mesmo reconhece · quer o produto. Bateram os quatro, o lead é SAL e vai para 3 - Qualificado/Reunião Agendada na hora — em qualquer etapa, sem esperar a cadência acabar.", result: "Mover o card é o que registra o SAL. Lead ICP parado em Prospectando não conta." },
-      { order: "05", title: "As cadências e a regra de toque", why: "O critério de trabalho é vencimento, não etapa: você trabalha na ordem em que o filtro exibe. Toda atividade de contato tem pelo menos 2 ligações pela API4COM, depois ligação no WhatsApp, depois mensagem. Da etapa 2 - Conexão em diante, nenhuma atividade é encerrada sem combinar o horário do retorno e editar a data para esse horário.", result: "A data preenchida é o que determina quando o negócio volta a aparecer no filtro. Assunto e tipo são coisas diferentes — trocar o tipo estraga a sua própria fila." },
-      { order: "06", title: "Reunião, no-show e reagendamento", why: "Máximo 2 reagendamentos; na terceira solicitação, encerra o atendimento. No-show tolerado é 1: na primeira vez resgata e reagenda, na segunda vem o discurso de comprometimento, e não há terceira. No Show é o lead que não confirmou com menos de 1h; Cancelada é aviso com 3h ou mais, para reunião depois das 11h.", result: "Critério de decisão: se não dá para colocar outro lead naquele horário, é No Show. O status vai na atividade que já existe — criar outra em paralelo distorce a métrica." },
-      { order: "07", title: "Fechamento — checkout e os 11 campos", why: "A venda tem duas pontas: gerar o link no checkout (nova venda, cliente, oferta e cupom, forma de pagamento) e registrar o Ganho no Pipedrive. O Pipedrive não fecha sem os 11 campos obrigatórios: 2 com prefixo [COM], 5 de [Handoff] para quem recebe o cliente e 4 que amarram a venda ao checkout.", result: "Duas condições antes de clicar em Ganho: pagamento confirmado, e nome e e-mail conferidos contra o checkout. A venda termina no registro correto, não no pagamento." },
-      { order: "08", title: "Metas e indicadores", why: "Disciplina, que você controla sozinho: 100% das atividades do dia, 2 contatos em todo lead D0, SLA de 10 minutos como ideal e 65% de presença. Aproveitamento da base, que sai da qualidade da conversa: 6 SAL por dia, 50% de SAL → SQL e 50% de SQL → Ganho.", result: "Os números de conversão encadeiam: com 6 SAL no dia são 3 SQL e pelo menos 1 a 2 vendas." },
-      { order: "09", title: "Os 40 motivos de perda", why: "Oito famílias no formato Família - Motivo. Distinções que mudam a leitura: 1491 Nunca respondeu (falha na abordagem) × 1492 Tentativas esgotadas (falha na qualificação). As famílias Base, Pós-venda e Desqualificado na LP não são venda perdida — são higiene de CRM e filtro de entrada. Os motivos 1525, 1526 e 1527 descrevem a operação antiga com SDR e closer: não usar.", result: "Não existe segunda fila: lead perdido fica perdido, e o motivo é o único registro que sobra dele." },
-      { order: "10", title: "As ferramentas — Podium OS e 3C Plus", why: "O Podium OS é o seu painel: Forecast (pool e meta), Pace (o seu ritmo contra o time), On Track (as taxas do funil), Enablement (a nota das suas ligações pela IA), Focus (o que priorizar), Meet (a agenda), OTE (a calculadora de comissão) e Playbooks. O 3C Plus é a discadora onde recuperamos lead que não converteu — agendou pelo 3C, o resgate nasce como card novo.", result: "O topo do Podium OS é igual em todas as abas: cobertura da base, ativação D0 e pool recebido hoje." }
-    ]
-  },
-  {
-    name: "Treinamento Pipedrive",
-    tipo: "Vídeo", dur: "21 min", video: { kind: "loom", id: "ca2f9e8a7fcf4f28a721dc84513c6ea3", thumb: "https://cdn.loom.com/sessions/thumbnails/ca2f9e8a7fcf4f28a721dc84513c6ea3-bb88f2823020828f.gif" },
-    tag: "watch", tagTxt: "assistir",
-    desc: "Vídeo gravado pela liderança mostrando a plataforma e como usá-la no dia a dia operacional: filtros de turno, lógica BASE × CADÊNCIA e como registrar atividades.",
-    links: [
-      { url: "https://www.loom.com/share/ca2f9e8a7fcf4f28a721dc84513c6ea3", txt: "Treinamento Pipedrive" }
-    ]
-  },
-  {
-    name: "Ouvir ligações reais — biblioteca de chamadas",
-    tipo: "Prática",
-    tag: "watch", tagTxt: "ouvir",
-    desc: "Ouvir no mínimo 5 ligações. Para cada uma anotar: o que funcionou, onde o Executivo travou, como contornou a objeção. Não é para copiar estilo — é para calibrar o ouvido antes da primeira ligação real.",
-    links: [
-      { url: "https://podiumeducacao.notion.site/?v=2693bbf5b1e181fe9752000c981a0c08", txt: "Abrir biblioteca de ligações" }
-    ]
-  },
-  {
-    name: "Roleplay interno",
-    tipo: "Validação",
-    tag: "do", tagTxt: "praticar",
-    desc: "Simulação com colega ou líder no papel do barbeiro. Agora o roleplay cobre o ciclo inteiro, não só a qualificação: abertura, NPQL, consultoria e fechamento. Fazer ao mínimo 2 rodadas — uma como Executivo, uma como barbeiro para ouvir de fora.",
-    links: []
-  },
-  {
-    name: "Primeiras ligações — 30 leads com a liderança",
-    tipo: "Validação",
-    tag: "do", tagTxt: "praticar",
-    desc: "30 leads liberados para as primeiras ligações reais. Seguir o script do NPQL 100% — sem improvisar ainda. Após a rodada, a liderança e o time ouvirão as ligações juntos e darão feedback em tempo real.",
-    links: [],
-    subSteps: [
-      { order: "Regra", title: "Script do NPQL 100% — sem desvio", why: "A primeira rodada é de calibração, não de resultado. Só é possível dar feedback preciso se você seguiu o script. Quem improvisa não sabe o que errou.", result: "Foque na estrutura do NPQL: conexão → situação → problema → solução → consequência." },
-      { order: "Depois", title: "Escuta conjunta com a liderança", why: "Cada ligação será analisada: o que travou, onde a qualificação se perdeu, como a objeção poderia ter sido tratada.", result: "O feedback em tempo real é o treinamento mais rápido que existe." }
+      { url: "https://podiumeducacai.pipedrive.com/pipeline/1/filter/346481?quickFilter=none", txt: "Pipedrive — funil do comercial" },
+      { url: "https://podium.3c.plus/login", txt: "3C Plus — discador (login)" },
+      { url: "https://chromewebstore.google.com/detail/ccahjcilejbllkkgngikflblpgojjdaa?utm_source=item-share-cb", txt: "Extensão API4Com — instalar no Chrome" },
+      { url: "https://sales-os.cashbarber.com.br/podium/sales-os/forecast", txt: "Podium OS — forecast" },
+      { url: "https://painel.cashbarber.com.br/auth/login", txt: "Painel CashBarber — login (Skills e trilhas)" },
+      { url: "https://checkout.cashbarber.com.br/admin/login", txt: "Checkout CashBarber — admin" }
     ]
   }
 ];
@@ -1871,12 +2572,22 @@ const STEPS_FARMER = [
 ];
 
 const GROUPS_COMERCIAL = [
-    { label: "Fundamentos", indices: [0] },
-    { label: "Produto e ecossistema", indices: [1, 2],
-      intro: "Entendendo o mercado da barbearia: como o cliente ganha e perde dinheiro, o que trava o crescimento dele e o que o produto resolve. É o contexto que sustenta tudo o que vem depois — sem ele, a consultoria vira apresentação de sistema." },
-    { label: "Método e consultoria", indices: [3, 4, 5, 6, 7, 8] },
-    { label: "Materiais, operação e pós-venda", indices: [9, 10, 11] },
-    { label: "Operação e prática", indices: [12, 13, 14, 15, 16] }
+    { label: "F1 · O que vendemos", indices: [0, 1],
+      intro: "Antes de qualquer processo, o produto. Entenda o que a assinatura resolve na barbearia e por que ela ganha do modelo tradicional — é esse contexto que sustenta a ligação. Sem ele, a prospecção vira leitura de script. As duas aulas terminam em quiz: sem acertar o mínimo, o módulo seguinte não abre." },
+    { label: "F1 · Ferramentas e nomenclaturas", indices: [2, 3, 4, 5],
+      intro: "Este módulo inteiro acontece ao vivo, no treinamento presencial com a liderança: as três ferramentas (Pipedrive, Podium OS e 3C Plus), o papel do Executivo e o playbook. Depois do treinamento você volta aqui, faz o review das descrições com calma e fecha no quiz da última aula — ele cobra as quatro." },
+    { label: "F1 · Script e ligação", indices: [6, 7],
+      intro: "O ponto fraco de hoje é a ligação, então ela é a parte mais treinada da trilha: estudar o script até sair natural e simular com a IA de roleplay quantas vezes precisar. Da simulação você vai direto para o 3C, ligar de verdade." },
+    { label: "F1 · Ligar de verdade", indices: [8, 9, 10],
+      intro: "Ligação real, agendamento para um Executivo já treinado e a call acompanhada como ouvinte. A fase termina na validação da liderança — é ela que libera a fase 2." },
+    { label: "F2 · O método", indices: [11, 12, 13],
+      intro: "A partir daqui você deixa de só agendar e passa a conduzir. Comece abrindo os produtos por dentro, no painel do CashBarber, e siga para o que sustenta a conversa: a venda de futuro e o alinhamento que costura investigação e consultoria." },
+    { label: "F2 · A call", indices: [14, 15, 16, 17, 18, 19],
+      intro: "A reunião inteira, do rapport ao pitch. Primeiro o formato em nove etapas, que é o mapa da call; depois o NPQL, que é como se conduz a investigação dentro dela; então duas calls reais para ver o roteiro acontecendo, a consultoria para faturamento baixo, os sete momentos da apresentação e a camada avançada de condução." },
+    { label: "F2 · Fechar e entregar", indices: [20, 21, 22],
+      intro: "O que você usa no fechamento, o que registrar quando ganha ou perde, e a passagem para o Onboarding." },
+    { label: "Links úteis", indices: [23], referencia: true,
+      intro: "Os acessos que você usa todo dia, num lugar só. Este módulo não tranca nem destranca nada: está aberto desde o primeiro dia e você volta aqui sempre que precisar." }
 ];
 
 const GROUPS_FARMER = [
@@ -1893,7 +2604,7 @@ const TRILHAS = {
 const TEXTOS = {
   comercial: {
     eyebrow: "Comercial · Executivo de Vendas",
-    sub: "16 aulas em 5 módulos: entender o produto, dominar a operação, conduzir a consultoria e fechar. Cada aula libera a próxima, e a trilha termina na validação com a liderança."
+    sub: "25 aulas em 8 módulos, em duas fases. A fase 1 forma a prospecção: produto, nomenclaturas, ferramentas, script e ligação real, até a validação da liderança. A fase 2 só abre depois dela, e é onde entram o NPQL, a call e o fechamento."
   },
   farmer: {
     eyebrow: "Revenue · Farmer",
@@ -1920,6 +2631,27 @@ let aulaAtual = -1;
 let moduloAtual = 0;
 
 function chaveProgresso(t) { return "podium-onboarding-done-" + t; }
+// Nota do quiz fica separada do progresso: quem ja passou nao refaz a cada visita.
+function chaveQuiz(t) { return "podium-onboarding-quiz-" + t; }
+let quizOk = [];
+function saveQuiz() {
+  if (MODO_GESTAO) return;
+  try { localStorage.setItem(chaveQuiz(trilhaAtual), JSON.stringify(quizOk)); } catch (e) {}
+}
+
+// Video assistido: marcado a mao, uma capa de cada vez.
+function chaveVistos(t) { return "podium-onboarding-vistos-" + t; }
+let vistos = {};
+function carregarVistos() {
+  let v = null;
+  try { v = JSON.parse(localStorage.getItem(chaveVistos(trilhaAtual)) || "null"); } catch (e) {}
+  vistos = (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+}
+function saveVistos() {
+  if (MODO_GESTAO) return;
+  try { localStorage.setItem(chaveVistos(trilhaAtual), JSON.stringify(vistos)); } catch (e) {}
+}
+function assistido(url) { return !!vistos[url]; }
 
 function carregarProgresso() {
   STEPS = TRILHAS[trilhaAtual].steps;
@@ -1927,13 +2659,18 @@ function carregarProgresso() {
   let lido = null;
   try { lido = JSON.parse(localStorage.getItem(chaveProgresso(trilhaAtual)) || "null"); } catch (e) {}
   done = (Array.isArray(lido) && lido.length === TOTAL) ? lido : new Array(TOTAL).fill(false);
+  let notas = null;
+  try { notas = JSON.parse(localStorage.getItem(chaveQuiz(trilhaAtual)) || "null"); } catch (e) {}
+  quizOk = (Array.isArray(notas) && notas.length === TOTAL) ? notas : new Array(TOTAL).fill(false);
+  carregarVistos();
   // a aula aberta e de outra trilha e nao vale nesta
   aulaAtual = -1;
 }
 carregarProgresso();
 
-// Modo de revisao da gestao: abrir a pagina com ?gestao destrava todos os
-// passos para conferir conteudo, sem gravar progresso no navegador de quem abre.
+// Esta pagina e a trilha de verdade: o executivo entra travado, aula por aula,
+// com o quiz segurando a conclusao de quem tem quiz. A gestao abre com ?gestao
+// para conferir conteudo sem responder nada e sem gravar progresso.
 const MODO_GESTAO = /[?&]gestao(=|&|$)/.test(location.search);
 if (MODO_GESTAO) {
   const faixa = document.getElementById("faixa-gestao");
@@ -1942,14 +2679,22 @@ if (MODO_GESTAO) {
 
 // Desbloqueio progressivo: um passo so abre depois que todos os anteriores
 // foram concluidos. O primeiro esta sempre liberado.
+function ehReferencia(i) { return !!(STEPS[i] && STEPS[i].referencia); }
+function ultimaReal() {
+  for (let i = TOTAL - 1; i >= 0; i--) { if (!ehReferencia(i)) return i; }
+  return TOTAL - 1;
+}
+
 function liberado(i) {
+  // Pagina de referencia (links): aberta desde o primeiro dia.
+  if (ehReferencia(i)) return true;
   if (MODO_GESTAO) return true;
-  for (let k = 0; k < i; k++) { if (!done[k]) return false; }
+  for (let k = 0; k < i; k++) { if (!ehReferencia(k) && !done[k]) return false; }
   return true;
 }
 
 function proximoLiberado() {
-  for (let i = 0; i < TOTAL; i++) { if (!done[i]) return i; }
+  for (let i = 0; i < TOTAL; i++) { if (!ehReferencia(i) && !done[i]) return i; }
   return -1;
 }
 
@@ -1979,7 +2724,7 @@ function renderTabs() {
     b.type = "button";
     b.className = "trilha-tab" + (t === trilhaAtual ? " is-active" : "");
     b.setAttribute("aria-pressed", t === trilhaAtual ? "true" : "false");
-    const n = TRILHAS[t].steps.length;
+    const n = TRILHAS[t].steps.filter(function(s) { return !s.referencia; }).length;
     b.innerHTML = TRILHAS[t].label + ' <span class="trilha-tab-count">' + n + '</span>';
     b.addEventListener("click", function() { trocarTrilha(t); });
     nav.appendChild(b);
@@ -2159,6 +2904,9 @@ function montarTrilha(inner, s, idx) {
 function urlEmbed(v) {
   if (v.kind === "loom")  return "https://www.loom.com/embed/" + v.id;
   if (v.kind === "drive") return "https://drive.google.com/file/d/" + v.id + "/preview";
+  // Arquivo no proprio site: nao depende de Loom nem de Drive, nao expira e
+  // nao some se alguem mexer no compartilhamento de uma conta de fora.
+  if (v.kind === "arquivo") return v.src;
   return null;
 }
 function urlCapa(v) {
@@ -2169,6 +2917,49 @@ function urlCapa(v) {
 
 // Capa clicavel de um video. Serve tanto para a aula de video unico quanto
 // para cada parte de uma aula dividida.
+// Capa desenhada para quando nao existe imagem ou ela falha ao carregar.
+// Capa do Loom expira e miniatura do Drive e bloqueada no navegador com
+// frequencia — sem isso o video fica um retangulo escuro sem identidade.
+// Capa em pe (1750x2000 das artes) dentro de um quadro 16:9. Cortar come o
+// rosto de quem apresenta ou o titulo do rodape, entao a arte entra inteira e
+// as laterais recebem o azul do proprio fundo dela, lido do pixel da borda.
+function ajustarFoco(img) {
+  function medir() {
+    if (img.naturalHeight <= img.naturalWidth * 1.05) return;
+    img.classList.add("is-retrato");
+    const caixa = img.parentNode;
+    if (!caixa) return;
+    caixa.classList.add("capa-retrato");
+    try {
+      const c = document.createElement("canvas");
+      c.width = 1; c.height = 1;
+      const ctx = c.getContext("2d");
+      // pixel da borda esquerda, na altura do meio: o fundo liso da arte
+      ctx.drawImage(img, 4, Math.floor(img.naturalHeight / 2), 1, 1, 0, 0, 1, 1);
+      const d = ctx.getImageData(0, 0, 1, 1).data;
+      caixa.style.setProperty("--capa-fundo", "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")");
+    } catch (e) {
+      // canvas bloqueado (imagem de outro dominio): fica o azul padrao do CSS
+    }
+  }
+  if (img.complete && img.naturalWidth) medir();
+  else img.addEventListener("load", medir);
+}
+
+function capaDesenhada(v, rotulo) {
+  const vazio = document.createElement("div");
+  vazio.className = "video-capa-vazia";
+  const marca = document.createElement("span");
+  marca.className = "capa-marca";
+  marca.textContent = rotulo || "";
+  const tit = document.createElement("span");
+  tit.className = "capa-titulo";
+  tit.textContent = (v && v.titulo) ? v.titulo : "";
+  if (marca.textContent) vazio.appendChild(marca);
+  if (tit.textContent) vazio.appendChild(tit);
+  return vazio;
+}
+
 function capaDeVideo(v, rotulo, aria) {
   const capa = document.createElement("button");
   capa.className = "video-capa";
@@ -2181,17 +2972,15 @@ function capaDeVideo(v, rotulo, aria) {
     img.src = src;
     img.alt = "";
     img.loading = "lazy";
-    // Capa do Loom tem hash na URL e pode expirar; sem ela fica o fundo escuro.
     img.addEventListener("error", function() {
-      const vazio = document.createElement("div");
-      vazio.className = "video-capa-vazia";
-      img.replaceWith(vazio);
+      img.replaceWith(capaDesenhada(v, rotulo));
+      capa.classList.add("tem-capa-desenhada");
     });
+    ajustarFoco(img);
     capa.appendChild(img);
   } else {
-    const vazio = document.createElement("div");
-    vazio.className = "video-capa-vazia";
-    capa.appendChild(vazio);
+    capa.appendChild(capaDesenhada(v, rotulo));
+    capa.classList.add("tem-capa-desenhada");
   }
 
   const play = document.createElement("span");
@@ -2207,7 +2996,17 @@ function capaDeVideo(v, rotulo, aria) {
   return capa;
 }
 
-function quadroDeVideo(embed) {
+function quadroDeVideo(embed, v) {
+  if (v && v.kind === "arquivo") {
+    const el = document.createElement("video");
+    el.className = "video-frame";
+    el.src = embed;
+    el.controls = true;
+    el.autoplay = true;
+    el.preload = "metadata";
+    el.setAttribute("playsinline", "");
+    return el;
+  }
   const frame = document.createElement("iframe");
   frame.className = "video-frame";
   frame.src = embed;
@@ -2224,7 +3023,7 @@ function montarVideo(inner, s) {
   const capa = capaDeVideo(v, s.dur ? ("Assistir · " + s.dur) : "Assistir aqui", "Assistir: " + s.name);
   capa.addEventListener("click", function(ev) {
     ev.stopPropagation();
-    capa.replaceWith(quadroDeVideo(embed));
+    capa.replaceWith(quadroDeVideo(embed, v));
     syncOpenHeight();
   });
 
@@ -2259,7 +3058,7 @@ function montarPartes(inner, s) {
 
     palco.innerHTML = "";
     if (tocar) {
-      palco.appendChild(quadroDeVideo(urlEmbed(v)));
+      palco.appendChild(quadroDeVideo(urlEmbed(v), v));
     } else {
       const r = rotulo + " " + (n + 1);
       const capa = capaDeVideo(v, v.dur ? (r + " · " + v.dur) : r, "Assistir " + r + ": " + (v.titulo || s.name));
@@ -2273,6 +3072,20 @@ function montarPartes(inner, s) {
     const b = document.createElement("button");
     b.className = "parte-btn";
     b.type = "button";
+    // Capa tambem no botao: video sem imagem nao se reconhece de relance.
+    const capaUrl = urlCapa(v);
+    if (capaUrl) {
+      const cp = document.createElement("span");
+      cp.className = "parte-capa";
+      const im = document.createElement("img");
+      im.src = capaUrl;
+      im.alt = "";
+      im.loading = "lazy";
+      im.addEventListener("error", function() { cp.classList.add("is-vazia"); im.remove(); });
+      ajustarFoco(im);
+      cp.appendChild(im);
+      b.appendChild(cp);
+    }
     const et = document.createElement("span");
     et.className = "parte-n";
     et.textContent = rotulo + " " + (n + 1);
@@ -2306,12 +3119,15 @@ function idYoutube(url) {
   return m ? m[1] : null;
 }
 
-function montarGaleria(inner, links) {
+function montarGaleria(inner, links, aoMarcar) {
   const g = document.createElement("div");
   g.className = "video-galeria";
   links.forEach(function(l) {
+    const card = document.createElement("div");
+    card.className = "video-item";
+
     const a = document.createElement("a");
-    a.className = "video-item";
+    a.className = "video-item-link";
     a.href = l.url;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
@@ -2320,9 +3136,10 @@ function montarGaleria(inner, links) {
     const capa = document.createElement("div");
     capa.className = "video-item-capa";
     const img = document.createElement("img");
-    img.src = "https://img.youtube.com/vi/" + l.ytId + "/hqdefault.jpg";
+    img.src = l.capa ? l.capa : ("https://img.youtube.com/vi/" + l.ytId + "/hqdefault.jpg");
     img.alt = "";
     img.loading = "lazy";
+    ajustarFoco(img);
     capa.appendChild(img);
     const play = document.createElement("span");
     play.className = "video-item-play";
@@ -2334,8 +3151,34 @@ function montarGaleria(inner, links) {
     t.className = "video-item-txt";
     t.textContent = l.txt;
     a.appendChild(t);
+    card.appendChild(a);
 
-    g.appendChild(a);
+    const b = document.createElement("button");
+    b.className = "video-visto";
+    b.type = "button";
+    const marca = document.createElement("span");
+    marca.className = "video-visto-mark";
+    marca.textContent = "✓";
+    const rot = document.createElement("span");
+    b.appendChild(marca);
+    b.appendChild(rot);
+    function pintar() {
+      const ok = assistido(l.url);
+      card.classList.toggle("is-visto", ok);
+      rot.textContent = ok ? "Assistido" : "Marcar como assistido";
+      b.setAttribute("aria-pressed", ok ? "true" : "false");
+    }
+    pintar();
+    b.addEventListener("click", function(ev) {
+      ev.stopPropagation();
+      if (assistido(l.url)) delete vistos[l.url]; else vistos[l.url] = true;
+      saveVistos();
+      pintar();
+      if (aoMarcar) aoMarcar();
+    });
+    card.appendChild(b);
+
+    g.appendChild(card);
   });
   inner.appendChild(g);
 }
@@ -2397,16 +3240,19 @@ function renderModNav() {
     const feitas = g.indices.filter(k => done[k]).length;
     const b = document.createElement("button");
     b.type = "button";
-    b.className = "mod-btn" + (gi === moduloAtual ? " is-ativo" : "") + (feitas === g.indices.length ? " is-completo" : "");
+    b.className = "mod-btn" + (gi === moduloAtual ? " is-ativo" : "") + (!g.referencia && feitas === g.indices.length ? " is-completo" : "");
     const n = document.createElement("span");
     n.className = "mod-btn-n";
-    n.textContent = feitas === g.indices.length ? "✓" : (gi + 1);
+    n.textContent = g.referencia ? "★" : (feitas === g.indices.length ? "✓" : (gi + 1));
     const t = document.createElement("span");
     t.textContent = g.label;
-    const c = document.createElement("span");
-    c.className = "mod-btn-cont";
-    c.textContent = feitas + "/" + g.indices.length;
-    b.appendChild(n); b.appendChild(t); b.appendChild(c);
+    b.appendChild(n); b.appendChild(t);
+    if (!g.referencia) {
+      const c = document.createElement("span");
+      c.className = "mod-btn-cont";
+      c.textContent = feitas + "/" + g.indices.length;
+      b.appendChild(c);
+    }
     b.addEventListener("click", function() {
       moduloAtual = gi;
       // ao trocar de modulo, cai na primeira aula dele que estiver liberada
@@ -2435,7 +3281,9 @@ function renderLado() {
   mt.textContent = g.label;
   const mm = document.createElement("p");
   mm.className = "lado-meta";
-  mm.textContent = g.indices.length + (g.indices.length === 1 ? " aula" : " aulas") + " · " + feitas + " concluída" + (feitas === 1 ? "" : "s");
+  mm.textContent = g.referencia
+    ? "Sempre disponível"
+    : g.indices.length + (g.indices.length === 1 ? " aula" : " aulas") + " · " + feitas + " concluída" + (feitas === 1 ? "" : "s");
   topo.appendChild(mid); topo.appendChild(mt); topo.appendChild(mm);
   lado.appendChild(topo);
 
@@ -2475,6 +3323,13 @@ function renderLado() {
     const sub = document.createElement("div");
     sub.className = "aula-item-sub";
     sub.textContent = (s.tipo || "Aula") + (s.dur ? " · " + s.dur : "");
+    if (s.atualizando || s.presencial) {
+      const selo = document.createElement("span");
+      selo.className = "aula-item-selo" + (s.presencial && !s.atualizando ? " selo-presencial" : "");
+      selo.textContent = s.atualizando ? "Em atualização" : "Com a liderança";
+      sub.appendChild(document.createElement("br"));
+      sub.appendChild(selo);
+    }
     txt.appendChild(nome); txt.appendChild(sub);
     b.appendChild(txt);
 
@@ -2504,6 +3359,360 @@ function cabecaDePasso(painel, n, texto) {
   return n + 1;
 }
 
+// ======= QUIZ =======
+// Aula com quiz so pode ser marcada como concluida depois da nota minima.
+// Na revisao da gestao (?gestao) o quiz aparece, mas nao tranca nada.
+function temQuiz(s) { return !!(s && s.quiz && s.quiz.perguntas && s.quiz.perguntas.length); }
+
+function quizAprovado(i) {
+  if (!temQuiz(STEPS[i])) return true;
+  if (MODO_GESTAO) return true;
+  return !!quizOk[i];
+}
+
+const LETRAS = ["A", "B", "C", "D", "E"];
+
+function montarQuiz(painel, s, i) {
+  const quiz = s.quiz;
+  const total = quiz.perguntas.length;
+  const minimo = quiz.minimo || total;
+  const respostas = new Array(total).fill(-1);
+  let corrigido = false;
+
+  const box = document.createElement("div");
+  box.className = "quiz";
+
+  const topo = document.createElement("div");
+  topo.className = "quiz-topo";
+  const tt = document.createElement("span");
+  tt.className = "quiz-titulo";
+  tt.textContent = "Quiz — " + total + " perguntas";
+  const rr = document.createElement("span");
+  rr.className = "quiz-regra";
+  rr.textContent = "Acerte " + minimo + " para liberar a próxima aula.";
+  topo.appendChild(tt); topo.appendChild(rr);
+  box.appendChild(topo);
+
+  const blocos = [];
+
+  quiz.perguntas.forEach(function(pg, n) {
+    const bloco = document.createElement("div");
+    bloco.className = "quiz-q";
+
+    const txt = document.createElement("p");
+    txt.className = "quiz-q-txt";
+    txt.innerHTML = '<span class="quiz-q-n">' + (n + 1) + ".</span>";
+    txt.appendChild(document.createTextNode(pg.q));
+    bloco.appendChild(txt);
+
+    const ops = document.createElement("div");
+    ops.className = "quiz-ops";
+    ops.setAttribute("role", "radiogroup");
+    ops.setAttribute("aria-label", "Pergunta " + (n + 1));
+
+    // Ordem sorteada a cada tentativa: quem refaz nao acerta de cor pela posicao.
+    const ordem = pg.ops.map(function(_, k) { return k; });
+    for (let z = ordem.length - 1; z > 0; z--) {
+      const w = Math.floor(Math.random() * (z + 1));
+      const tmp = ordem[z]; ordem[z] = ordem[w]; ordem[w] = tmp;
+    }
+
+    const botoes = [];
+    ordem.forEach(function(orig, k) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "quiz-op";
+      b.setAttribute("role", "radio");
+      b.setAttribute("aria-checked", "false");
+      const le = document.createElement("span");
+      le.className = "quiz-op-letra";
+      le.textContent = LETRAS[k] || (k + 1);
+      const tx = document.createElement("span");
+      tx.textContent = pg.ops[orig];
+      b.appendChild(le); b.appendChild(tx);
+      b.addEventListener("click", function() {
+        if (corrigido) return;
+        respostas[n] = orig;
+        botoes.forEach(function(o, j) {
+          o.classList.toggle("is-sel", j === k);
+          o.setAttribute("aria-checked", j === k ? "true" : "false");
+        });
+        atualizarBotao();
+      });
+      botoes.push(b);
+      ops.appendChild(b);
+    });
+    bloco.appendChild(ops);
+
+    const porque = document.createElement("p");
+    porque.className = "quiz-porque";
+    porque.textContent = pg.porque || "";
+    porque.hidden = true;
+    bloco.appendChild(porque);
+
+    blocos.push({ botoes: botoes, porque: porque, ordem: ordem });
+    box.appendChild(bloco);
+  });
+
+  const acoes = document.createElement("div");
+  acoes.className = "quiz-acoes";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "quiz-btn";
+  btn.textContent = "Corrigir";
+  const nota = document.createElement("span");
+  nota.className = "quiz-nota";
+  nota.hidden = true;
+  const falta = document.createElement("span");
+  falta.className = "quiz-falta";
+  acoes.appendChild(btn); acoes.appendChild(nota); acoes.appendChild(falta);
+  box.appendChild(acoes);
+
+  function atualizarBotao() {
+    const faltam = respostas.filter(function(r) { return r < 0; }).length;
+    btn.disabled = faltam > 0;
+    falta.textContent = faltam > 0
+      ? (faltam === 1 ? "Falta 1 pergunta." : "Faltam " + faltam + " perguntas.")
+      : "";
+  }
+
+  function corrigir() {
+    corrigido = true;
+    box.classList.add("quiz-corrigido");
+    let acertos = 0;
+    quiz.perguntas.forEach(function(pg, n) {
+      if (respostas[n] === pg.certa) acertos++;
+    });
+    const passou = acertos >= minimo;
+
+    // Reprovou: marca so o que errou, sem apontar a certa nem explicar. Senao a
+    // segunda tentativa e so copiar o gabarito que a primeira entregou.
+    quiz.perguntas.forEach(function(pg, n) {
+      const b = blocos[n];
+      b.botoes.forEach(function(o, k) {
+        const orig = b.ordem[k];
+        o.classList.remove("is-sel");
+        if (passou && orig === pg.certa) o.classList.add("is-certa");
+        else if (orig === respostas[n] && respostas[n] !== pg.certa) o.classList.add("is-errada");
+        else if (!passou && orig === respostas[n]) o.classList.add("is-certa");
+      });
+      if (passou) b.porque.hidden = !b.porque.textContent;
+    });
+    nota.hidden = false;
+    nota.className = "quiz-nota " + (passou ? "is-ok" : "is-nao");
+    nota.textContent = acertos + " de " + total + (passou ? " — aprovado" : " — abaixo do mínimo");
+    falta.textContent = passou
+      ? "Pode marcar a aula como concluída."
+      : "Em vermelho, o que você errou. Volte aos vídeos e refaça.";
+
+    btn.textContent = passou ? "Refazer o quiz" : "Refazer o quiz";
+    btn.className = "quiz-btn is-sec";
+    btn.disabled = false;
+    btn.onclick = function() { redesenhar(); };
+
+    if (passou && !quizOk[i]) {
+      quizOk[i] = true;
+      saveQuiz();
+      destravarRodape();
+    }
+  }
+
+  function redesenhar() {
+    const pai = box.parentNode;
+    const novo = montarQuizNode(s, i);
+    pai.replaceChild(novo, box);
+  }
+
+  btn.addEventListener("click", function() {
+    if (!corrigido) corrigir();
+  });
+
+  atualizarBotao();
+
+  if (quizOk[i]) {
+    nota.hidden = false;
+    nota.className = "quiz-nota is-ok";
+    nota.textContent = "Quiz já aprovado";
+  }
+
+  painel.appendChild(box);
+  return box;
+}
+
+// Troca so o bloco do quiz, sem redesenhar a aula inteira.
+function montarQuizNode(s, i) {
+  const caixa = document.createElement("div");
+  montarQuiz(caixa, s, i);
+  return caixa.firstChild;
+}
+
+// Quando o quiz passa, o rodape precisa soltar o botao de concluir sem
+// recarregar o painel (recarregar jogaria a pessoa pro topo da aula).
+function destravarRodape() {
+  const btn = document.querySelector(".painel-rodape .mark-btn");
+  if (btn && btn.disabled) {
+    btn.disabled = false;
+    btn.textContent = "Marcar como concluída";
+  }
+  const hdr = document.getElementById("passo-concluir");
+  if (hdr) {
+    const alvo = hdr.querySelector("span:last-child");
+    if (alvo) alvo.textContent = "Marque como concluída para liberar a próxima";
+  }
+}
+
+// Mapa mental da aula: o desenho inteiro antes do passo a passo. Clicar num
+// momento abre aquela etapa na trilha logo abaixo.
+function montarMapaMental(inner, s) {
+  const wrap = document.createElement("div");
+  wrap.className = "mm";
+
+  const centro = document.createElement("div");
+  centro.className = "mm-centro";
+  const ct = document.createElement("span");
+  ct.className = "mm-centro-tit";
+  ct.textContent = s.mapaCentro || s.name;
+  const cs = document.createElement("span");
+  cs.className = "mm-centro-sub";
+  cs.textContent = s.subSteps.length + " " + (s.mapaRotulo || "momentos");
+  centro.appendChild(ct); centro.appendChild(cs);
+  wrap.appendChild(centro);
+
+  const ramos = document.createElement("div");
+  ramos.className = "mm-ramos";
+
+  s.subSteps.forEach(function(sub, n) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "mm-ramo";
+    const o = document.createElement("span");
+    o.className = "mm-ramo-n";
+    o.textContent = sub.order || (n + 1);
+    const t = document.createElement("span");
+    t.textContent = sub.title;
+    b.appendChild(o); b.appendChild(t);
+    b.addEventListener("click", function() {
+      // o mapa so aponta: quem guarda a etapa aberta continua sendo a trilha
+      const nos = inner.parentNode.querySelectorAll(".mapa-no");
+      if (nos[n]) {
+        nos[n].click();
+        nos[n].scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      ramos.querySelectorAll(".mm-ramo").forEach(function(x, k) {
+        x.classList.toggle("is-atual", k === n);
+      });
+    });
+    ramos.appendChild(b);
+  });
+
+  wrap.appendChild(ramos);
+  inner.appendChild(wrap);
+}
+
+// Placar das rodadas: N linhas para o executivo anotar a nota de cada roleplay.
+// Mora no navegador dele, como o progresso — serve para ele ver a propria
+// evolucao, nao para a gestao ler daqui.
+function chaveNotas(s) { return "podium-onboarding-notas-" + (s.notasId || "geral"); }
+
+function montarPlacar(inner, s) {
+  const total = s.notas || 10;
+  const chave = chaveNotas(s);
+  let dados = null;
+  try { dados = JSON.parse(localStorage.getItem(chave) || "null"); } catch (e) {}
+  if (!Array.isArray(dados) || dados.length !== total) {
+    dados = [];
+    for (let i = 0; i < total; i++) dados.push({ data: "", nota: "" });
+  }
+
+  function guardar() {
+    try { localStorage.setItem(chave, JSON.stringify(dados)); } catch (e) {}
+  }
+
+  const box = document.createElement("div");
+  box.className = "placar";
+
+  const topo = document.createElement("div");
+  topo.className = "placar-topo";
+  const tt = document.createElement("span");
+  tt.className = "placar-titulo";
+  tt.textContent = "Suas " + total + " rodadas";
+  const resumo = document.createElement("span");
+  resumo.className = "placar-resumo";
+  topo.appendChild(tt); topo.appendChild(resumo);
+  box.appendChild(topo);
+
+  function atualizarResumo() {
+    const notas = dados
+      .map(function(d) { return parseFloat(String(d.nota).replace(",", ".")); })
+      .filter(function(n) { return !isNaN(n); });
+    if (notas.length === 0) {
+      resumo.textContent = "Nenhuma rodada anotada ainda.";
+      return;
+    }
+    const soma = notas.reduce(function(a, b) { return a + b; }, 0);
+    const media = Math.round(soma / notas.length);
+    const melhor = Math.max.apply(null, notas);
+    const ultima = notas[notas.length - 1];
+    resumo.textContent = notas.length + " de " + total + " · média " + media +
+      " · melhor " + melhor + " · última " + ultima;
+  }
+
+  for (let i = 0; i < total; i++) {
+    const linha = document.createElement("div");
+    linha.className = "placar-linha";
+
+    const n = document.createElement("span");
+    n.className = "placar-n";
+    n.textContent = "Rodada " + (i + 1);
+
+    const data = document.createElement("input");
+    data.className = "placar-campo";
+    data.type = "text";
+    data.value = dados[i].data || "";
+    data.placeholder = "data e o que você quer lembrar";
+    data.setAttribute("aria-label", "Rodada " + (i + 1) + ": data e observação");
+
+    const nota = document.createElement("input");
+    nota.className = "placar-campo placar-nota";
+    nota.type = "text";
+    nota.inputMode = "decimal";
+    nota.value = dados[i].nota || "";
+    nota.placeholder = "nota";
+    nota.setAttribute("aria-label", "Rodada " + (i + 1) + ": nota");
+
+    function marcar() {
+      linha.classList.toggle("is-feita", !!(dados[i].nota || dados[i].data));
+    }
+
+    data.addEventListener("input", function() {
+      dados[i].data = data.value;
+      guardar(); marcar();
+    });
+    nota.addEventListener("input", function() {
+      dados[i].nota = nota.value;
+      // primeira nota da linha ja carimba a data de hoje, para nao dar trabalho
+      if (nota.value && !dados[i].data) {
+        const hoje = new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo", day: "2-digit", month: "2-digit" });
+        dados[i].data = hoje + " — ";
+        data.value = dados[i].data;
+      }
+      guardar(); marcar(); atualizarResumo();
+    });
+
+    marcar();
+    linha.appendChild(n); linha.appendChild(data); linha.appendChild(nota);
+    box.appendChild(linha);
+  }
+
+  const pe = document.createElement("div");
+  pe.className = "placar-rodape";
+  pe.textContent = s.notasNota || "Anotado fica salvo neste navegador, só para você acompanhar a sua evolução.";
+  box.appendChild(pe);
+
+  atualizarResumo();
+  inner.appendChild(box);
+}
+
 function renderPainel() {
   const painel = document.getElementById("curso-painel");
   painel.innerHTML = "";
@@ -2529,7 +3738,9 @@ function renderPainel() {
 
   const eb = document.createElement("p");
   eb.className = "painel-eyebrow";
-  eb.textContent = "Módulo " + (moduloAtual + 1) + " · Aula " + (i + 1) + " de " + TOTAL;
+  eb.textContent = ehReferencia(i)
+    ? "Módulo " + (moduloAtual + 1) + " · Página de consulta"
+    : "Módulo " + (moduloAtual + 1) + " · Aula " + (i + 1) + " de " + (ultimaReal() + 1);
   painel.appendChild(eb);
 
   const tit = document.createElement("h2");
@@ -2547,6 +3758,30 @@ function renderPainel() {
   desc.textContent = s.desc;
   painel.appendChild(desc);
 
+  // Regravacao em andamento: avisa sem travar a aula, porque o material atual
+  // ainda ensina. Travar aqui pararia a trilha inteira de quem esta entrando.
+  if (s.presencial) {
+    const pv = document.createElement("div");
+    pv.className = "step-presencial-note";
+    const selo = document.createElement("span");
+    selo.className = "painel-selo selo-presencial";
+    selo.textContent = "Com a liderança";
+    pv.appendChild(selo);
+    pv.appendChild(document.createTextNode(" " + s.presencial));
+    painel.appendChild(pv);
+  }
+
+  if (s.atualizando) {
+    const av = document.createElement("div");
+    av.className = "step-pending-note";
+    const selo = document.createElement("span");
+    selo.className = "painel-selo";
+    selo.textContent = "Em atualização";
+    av.appendChild(selo);
+    av.appendChild(document.createTextNode(" " + s.atualizando));
+    painel.appendChild(av);
+  }
+
   let passo = 1;
 
   if (s.video) {
@@ -2559,8 +3794,40 @@ function renderPainel() {
     montarPartes(painel, s);
   }
 
+  let hdrMapa = null;
+  if (s.subSteps && s.trilha && s.mapaMental) {
+    passo = cabecaDePasso(painel, passo, s.passoMapa || "Veja o mapa inteiro da apresentação");
+    hdrMapa = painel.lastChild;
+    montarMapaMental(painel, s);
+  }
+
   if (s.subSteps && s.trilha) {
-    passo = cabecaDePasso(painel, passo, "Percorra as etapas, uma de cada vez");
+    const n = s.subSteps.length;
+    const hdrTrilha = cabecaDePasso(painel, passo, "Percorra as " + n + " etapas, uma de cada vez");
+    const hdrEl = painel.lastChild;
+    // chamada no fim do bloco de video: sem ela a aula parece terminar no player
+    if (s.videos && s.videos.length > 0) {
+      const partesBox = painel.querySelector(".partes");
+      if (partesBox) {
+        const cta = document.createElement("button");
+        cta.type = "button";
+        cta.className = "continua";
+        const seta = document.createElement("span");
+        seta.className = "continua-seta";
+        seta.textContent = "↓";
+        const txt = document.createElement("span");
+        txt.textContent = s.mapaMental
+          ? "Terminou os vídeos? A aula continua abaixo: o mapa das " + n + " etapas e depois cada uma delas."
+          : "Terminou os vídeos? A aula continua abaixo: as " + n + " etapas da call, uma de cada vez.";
+        cta.appendChild(seta); cta.appendChild(txt);
+        const alvo = hdrMapa || hdrEl;
+        cta.addEventListener("click", function() {
+          if (alvo && alvo.scrollIntoView) alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        partesBox.parentNode.insertBefore(cta, partesBox.nextSibling);
+      }
+    }
+    passo = hdrTrilha;
     montarTrilha(painel, s, i);
   } else if (s.subSteps) {
     passo = cabecaDePasso(painel, passo, "Estude os blocos abaixo");
@@ -2581,8 +3848,12 @@ function renderPainel() {
     painel.appendChild(subDiv);
   }
 
+  // Capas da aula: o quiz la embaixo so abre com todas marcadas.
+  const videosDaAula = [];
+  const avisarVisto = { fn: null };
+
   if (s.links && s.links.length > 0) {
-    const comCapa = [];
+    const comCapa = videosDaAula;
     const semCapa = [];
     const jaEmbutidos = idsDeVideo(s);
     s.links.forEach(function(l) {
@@ -2591,11 +3862,12 @@ function renderPainel() {
       if (jaEmbutidos.some(function(id) { return l.url.indexOf(id) >= 0; })) return;
       const yt = idYoutube(l.url);
       if (yt) comCapa.push({ url: l.url, txt: l.txt, ytId: yt });
+      else if (l.capa) comCapa.push({ url: l.url, txt: l.txt, capa: l.capa });
       else semCapa.push(l);
     });
     if (comCapa.length > 0) {
       passo = cabecaDePasso(painel, passo, comCapa.length === 1 ? "Assista ao vídeo" : "Assista aos vídeos, na ordem");
-      montarGaleria(painel, comCapa);
+      montarGaleria(painel, comCapa, function() { if (avisarVisto.fn) avisarVisto.fn(); });
     }
     if (semCapa.length > 0) {
       passo = cabecaDePasso(painel, passo, semCapa.length === 1 ? "Abra o material" : "Abra os materiais");
@@ -2642,6 +3914,61 @@ function renderPainel() {
     painel.appendChild(box);
   }
 
+  if (s.notas) {
+    passo = cabecaDePasso(painel, passo, s.passoNotas || ("Anote a nota de cada uma das " + s.notas + " rodadas"));
+    montarPlacar(painel, s);
+  }
+
+  if (temQuiz(s)) {
+    const nQuiz = passo;
+    passo = nQuiz + 1;
+    const regra = "Responda o quiz — " + (s.quiz.minimo || s.quiz.perguntas.length) + " acertos em " + s.quiz.perguntas.length;
+    const secao = document.createElement("div");
+    painel.appendChild(secao);
+    const pintarQuiz = function() {
+      secao.textContent = "";
+      cabecaDePasso(secao, nQuiz, regra);
+      const faltam = videosDaAula.filter(function(l) { return !assistido(l.url); }).length;
+      if (faltam === 0) {
+        montarQuiz(secao, s, i);
+        return;
+      }
+      const tr = document.createElement("div");
+      tr.className = "quiz-trava";
+      const tx = document.createElement("div");
+      tx.className = "quiz-trava-txt";
+      const forte = document.createElement("strong");
+      forte.textContent = faltam === 1
+        ? "Falta 1 vídeo para o quiz abrir"
+        : "Faltam " + faltam + " vídeos para o quiz abrir";
+      tx.appendChild(forte);
+      tx.appendChild(document.createTextNode(
+        "Assista a cada vídeo acima e marque “Assistido” no card. Com os "
+        + videosDaAula.length + " marcados, as perguntas aparecem aqui."));
+      tr.appendChild(tx);
+      if (MODO_GESTAO) {
+        const bt = document.createElement("button");
+        bt.className = "quiz-trava-btn";
+        bt.type = "button";
+        bt.textContent = "Marcar todos (revisão)";
+        bt.addEventListener("click", function() {
+          videosDaAula.forEach(function(l) { vistos[l.url] = true; });
+          saveVistos();
+          document.querySelectorAll(".video-item").forEach(function(c) { c.classList.add("is-visto"); });
+          document.querySelectorAll(".video-visto").forEach(function(x) {
+            x.setAttribute("aria-pressed", "true");
+            if (x.lastChild) x.lastChild.textContent = "Assistido";
+          });
+          if (avisarVisto.fn) avisarVisto.fn();
+        });
+        tr.appendChild(bt);
+      }
+      secao.appendChild(tr);
+    };
+    avisarVisto.fn = pintarQuiz;
+    pintarQuiz();
+  }
+
   if (s.missing && s.missing.length > 0) {
     const mnote = document.createElement("div");
     mnote.className = "step-pending-note";
@@ -2653,17 +3980,33 @@ function renderPainel() {
   const rod = document.createElement("div");
   rod.className = "painel-rodape";
 
-  if (s.pending) {
+  if (s.referencia) {
+    const note = document.createElement("div");
+    note.className = "painel-prox";
+    note.innerHTML = "Esta página não precisa ser concluída — ela fica aberta do primeiro ao último dia.";
+    rod.appendChild(note);
+  } else if (s.pending) {
     const note = document.createElement("div");
     note.className = "step-pending-note";
     note.textContent = "Os vídeos serão adicionados assim que gravados. Aguarde a notificação da liderança.";
     rod.appendChild(note);
   } else {
-    cabecaDePasso(painel, passo, done[i] ? "Aula concluída" : "Marque como concluída para liberar a próxima");
+    const travadoPeloQuiz = !done[i] && !quizAprovado(i);
+    const hdrFim = painel.lastChild;
+    cabecaDePasso(painel, passo, done[i]
+      ? "Aula concluída"
+      : (travadoPeloQuiz ? "Passe no quiz para concluir a aula" : "Marque como concluída para liberar a próxima"));
+    const hdrConcluir = hdrFim ? hdrFim.nextSibling : null;
+    if (hdrConcluir) hdrConcluir.id = "passo-concluir";
     const btn = document.createElement("button");
     btn.className = "mark-btn" + (done[i] ? " is-done-btn" : "");
     btn.textContent = done[i] ? "✓ Concluída — desfazer" : "Marcar como concluída";
+    if (travadoPeloQuiz) {
+      btn.disabled = true;
+      btn.textContent = "Responda o quiz acima";
+    }
     btn.addEventListener("click", function() {
+      if (btn.disabled) return;
       const marcando = !done[i];
       if (!marcando) {
         // Desmarcar tranca as seguintes: senao a aula fica concluida e travada
@@ -2690,7 +4033,7 @@ function renderPainel() {
     });
     rod.appendChild(btn);
 
-    if (i + 1 < TOTAL) {
+    if (i < ultimaReal()) {
       const prox = document.createElement("span");
       prox.className = "painel-prox";
       prox.innerHTML = "A seguir: <strong>" + STEPS[i + 1].name + "</strong>";
@@ -2707,8 +4050,10 @@ function renderPainel() {
 }
 
 function updateProgress() {
-  const n = done.filter(Boolean).length;
-  const pct = Math.round(n / TOTAL * 100);
+  // A pagina de links nao e aula: nao entra na conta nem segura os 100%.
+  const reais = STEPS.filter(function(s) { return !s.referencia; }).length;
+  const n = done.filter(function(v, i) { return v && !ehReferencia(i); }).length;
+  const pct = reais > 0 ? Math.round(n / reais * 100) : 0;
   const fill = document.getElementById("prog-fill");
   const num = document.getElementById("prog-num");
   if (fill) fill.style.width = pct + "%";
