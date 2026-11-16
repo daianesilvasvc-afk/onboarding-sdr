@@ -1806,12 +1806,72 @@ const STEPS_COMERCIAL = [
   },
   {
     name: "Cash.IA — a automação da barbearia",
-    tipo: "Vídeo", dur: "1 vídeo",
+    tipo: "Vídeo", dur: "1 vídeo + quiz",
     tag: "watch", tagTxt: "assistir",
-    desc: "Depois do modelo de assinatura vem a outra ponta do que a Podium vende: automação. Assista ao vídeo do Lincohn sobre o Cash.IA e saia dele sabendo responder três coisas na ligação — o que o Cash.IA faz pela barbearia no dia a dia, que trabalho ele tira da mão do dono, e para que tipo de barbearia isso muda o jogo. Anote as dúvidas e leve para o treinamento com a liderança. Marque como assistido ao terminar.",
+    desc: "Depois do modelo de assinatura vem a outra ponta do que a Podium vende: automação. O Lincohn apresenta a Cash.IA ao vivo, conversando com ela na frente de todo mundo e respondendo as dúvidas de quem assiste. Saia desta aula sabendo responder três coisas na ligação: o que a Cash.IA faz no dia a dia da barbearia, o que ela não faz e entrega para um humano, e por que isso muda a conta do dono. Marque como assistido ao terminar: o quiz abre depois, e pede 4 acertos em 5.",
     links: [
       { url: "https://www.youtube.com/watch?v=ivvNnSLUH4Q", txt: "Cash.IA — Automatize sua barbearia" }
-    ]
+    ],
+    quiz: {
+      minimo: 4,
+      perguntas: [
+        {
+          q: "O dono pergunta: \u0022o que a Cash.IA faz que a minha recepcionista não faz?\u0022. Qual resposta é fiel ao que o Lincohn mostra?",
+          ops: [
+            "Nenhuma: ela faz o mesmo trabalho da recepção, a vantagem é ser mais barata e atender 24 horas.",
+            "Todo dia, de manhã e à tarde, ela manda para cada barbeiro a lista de quem ele vai atender e os serviços de recompra para oferecer a cada cliente.",
+            "Ela atende o cliente presencialmente enquanto o barbeiro termina o corte anterior.",
+            "Ela garante que nenhum assinante cancela, porque negocia a permanência antes de passar para alguém."
+          ],
+          certa: 1,
+          porque: "O relatório para o barbeiro, com as recompras já cruzadas com o que está configurado no Cash Barber, é o ponto em que ela passa de recepção para gerente — e é o que o Lincohn diz que nem o gerente costuma fazer."
+        },
+        {
+          q: "Um cliente manda \u0022quero cancelar meu plano\u0022. O que a Cash.IA faz?",
+          ops: [
+            "Cancela o plano direto no Cash Barber e avisa o dono depois.",
+            "Tenta segurar o cliente com uma oferta antes de passar para alguém.",
+            "Transfere para o número de salvamento — gerente, dono ou recepção —, porque assunto financeiro ela não trata.",
+            "Responde que não entendeu e encerra a conversa."
+          ],
+          certa: 2,
+          porque: "Tudo que é financeiro — cancelamento, inadimplência, cobrança, cliente querendo comprar — ela entrega para um humano, no número que a barbearia configura. Reclamação e assunto fora do escopo seguem o mesmo caminho."
+        },
+        {
+          q: "O corte está configurado com 30 minutos e o barbeiro tem 15 minutos livres na agenda. A Cash.IA encaixa o cliente?",
+          ops: [
+            "Não: ela segue a regra de agenda do Cash Barber e não encavala horário; encaixe só quando o serviço cabe no bloco.",
+            "Sim, se o cliente insistir que é rápido.",
+            "Sim: ela avalia o tipo de cabelo do cliente e decide se dá tempo.",
+            "Não, mas coloca o cliente numa lista de espera automática."
+          ],
+          certa: 0,
+          porque: "Ela não quebra a regra do Cash Barber — marcar horário em cima de horário daria mais problema que solução. E o Lincohn é direto: a IA não resolve 100%, porque não tem o contexto que o humano tem do cliente."
+        },
+        {
+          q: "Como funcionam os créditos da Cash.IA?",
+          ops: [
+            "Cada conversa com um cliente consome exatamente um crédito.",
+            "Vem com uma franquia mensal de 25 créditos, que dá conta de mais ou menos cinco barbeiros; crédito extra comprado e não usado acumula para o mês seguinte, a franquia não.",
+            "Tudo que sobra acumula, inclusive a franquia mensal.",
+            "Não há limite: o valor mensal cobre qualquer volume de conversa."
+          ],
+          certa: 1,
+          porque: "A franquia renova todo mês como qualquer mensalidade. Crédito adicional, esse sim, fica para o mês seguinte se não for usado. E uma resposta consome fração de crédito, não um crédito inteiro."
+        },
+        {
+          q: "Alguém da barbearia assume uma conversa no WhatsApp. O que acontece com a IA?",
+          ops: [
+            "Ela continua respondendo junto, para não deixar o cliente esperando.",
+            "Ela desliga em todas as conversas até alguém reativar.",
+            "Ela para naquela conversa por duas horas; as outras seguem normalmente.",
+            "Ela devolve a conversa para o humano de vez e não volta mais naquele cliente."
+          ],
+          certa: 2,
+          porque: "A pausa é só naquela conversa, e dura duas horas — tempo de o humano terminar o atendimento sem a IA falar por cima. A memória dela, aliás, também é curta: 24 horas."
+        }
+      ]
+    }
   },
   {
     name: "Depoimentos de alunos",
@@ -2657,7 +2717,7 @@ const STEPS_FARMER = [
 
 const GROUPS_COMERCIAL = [
     { label: "F1 · O que vendemos", indices: [0, 1, 2],
-      intro: "Antes de qualquer processo, o produto. Entenda o que a assinatura resolve na barbearia e por que ela ganha do modelo tradicional — é esse contexto que sustenta a ligação. Sem ele, a prospecção vira leitura de script. São três aulas: a assinatura, a automação do Cash.IA e os casos de quem já passou pelo processo. A primeira e a última terminam em quiz — sem acertar o mínimo, o módulo seguinte não abre." },
+      intro: "Antes de qualquer processo, o produto. Entenda o que a assinatura resolve na barbearia e por que ela ganha do modelo tradicional — é esse contexto que sustenta a ligação. Sem ele, a prospecção vira leitura de script. São três aulas: a assinatura, a automação do Cash.IA e os casos de quem já passou pelo processo. As três terminam em quiz — sem acertar o mínimo, o módulo seguinte não abre." },
     { label: "F1 · Ferramentas e nomenclaturas", indices: [3, 4, 5, 6],
       intro: "Este módulo inteiro acontece ao vivo, no treinamento presencial com a liderança: as três ferramentas (Pipedrive, Podium OS e 3C Plus), o papel do Executivo e o playbook. Depois do treinamento você volta aqui, faz o review das descrições com calma e fecha no quiz da última aula — ele cobra as quatro." },
     { label: "F1 · Script e ligação", indices: [7, 8],
