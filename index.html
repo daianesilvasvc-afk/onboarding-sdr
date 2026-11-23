@@ -2822,6 +2822,44 @@ if (MODO_GESTAO) {
   if (faixa) faixa.hidden = false;
 }
 
+// Trocou de navegador e perdeu o progresso. O progresso mora no localStorage,
+// que e por navegador: a gestao nao tem como escrever no navegador de outra
+// pessoa. O jeito e um link ?liberar=N, que marca as N primeiras aulas como
+// feitas AQUI. Isso nao e conclusao de verdade e o painel nao finge que e:
+// entra como "liberado pela gestao", separado de "concluiu a aula".
+let liberadoAte = 0;
+(function () {
+  if (MODO_GESTAO) return;
+  const mt = location.search.match(/[?&]trilha=([a-z]+)/);
+  if (mt && TRILHAS[mt[1]] && mt[1] !== trilhaAtual) {
+    trilhaAtual = mt[1];
+    try { localStorage.setItem("podium-onboarding-trilha", trilhaAtual); } catch (e) {}
+    carregarProgresso();
+  }
+  const m = location.search.match(/[?&]liberar=(\d+)/);
+  if (!m) return;
+  const ate = Math.min(parseInt(m[1], 10), TOTAL);
+  if (!(ate > 0)) return;
+  for (let i = 0; i < ate; i++) {
+    done[i] = true;
+    quizOk[i] = true;
+    // Marca tambem os videos: aula dada como feita com a trava do quiz ainda
+    // de pe seria um meio-estado confuso para quem abrisse de novo.
+    (STEPS[i].links || []).forEach(function (l) { if (l.url) vistos[l.url] = true; });
+  }
+  save();
+  saveQuiz();
+  saveVistos();
+  liberadoAte = ate;
+  // Tira o parametro da barra de endereco: e link de uso unico, nao e para
+  // virar favorito que relibera tudo a cada visita.
+  try {
+    const u = new URL(location.href);
+    u.searchParams.delete("liberar");
+    history.replaceState(null, "", u.pathname + u.search + u.hash);
+  } catch (e) {}
+})();
+
 // Desbloqueio progressivo: um passo so abre depois que todos os anteriores
 // foram concluidos. O primeiro esta sempre liberado.
 function ehReferencia(i) { return !!(STEPS[i] && STEPS[i].referencia); }
@@ -4414,6 +4452,7 @@ function pedirNome() {
     fundo.remove();
     mostrarQuem();
     registrar("entrou", { aula: -1 });
+    registrarLiberacao();
     ultimaAulaVista = -1;
     aoAbrirAula(aulaAtual);
     enviarFila(false);
@@ -4439,6 +4478,12 @@ function mostrarQuem() {
   barra.appendChild(tag);
 }
 
+function registrarLiberacao() {
+  if (!liberadoAte) return;
+  registrar("liberado", { aula: -1, detalhe: { aulas: liberadoAte } });
+  liberadoAte = 0;
+}
+
 function iniciarRegistro() {
   if (MODO_GESTAO) return;
   carregarQuem();
@@ -4446,6 +4491,7 @@ function iniciarRegistro() {
   if (!quem) { pedirNome(); return; }
   mostrarQuem();
   registrar("entrou", { aula: -1 });
+  registrarLiberacao();
   ultimaAulaVista = -1;
   aoAbrirAula(aulaAtual);
   enviarFila(false);
@@ -4454,6 +4500,7 @@ function iniciarRegistro() {
 // ======= PAINEL DE USO (so com ?gestao) =======
 const ROTULO_EV = {
   entrou: "Abriu a trilha",
+  liberado: "Liberado pela gestão",
   aula_abriu: "Abriu a aula",
   aula_concluiu: "Concluiu a aula",
   aula_desmarcou: "Desmarcou a aula",

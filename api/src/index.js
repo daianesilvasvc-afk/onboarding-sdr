@@ -17,7 +17,7 @@ const ID_OK = /^[a-zA-Z0-9-]{8,64}$/;
 const TIPOS = [
   "entrou", "aula_abriu", "aula_concluiu", "aula_desmarcou",
   "video_abriu", "video_assistido", "video_desmarcou",
-  "quiz_tentativa", "tempo"
+  "quiz_tentativa", "tempo", "liberado"
 ];
 
 function cors(request) {

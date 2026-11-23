@@ -29,6 +29,34 @@ O `deploy` imprime a URL. Se ela não for exatamente
 `https://onboarding-api.podium-playbook.workers.dev`, troque a constante
 `API_PADRAO` no `index.html` e publique a página de novo.
 
+## Liberar progresso de quem trocou de navegador
+
+O progresso mora no `localStorage`, que e por navegador. Quem troca de maquina
+ou de navegador comeca do zero, e nao existe jeito de a gestao escrever no
+navegador de outra pessoa. A saida e mandar um link de uso unico:
+
+```
+https://daianesilvasvc-afk.github.io/onboarding-sdr/?liberar=12
+```
+
+Isso marca as 12 primeiras aulas como feitas **naquele navegador** e abre o
+modulo seguinte. O numero e a quantidade de aulas a marcar, ou seja, o indice
+da primeira aula que a pessoa ainda vai estudar:
+
+| abrir ate | numero |
+|---|---|
+| F1 · Ferramentas e nomenclaturas | 3 |
+| F1 · Script e ligacao | 7 |
+| F1 · Ligar de verdade | 9 |
+| F2 · O metodo | 12 |
+| F2 · A call | 15 |
+| F2 · Fechar e entregar | 21 |
+
+O parametro sai da barra de endereco assim que e aplicado, para o link nao
+virar favorito que relibera tudo a cada visita. O painel `?gestao` registra o
+evento como **"Liberado pela gestao"**, nunca como aula concluida: liberacao e
+decisao de gestor, nao estudo, e os dois nao podem se confundir no relatorio.
+
 ## Rotas
 
 | rota | o que faz |
