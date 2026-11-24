@@ -2812,7 +2812,7 @@ const STEPS_EVENTOS = [
     name: "O que a Podium é — e por que o dono para para ouvir",
     tipo: "Leitura", dur: "3 vídeos + quiz",
     tag: "must", tagTxt: "obrigatório",
-    desc: "Você não precisa saber dos produtos o que um Executivo de Vendas sabe. Precisa saber o que a Podium é, inteiro, em uma frase — porque em toda ligação de evento alguém pergunta “mas vocês são o quê?”, e titubear ali custa a vaga. Leia os quatro blocos, assista aos três vídeos e feche o quiz: 3 acertos em 4. Os dois últimos são o modelo de assinatura pela voz do Lincohn — você não vende assinatura, mas é dela que quase todo evento fala.",
+    desc: "Você não precisa saber dos produtos o que um Executivo de Vendas sabe. Precisa saber o que a Podium é, inteiro, em uma frase — porque em toda ligação de evento alguém pergunta “mas vocês são o quê?”, e titubear ali custa a vaga. Os quatro primeiros blocos explicam o que a Podium é; os três últimos, quem ela é — os rostos que o lead reconhece do anúncio antes de você abrir a boca. Leia os sete, assista aos três vídeos e feche o quiz: 4 acertos em 5. Os dois últimos vídeos são o modelo de assinatura pela voz do Lincohn — você não vende assinatura, mas é dela que quase todo evento fala.",
     links: [
       { url: "https://www.youtube.com/watch?v=7erthoOSck8", txt: "Por que a assinatura ganha da barbearia tradicional? — Oficina Shelby" },
       { url: "https://www.youtube.com/watch?v=ty7TkzVutRY", txt: "O Futuro é Recorrente, aula 1 — Como lançar seu clube de assinaturas" },
@@ -2822,7 +2822,7 @@ const STEPS_EVENTOS = [
       {
         order: "01",
         title: "Lincohn Agner — a pessoa por trás",
-        why: "Criador do modelo de barbearia por assinatura no Brasil, dono da John Six e do Cash Barber. Quando o dono pergunta de quem é a Podium, é esse nome que responde.",
+        why: "Lincohn Agner Mendes, de Curitiba. Criador do modelo de barbearia por assinatura no Brasil, dono da John Six, sócio-administrador da Podium Educação e ligado ao Cash Barber. Quando o dono pergunta de quem é a Podium, é esse nome que responde.",
         result: "O dono entende que não é curso genérico de gestão: é um barbeiro que montou o modelo e vive dele."
       },
       {
@@ -2842,10 +2842,28 @@ const STEPS_EVENTOS = [
         title: "Podium Educação — a formação",
         why: "A escola: cursos, mentorias e os eventos que você vende. O evento é a porta de entrada desse mundo, não um produto solto no meio do nada.",
         result: "Você sabe explicar por que a Podium faz evento: é onde o dono conhece o método antes de entrar."
+      },
+      {
+        order: "05",
+        title: "Will Vences — o rosto dos anúncios",
+        why: "Diretor da Barbearia John Six e head de comunidade da Podium, também em Curitiba. Fala de gestão, vendas e liderança de equipe para dono de barbearia, e é dele a masterclass Choque de Gestão. É quem aparece na maior parte dos anúncios de evento — boa parte dos seus leads chega tendo visto um vídeo dele.",
+        result: "Quando o lead disser que viu um vídeo do Will, você sabe quem ele viu e sobre o que — e não confunde com o Lincohn."
+      },
+      {
+        order: "06",
+        title: "Rapha Barber — o nome que o lead já conhece",
+        why: "O Rapha Ensina. Fundador da Barbearia do Rapha, com unidades em Belo Horizonte, e sócio ligado à Podium. Ensina o que vem depois da técnica de corte: precificação, contratação, retenção de equipe e postura de empresário. Começou cedo na profissão, sem faculdade, e usa a própria trajetória como prova.",
+        result: "É o nome que abre porta sozinho. Muito dono conhece o Rapha antes de conhecer a Podium."
+      },
+      {
+        order: "07",
+        title: "Deivisson Santos — o treinador da equipe",
+        why: "O Barbeiro Evolução. Criador do Método MVC e à frente da Evolution Academy Pro, com mais de mil barbearias passadas pelos treinamentos dele. Ensina venda de serviço extra, ticket médio, quebra de objeção e recorrência — e fala com o barbeiro, não só com o dono.",
+        result: "Quando o tema do evento for equipe ou ticket médio, é o nome que sustenta a conversa."
       }
     ],
     quiz: {
-      minimo: 3,
+      minimo: 4,
       perguntas: [
         {
           q: "No meio da ligação o dono corta e pergunta: “mas a Podium é o quê, exatamente?”. Qual resposta está certa?",
@@ -2890,6 +2908,17 @@ const STEPS_EVENTOS = [
           ],
           certa: 2,
           porque: "Isso muda a sua ligação: você não está vendendo o fim da jornada do dono, está vendendo o começo dela."
+        },
+        {
+          q: "O lead diz: “eu vi um vídeo do Will falando desse evento”. Quem é ele?",
+          ops: [
+            "Um palestrante contratado para o evento, sem ligação com a Podium.",
+            "Diretor da Barbearia John Six e head de comunidade da Podium — é o rosto da maior parte dos anúncios de evento.",
+            "O criador do modelo de assinatura e dono do Cash Barber.",
+            "Um aluno da Podium que virou caso de sucesso e hoje grava depoimento."
+          ],
+          certa: 1,
+          porque: "Confundir o Will com o Lincohn é o erro mais fácil, e o lead percebe. O Lincohn criou o modelo; o Will dirige a John Six, lidera a comunidade e é quem aparece nos anúncios."
         }
       ]
     }
