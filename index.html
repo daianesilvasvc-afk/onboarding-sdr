@@ -2748,6 +2748,67 @@ const GROUPS_FARMER = [
 // e palco entram depois, como ficha de consulta.
 const STEPS_EVENTOS = [
   {
+    name: "Cadeira do Dono — o modelo de assinatura",
+    tipo: "Vídeo", dur: "4 aulas + quiz",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Você não vende assinatura, mas ela é o assunto que atravessa quase todo evento da Podium — e é o vocabulário que o dono usa na ligação: recorrência, plano, cadeira cheia, cliente que some. São quatro aulas da trilha Cadeira do Dono, dentro do painel do CashBarber, na ordem abaixo. O objetivo não é decorar nem explicar o modelo para o lead: é entender o suficiente para acompanhar a conversa e reconhecer a dor. Se ele quiser aprofundar, quem responde é o palco — e isso é um bom motivo para ele ir. Marque cada vídeo como assistido ao terminar: com os quatro marcados o quiz abre, e pede 3 acertos em 4.",
+    links: [
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1958&play", txt: "Cadeira do Dono 01 — Assinatura vale a pena?", capa: "img/cadeira-do-dono.webp" },
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1959&play", txt: "Cadeira do Dono 02 — Assinatura é desconto?", capa: "img/cadeira-do-dono.webp" },
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1960&play", txt: "Cadeira do Dono 03 — Assinatura fases 2, 3 e 4", capa: "img/cadeira-do-dono.webp" },
+      { url: "https://painel.cashbarber.com.br/skills/player/7?v=1961&play", txt: "Cadeira do Dono 04 — Construção e metas", capa: "img/cadeira-do-dono.webp" }
+    ],
+    quiz: {
+      minimo: 3,
+      perguntas: [
+        {
+          q: "Um dono diz na ligação: “assinatura é só dar desconto pro cliente”. O que ele está errando?",
+          ops: [
+            "Nada: é desconto mesmo, mas compensa no volume de clientes.",
+            "Não é desconto, é recorrência: o cliente passa a voltar mais vezes e a barbearia troca faturamento imprevisível por receita que se repete todo mês.",
+            "É desconto, e por isso só funciona em barbearia de preço alto.",
+            "Depende: vira desconto quando a agenda já está cheia."
+          ],
+          certa: 1,
+          porque: "O argumento do desconto olha só o ticket de um corte. A assinatura se sustenta pela frequência e pela previsibilidade — é isso que muda o caixa do dono."
+        },
+        {
+          q: "Qual é o ganho principal que a assinatura traz para o dono da barbearia?",
+          ops: [
+            "Poder aumentar o preço do corte avulso.",
+            "Receita previsível todo mês e cadeira ocupada nos horários vazios.",
+            "Reduzir o número de barbeiros da equipe.",
+            "Substituir o marketing da barbearia."
+          ],
+          certa: 1,
+          porque: "Previsibilidade e ocupação são as duas pontas do modelo: o dono sabe quanto entra e deixa de ter cadeira parada."
+        },
+        {
+          q: "Por que a Cadeira do Dono trata a assinatura em fases, e não como uma ação única?",
+          ops: [
+            "Porque cada fase é um produto diferente do CashBarber.",
+            "Porque só barbearia grande chega na fase 2.",
+            "Porque o modelo se constrói por etapas: lançar a base é só o começo, e as fases seguintes tratam de sustentar e crescer a carteira de assinantes.",
+            "Porque cada fase corresponde a um mês do ano."
+          ],
+          certa: 2,
+          porque: "Vender a primeira leva de assinaturas é o começo. O que mantém o resultado é o que vem depois — e é por isso que existe fase 2, 3 e 4."
+        },
+        {
+          q: "O lead pergunta, no meio da ligação do evento, como ele faria a assinatura funcionar na barbearia dele. Qual é a conduta certa?",
+          ops: [
+            "Explicar o modelo inteiro ali, para mostrar domínio e ganhar confiança.",
+            "Dizer que não é a sua área e mudar de assunto.",
+            "Mostrar que entendeu a pergunta, responder no geral e usar a dúvida como motivo para ir ao evento, onde quem responde é quem construiu o modelo.",
+            "Mandar os links das aulas da Cadeira do Dono para ele assistir antes."
+          ],
+          certa: 2,
+          porque: "Quem vende evento não é o professor. Conhecer o modelo serve para acompanhar a conversa e reconhecer a dor; a dúvida funda do lead é exatamente o que o evento resolve."
+        }
+      ]
+    }
+  },
+  {
     name: "O que a Podium é — e por que o dono para para ouvir",
     tipo: "Leitura", dur: "1 vídeo + quiz",
     tag: "must", tagTxt: "obrigatório",
@@ -2830,16 +2891,6 @@ const STEPS_EVENTOS = [
         }
       ]
     }
-  },
-  {
-    name: "Assinatura — o vocabulário do dono",
-    tipo: "Vídeo", dur: "2 vídeos",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Você não vende assinatura. Mas ela atravessa quase todo evento da Podium, e o dono vai usar as palavras dela na ligação: recorrência, plano, cadeira cheia, cliente que some. Esta aula é para você acompanhar a conversa, não para explicar o modelo — se o lead quiser aprofundar, quem responde é o palco, e isso é um bom motivo para ele ir. Marque os dois vídeos como assistidos ao terminar.",
-    links: [
-      { url: "https://www.youtube.com/watch?v=ty7TkzVutRY", txt: "O Futuro é Recorrente, aula 1 — Como lançar seu clube de assinaturas" },
-      { url: "https://www.youtube.com/watch?v=LLwKNeLXLPk", txt: "O Futuro é Recorrente, aula 3 — Assinatura é o futuro" }
-    ]
   },
   {
     name: "As sete travas do dono — e como ele fala delas",
@@ -3290,7 +3341,7 @@ const STEPS_EVENTOS = [
 
 const GROUPS_EVENTOS = [
   { label: "A essência da Podium", indices: [0, 1],
-    intro: "Quem vende evento não precisa saber dos produtos o que um Executivo de Vendas sabe. Precisa saber o que a Podium é e de onde ela vem, porque isso aparece em toda ligação. Duas aulas: a empresa e o modelo de assinatura, que é o assunto que atravessa quase todo evento." },
+    intro: "Quem vende evento não precisa saber dos produtos o que um Executivo de Vendas sabe. Precisa saber o modelo que o dono veio buscar e o que a Podium é, porque isso aparece em toda ligação. Duas aulas: a assinatura pela Cadeira do Dono, igual à trilha Comercial, e a empresa inteira em uma frase." },
   { label: "Quem é o dono de barbearia", indices: [2, 3],
     intro: "O tema do evento muda toda hora; o dono do outro lado da linha é sempre o mesmo. Aqui está o retrato dele — as travas e as palavras que ele usa — e as cinco perguntas que fazem a conversa começar pelo negócio dele." },
   { label: "Os três tipos de evento", indices: [4],
@@ -3312,7 +3363,7 @@ const TEXTOS = {
   },
   eventos: {
     eyebrow: "Comercial · Eventos",
-    sub: "8 aulas em 4 módulos. Não ensina um evento: ensina o que não muda de um evento para o outro — a essência da Podium, quem é o dono de barbearia, os três tipos de evento e a ligação. A ficha de cada evento entra depois, como página de consulta."
+    sub: "8 aulas em 4 módulos. Não ensina um evento: ensina o que não muda de um evento para o outro — o modelo de assinatura e a essência da Podium, quem é o dono de barbearia, os três tipos de evento e a ligação. A ficha de cada evento entra depois, como página de consulta."
   },
   farmer: {
     eyebrow: "Revenue · Farmer",
