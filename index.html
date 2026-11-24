@@ -2742,15 +2742,577 @@ const GROUPS_FARMER = [
   { label: "Prática", indices: [8] }
 ];
 
+// ===== TRILHA DE EVENTOS =====
+// Eventos nascem o tempo todo e alguns surgem do nada. Por isso esta trilha
+// nao ensina um evento: ensina o que nao muda de um para o outro. Data, preco
+// e palco entram depois, como ficha de consulta.
+const STEPS_EVENTOS = [
+  {
+    name: "O que a Podium é — e por que o dono para para ouvir",
+    tipo: "Leitura", dur: "1 vídeo + quiz",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Você não precisa saber dos produtos o que um Executivo de Vendas sabe. Precisa saber o que a Podium é, inteiro, em uma frase — porque em toda ligação de evento alguém pergunta “mas vocês são o quê?”, e titubear ali custa a vaga. Leia os quatro blocos, assista ao vídeo e feche o quiz: 3 acertos em 4.",
+    links: [
+      { url: "https://www.youtube.com/watch?v=7erthoOSck8", txt: "Por que a assinatura ganha da barbearia tradicional? — Oficina Shelby" }
+    ],
+    subSteps: [
+      {
+        order: "01",
+        title: "Lincohn Agner — a pessoa por trás",
+        why: "Criador do modelo de barbearia por assinatura no Brasil, dono da John Six e do Cash Barber. Quando o dono pergunta de quem é a Podium, é esse nome que responde.",
+        result: "O dono entende que não é curso genérico de gestão: é um barbeiro que montou o modelo e vive dele."
+      },
+      {
+        order: "02",
+        title: "John Six — onde o modelo foi provado",
+        why: "A rede de barbearias do Lincohn: 4 lojas, equipe de 25 barbeiros e mais de 8 anos de marca. O que a Podium ensina passou por lá antes de virar método.",
+        result: "Você tem resposta para o “mas isso funciona na prática?” — funciona na barbearia de quem ensina."
+      },
+      {
+        order: "03",
+        title: "Cash Barber — o sistema",
+        why: "Sistema de gestão e assinatura para barbearia. É o sistema oficial do Summit e está entre os dois maiores do mercado em gestão e agendamento, com mais de 3 mil barbearias ativas e mais de 100 mil agendamentos por dia.",
+        result: "Você sabe que existe um sistema da casa — e que ele não é o assunto da sua ligação."
+      },
+      {
+        order: "04",
+        title: "Podium Educação — a formação",
+        why: "A escola: cursos, mentorias e os eventos que você vende. O evento é a porta de entrada desse mundo, não um produto solto no meio do nada.",
+        result: "Você sabe explicar por que a Podium faz evento: é onde o dono conhece o método antes de entrar."
+      }
+    ],
+    quiz: {
+      minimo: 3,
+      perguntas: [
+        {
+          q: "No meio da ligação o dono corta e pergunta: “mas a Podium é o quê, exatamente?”. Qual resposta está certa?",
+          ops: [
+            "É um sistema de agendamento para barbearia, e o evento é um treinamento de quem usa o sistema.",
+            "É a escola do Lincohn Agner — formação para dono de barbearia —, com o Cash Barber como sistema da casa e a John Six como a barbearia onde o modelo foi provado.",
+            "É uma consultoria que entra na barbearia e faz a gestão no lugar do dono.",
+            "É uma franquia de barbearias que vende unidades pelo Brasil."
+          ],
+          certa: 1,
+          porque: "São três coisas ligadas: a formação (Podium Educação), o sistema (Cash Barber) e a barbearia onde tudo foi testado (John Six). Quem responde só “é um curso” perde justamente a parte que dá autoridade."
+        },
+        {
+          q: "O que é o Cash Barber?",
+          ops: [
+            "O nome do evento presencial da Podium.",
+            "O programa de mentoria individual para donos que já faturam acima de R$ 50 mil.",
+            "O sistema de gestão e assinatura da casa: sistema oficial do Summit, entre os dois maiores do mercado, com mais de 3 mil barbearias ativas.",
+            "O aplicativo em que o cliente final da barbearia marca o horário, sem o barbeiro ver."
+          ],
+          certa: 2,
+          porque: "É sistema, não evento nem mentoria. Mais de 100 mil agendamentos por dia passam por ele — é o número que sustenta a frase quando o dono duvida do tamanho da operação."
+        },
+        {
+          q: "Por que a John Six importa na conversa com o dono?",
+          ops: [
+            "Porque é a rede de barbearias do Lincohn, onde o método foi testado antes de virar conteúdo — é a resposta para “isso funciona de verdade?”.",
+            "Porque é o maior cliente do Cash Barber e serve de referência de faturamento.",
+            "Porque é a empresa que organiza os eventos da Podium.",
+            "Porque é a certificação que o dono recebe ao fim do evento."
+          ],
+          certa: 0,
+          porque: "A John Six é a prova viva: 4 lojas e 25 barbeiros operando com o que a Podium ensina. Sem ela, o método vira teoria de palco."
+        },
+        {
+          q: "Qual é o papel do evento dentro da Podium?",
+          ops: [
+            "É o produto final: quem vai ao evento já recebeu tudo o que a Podium tem para entregar.",
+            "É um brinde para quem já é cliente, sem relação com vendas.",
+            "É a porta de entrada: onde o dono conhece o método e as pessoas antes de entrar no resto.",
+            "É um encontro fechado entre a Podium e os parceiros de tecnologia."
+          ],
+          certa: 2,
+          porque: "Isso muda a sua ligação: você não está vendendo o fim da jornada do dono, está vendendo o começo dela."
+        }
+      ]
+    }
+  },
+  {
+    name: "Assinatura — o vocabulário do dono",
+    tipo: "Vídeo", dur: "2 vídeos",
+    tag: "watch", tagTxt: "assistir",
+    desc: "Você não vende assinatura. Mas ela atravessa quase todo evento da Podium, e o dono vai usar as palavras dela na ligação: recorrência, plano, cadeira cheia, cliente que some. Esta aula é para você acompanhar a conversa, não para explicar o modelo — se o lead quiser aprofundar, quem responde é o palco, e isso é um bom motivo para ele ir. Marque os dois vídeos como assistidos ao terminar.",
+    links: [
+      { url: "https://www.youtube.com/watch?v=ty7TkzVutRY", txt: "O Futuro é Recorrente, aula 1 — Como lançar seu clube de assinaturas" },
+      { url: "https://www.youtube.com/watch?v=LLwKNeLXLPk", txt: "O Futuro é Recorrente, aula 3 — Assinatura é o futuro" }
+    ]
+  },
+  {
+    name: "As sete travas do dono — e como ele fala delas",
+    tipo: "Leitura", dur: "quiz",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "O tema do evento muda; o dono do outro lado da linha é sempre o mesmo. Esta aula é o retrato dele: o que trava, com que palavras ele conta isso, e por que você não precisa adivinhar a dor. Quiz ao fim, 3 acertos em 4.",
+    subSteps: [
+      {
+        order: "01",
+        title: "As sete travas",
+        why: "São as sete que a Podium usa no material dos eventos, e praticamente todo dono se reconhece em pelo menos uma: parar de crescer · caminhar sozinho · não aumentar o faturamento · não conseguir contratar barbeiro · perder para o concorrente · ficar preso na cadeira de barbeiro · não conseguir crescer na vida.",
+        result: "Você reconhece a trava assim que ela aparece na conversa, sem precisar de roteiro."
+      },
+      {
+        order: "02",
+        title: "Como ele fala",
+        why: "Frases reais de donos de barbearia, colhidas em ligação. Decore o tom, não o texto: é assim que a trava chega até você, nunca com o nome dela.",
+        result: "Você ouve a frase e já sabe qual trava está por trás.",
+        falas: [
+          "Preso na cadeira :: “A minha cadeira normalmente está sempre cheia. A dele já, já não.”",
+          "Desconfiança :: “Será que a minha realidade é a mesma realidade desse barbeiro aí?”",
+          "Sem tempo :: “Essa semana eu tô com a agenda cheia.”",
+          "Custo de parar :: “Eu vou ter que sacrificar um horário aqui da minha barbearia.”",
+          "Já comprou e não aplicou :: “Eu vi muito conteúdo, nunca botei em prática nada, essa é a verdade.”"
+        ]
+      },
+      {
+        order: "03",
+        title: "De onde vêm essas frases",
+        why: "De 3.925 ligações de pré-venda do Cash Direto — outro produto, mesmo público. Ainda não existe base de ligações de evento para minerar. Então isto é referência de como o dono fala, não regra sobre como ele decide.",
+        result: "Você usa as frases para reconhecer a dor, e nunca como prova na frente do lead."
+      },
+      {
+        order: "04",
+        title: "O que isso muda na sua ligação",
+        why: "Você não precisa adivinhar a trava. Pergunta aberta sobre a barbearia dele, e ele mesmo escolhe qual das sete quer falar. A conversa fica sobre o negócio dele, não sobre o seu evento.",
+        result: "Uma pergunta no lugar de um discurso — e a dor vem dita por ele, o que vale muito mais do que apontada por você."
+      }
+    ],
+    quiz: {
+      minimo: 3,
+      perguntas: [
+        {
+          q: "O dono diz: “eu vou ter que sacrificar um horário aqui da minha barbearia”. O que ele está dizendo de verdade?",
+          ops: [
+            "Que achou o evento caro e está pedindo desconto de outro jeito.",
+            "Que não acredita no conteúdo e está inventando desculpa para desligar.",
+            "Que o custo para ele não é o ingresso, é parar de atender — então o que resolve é ajudar a pensar quem cobre a agenda.",
+            "Que quer ir em outra data e você deve oferecer a próxima turma."
+          ],
+          certa: 2,
+          porque: "Tratar isso como objeção de preço erra o alvo e queima a conversa. É objeção de agenda, e quem vende evento resolve agenda junto com o dono."
+        },
+        {
+          q: "“Será que a minha realidade é a mesma realidade desse barbeiro aí?” — qual é a melhor saída?",
+          ops: [
+            "Mostrar um caso ainda maior, para impressionar e tirar a dúvida.",
+            "Mostrar que quem está no palco começou num patamar parecido com o dele.",
+            "Concordar que talvez não seja para ele e encerrar com educação.",
+            "Garantir que ele chega ao mesmo resultado se aplicar tudo."
+          ],
+          certa: 1,
+          porque: "Prova de quem começou parecido vale mais que número grande — número grande alimenta justamente a desconfiança. E a última opção é promessa de resultado, que não se faz."
+        },
+        {
+          q: "Essas frases de dono vêm de onde, e o que isso impõe a você?",
+          ops: [
+            "Das pesquisas de satisfação dos eventos anteriores; podem ser citadas como depoimento.",
+            "De 3.925 ligações do Cash Direto — outro produto, mesmo público. Servem para reconhecer a dor, não como prova na frente do lead.",
+            "Das transcrições dos vídeos dos anúncios; são o roteiro oficial da ligação.",
+            "De um estudo de mercado contratado pela Podium; são estatística fechada."
+          ],
+          certa: 1,
+          porque: "Ainda não há base de ligações de evento. Quem apresenta isso como dado de evento está afirmando o que o número não prova."
+        },
+        {
+          q: "Qual é o jeito certo de descobrir a trava do dono na ligação?",
+          ops: [
+            "Listar as sete travas e pedir que ele escolha uma.",
+            "Deduzir pela faixa de faturamento que ele marcou no formulário e conduzir por ali.",
+            "Começar com pergunta aberta sobre a barbearia dele e deixar que ele conte.",
+            "Perguntar direto qual é a maior dificuldade financeira dele."
+          ],
+          certa: 2,
+          porque: "A dor dita por ele conduz a conversa inteira. A faixa de faturamento ajuda a se preparar, mas não substitui o que ele vai contar."
+        }
+      ]
+    }
+  },
+  {
+    name: "As cinco perguntas que abrem a conversa",
+    tipo: "Prática", dur: "para a ligação",
+    tag: "do", tagTxt: "praticar",
+    desc: "Cinco perguntas que a Podium usa no material dos eventos para o dono responder a si mesmo. Elas funcionam igualmente bem ditas por você: são abertas, falam do negócio dele e nenhuma é sobre o evento. Leve anotadas e use uma ou duas — não as cinco de enfiada, que vira interrogatório.",
+    subSteps: [
+      {
+        order: "1ª",
+        title: "Faz quanto tempo que você saiu da cadeira de corte para cuidar da gestão?",
+        why: "Separa na hora quem ainda é barbeiro de quem já virou gestor. Quem nunca saiu costuma ser a trava do preso na cadeira, e é quem mais resiste a parar dois dias.",
+        result: "Você sabe com quem está falando antes de falar do evento."
+      },
+      {
+        order: "2ª",
+        title: "A sua barbearia fatura mais de R$ 50 mil por mês?",
+        why: "Confere a faixa que ele marcou no formulário, agora com a voz dele. Quem está abaixo quase sempre tem a dor do faturamento travado; quem está acima costuma vir por equipe ou por crescimento.",
+        result: "Você confirma o patamar sem fazer o lead se sentir avaliado."
+      },
+      {
+        order: "3ª",
+        title: "Você consegue contratar e treinar barbeiro quando precisa?",
+        why: "A trava de equipe é a mais comum e a menos admitida de cara. Esta pergunta deixa o dono dizer sozinho que não consegue.",
+        result: "A dor de equipe aparece sem você ter que acusá-la."
+      },
+      {
+        order: "4ª",
+        title: "Você tem com quem trocar ideia sobre o negócio, ou decide tudo sozinho?",
+        why: "Duas coisas de uma vez: expõe a trava de caminhar sozinho e revela se existe sócio ou cônjuge na decisão — o que muda quem você convida para o evento.",
+        result: "Você descobre se a decisão é só dele antes de pedir a decisão."
+      },
+      {
+        order: "5ª",
+        title: "Se nada mudar, como vai estar a sua barbearia daqui a um ano?",
+        why: "A pergunta que cria o motivo de ir. Não precisa completar com nada: o silêncio do dono já faz o trabalho.",
+        result: "O dono enuncia o custo de não fazer nada — com as palavras dele."
+      }
+    ]
+  },
+  {
+    name: "Os três tipos de evento — e o que muda em cada um",
+    tipo: "Método", dur: "quiz",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "A Podium faz evento o tempo todo, com temas que mudam: gestão, precificação, assinatura. O tema muda, mas o tipo não — e é o tipo que define como você abre a ligação, que prova usa e de onde vem a urgência. Antes de discar em qualquer evento, saiba em qual dos três você está. Quiz ao fim, 3 acertos em 4.",
+    subSteps: [
+      {
+        order: "01",
+        title: "Regional / de entrada",
+        why: "Podium pelo Brasil, Podium Experience e afins. Presencial, perto da casa do dono, preço simbólico, um ou dois dias. O lead é frio: veio de anúncio, preencheu formulário e está esperando a sua mensagem. O que move a decisão é a proximidade e o preço baixo.",
+        result: "Ligação rápida, objetivo é a vaga — e o risco de verdade não é não vender, é vender e a pessoa não aparecer no dia."
+      },
+      {
+        order: "02",
+        title: "Summit",
+        why: "O grande encontro anual, com cerca de 1.500 donos, público pagante e palco de peso. O ingresso é vendido por lotes, e a cada virada o valor sobe. O lead vem da base e também de fora. O que move a decisão é o lote e a sala: quem vai estar lá.",
+        result: "A urgência é real e tem fonte: o lote sobe. Você não precisa inventar escassez nenhuma."
+      },
+      {
+        order: "03",
+        title: "Certificação / GDV",
+        why: "O premium, e só para quem já é cliente. Abre as portas da John Six e entrega os bastidores do crescimento e da assinatura. Não é lead frio: é alguém que já paga a Podium e está decidindo subir de nível.",
+        result: "Aqui não se apresenta a Podium — ele já conhece. É conversa de evolução com cliente, e o tom muda inteiro."
+      },
+      {
+        order: "04",
+        title: "Antes de discar, saiba em qual deles você está",
+        why: "Usar urgência de lote num evento de preço simbólico soa falso. Apresentar a Podium do zero para quem já é cliente soa desatento. A mesma ligação, feita no tipo errado, queima o lead.",
+        result: "Uma checagem de dez segundos que evita o erro mais caro da função."
+      }
+    ],
+    quiz: {
+      minimo: 3,
+      perguntas: [
+        {
+          q: "Chega na sua mão um lead da Certificação / GDV. O que já é diferente antes mesmo de você discar?",
+          ops: [
+            "Nada: a ligação é a mesma, só muda o preço que você informa no fim.",
+            "Ele já é cliente da Podium — não se apresenta a empresa, a conversa é sobre ele subir de nível.",
+            "Ele é o lead mais frio dos três e precisa da explicação mais longa.",
+            "Ele precisa ser qualificado por faturamento antes de qualquer coisa."
+          ],
+          certa: 1,
+          porque: "A Certificação é só para cliente. Abrir explicando o que é a Podium mostra que você não olhou com quem está falando — e com cliente isso custa caro."
+        },
+        {
+          q: "O que move a decisão no Summit?",
+          ops: [
+            "O preço simbólico e a proximidade da casa do dono.",
+            "O lote, que sobe a cada virada, e a sala: cerca de 1.500 donos e quem está no palco.",
+            "O fato de ser gratuito para quem já é cliente do Cash Barber.",
+            "A promessa de sair com a barbearia reformulada."
+          ],
+          certa: 1,
+          porque: "A urgência do Summit é de lote, e ela é verdadeira: o valor sobe de fato. É o oposto do evento regional, onde o que atrai é justamente o preço simbólico."
+        },
+        {
+          q: "Num evento regional de entrada, qual é o maior risco depois que a vaga é vendida?",
+          ops: [
+            "O dono pedir reembolso antes da data.",
+            "O dono levar convidados que não pagaram.",
+            "O dono comprar e não aparecer no dia.",
+            "O dono achar que o conteúdo foi raso."
+          ],
+          certa: 2,
+          porque: "Com ingresso de preço simbólico, faltar custa pouco para ele. Por isso a venda não termina no pagamento: termina na presença."
+        },
+        {
+          q: "Por que identificar o tipo do evento antes de ligar?",
+          ops: [
+            "Para saber quanto você vai ganhar de comissão na ligação.",
+            "Porque a abertura, a prova que você usa e a urgência mudam conforme o tipo — e no tipo errado a mesma ligação queima o lead.",
+            "Porque cada tipo tem um sistema diferente para registrar a venda.",
+            "Porque só o Summit permite convidar sócio ou cônjuge."
+          ],
+          certa: 1,
+          porque: "É uma checagem de dez segundos que evita o erro mais comum: falar de lote em evento de preço simbólico, ou apresentar a Podium para quem já é cliente."
+        }
+      ]
+    }
+  },
+  {
+    name: "Antes de discar — ler o lead",
+    tipo: "Método", dur: "quiz",
+    tag: "do", tagTxt: "praticar",
+    desc: "Dois minutos antes da ligação valem mais que dez minutos dentro dela. Em evento que vem de anúncio, o lead chega com três informações de graça — e quase ninguém olha. Quiz ao fim, 2 acertos em 3.",
+    subSteps: [
+      {
+        order: "01",
+        title: "O que ele preencheu no formulário",
+        why: "Nome, e-mail e WhatsApp, o @ da barbearia no Instagram e a faixa de faturamento por mês. A faixa é o dado mais útil: diz em que patamar ele está antes de você perguntar qualquer coisa.",
+        result: "Você entra na ligação sabendo o tamanho da barbearia dele."
+      },
+      {
+        order: "02",
+        title: "De qual anúncio ele veio",
+        why: "Quando o evento é divulgado por campanha, cada criativo tem um código que chega junto com o cadastro. Saber qual vídeo ele viu é saber qual promessa está na cabeça dele — e qual dor o trouxe.",
+        result: "Você abre a conversa no assunto que ele já estava pensando."
+      },
+      {
+        order: "03",
+        title: "O Instagram da barbearia",
+        why: "Trinta segundos de olhada mostram equipe, estrutura e bairro. É o que transforma uma pergunta genérica em uma pergunta sobre a barbearia dele.",
+        result: "A ligação começa pessoal, não padronizada."
+      },
+      {
+        order: "04",
+        title: "O que ele está esperando",
+        why: "Ao enviar o formulário ele leu que a equipe entra em contato para confirmar a vaga. Ele não é lead frio de lista: ele está esperando a sua mensagem.",
+        result: "Você liga com a postura certa — confirmando algo que ele pediu, não interrompendo o dia dele."
+      }
+    ],
+    quiz: {
+      minimo: 2,
+      perguntas: [
+        {
+          q: "Qual é o dado do formulário que mais muda a sua preparação?",
+          ops: [
+            "O e-mail, para mandar o material antes de ligar.",
+            "A faixa de faturamento por mês, que diz em que patamar a barbearia está.",
+            "O nome completo, para personalizar a abertura.",
+            "O WhatsApp, porque define se a abordagem é por ligação ou por mensagem."
+          ],
+          certa: 1,
+          porque: "A faixa é o único campo que dá o tamanho do negócio antes da primeira pergunta. Os outros são contato."
+        },
+        {
+          q: "Por que importa saber de qual anúncio o lead veio?",
+          ops: [
+            "Para informar ao marketing qual criativo está performando melhor.",
+            "Para cobrar o valor correto, porque cada anúncio tem uma oferta diferente.",
+            "Porque o vídeo que ele viu define a promessa que está na cabeça dele e a dor que o trouxe.",
+            "Porque leads de vídeos diferentes vão para filas de atendimento diferentes."
+          ],
+          certa: 2,
+          porque: "Abrir a conversa no assunto do vídeo que ele assistiu é a diferença entre continuar um pensamento dele e começar um seu."
+        },
+        {
+          q: "Depois de enviar o formulário, em que situação o lead está?",
+          ops: [
+            "Ele foi avisado de que a equipe entra em contato para confirmar a vaga — está esperando a sua mensagem.",
+            "Ele já recebeu o endereço do evento e só precisa confirmar presença.",
+            "Ele entrou numa lista de espera e não sabe se será chamado.",
+            "Ele já pagou e aguarda o comprovante."
+          ],
+          certa: 0,
+          porque: "Isso muda a sua postura: você está confirmando algo que ele pediu. O endereço, aliás, só vai para quem garante a vaga."
+        }
+      ]
+    }
+  },
+  {
+    name: "As regras que não se quebram",
+    tipo: "Método", dur: "quiz",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Seis regras que valem em qualquer evento, de qualquer tema, para qualquer um dos três tipos. Elas existem porque o jeito mais fácil de vender uma vaga hoje é o jeito mais rápido de queimar a marca amanhã. É a aula mais importante da trilha: o quiz pede 4 acertos em 5.",
+    subSteps: [
+      {
+        order: "01",
+        title: "Pergunta aberta sobre a barbearia, antes de tudo",
+        why: "Antes de falar de data, preço ou palco, pergunte do negócio dele e deixe falar. É o que aquece a ligação e o que traz a dor dita por ele.",
+        result: "A conversa vira sobre a barbearia dele, e o evento entra como resposta — não como oferta."
+      },
+      {
+        order: "02",
+        title: "Sem escassez inventada",
+        why: "Diga que os lugares são limitados à sala. Nunca que restam poucas vagas, e nunca um número de vagas sem confirmar com o marketing. No Summit, a urgência do lote é real e pode ser usada: o valor sobe de verdade a cada virada.",
+        result: "Você usa só a urgência que existe. A inventada se desmonta sozinha e leva a sua credibilidade junto."
+      },
+      {
+        order: "03",
+        title: "Prova só com fonte",
+        why: "Pode dizer o que está no material do evento — quem fala, quanto fatura, de onde começou. Não prometa resultado para ele. O caso do palco é a história de quem fez, não o que vai acontecer com quem for.",
+        result: "Você usa números fortes sem transformá-los em promessa."
+      },
+      {
+        order: "04",
+        title: "Corrija o erro do criativo com naturalidade",
+        why: "Anúncio envelhece: o vídeo diz um dia e o evento virou dois, fala de dois palestrantes e agora são cinco. Corrija logo no começo, sem drama. Mais conteúdo pelo mesmo preço é notícia boa.",
+        result: "O lead chega ao dia sem surpresa — e surpresa no dia do evento vira reclamação."
+      },
+      {
+        order: "05",
+        title: "Convide quem decide junto",
+        why: "Se há sócio ou cônjuge no negócio, sugira que os dois vão. Decisão tomada na própria conversa avança muito mais do que um vou falar com ela e te retorno.",
+        result: "Você evita a objeção mais difícil de recuperar: a que acontece depois que você desligou."
+      },
+      {
+        order: "06",
+        title: "Endereço só na inscrição",
+        why: "O local exato vai para quem garantiu a vaga. É o que a página promete, e manter isso é parte do contrato com o lead.",
+        result: "Você cumpre o que a página disse, e a inscrição mantém o valor que tem."
+      }
+    ],
+    quiz: {
+      minimo: 4,
+      perguntas: [
+        {
+          q: "O lead pergunta quantas vagas ainda restam. O que você responde?",
+          ops: [
+            "“Restam poucas, melhor garantir agora” — é verdade na prática, já que a sala tem limite.",
+            "Dá o número aproximado que você imagina, para criar urgência real.",
+            "Que os lugares são limitados à sala — sem número, a menos que o marketing tenha confirmado um.",
+            "Diz que não sabe e muda de assunto."
+          ],
+          certa: 2,
+          porque: "Número de vaga sem confirmação é escassez inventada. Limitados à sala é verdade e basta — e, no Summit, você ainda tem a virada de lote, que é urgência com fonte."
+        },
+        {
+          q: "O vídeo do anúncio diz “um dia inteiro”, mas o evento passou a ter dois dias. O que fazer?",
+          ops: [
+            "Não tocar no assunto: se ele não perguntar, não há problema.",
+            "Corrigir logo no começo da conversa, com naturalidade — é mais conteúdo pelo mesmo valor.",
+            "Repetir que é um dia, para não contrariar o que ele viu, e explicar no dia do evento.",
+            "Pedir ao marketing que tire o anúncio do ar antes de você ligar."
+          ],
+          certa: 1,
+          porque: "A correção dita cedo vira notícia boa. Descoberta no dia do evento, vira reclamação — e o problema volta para você."
+        },
+        {
+          q: "O lead diz que o caso de milhões que aparece no material parece inalcançável. Qual resposta respeita a regra da prova?",
+          ops: [
+            "“Se você aplicar o que vai ver lá, chega no mesmo lugar.”",
+            "“Esse número é de um caso específico, melhor nem considerar.”",
+            "“Quem vai falar começou nos 15, 20 mil por mês, como muita gente que vai estar na sala.”",
+            "“A média de quem vai ao evento dobra o faturamento em seis meses.”"
+          ],
+          certa: 2,
+          porque: "Pode citar de onde a pessoa do palco veio, porque está no material. Prometer o resultado dele, ou inventar uma média, é afirmar o que ninguém mediu."
+        },
+        {
+          q: "Logo no começo da ligação, qual é a ordem certa?",
+          ops: [
+            "Preço primeiro, para filtrar quem não tem interesse e não perder tempo.",
+            "Data e local primeiro, para o lead já checar a agenda.",
+            "Pergunta aberta sobre a barbearia dele, e só depois o evento.",
+            "O nome dos palestrantes primeiro, porque é o que mais impressiona."
+          ],
+          certa: 2,
+          porque: "Abrir pelo negócio dele é o que faz a dor vir dita por ele. Abrir por preço ou por palco transforma a ligação numa oferta, e oferta se recusa fácil."
+        },
+        {
+          q: "O dono divide a barbearia com a esposa. Qual é a melhor conduta?",
+          ops: [
+            "Falar só com ele, porque dois decidindo complica a venda.",
+            "Pedir o contato dela e ligar separadamente depois.",
+            "Sugerir que os dois vão ao evento e, se der, trazer ela para a conversa agora.",
+            "Fechar com ele e avisar que o ingresso é individual."
+          ],
+          certa: 2,
+          porque: "O vou falar com ela e te retorno é a objeção mais difícil de recuperar, porque acontece depois que você desligou. Quem decide junto precisa estar junto."
+        }
+      ]
+    }
+  },
+  {
+    name: "As objeções do evento",
+    tipo: "Prática", dur: "para a ligação",
+    tag: "do", tagTxt: "praticar",
+    desc: "Seis objeções que aparecem em evento de qualquer tema. Nenhuma se vence com argumento mais forte: todas se resolvem devolvendo a conversa para o negócio dele. Leia, escolha as suas palavras e leve anotado.",
+    subSteps: [
+      {
+        order: "01",
+        title: "É mais um curso, eu já vi muito conteúdo",
+        why: "Ele está dizendo que comprou e não aplicou, e tem vergonha disso. Não discuta o histórico dele.",
+        result: "A objeção vira motivo: o que ele nunca teve foi um plano escrito.",
+        falas: [
+          "Fala :: “A diferença é que você sai de lá com o plano escrito e o primeiro passo decidido para a semana seguinte, não com mais vídeo para assistir.”"
+        ]
+      },
+      {
+        order: "02",
+        title: "Não é a minha realidade",
+        why: "Desconfiança de que o caso do palco é de outro patamar. Responder com um número maior piora.",
+        result: "Ele se vê no ponto de partida de quem vai falar.",
+        falas: [
+          "Fala :: “Eles também começaram nos 15, 20 mil por mês. É essa virada que vão abrir lá.”",
+          "Regra :: Prova de quem começou parecido vale mais do que número grande."
+        ]
+      },
+      {
+        order: "03",
+        title: "Vou ter que fechar a barbearia nesses dias",
+        why: "Objeção de agenda, não de preço. Para ele, o custo é o faturamento dos dias parados.",
+        result: "Vocês resolvem a agenda juntos, e o motivo de não ir desaparece.",
+        falas: [
+          "Fala :: “Dá para deixar esses dias com a equipe? Quem cobriria a sua agenda?”"
+        ]
+      },
+      {
+        order: "04",
+        title: "Vou falar com minha esposa, com meu sócio",
+        why: "A decisão não é só dele, e você descobriu tarde. Melhor era ter perguntado antes — é para isso que serve a quarta pergunta da aula anterior.",
+        result: "Os dois entram na conversa, em vez de a decisão sair dela.",
+        falas: [
+          "Fala :: “Faz sentido — e já que vocês decidem juntos, o ideal é que os dois vão. Ela consegue falar agora com a gente?”"
+        ]
+      },
+      {
+        order: "05",
+        title: "Tá barato demais, deve ser venda de alguma coisa",
+        why: "Acontece nos eventos de entrada. Preço simbólico desperta desconfiança em quem associa preço a qualidade.",
+        result: "O preço deixa de ser suspeito e vira intenção.",
+        falas: [
+          "Fala :: “É um preço simbólico de propósito, para reunir os donos de barbearia da região.”"
+        ]
+      },
+      {
+        order: "06",
+        title: "Tá caro",
+        why: "Aparece no Summit e nos eventos maiores. Aqui a urgência é real: o lote sobe, e quem decide primeiro paga menos.",
+        result: "A conversa sai do valor do ingresso e vai para o custo de continuar parado.",
+        falas: [
+          "Fala :: “O ingresso é por lote, e a cada virada o valor sobe. Hoje é o menor valor que vai ter.”",
+          "Regra :: Pode usar o custo de ficar parado que está no material do evento. Não invente conta com o número dele sem ele ter dado o número."
+        ]
+      }
+    ]
+  }
+];
+
+const GROUPS_EVENTOS = [
+  { label: "A essência da Podium", indices: [0, 1],
+    intro: "Quem vende evento não precisa saber dos produtos o que um Executivo de Vendas sabe. Precisa saber o que a Podium é e de onde ela vem, porque isso aparece em toda ligação. Duas aulas: a empresa e o modelo de assinatura, que é o assunto que atravessa quase todo evento." },
+  { label: "Quem é o dono de barbearia", indices: [2, 3],
+    intro: "O tema do evento muda toda hora; o dono do outro lado da linha é sempre o mesmo. Aqui está o retrato dele — as travas e as palavras que ele usa — e as cinco perguntas que fazem a conversa começar pelo negócio dele." },
+  { label: "Os três tipos de evento", indices: [4],
+    intro: "Regional, Summit e Certificação. É o tipo, não o tema, que define como você abre a ligação, que prova usa e de onde vem a urgência. Esta é a checagem antes de discar em qualquer evento novo." },
+  { label: "A ligação de evento", indices: [5, 6, 7],
+    intro: "O que fazer antes de discar, as seis regras que valem em qualquer evento e as objeções que aparecem sempre. A aula das regras é a mais importante da trilha: é o que separa vender a vaga de queimar a marca." }
+];
+
 const TRILHAS = {
   comercial: { label: "Comercial", steps: STEPS_COMERCIAL, groups: GROUPS_COMERCIAL },
-  farmer:    { label: "Farmer",    steps: STEPS_FARMER,    groups: GROUPS_FARMER }
+  farmer:    { label: "Farmer",    steps: STEPS_FARMER,    groups: GROUPS_FARMER },
+  eventos:   { label: "Eventos",   steps: STEPS_EVENTOS,   groups: GROUPS_EVENTOS }
 };
 
 const TEXTOS = {
   comercial: {
     eyebrow: "Comercial · Executivo de Vendas",
     sub: "25 aulas em 8 módulos, em duas fases. A fase 1 forma a prospecção: produto, nomenclaturas, ferramentas, script e ligação real, até a validação da liderança. A fase 2 só abre depois dela, e é onde entram o NPQL, a call e o fechamento."
+  },
+  eventos: {
+    eyebrow: "Comercial · Eventos",
+    sub: "8 aulas em 4 módulos. Não ensina um evento: ensina o que não muda de um evento para o outro — a essência da Podium, quem é o dono de barbearia, os três tipos de evento e a ligação. A ficha de cada evento entra depois, como página de consulta."
   },
   farmer: {
     eyebrow: "Revenue · Farmer",
