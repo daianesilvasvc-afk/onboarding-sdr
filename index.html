@@ -2716,11 +2716,11 @@ const STEPS_FARMER = [
     rotuloParte: "Call",
     passoPartes: "Assista às cinco calls completas, uma de cada vez",
     videos: [
-      { kind: "drive", id: "1qm7iqsCs3U7ZyEPImvmkQbJBANPvgHCp", thumb: "img/calls-reais.jpg", titulo: "Call de 30/10/2026", nota: "Assista à call inteira." },
-      { kind: "drive", id: "1EDcfW6XSuw5Az2tqyFw_dVR8_N_mWLXe", thumb: "img/calls-reais.jpg", titulo: "Call de 09/11/2026, 15h27", nota: "Assista à call inteira." },
-      { kind: "drive", id: "1fF58TC4H67E1BYd6f2LkB8HtzOUMJHl5", thumb: "img/calls-reais.jpg", titulo: "Call de 09/11/2026, 17h15", nota: "Assista à call inteira." },
-      { kind: "drive", id: "1wK93oeIjx7eBsnJDSpezGHemR2zvtm-N", thumb: "img/calls-reais.jpg", titulo: "Call de 10/11/2026, 09h13", nota: "Assista à call inteira." },
-      { kind: "drive", id: "1uak5iQliJ-BXV2-kOzR_rCEApJdh_Kui", thumb: "img/calls-reais.jpg", titulo: "Call de 10/11/2026, 10h30", nota: "Assista à call inteira." }
+      { kind: "drive", id: "1qm7iqsCs3U7ZyEPImvmkQbJBANPvgHCp", semCapa: true, titulo: "Call de 30/10/2026", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1EDcfW6XSuw5Az2tqyFw_dVR8_N_mWLXe", semCapa: true, titulo: "Call de 09/11/2026, 15h27", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1fF58TC4H67E1BYd6f2LkB8HtzOUMJHl5", semCapa: true, titulo: "Call de 09/11/2026, 17h15", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1wK93oeIjx7eBsnJDSpezGHemR2zvtm-N", semCapa: true, titulo: "Call de 10/11/2026, 09h13", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1uak5iQliJ-BXV2-kOzR_rCEApJdh_Kui", semCapa: true, titulo: "Call de 10/11/2026, 10h30", nota: "Assista à call inteira." }
     ],
     links: []
   },
@@ -2732,11 +2732,11 @@ const STEPS_FARMER = [
     rotuloParte: "Call",
     passoPartes: "Em cada call: assista ao NPQE (até começarem os slides) e ao fechamento no final",
     videos: [
-      { kind: "drive", id: "1HDXZEuNMNcbdJaSqvfGnarQ4B-L6Lfsd", thumb: "img/calls-reais.jpg", titulo: "Call de 20/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
-      { kind: "drive", id: "1IWi4c0YgfRwnwlkAwVHEgikUStWvTIH5", thumb: "img/calls-reais.jpg", titulo: "Call de 22/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
-      { kind: "drive", id: "1sNmxO5zukO0j2k_3Nhzp7s9_OJTIOd60", thumb: "img/calls-reais.jpg", titulo: "Call de 27/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
-      { kind: "drive", id: "1uZrdpo6uCDqJPIe92fzBScV0GeflMI_A", thumb: "img/calls-reais.jpg", titulo: "Call de 16/04/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
-      { kind: "drive", id: "1F3ySKRjn2ATeLJwhWUo_hf1zAIGAnaS8", thumb: "img/calls-reais.jpg", titulo: "Call de 22/05/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." }
+      { kind: "drive", id: "1HDXZEuNMNcbdJaSqvfGnarQ4B-L6Lfsd", semCapa: true, titulo: "Call de 20/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1IWi4c0YgfRwnwlkAwVHEgikUStWvTIH5", semCapa: true, titulo: "Call de 22/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1sNmxO5zukO0j2k_3Nhzp7s9_OJTIOd60", semCapa: true, titulo: "Call de 27/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1uZrdpo6uCDqJPIe92fzBScV0GeflMI_A", semCapa: true, titulo: "Call de 16/04/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1F3ySKRjn2ATeLJwhWUo_hf1zAIGAnaS8", semCapa: true, titulo: "Call de 22/05/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." }
     ],
     links: []
   }
@@ -4237,6 +4237,8 @@ function urlEmbed(v) {
   return null;
 }
 function urlCapa(v) {
+  // semCapa: usa a capa azul desenhada, sem foto (call apresentada por outra pessoa).
+  if (v.semCapa) return null;
   if (v.thumb) return v.thumb;
   if (v.kind === "drive") return "https://drive.google.com/thumbnail?id=" + v.id + "&sz=w800";
   return null;
