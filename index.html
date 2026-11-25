@@ -3050,161 +3050,201 @@ const STEPS_EVENTOS = [
     ]
   },
   {
-    name: "Os três tipos de evento — e o que muda em cada um",
+    name: "Os três eventos — e o que muda em cada um",
     tipo: "Método", dur: "quiz",
     tag: "must", tagTxt: "obrigatório",
-    desc: "A Podium faz evento o tempo todo, com temas que mudam: gestão, precificação, assinatura. O tema muda, mas o tipo não — e é o tipo que define como você abre a ligação, que prova usa e de onde vem a urgência. Antes de discar em qualquer evento, saiba em qual dos três você está. Quiz ao fim, 3 acertos em 4.",
+    desc: "A equipe de Eventos vende três eventos: Summit, Podium pelo Brasil e Cash Experience. O tema de cada edição muda — gestão, precificação, assinatura — mas o evento não, e é ele que define para quem você liga, como abre a ligação e de onde vem a urgência. A diferença que mais pesa é uma só: se a pessoa já é aluna ou não. Saiba em qual dos três você está antes de discar. Quiz ao fim, 4 acertos em 5.",
     subSteps: [
       {
         order: "01",
-        title: "Regional / de entrada",
-        why: "Podium pelo Brasil, Podium Experience e afins. Presencial, perto da casa do dono, preço simbólico, um ou dois dias. O lead é frio: veio de anúncio, preencheu formulário e está esperando a sua mensagem. O que move a decisão é a proximidade e o preço baixo.",
-        result: "Ligação rápida, objetivo é a vaga — e o risco de verdade não é não vender, é vender e a pessoa não aparecer no dia."
+        title: "Summit — aberto a todo mundo",
+        curto: "Aluno e não aluno. O maior encontro.",
+        why: "O grande encontro de donos de barbearia, e o único dos três que é aberto: na mesma lista tem aluno e tem quem nunca ouviu falar da Podium. Por isso a primeira coisa da ligação, depois de dizer quem você é, é descobrir em qual dos dois ele está — e aí a conversa muda. Os temas são equipe, clientes e faturamento.",
+        result: "Você pergunta se ele já conhece a Podium antes de qualquer outra coisa, e adapta: com aluno fala da caminhada dele, com não aluno explica a Podium em uma frase."
       },
       {
         order: "02",
-        title: "Summit",
-        why: "O grande encontro anual, com cerca de 1.500 donos, público pagante e palco de peso. O ingresso é vendido por lotes, e a cada virada o valor sobe. O lead vem da base e também de fora. O que move a decisão é o lote e a sala: quem vai estar lá.",
-        result: "A urgência é real e tem fonte: o lote sobe. Você não precisa inventar escassez nenhuma."
+        title: "Podium pelo Brasil — só quem não é aluno",
+        curto: "Lead frio da lista da região. Gancho: a nota no Google.",
+        why: "Encontro presencial por região, e só para quem ainda não é aluno. O lead é frio de verdade: veio de um levantamento das barbearias que se destacam na cidade, pela nota e pelas avaliações no Google. Ele não conhece você, não conhece a Podium e não está esperando ligação nenhuma.",
+        result: "Nada de papo antes do motivo: em quinze segundos você diz quem é, por que ligou para ele — a barbearia entrou na lista da região — e pede dois minutos. Nunca trate como aluno, nunca cite o sistema."
       },
       {
         order: "03",
-        title: "Certificação / GDV",
-        why: "O premium, e só para quem já é cliente. Abre as portas da John Six e entrega os bastidores do crescimento e da assinatura. Não é lead frio: é alguém que já paga a Podium e está decidindo subir de nível.",
-        result: "Aqui não se apresenta a Podium — ele já conhece. É conversa de evolução com cliente, e o tom muda inteiro."
+        title: "Cash Experience — só aluno que concluiu a implementação",
+        curto: "Imersão de dois dias em Curitiba. Gancho: ele desbloqueou.",
+        why: "Imersão presencial de dois dias em Curitiba, só para aluno do ecossistema que concluiu a implementação do Cash Barber. Assinatura, gestão e crescimento. O convite é consequência do que ele fez: concluir a implementação desbloqueou o acesso.",
+        result: "Aqui você pode quebrar o gelo antes do motivo, porque ele conhece a Podium. E sempre parabeniza pela implementação — sem isso ele não entende de onde veio o convite."
       },
       {
         order: "04",
-        title: "Antes de discar, saiba em qual deles você está",
-        why: "Usar urgência de lote num evento de preço simbólico soa falso. Apresentar a Podium do zero para quem já é cliente soa desatento. A mesma ligação, feita no tipo errado, queima o lead.",
-        result: "Uma checagem de dez segundos que evita o erro mais caro da função."
+        title: "O que muda na prática",
+        curto: "Aluno ou não aluno decide a abertura inteira.",
+        why: "Com lead frio, o motivo vem antes da conversa — ele não tem paciência para “como está o movimento?” de um desconhecido, e desliga antes de saber do evento. Com aluno, a ordem se inverte: rapport, parabenização, e só então o motivo. Apresentar a Podium do zero para quem já é aluno soa desatento; tratar um desconhecido como aluno soa falso.",
+        result: "Uma checagem de dez segundos — “esse lead é aluno?” — que evita o erro mais caro da função."
+      },
+      {
+        order: "05",
+        title: "E a Certificação / GDV",
+        curto: "O degrau seguinte, para quem já é cliente.",
+        why: "Fora desses três existe a Certificação, o GDV: o premium, só para quem já é cliente. Abre as portas da John Six e entrega os bastidores do crescimento e da assinatura. Não costuma cair na sua mão no começo, mas aparece na conversa — e vale saber que existe, porque é o degrau seguinte de quem está na sua linha.",
+        result: "Se o assunto surgir, você sabe o que é e para quem é, em vez de improvisar."
+      }
+    ],
+    links: [
+      { url: "scripts-eventos.html", txt: "Scripts da Equipe de Eventos — o roteiro dos três, lado a lado" }
+    ],
+    quiz: {
+      minimo: 4,
+      perguntas: [
+        {
+          q: "Chega na sua mão um lead do Podium pelo Brasil. O que você já sabe sobre ele antes de discar?",
+          ops: [
+            "Que ele é aluno e já conhece o sistema.",
+            "Que ele não é aluno, nunca ouviu falar de você e não está esperando a sua ligação.",
+            "Que ele preencheu um formulário e pediu contato.",
+            "Que ele já foi a algum evento da Podium antes."
+          ],
+          certa: 1,
+          porque: "O Podium pelo Brasil é só para quem não é aluno, e a lista vem de um levantamento por região. É o lead mais frio dos três — e por isso o motivo da ligação vem antes de qualquer conversa."
+        },
+        {
+          q: "Qual é o gancho do Podium pelo Brasil — o motivo que você dá para ter ligado justamente para ele?",
+          ops: [
+            "Ele concluiu a implementação do sistema.",
+            "Ele clicou num anúncio do evento.",
+            "A barbearia se destacou no levantamento da região: nota e avaliações no Google.",
+            "Ele foi indicado por outro dono de barbearia."
+          ],
+          certa: 2,
+          porque: "O gancho é o Google: nota e avaliações. É o que responde a primeira pergunta da cabeça dele, que é “por que você ligou para mim?”."
+        },
+        {
+          q: "No Cash Experience, o que você não pode deixar de fazer?",
+          ops: [
+            "Explicar o que é a Podium, porque ele pode não conhecer.",
+            "Parabenizar pela implementação concluída — é de onde vem o convite.",
+            "Perguntar o faturamento antes de apresentar o evento.",
+            "Informar o valor logo no começo, porque ele já é cliente."
+          ],
+          certa: 1,
+          porque: "Ele desbloqueou o acesso ao concluir a implementação. Sem a parabenização, o convite aparece do nada e perde o sentido."
+        },
+        {
+          q: "Você está ligando para um lead do Summit. Qual é a primeira coisa a descobrir?",
+          ops: [
+            "O faturamento mensal da barbearia.",
+            "Quantos barbeiros ele tem na equipe.",
+            "Se ele já é aluno da Podium ou não, porque o Summit é aberto aos dois e a conversa muda.",
+            "Se ele pode viajar na data do evento."
+          ],
+          certa: 2,
+          porque: "O Summit é o único aberto aos dois públicos. Com aluno você fala da caminhada dele; com quem não é, explica a Podium em uma frase antes de seguir."
+        },
+        {
+          q: "Por que identificar o evento antes de ligar?",
+          ops: [
+            "Para saber quanto você vai ganhar de comissão.",
+            "Porque cada evento tem um sistema diferente para registrar a venda.",
+            "Porque muda o público, o gancho e a abertura inteira — e na abertura errada a mesma ligação queima o lead.",
+            "Porque só o Summit permite convidar sócio ou cônjuge."
+          ],
+          certa: 2,
+          porque: "Tratar desconhecido como aluno soa falso; apresentar a Podium para quem já é aluno soa desatento. São dez segundos de checagem que salvam a ligação."
+        }
+      ]
+    }
+  },
+  {
+      name: "Antes de discar — ler o lead",
+    tipo: "Método", dur: "quiz",
+    tag: "do", tagTxt: "praticar",
+    desc: "Dois minutos antes da ligação valem mais que dez minutos dentro dela. Mas o que você olha depende de onde o lead veio: um aluno do Cash Experience e um nome frio da lista do Podium pelo Brasil exigem leituras diferentes. Quiz ao fim, 3 acertos em 4.",
+    subSteps: [
+      {
+        order: "01",
+        title: "Primeiro: ele é aluno?",
+        curto: "A pergunta que decide o resto da preparação.",
+        why: "Cash Experience é só aluno. Podium pelo Brasil é só quem não é. Summit tem os dois, e aí você descobre na própria ligação. Tudo o que você vai olhar antes de discar depende dessa resposta.",
+        result: "Você já sabe se a ligação abre pelo motivo ou pelo rapport, antes de pegar o telefone."
+      },
+      {
+        order: "02",
+        title: "Lead frio: o Google e o Instagram",
+        curto: "Nota, número de avaliações, bairro, equipe, estrutura.",
+        why: "No Podium pelo Brasil a seleção foi feita pelo perfil da barbearia no Google, e é de lá que sai o seu gancho: a nota e a quantidade de avaliações. Trinta segundos no Instagram mostram equipe, estrutura e bairro. Sem isso você liga sem ter o que dizer no lugar de “por que você ligou para mim?”.",
+        result: "Você abre com o dado dele na boca — nota, avaliações, nome da barbearia — e não com uma frase que serve para qualquer um."
+      },
+      {
+        order: "03",
+        title: "Aluno: o que ele já fez com a gente",
+        curto: "Implementação concluída, cidade, tempo de casa.",
+        why: "No Cash Experience o gancho é a implementação concluída, e é ela que você parabeniza. A cidade e o Instagram servem para a conexão do primeiro passo. Se ele é aluno e você não sabe nada do caminho dele, a ligação soa como lista.",
+        result: "A parabenização sai específica, não protocolar."
+      },
+      {
+        order: "04",
+        title: "O que ele está esperando — e o que não está",
+        curto: "Frio não espera nada. Aluno, quase sempre, espera alguma coisa.",
+        why: "O lead frio não pediu contato nenhum: você está entrando no meio do expediente dele, e por isso os primeiros quinze segundos têm que entregar quem é você e por que ligou. O aluno está dentro do ecossistema e reconhece o nome — a interrupção custa menos, mas a desatenção custa mais.",
+        result: "Você liga com a postura certa para cada um, em vez de usar a mesma abertura nos dois."
       }
     ],
     quiz: {
       minimo: 3,
       perguntas: [
         {
-          q: "Chega na sua mão um lead da Certificação / GDV. O que já é diferente antes mesmo de você discar?",
+          q: "Você vai ligar para um lead do Podium pelo Brasil. O que você olha antes?",
           ops: [
-            "Nada: a ligação é a mesma, só muda o preço que você informa no fim.",
-            "Ele já é cliente da Podium — não se apresenta a empresa, a conversa é sobre ele subir de nível.",
-            "Ele é o lead mais frio dos três e precisa da explicação mais longa.",
-            "Ele precisa ser qualificado por faturamento antes de qualquer coisa."
+            "O histórico de uso dele no sistema.",
+            "O perfil da barbearia no Google — nota e avaliações — e o Instagram, para ver equipe e estrutura.",
+            "O formulário que ele preencheu no anúncio.",
+            "Nada: lead frio é todo igual, o script resolve."
           ],
           certa: 1,
-          porque: "A Certificação é só para cliente. Abrir explicando o que é a Podium mostra que você não olhou com quem está falando — e com cliente isso custa caro."
+          porque: "A seleção veio do Google, e é de lá que sai o gancho. Sem esse dado você não tem resposta para “por que você ligou para mim?”."
         },
         {
-          q: "O que move a decisão no Summit?",
+          q: "Por que a preparação muda conforme o evento?",
           ops: [
-            "O preço simbólico e a proximidade da casa do dono.",
-            "O lote, que sobe a cada virada, e a sala: cerca de 1.500 donos e quem está no palco.",
-            "O fato de ser gratuito para quem já é cliente do Cash Barber.",
-            "A promessa de sair com a barbearia reformulada."
-          ],
-          certa: 1,
-          porque: "A urgência do Summit é de lote, e ela é verdadeira: o valor sobe de fato. É o oposto do evento regional, onde o que atrai é justamente o preço simbólico."
-        },
-        {
-          q: "Num evento regional de entrada, qual é o maior risco depois que a vaga é vendida?",
-          ops: [
-            "O dono pedir reembolso antes da data.",
-            "O dono levar convidados que não pagaram.",
-            "O dono comprar e não aparecer no dia.",
-            "O dono achar que o conteúdo foi raso."
+            "Porque cada evento tem um script completamente diferente.",
+            "Porque o valor do ingresso é diferente em cada um.",
+            "Porque o público é diferente: no Cash Experience ele é aluno e tem história com a gente; no Podium pelo Brasil ele não faz ideia de quem você é.",
+            "Porque o Summit exige qualificação por faturamento."
           ],
           certa: 2,
-          porque: "Com ingresso de preço simbólico, faltar custa pouco para ele. Por isso a venda não termina no pagamento: termina na presença."
+          porque: "A estrutura da ligação é a mesma nos três. O que muda é quem atende — e é isso que define a abertura."
         },
         {
-          q: "Por que identificar o tipo do evento antes de ligar?",
+          q: "No Cash Experience, qual é o dado que você não pode entrar na ligação sem saber?",
           ops: [
-            "Para saber quanto você vai ganhar de comissão na ligação.",
-            "Porque a abertura, a prova que você usa e a urgência mudam conforme o tipo — e no tipo errado a mesma ligação queima o lead.",
-            "Porque cada tipo tem um sistema diferente para registrar a venda.",
-            "Porque só o Summit permite convidar sócio ou cônjuge."
+            "O faturamento mensal da barbearia.",
+            "Que ele concluiu a implementação — é o gancho e a parabenização do começo da ligação.",
+            "Quantos assinantes ativos ele tem.",
+            "Se ele já foi a algum evento antes."
           ],
           certa: 1,
-          porque: "É uma checagem de dez segundos que evita o erro mais comum: falar de lote em evento de preço simbólico, ou apresentar a Podium para quem já é cliente."
+          porque: "O convite existe porque ele concluiu a implementação. Sem isso, a parabenização vira frase solta e o convite vem do nada."
+        },
+        {
+          q: "O lead frio não atende e você tem o WhatsApp dele. O que muda em relação ao aluno?",
+          ops: [
+            "Nada: manda a mesma mensagem nos dois casos.",
+            "Ele não pediu contato, então a mensagem precisa dizer quem é você e por que ligou antes de qualquer outra coisa — e não pode começar parabenizando por algo que ele não fez.",
+            "Lead frio não recebe mensagem, só ligação.",
+            "Manda a programação completa, já que ele não conhece o evento."
+          ],
+          certa: 1,
+          porque: "Parabenizar pela implementação quem não é aluno entrega na primeira linha que é mensagem em massa. A ordem para o frio é sempre: quem é você, por que ele, e então a pergunta."
         }
       ]
     }
   },
   {
-    name: "Antes de discar — ler o lead",
-    tipo: "Método", dur: "quiz",
-    tag: "do", tagTxt: "praticar",
-    desc: "Dois minutos antes da ligação valem mais que dez minutos dentro dela. Em evento que vem de anúncio, o lead chega com três informações de graça — e quase ninguém olha. Quiz ao fim, 2 acertos em 3.",
-    subSteps: [
-      {
-        order: "01",
-        title: "O que ele preencheu no formulário",
-        why: "Nome, e-mail e WhatsApp, o @ da barbearia no Instagram e a faixa de faturamento por mês. A faixa é o dado mais útil: diz em que patamar ele está antes de você perguntar qualquer coisa.",
-        result: "Você entra na ligação sabendo o tamanho da barbearia dele."
-      },
-      {
-        order: "02",
-        title: "De qual anúncio ele veio",
-        why: "Quando o evento é divulgado por campanha, cada criativo tem um código que chega junto com o cadastro. Saber qual vídeo ele viu é saber qual promessa está na cabeça dele — e qual dor o trouxe.",
-        result: "Você abre a conversa no assunto que ele já estava pensando."
-      },
-      {
-        order: "03",
-        title: "O Instagram da barbearia",
-        why: "Trinta segundos de olhada mostram equipe, estrutura e bairro. É o que transforma uma pergunta genérica em uma pergunta sobre a barbearia dele.",
-        result: "A ligação começa pessoal, não padronizada."
-      },
-      {
-        order: "04",
-        title: "O que ele está esperando",
-        why: "Ao enviar o formulário ele leu que a equipe entra em contato para confirmar a vaga. Ele não é lead frio de lista: ele está esperando a sua mensagem.",
-        result: "Você liga com a postura certa — confirmando algo que ele pediu, não interrompendo o dia dele."
-      }
-    ],
-    quiz: {
-      minimo: 2,
-      perguntas: [
-        {
-          q: "Qual é o dado do formulário que mais muda a sua preparação?",
-          ops: [
-            "O e-mail, para mandar o material antes de ligar.",
-            "A faixa de faturamento por mês, que diz em que patamar a barbearia está.",
-            "O nome completo, para personalizar a abertura.",
-            "O WhatsApp, porque define se a abordagem é por ligação ou por mensagem."
-          ],
-          certa: 1,
-          porque: "A faixa é o único campo que dá o tamanho do negócio antes da primeira pergunta. Os outros são contato."
-        },
-        {
-          q: "Por que importa saber de qual anúncio o lead veio?",
-          ops: [
-            "Para informar ao marketing qual criativo está performando melhor.",
-            "Para cobrar o valor correto, porque cada anúncio tem uma oferta diferente.",
-            "Porque o vídeo que ele viu define a promessa que está na cabeça dele e a dor que o trouxe.",
-            "Porque leads de vídeos diferentes vão para filas de atendimento diferentes."
-          ],
-          certa: 2,
-          porque: "Abrir a conversa no assunto do vídeo que ele assistiu é a diferença entre continuar um pensamento dele e começar um seu."
-        },
-        {
-          q: "Depois de enviar o formulário, em que situação o lead está?",
-          ops: [
-            "Ele foi avisado de que a equipe entra em contato para confirmar a vaga — está esperando a sua mensagem.",
-            "Ele já recebeu o endereço do evento e só precisa confirmar presença.",
-            "Ele entrou numa lista de espera e não sabe se será chamado.",
-            "Ele já pagou e aguarda o comprovante."
-          ],
-          certa: 0,
-          porque: "Isso muda a sua postura: você está confirmando algo que ele pediu. O endereço, aliás, só vai para quem garante a vaga."
-        }
-      ]
-    }
-  },
-  {
-    name: "O script oficial — os nove passos da ligação",
+      name: "O script oficial — os nove passos da ligação",
     tipo: "Método", dur: "9 passos + quiz",
     tag: "do", tagTxt: "praticar",
-    desc: "Este é o script que a equipe de Eventos usa hoje, do jeito que ele é usado. São nove passos, nessa ordem — e a ordem é o conteúdo da aula. Quem pula direto para o passo 7 e apresenta o evento está vendendo cronograma; quem passa pelos seis primeiros está vendendo transformação, que é o que o dono compra. O exemplo usa o Podium Experience porque é o evento que roda hoje, mas a estrutura não muda: troque o nome e o conteúdo do passo 7 e o script serve para qualquer evento. Não leia isso no telefone. Leia aqui até entender por que cada passo existe, e depois fale com as suas palavras. Quiz ao fim, 4 acertos em 5.",
+    desc: "Este é o script que a equipe de Eventos usa hoje, do jeito que ele é usado. São nove passos, nessa ordem — e a ordem é o conteúdo da aula. Quem pula direto para o passo 7 e apresenta o evento está vendendo cronograma; quem passa pelos seis primeiros está vendendo transformação, que é o que o dono compra. As falas abaixo são as do Cash Experience, que é o caso de aluno. A estrutura é a mesma nos três eventos: no Podium pelo Brasil e no Summit, o lead é frio e os passos 1 e 2 trocam de lugar com o motivo da ligação — isso está lado a lado na página Scripts da Equipe de Eventos. Não leia isso no telefone. Leia aqui até entender por que cada passo existe, e depois fale com as suas palavras. Quiz ao fim, 4 acertos em 5.",
     subSteps: [
       {
         order: "01",
@@ -3272,7 +3312,7 @@ const STEPS_EVENTOS = [
         why: "Repare no que não tem aqui: data, cidade, grade, almoço, valor. Tem o que ele vai sair levando. Vender palestra e cronograma é o erro mais comum da equipe — e é o que transforma a ligação em leitura de folheto.",
         result: "Ele passa a querer a coisa antes de saber o preço dela.",
         falas: [
-          "Ligando ao que ele disse :: “É exatamente isso que você vai encontrar no Experience.”",
+          "Ligando ao que ele disse :: “É exatamente isso que você vai encontrar no evento.”",
           "A prova :: “Você vai aprender direto com empresários que passaram por esse mesmo objetivo e hoje faturam muito mais — e eles contam as estratégias que usaram e o que realmente fez diferença no crescimento.”",
           "O que ele leva :: “Você sai de lá com estratégia prática para aplicar na sua barbearia.”"
         ]
@@ -3284,9 +3324,9 @@ const STEPS_EVENTOS = [
         why: "Só aqui o evento ganha nome e forma. Curto de propósito: quem explica tudo mata a curiosidade e não sobra motivo para ele continuar na linha. Objetivo é dar contorno, não dar aula.",
         result: "Ele sabe o que é, onde é e para quem é — em três frases.",
         falas: [
-          "Fala :: “Por isso estou te ligando. Você desbloqueou o acesso ao Podium Experience: um evento presencial, aqui em Curitiba, feito para empresário de barbearia acelerar resultado, trocar experiência e aprender estratégia que funciona de verdade.”"
+          "Fala :: “Por isso estou te ligando. Você desbloqueou o acesso ao Cash Experience: uma imersão presencial de dois dias, aqui em Curitiba, para acelerar resultado com assinatura, gestão e crescimento, aprendendo com quem já chegou onde você quer chegar.”"
         ],
-        nota: "A grade muda a cada edição — confirme antes de citar nome de palestrante. Na edição atual: Will Vences em gestão e liderança, Daniel Messias em marketing, um consultor financeiro nos números do negócio, o Lincohn na mentoria, e mentores da Podium que saíram de menos de 100 assinantes para mais de 500 ativos."
+        nota: "A grade muda a cada edição — confirme antes de citar nome de palestrante. No Cash Experience: Will Vences em gestão e liderança, Daniel Messias em marketing, um consultor financeiro nos números do negócio, o Lincohn na mentoria, e mentores da Podium que saíram de menos de 100 assinantes para mais de 500 ativos. No Podium pelo Brasil, a grade das ligações de out–nov/2026 foi Rapha Barber, Deivisson Santos e Will Vences."
       },
       {
         order: "08",
@@ -3619,6 +3659,18 @@ const STEPS_EVENTOS = [
     ]
   },
   {
+    name: "Simulador de Eventos — treinar antes de ligar",
+    tipo: "Prática", dur: "nota por rodada",
+    tag: "do", tagTxt: "praticar",
+    desc: "Agora que você sabe o script, as regras e as objeções, é hora de falar. No simulador você escolhe o evento — Summit, Podium pelo Brasil ou Cash Experience — e o nível do dono, fala por áudio e a IA responde como barbeiro, com as objeções da aula anterior. No fim ela devolve uma nota. Faça no mínimo uma rodada de cada evento e repita até a abertura sair sem consultar nada: no Podium pelo Brasil são quinze segundos para dizer quem é e por que ligou, e isso só fica natural repetindo. Cada rodada fica gravada com a nota, e a liderança acompanha — não é treino às escondidas, é o que mostra se você está seguindo o script.",
+    links: [
+      { url: "https://daianesilvasvc-afk.github.io/sdr-roleplay/eventos.html", txt: "Abrir o Simulador de Eventos" }
+    ],
+    notas: 9, notasId: "roleplay-eventos",
+    passoNotas: "Anote a nota de cada rodada — pelo menos três por evento",
+    notasNota: "Este quadro fica salvo só no seu navegador: é a sua conta da evolução, não o que a liderança lê. O histórico oficial é o do próprio simulador."
+  },
+  {
     name: "Quando ele não atende — áudio e WhatsApp",
     tipo: "Prática", dur: "2 modelos",
     tag: "do", tagTxt: "praticar",
@@ -3631,7 +3683,7 @@ const STEPS_EVENTOS = [
         why: "Áudio é mais pessoal que texto e ele escuta enquanto trabalha. Mantenha curto e termine perguntando: o objetivo não é informar, é fazer ele responder.",
         result: "Ele responde dizendo o que quer para a barbearia — e você volta no passo 4 do script.",
         falas: [
-          "Modelo :: “Fala, Fulano, tudo bem? Aqui é [seu nome], da equipe do Lincohn Agner. Estou passando para te parabenizar, porque vi que você concluiu a sua implementação há pouco tempo, e isso é um passo importante para o crescimento da barbearia. E foi justamente por isso que você desbloqueou o acesso ao Podium Experience, que é um evento presencial aqui em Curitiba, para empresário de barbearia acelerar resultado e aprender estratégia que funciona. Mas antes de te explicar melhor, queria entender o teu momento: hoje, qual é o principal objetivo que você quer alcançar nos próximos meses? Me responde por aqui que eu te ajudo a ver qual turma faz mais sentido para você.”"
+          "Modelo :: “Fala, Fulano, tudo bem? Aqui é [seu nome], da equipe do Lincohn Agner. Estou passando para te parabenizar, porque vi que você concluiu a sua implementação há pouco tempo, e isso é um passo importante para o crescimento da barbearia. E foi justamente por isso que você desbloqueou o acesso ao Cash Experience, que é uma imersão presencial aqui em Curitiba, para empresário de barbearia acelerar resultado e aprender estratégia que funciona. Mas antes de te explicar melhor, queria entender o teu momento: hoje, qual é o principal objetivo que você quer alcançar nos próximos meses? Me responde por aqui que eu te ajudo a ver qual turma faz mais sentido para você.”"
         ],
         nota: "Grave de novo se estiver acelerada. Áudio apressado soa como recado automático."
       },
@@ -3642,7 +3694,7 @@ const STEPS_EVENTOS = [
         why: "Serve para quem não ouve áudio. Vale a mesma regra: parabenizar, dizer em uma frase o que é o evento e devolver a conversa com uma pergunta aberta.",
         result: "A conversa abre no WhatsApp e continua por lá, ou vira uma ligação com hora marcada.",
         falas: [
-          "Modelo :: “Fala, Fulano, tudo bem? Aqui é [seu nome], da equipe do Lincohn. Primeiro, parabéns por ter concluído a implementação — é um passo importante para o crescimento da barbearia. E por isso você desbloqueou o acesso ao Podium Experience, uma imersão presencial de dois dias aqui em Curitiba, feita para dono de barbearia acelerar resultado e se conectar com empresários que já chegaram lá. Mas antes de te explicar melhor, queria entender o teu momento: hoje, qual é o principal objetivo que você quer alcançar na tua barbearia nos próximos meses? Pergunto porque quero te indicar a turma que combina com o teu momento.”"
+          "Modelo :: “Fala, Fulano, tudo bem? Aqui é [seu nome], da equipe do Lincohn. Primeiro, parabéns por ter concluído a implementação — é um passo importante para o crescimento da barbearia. E por isso você desbloqueou o acesso ao Cash Experience, uma imersão presencial de dois dias aqui em Curitiba, feita para dono de barbearia acelerar resultado e se conectar com empresários que já chegaram lá. Mas antes de te explicar melhor, queria entender o teu momento: hoje, qual é o principal objetivo que você quer alcançar na tua barbearia nos próximos meses? Pergunto porque quero te indicar a turma que combina com o teu momento.”"
         ]
       },
       {
@@ -3668,7 +3720,7 @@ const STEPS_EVENTOS = [
         why: "Oferecer “foi só a correria?” dá a ele uma saída digna, e quase sempre era isso mesmo. Perguntar “por que você não respondeu?” só gera silêncio.",
         result: "Ele volta a responder sem precisar se justificar.",
         falas: [
-          "Opção :: “Oi, Fulano. Passando para saber se ficou alguma dúvida sobre o Podium Experience, ou se foi só a correria do dia a dia.”",
+          "Opção :: “Oi, Fulano. Passando para saber se ficou alguma dúvida sobre o evento, ou se foi só a correria do dia a dia.”",
           "Opção :: “Me conta uma coisa: você chegou a pensar na nossa conversa, ou a correria tomou conta?”",
           "Opção :: “O que você achou do Experience depois que a gente conversou?”",
           "Opção :: “Quando você viu todas as informações, o que mais chamou a sua atenção?”"
@@ -3709,7 +3761,7 @@ const STEPS_EVENTOS = [
         why: "Com o objetivo na mão, a pergunta deixa de ser sobre o evento e passa a ser sobre o encaixe: isso ajuda no momento que você está vivendo?",
         result: "É ele quem conclui que faz sentido, e não você quem afirma.",
         falas: [
-          "Opção :: “Você acredita que essa experiência pode ajudar no momento que a sua barbearia está vivendo?”",
+          "Opção :: “Você acredita que esse evento pode ajudar no momento que a sua barbearia está vivendo?”",
           "Opção :: “Se eu pudesse te mostrar uma forma de acelerar esse crescimento, faria sentido para você?”",
           "Opção :: “O que você espera encontrar em um evento como esse?”",
           "Opção :: “A tua prioridade hoje continua sendo fazer a barbearia crescer?”"
@@ -3724,7 +3776,7 @@ const STEPS_EVENTOS = [
         falas: [
           "Opção :: “O que faria mais sentido para você agora: participar dessa turma ou se programar para a próxima?”",
           "Opção :: “Você conseguiu pensar em qual das turmas encaixa melhor na sua agenda?”",
-          "Opção :: “O Experience ainda faz sentido para o momento da sua barbearia?”",
+          "Opção :: “O evento ainda faz sentido para o momento da sua barbearia?”",
           "Opção :: “Você ainda está analisando, ou acabou deixando essa decisão para depois?”"
         ]
       },
@@ -3762,10 +3814,21 @@ const STEPS_EVENTOS = [
         why: "Ficar insistindo depois de quatro ou cinco tentativas não traz a vaga e estraga o lead para a próxima edição. Dizer que é a última vez é honesto, respeita o tempo dele e muitas vezes é o que traz a resposta.",
         result: "Ou ele decide agora, ou você fecha o ciclo sem deixar sensação ruim — e pode voltar na próxima edição.",
         falas: [
-          "Modelo :: “Oi, Fulano. É a última vez que te chamo aqui, sei que você é ocupado. Só queria que você soubesse que as vagas do Podium Experience estão quase fechando: a turma é limitada e já está enchendo. Se quiser saber mais antes de fechar, é agora. Se não for o momento, tudo bem também.”"
+          "Modelo :: “Oi, Fulano. É a última vez que te chamo aqui, sei que você é ocupado. Só queria que você soubesse que as vagas estão quase fechando: a turma é limitada e já está enchendo. Se quiser saber mais antes de fechar, é agora. Se não for o momento, tudo bem também.”"
         ],
         nota: "Confira a data e o número de vagas da edição antes de mandar. Mensagem de última chamada com informação velha é pior do que não mandar."
       }
+    ]
+  },
+  {
+    name: "Scripts da Equipe de Eventos",
+    tipo: "Consulta", dur: "3 roteiros",
+    referencia: true,
+    tag: "read", tagTxt: "consulta",
+    desc: "Os roteiros dos três eventos lado a lado, nas nove etapas do script: abertura, o que responder quando ele tenta encerrar, o que conectar com cada dor, a apresentação curta de cada evento e o fechamento. Mais as objeções que mais aparecem, o que não falar e os modelos de follow-up. Esta página fica sempre aberta, não precisa ser concluída e não entra na conta do progresso — é para abrir antes de discar.",
+    links: [
+      { url: "scripts-eventos.html", txt: "Scripts da Equipe de Eventos — os três roteiros" },
+      { url: "https://daianesilvasvc-afk.github.io/sdr-roleplay/eventos.html", txt: "Simulador de Eventos — treinar por áudio" }
     ]
   }
 ];
@@ -3775,12 +3838,14 @@ const GROUPS_EVENTOS = [
     intro: "Quem vende evento não precisa saber dos produtos o que um Executivo de Vendas sabe. Precisa saber o modelo que o dono veio buscar e o que a Podium é, porque isso aparece em toda ligação. Duas aulas: a assinatura pela Cadeira do Dono, igual à trilha Comercial, e a empresa inteira em uma frase." },
   { label: "Quem é o dono de barbearia", indices: [2, 3],
     intro: "O tema do evento muda toda hora; o dono do outro lado da linha é sempre o mesmo. Aqui está o retrato dele — as travas e as palavras que ele usa — e as cinco perguntas que fazem a conversa começar pelo negócio dele." },
-  { label: "Os três tipos de evento", indices: [4],
-    intro: "Regional, Summit e Certificação. É o tipo, não o tema, que define como você abre a ligação, que prova usa e de onde vem a urgência. Esta é a checagem antes de discar em qualquer evento novo." },
-  { label: "A ligação de evento", indices: [5, 6, 7, 8, 9],
-    intro: "O coração da trilha. O que fazer antes de discar, o script oficial em nove passos, os dez ajustes de postura que a gestão mais cobra, as seis regras que valem em qualquer evento e as objeções que aparecem sempre. A aula das regras é a mais importante: é o que separa vender a vaga de queimar a marca." },
-  { label: "Depois da ligação", indices: [10, 11],
-    intro: "Quase nenhuma vaga se fecha na primeira tentativa. Aqui estão o áudio e a mensagem para quem não atende, e a pergunta certa para cada situação de follow-up — porque “e aí, pensou?” repetido três vezes não traz vaga nenhuma." }
+  { label: "Os três eventos", indices: [4],
+    intro: "Summit, Podium pelo Brasil e Cash Experience. Um é aberto, um é só para quem não é aluno e um é só para aluno — e é isso, não o tema da edição, que define como você abre a ligação." },
+  { label: "A ligação de evento", indices: [5, 6, 7, 8, 9, 10],
+    intro: "O coração da trilha. O que fazer antes de discar, o script oficial em nove passos, os dez ajustes de postura que a gestão mais cobra, as seis regras que valem em qualquer evento, as objeções que aparecem sempre e o simulador, onde isso tudo vira ligação. A aula das regras é a mais importante: é o que separa vender a vaga de queimar a marca." },
+  { label: "Depois da ligação", indices: [11, 12],
+    intro: "Quase nenhuma vaga se fecha na primeira tentativa. Aqui estão o áudio e a mensagem para quem não atende, e a pergunta certa para cada situação de follow-up — porque “e aí, pensou?” repetido três vezes não traz vaga nenhuma." },
+  { label: "Consulta rápida", indices: [13], referencia: true,
+    intro: "Os roteiros dos três eventos e o simulador, num lugar só. Este módulo não tranca nem destranca nada: está aberto desde o primeiro dia e você volta aqui sempre que for discar." }
 ];
 
 const TRILHAS = {
@@ -3796,7 +3861,7 @@ const TEXTOS = {
   },
   eventos: {
     eyebrow: "Comercial · Eventos",
-    sub: "12 aulas em 5 módulos. Não ensina um evento: ensina o que não muda de um evento para o outro — o modelo de assinatura e a essência da Podium, quem é o dono de barbearia, os três tipos de evento, o script oficial da ligação e o follow-up. A ficha de cada evento entra depois, como página de consulta."
+    sub: "13 aulas em 6 módulos. Começa pelo que não muda de um evento para o outro — o modelo de assinatura e a essência da Podium, e quem é o dono de barbearia — e termina na ligação: os três eventos, o script oficial em nove passos, o simulador e o follow-up. Os roteiros de cada evento ficam no módulo de consulta, sempre aberto."
   },
   farmer: {
     eyebrow: "Revenue · Farmer",

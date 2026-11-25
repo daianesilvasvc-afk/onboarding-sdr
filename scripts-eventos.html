@@ -1,0 +1,275 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Scripts da Equipe de Eventos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: uma coluna de leitura, abas por evento no topo, etapas numeradas porque a ordem da ligação é a informação */
+:root {
+  --bg: #f6f5f1; --surface: #ffffff; --fg: #16273c; --muted: #5b6676; --line: #dcd8cc;
+  --gold: #d7ab5c; --gold-ink: #7c5a17; --fala-bg: #f3ecdc; --no: #a3332b; --no-bg: #f7e6e3; --ok: #2f6b45;
+  --display: "Playfair Display", Georgia, serif; --body: "Inter", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1a29; --surface: #16273c; --fg: #ece8de; --muted: #a9b2bf; --line: #2a3d55;
+  --gold: #d7ab5c; --gold-ink: #e3bf7a; --fala-bg: #22334a; --no: #f0a29a; --no-bg: #3a2326; --ok: #8fd0a6; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1a29; --surface: #16273c; --fg: #ece8de; --muted: #a9b2bf; --line: #2a3d55;
+  --gold: #d7ab5c; --gold-ink: #e3bf7a; --fala-bg: #22334a; --no: #f0a29a; --no-bg: #3a2326; --ok: #8fd0a6; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15.5px; line-height: 1.6; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 32px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-family: var(--display); font-size: clamp(28px, 5vw, 38px); line-height: 1.15; margin: 0 0 8px; text-wrap: balance; }
+h2 { font-family: var(--display); font-size: 24px; margin: 40px 0 12px; text-wrap: balance; }
+h3 { font-size: 16px; margin: 0; display: flex; gap: 12px; align-items: baseline; }
+.lead { color: var(--muted); margin: 0 0 20px; max-width: 62ch; }
+.rules { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+.rules li { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; background: var(--surface); }
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: flex; gap: 6px; padding-block: 10px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.tab { font: 600 14px var(--body); color: var(--muted); background: none; border: 1px solid transparent; border-radius: 8px; padding: 8px 14px; cursor: pointer; white-space: nowrap; text-decoration: none; }
+.tab[aria-current="page"] { color: var(--fg); border-color: var(--gold); background: var(--surface); }
+.tab:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.ev-head { margin: 28px 0 8px; }
+.ev-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 12px 0 8px; }
+.ev-meta div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+.ev-meta b { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--gold-ink); margin-bottom: 2px; }
+ol.steps { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 0; }
+ol.steps > li { padding: 18px 0; border-top: 1px solid var(--line); }
+.n { font-family: var(--display); color: var(--gold-ink); font-size: 20px; min-width: 1.6em; font-variant-numeric: tabular-nums; }
+.goal { color: var(--muted); font-size: 14px; margin: 4px 0 10px calc(1.6em + 12px); }
+.fala { margin: 8px 0 0 calc(1.6em + 12px); padding: 10px 14px; background: var(--fala-bg); border-radius: 8px; border-left: 3px solid var(--gold); }
+.fala + .fala { margin-top: 6px; }
+.alt { font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: var(--gold-ink); margin: 12px 0 0 calc(1.6em + 12px); }
+.tip { margin: 8px 0 0 calc(1.6em + 12px); font-size: 14px; color: var(--muted); }
+.tip strong { color: var(--fg); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tw { overflow-x: auto; margin: 8px 0; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+td:first-child { font-weight: 600; width: 34%; }
+.nao { background: var(--no-bg); border-radius: 10px; padding: 14px 18px; margin: 12px 0; }
+.nao h3 { color: var(--no); margin-bottom: 6px; }
+.nao ul { margin: 0; padding-left: 20px; }
+.wa { display: grid; gap: 8px; margin-top: 8px; }
+.wa p { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.wa small { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--gold-ink); }
+.slot { color: var(--gold-ink); font-weight: 600; }
+footer { margin-top: 48px; font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+  <h1>Scripts da Equipe de Eventos</h1>
+  <p class="lead">O roteiro das ligações para o Summit, o Podium pelo Brasil e o Cash Experience, na estrutura do script oficial. Conheça a ordem e fale com as suas palavras. Os trechos entre colchetes você troca pelo dado do cliente.</p>
+  <ul class="rules">
+    <li>Pergunte antes de explicar</li>
+    <li>O cliente fala antes de 1 minuto</li>
+    <li>Venda o resultado, não o almoço</li>
+    <li>Sem valores na ligação</li>
+    <li>Sempre saia com um próximo passo</li>
+  </ul>
+
+  <nav class="tabs" aria-label="Eventos">
+    <a class="tab" href="#ppb" data-ev="ppb">Podium pelo Brasil</a>
+    <a class="tab" href="#cash" data-ev="cash">Cash Experience</a>
+    <a class="tab" href="#summit" data-ev="summit">Summit</a>
+  </nav>
+
+  <main id="roteiro"></main>
+
+  <h2>Objeções que mais aparecem</h2>
+  <p class="lead">Fórmula: acolha, volte ao que o cliente contou e faça uma pergunta. Não rebata e não recue na primeira.</p>
+  <div class="tw"><table>
+    <thead><tr><th>O cliente diz</th><th>Você responde</th></tr></thead>
+    <tbody>
+      <tr><td>"Preciso ver a agenda" / "Segunda e terça é dia de movimento"</td><td>"Faz sentido, a agenda é sua. Por isso a gente escolheu dias mais tranquilos, antes da loucura de dezembro. Que dia eu te ligo para você me confirmar? Quinta às 10h fica bom?"</td></tr>
+      <tr><td>"Vou conversar com a minha esposa / meu sócio"</td><td>"Ótimo, decisão boa é a dois. Como é o nome dela? Vou te mandar um material para você mostrar para a [nome]. Faz todo sentido ela vir com você. Que dia eu falo com vocês de novo?"</td></tr>
+      <tr><td>"Já faço uma mentoria e não quero misturar"</td><td>"Que bom que você está investindo nisso. O evento não substitui, ele soma: você vai estar com donos que já resolveram [o que ele contou] e pode tirar dúvida direto com eles. Posso te mandar a programação para você ver se conversa com o que você está fazendo?"</td></tr>
+      <tr><td>"Já vou em outro evento"</td><td>"Show, quem investe em conhecimento cresce mais rápido. A diferença aqui é o grupo menor: você conversa de perto com os mentores e com donos do seu nível. Como seria para você sair com o primeiro passo decidido para [o objetivo dele]?"</td></tr>
+      <tr><td>"É para vender assinatura?" / "Tem pegadinha?"</td><td>"Não. É um encontro para você olhar a sua barbearia de fora e sair com um plano. O que você mais queria resolver se tivesse dois dias só para isso?"</td></tr>
+      <tr><td>"Minha barbearia é pequena, não é para mim"</td><td>"Entendo. E foi justamente o seu trabalho que chamou atenção. Me conta: hoje, o que te impede de crescer?" Ouça antes de qualquer argumento.</td></tr>
+      <tr><td>"Me manda no WhatsApp que eu vejo"</td><td>"Mando agora. E para eu não ficar te enchendo de mensagem: que dia e horário eu te ligo para você me dar a resposta?"</td></tr>
+      <tr><td>Quem atende não é o dono (funcionário, esposa, parente)</td><td>Não explique o evento. "Que horas o [dono] está aí? O WhatsApp da barbearia é com ele?" Se for a esposa e ela participa da gestão, trate como decisora: pergunte da barbearia e convide os dois.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="nao">
+    <h3>O que não falar</h3>
+    <ul>
+      <li>Valor, parcelamento ou número de vagas que você não tem confirmado. Na dúvida: "te mando por escrito".</li>
+      <li>"O valor não fica nada para a gente."</li>
+      <li>Que outro mentor do mercado "foi nosso aluno" ou "aprendeu com a gente". Não desmereça quem o cliente segue.</li>
+      <li>Nome de palestrante ou faturamento que não esteja no material oficial da edição.</li>
+      <li>Pitch de almoço, banquete, chef, happy hour, horário e endereço. Isso vai por escrito.</li>
+      <li>Pedido de desculpa por ligar ("desculpa incomodar", "só um minutinho").</li>
+    </ul>
+  </div>
+
+  <h2>Follow-up por WhatsApp</h2>
+  <div class="wa">
+    <p><small>Sumiu depois da conversa</small>"Oi, [nome]! Passando para saber se ficou alguma dúvida ou se foi só a correria do dia a dia?"</p>
+    <p><small>Reabrir sem cobrar</small>"Oi, [nome]! Como está a correria na barbearia essa semana?"</p>
+    <p><small>Ainda não contou o objetivo</small>"Se você pudesse resolver um único problema da sua barbearia ainda este mês, qual seria?"</p>
+    <p><small>Travado na decisão</small>"Me ajuda a entender: a sua prioridade mudou ou foi só a correria que atrasou essa decisão?"</p>
+    <p><small>Gerar compromisso</small>"Ainda posso contar com você nessa edição?"</p>
+    <p><small>Última mensagem</small>"[Nome], última vez que te chamo por aqui, sei que você é ocupado. As vagas estão quase fechadas. Se fizer sentido, é agora. Se não for o momento, tudo bem também!"</p>
+  </div>
+
+  <footer>Base: script oficial da equipe de eventos e 27 ligações reais do Podium pelo Brasil (out–nov/2026). As mesmas etapas são cobradas no Simulador de Eventos.</footer>
+</div>
+
+<script>
+const EV = {
+  ppb: {
+    nome: "Podium pelo Brasil",
+    quem: "Só quem ainda não é aluno. Lead frio, da lista de barbearias da região.",
+    gancho: "A barbearia se destacou no levantamento da região: nota e avaliações no Google.",
+    regra: "Ele nunca ouviu falar de você. Nada de papo antes do motivo: em 15 segundos, diga quem é, por que ligou para ELE e peça dois minutinhos. Nunca trate como aluno nem cite o sistema.",
+    equipe: "da Podium Educação, a equipe do Rapha Barber",
+    frio: true,
+    abertura: "Oi, [nome]? Aqui é a [seu nome], da Podium Educação. Vou ser rápida: a gente está reunindo os donos das barbearias que mais se destacam em [cidade/região] num encontro presencial de network, e a [barbearia] entrou na lista: nota [4,9] com [210] avaliações no Google. Te liguei para te contar como funciona. Você tem dois minutinhos agora?",
+    segurar: [
+      ["Tô atendendo / agora não dá", "Imagina, não quero te atrapalhar. Que horário hoje você sai da cadeira? Te ligo às [hora], cinco minutinhos. Combinado?"],
+      ["Quem? Podium o quê?", "A Podium é o maior ecossistema para barbearias, com a maior comunidade de barbeiros do Brasil. A gente está rodando as regiões com esse encontro, só com as barbearias que se destacam, e agora é a vez de [cidade]."],
+      ["Como você pegou meu número?", "Do perfil da barbearia no Google. A seleção foi por lá mesmo, pela nota e pelas avaliações."],
+      ["É venda? Quanto custa?", "É um evento com investimento, sim, e te mando tudo por escrito. Antes, quero ver se faz sentido para você, porque não é para qualquer barbearia."],
+      ["Não tenho interesse", "Tranquilo, respeito. Só uma pergunta antes de desligar: hoje a barbearia está do jeito que você quer, ou tem alguma coisa que você mudaria?"],
+    ],
+    momento: ["Ótimo. Antes de te contar como é, quero ver se faz sentido para você: hoje, na [barbearia], o que mais toma a sua cabeça: equipe, cliente ou faturamento?", "E o que você mais quer para a barbearia nos próximos meses?"],
+    visaoTema: "trocar ideia com donos de barbearia que já resolveram exatamente isso",
+    desejo: [
+      ["Equipe: não acha barbeiro bom, treina e ele sai", "Will Vences: gestão de pessoas e liderança, como montar e segurar uma equipe"],
+      ["Cliente: movimento caiu, concorrência de preço", "Captação de clientes: estratégias de quem atrai e fideliza no mesmo bairro"],
+      ["Faturamento: quer faturar mais sem aumentar a estrutura", "Deivisson Santos (Barbeiro Evolução): a equipe vendendo mais produto e serviço na cadeira"],
+      ["Preso na cadeira, quer crescer", "Rapha Barber: como ele saiu do operacional e toca várias unidades"],
+    ],
+    apresentacao: "É o Podium pelo Brasil: um encontro fechado com donos de barbearia da região, para pensar o negócio de fora, longe da cadeira e do telefone. A gente trabalha gestão de pessoas, captação de clientes e faturamento, e você sai com o primeiro passo decidido para colocar em prática na semana seguinte.",
+    escassez: "São poucas barbearias por edição, só as que se destacaram na região.",
+    fecho: "Como seria para você participar dessa edição?",
+    mentores: "Mentores das ligações de out–nov/2026: Rapha Barber, Deivisson Santos e Will Vences. Confirme a grade da sua edição antes de citar.",
+  },
+  cash: {
+    nome: "Cash Experience",
+    quem: "Só alunos que concluíram a implementação do Cash Barber.",
+    gancho: "Ele concluiu a implementação e por isso desbloqueou o acesso.",
+    regra: "Sempre parabenize pela implementação. Sem isso o aluno não entende de onde veio o convite.",
+    equipe: "da equipe do Lincohn Agner",
+    rapportCon: "Vi aqui que você é de [cidade]. Me diz uma coisa: [comentário da cidade ou da barbearia]?",
+    parabens: [
+      "Antes de qualquer coisa, quero te parabenizar: você concluiu a sua implementação, e isso é um marco muito importante. Mostra que você deu um passo para profissionalizar a barbearia.",
+      "E justamente por isso você desbloqueou uma experiência dentro do nosso ecossistema. Antes de te contar, queria entender o seu momento.",
+    ],
+    momento: ["Como está sendo esse início com o sistema?", "Qual é o principal objetivo que você quer alcançar nos próximos meses?"],
+    visaoTema: "aprender direto com empresários que saíram de menos de 100 para mais de 500 assinantes",
+    desejo: [
+      ["Assinatura: quer mais assinantes ou não engrenou", "Mentores da Podium: saíram de menos de 100 para mais de 500 assinantes ativos e mostram o que fizeram"],
+      ["Equipe e operação", "Will Vences: estruturar a operação, processos, liderança e indicadores"],
+      ["Atrair cliente, marca", "Daniel Messias: marketing para atrair clientes e fortalecer a marca"],
+      ["Números: não sabe se está lucrando", "Consultor financeiro: ler os números e decidir com segurança"],
+      ["Visão de dono, crescer e escalar", "Lincohn Agner: mentoria, visão de empresário e dúvidas respondidas na hora"],
+    ],
+    apresentacao: "Por isso estou te ligando: você desbloqueou o acesso ao Cash Experience, uma imersão presencial de 2 dias aqui em Curitiba, para acelerar resultado com assinatura, gestão e crescimento, aprendendo com quem já chegou onde você quer chegar.",
+    escassez: "Essa edição está muito especial: tem a participação dos mentores e as vagas são limitadas. Já estamos nas últimas vagas das próximas turmas.",
+    fecho: "Como seria para você participar dessa turma? Qual das turmas encaixa melhor na sua agenda?",
+    mentores: "Grade do script oficial: Will Vences, Daniel Messias, Lincohn Agner, consultor financeiro e mentores da Podium.",
+  },
+  summit: {
+    nome: "Summit",
+    quem: "Evento aberto: alunos e não alunos.",
+    gancho: "Convite pessoal para o Summit. Na primeira fala, diga quem é, que evento é e por que ligou; depois descubra se é aluno.",
+    regra: "Nada de papo antes de dizer quem é e por que ligou. Pergunte se já conhece a Podium e adapte: aluno, fale da caminhada dele; não aluno, explique em uma frase o que é a Podium.",
+    equipe: "da Podium Educação",
+    frio: true,
+    abertura: "Oi, [nome]? Aqui é a [seu nome], da Podium Educação. Vou ser rápida: vai acontecer o Summit da Podium, um encontro presencial de donos de barbearia para pensar o negócio de fora da cadeira, e estou ligando para te fazer o convite pessoalmente. Você já conhece a Podium ou ainda não?",
+    segurar: [
+      ["Já sou aluno", "Que bom! Então você já sabe como a gente trabalha. Como está a sua caminhada com a gente até aqui? [siga para o momento]"],
+      ["Não conheço", "A Podium é o maior ecossistema para barbearias, com a maior comunidade de barbeiros do Brasil. O Summit é o nosso maior encontro, aberto também para quem ainda não é aluno. Você tem dois minutinhos para eu te contar?"],
+      ["Tô atendendo / agora não dá", "Imagina, não quero te atrapalhar. Que horário hoje você sai da cadeira? Te ligo às [hora], cinco minutinhos. Combinado?"],
+      ["É venda? Quanto custa?", "É um evento com investimento, sim, e te mando tudo por escrito. Antes, quero ver se faz sentido para você."],
+    ],
+    momento: ["Me conta: o que você mais quer para a barbearia nos próximos meses?", "Se é aluno: como está a sua caminhada com a gente até aqui?"],
+    visaoTema: "olhar a sua barbearia de fora, com empresários que já resolveram isso",
+    desejo: [
+      ["Equipe: contratar, treinar, segurar", "Gestão de pessoas"],
+      ["Cliente: movimento, concorrência, divulgação", "Captação de clientes"],
+      ["Dinheiro: quer faturar mais", "Aumento de faturamento"],
+      ["Não tem tempo de pensar no negócio", "Dois dias longe da cadeira e do telefone para decidir o próximo passo"],
+    ],
+    apresentacao: "O Summit é para você pensar o seu negócio olhando a barbearia de fora, longe da cadeira e do telefone. A gente trabalha gestão de pessoas, captação de clientes e aumento de faturamento, e você sai com o primeiro passo decidido para colocar em prática já na semana seguinte.",
+    escassez: "As vagas dessa edição são limitadas e já estão andando.",
+    fecho: "Como seria para você estar no Summit?",
+    mentores: "Os palestrantes da edição não estão neste roteiro. Cite só os que estiverem no material oficial do Summit.",
+  },
+};
+
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const marca = s => esc(s).replace(/\[([^\]]+)\]/g, '<span class="slot">[$1]</span>');
+const fala = s => `<p class="fala">"${marca(s)}"</p>`;
+
+function etapa(n, titulo, objetivo, corpo) {
+  return `<li><h3><span class="n">${n}</span>${esc(titulo)}</h3><p class="goal">${esc(objetivo)}</p>${corpo}</li>`;
+}
+
+// Lead frio (Podium pelo Brasil, Summit): ele nao conhece ninguem, entao o
+// motivo vem antes de qualquer conversa. Aluno (Cash): pode quebrar o gelo.
+function abertura15(e) {
+  const linhas = e.segurar.map(([d, r]) => `<tr><td>${esc(d)}</td><td>"${marca(r)}"</td></tr>`).join("");
+  return etapa(1, "Abertura: os primeiros 15 segundos", "Ele não te conhece. Responda de cara as três perguntas da cabeça dele: quem é você, por que ligou para ele e o que você quer.",
+      fala(e.abertura) +
+      `<p class="tip"><strong>Fale numa respiração só e pare na pergunta.</strong> Não comece com "como está o movimento?": para quem não te conhece, isso soa como vendedor enrolando, e ele desliga antes de saber do evento.</p>`) +
+    etapa(2, "Segurar a linha", "A primeira resposta dele costuma ser uma defesa. Responda curto e volte para a pergunta.",
+      `<div class="tw" style="margin-left:calc(1.6em + 12px)"><table><thead><tr><th>Se ele disser</th><th>Responda</th></tr></thead><tbody>${linhas}</tbody></table></div>` +
+      `<p class="tip">Se ele está ocupado, <strong>não apresente o evento correndo</strong>: marque o horário e ligue de volta.</p>`);
+}
+
+function rapportAluno(e) {
+  return etapa(1, "Rapport e conexão", "Ele é aluno e reconhece a Podium. Quebre o gelo e faça ele falar. Escute a resposta antes de seguir.",
+      fala(`Olá, [nome]! Tudo bem? Aqui é a [seu nome], ${e.equipe}. Muita correria na barbearia hoje?`) +
+      `<p class="alt">Conecte com algo dele</p>` + fala(e.rapportCon) +
+      `<p class="tip">Use o que você tiver: cidade, Instagram, a barbearia. <strong>Pausa e escuta.</strong></p>`) +
+    etapa(2, "Parabenização e motivo do contato", "Dizer por que você ligou para ele, com o dado dele.", e.parabens.map(fala).join(""));
+}
+
+function render(key) {
+  const e = EV[key] || EV.ppb;
+  const tabela = `<div class="tw" style="margin-left:calc(1.6em + 12px)"><table><thead><tr><th>Se ele falou de</th><th>Conecte com</th></tr></thead><tbody>` +
+    e.desejo.map(([d, m]) => `<tr><td>${esc(d)}</td><td>${esc(m)}</td></tr>`).join("") + `</tbody></table></div>`;
+  document.getElementById("roteiro").innerHTML = `
+    <section class="ev-head" aria-labelledby="t-${key}">
+      <h2 id="t-${key}">${esc(e.nome)}</h2>
+      <div class="ev-meta">
+        <div><b>Para quem</b>${esc(e.quem)}</div>
+        <div><b>Gancho</b>${esc(e.gancho)}</div>
+        <div><b>Regra de abertura</b>${esc(e.regra)}</div>
+      </div>
+    </section>
+    <ol class="steps">
+      ${e.frio ? abertura15(e) : rapportAluno(e)}
+      ${etapa(3, "Entender o momento", "Pergunta aberta. Escute sem interromper e sem emendar a apresentação.",
+        e.momento.map(fala).join("") + `<p class="tip"><strong>Evite</strong> só pergunta fechada ("quantos barbeiros?"). Ela ajuda, mas não substitui a pergunta aberta.</p>`)}
+      ${etapa(4, "Cavar a necessidade", "Aprofundar no que ele disse. Uma pergunta, não um argumento.",
+        fala("Que legal! E hoje, o que você acredita que está impedindo isso de acontecer mais rápido?") +
+        `<p class="alt">ou</p>` + fala("Se você pudesse melhorar uma única coisa hoje na sua barbearia, qual seria?"))}
+      ${etapa(5, "Pergunta de visão", "A etapa que o gestor mais cobra. Ligue à dor que ele acabou de contar.",
+        fala(`[Nome], como seria para você ${e.visaoTema}?`) +
+        `<p class="alt">ou</p>` + fala("Você acredita que isso te ajudaria a acelerar os resultados?"))}
+      ${etapa(6, "Vender o desejo, não o evento", "Responder a dor dele com quem vai ensinar. Escolha um tema, não a lista inteira.",
+        fala("É exatamente isso que você vai encontrar no evento. Você vai aprender direto com empresários que já passaram por isso e vai sair com estratégias práticas para aplicar na sua barbearia.") +
+        tabela + `<p class="tip">${esc(e.mentores)}</p>`)}
+      ${etapa(7, "Apresentação curta", "No máximo 30 segundos. Deixe curiosidade; o resto vai por escrito.", fala(e.apresentacao))}
+      ${etapa(8, "Escassez", "Mostrar que a vaga é limitada, sem inventar número.", fala(e.escassez) +
+        `<p class="alt">Se ele perguntar o valor</p>` + fala("Te mando o investimento certinho por escrito agora no WhatsApp. Antes, me conta: [volte à dor que ele contou]?"))}
+      ${etapa(9, "Fechamento e compromisso", "Pergunta de fechamento em voz alta, e pausa.",
+        fala(e.fecho) +
+        `<p class="alt">Se ele topar</p>` + fala("Perfeito! Vou te mandar o link agora no WhatsApp. Assim que você se inscrever, te coloco no grupo do evento. Vem sozinho ou com alguém da gestão?") +
+        `<p class="alt">Se ele não decidir na hora</p>` + fala("Tranquilo. Que dia e horário eu te ligo para você me dar a resposta? [Dia] às [hora] fica bom?") +
+        `<p class="tip"><strong>"Te mando e você me fala" não é próximo passo.</strong> Saia com dia e hora.</p>`)}
+    </ol>`;
+  document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-current", t.dataset.ev === key ? "page" : "false"));
+}
+
+function rota() { const k = location.hash.slice(1); render(EV[k] ? k : "ppb"); }
+window.addEventListener("hashchange", rota);
+rota();
+</script>
+
+</body></html>
