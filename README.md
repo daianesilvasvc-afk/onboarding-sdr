@@ -117,7 +117,7 @@ Cuidados do Worker:
 - [x] Repositório transferido para `podium-educacao-salesops` e Worker republicado com a origem nova (25/11/2026).
 - [ ] **Antes de mudar o endereço**, incluir a nova origem (`https://<org>.github.io`) em `ORIGENS` no `api/src/index.js` e fazer `wrangler deploy`. Sem isso o painel `?gestao` não carrega, e os envios por `fetch` chegam ao banco mas a página não consegue ler a resposta, trata como falha e reenvia (risco de evento duplicado).
 - [ ] Na mudança de endereço do Pages, o `localStorage` não acompanha: **todo mundo perde o progresso, as notas de quiz e o nome salvo**, e reaparece como pessoa nova no registro. Avisar o time e usar `?liberar=N` para quem estava no meio. Não contar com redirecionamento do endereço antigo.
-- [ ] Atualizar os links absolutos para `daianesilvasvc-afk.github.io/sdr-roleplay/...` no `index.html` quando o Simulador SDR também mudar de endereço.
+- [x] Links para o Simulador SDR apontam para o endereço da organização (25/11/2026).
 - [ ] Passar a conta Cloudflare `podium-playbook` para outra pessoa (convidar um membro com acesso ao Workers e D1, ou trocar o e-mail/login da conta). Se o Worker for recriado em outra conta, o endereço muda: trocar `API_PADRAO` no `index.html` e migrar os dados do D1 (`wrangler d1 export`).
 - [ ] O arquivo `api/.wrangler/cache/wrangler-account.json` está versionado (id e nome da conta Cloudflare, sem chave). Não é segredo, mas não deveria estar no repositório; `.wrangler/` foi incluído no `.gitignore`, e falta tirar o arquivo do controle de versão (`git rm --cached`).
 - [ ] Confirmar com a gestão as grafias Lincohn Agner, Rapha Barber e Deivisson Santos.
