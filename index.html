@@ -3201,6 +3201,256 @@ const STEPS_EVENTOS = [
     }
   },
   {
+    name: "O script oficial — os nove passos da ligação",
+    tipo: "Método", dur: "9 passos + quiz",
+    tag: "do", tagTxt: "praticar",
+    desc: "Este é o script que a equipe de Eventos usa hoje, do jeito que ele é usado. São nove passos, nessa ordem — e a ordem é o conteúdo da aula. Quem pula direto para o passo 7 e apresenta o evento está vendendo cronograma; quem passa pelos seis primeiros está vendendo transformação, que é o que o dono compra. O exemplo usa o Podium Experience porque é o evento que roda hoje, mas a estrutura não muda: troque o nome e o conteúdo do passo 7 e o script serve para qualquer evento. Não leia isso no telefone. Leia aqui até entender por que cada passo existe, e depois fale com as suas palavras. Quiz ao fim, 4 acertos em 5.",
+    subSteps: [
+      {
+        order: "01",
+        title: "Rapport e conexão",
+        curto: "Quem é você, por que está ligando, e uma pergunta sobre a vida dele.",
+        why: "São os primeiros trinta segundos e eles decidem o resto. Você diz quem é, de onde fala e por que está ligando — e puxa alguma coisa que você viu antes: a cidade, o estado, o Instagram da barbearia, a implementação que ele acabou de concluir. É o que separa uma conversa de uma abordagem de telemarketing.",
+        result: "Ele entende que não é robô, não é cobrança, e que você olhou para o caso dele antes de discar.",
+        falas: [
+          "Abertura :: “Olá, Fulano, tudo bem? Aqui é [seu nome], da equipe do Lincohn Agner. Como você está, muita correria na barbearia hoje?”",
+          "O motivo, em uma frase :: “Estou te ligando porque você desbloqueou uma experiência dentro do nosso ecossistema, e eu queria entender um pouco do teu momento para te mostrar como isso pode acelerar os teus resultados.”",
+          "A conexão :: “Vi aqui que você é de Minas. Me diz uma coisa: o pão de queijo daí é tudo isso mesmo ou é marketing?”"
+        ],
+        nota: "Depois da pergunta de conexão, pare de falar e espere. O silêncio faz parte do passo."
+      },
+      {
+        order: "02",
+        title: "Parabenização",
+        curto: "Ele concluiu a implementação. Reconheça isso antes de qualquer oferta.",
+        why: "Concluir a implementação do sistema é um marco, e quase ninguém reconhece marco nenhum para o dono de barbearia. Reconhecer custa dez segundos e coloca você do lado dele — não na frente, vendendo.",
+        result: "A ligação deixa de ser sobre o que você quer e passa a ser sobre o que ele acabou de fazer.",
+        falas: [
+          "Fala :: “Antes de qualquer coisa, quero te parabenizar. Vi aqui que você acabou de concluir a sua implementação, e isso é um marco importante para a gente. Significa que você deu um passo para profissionalizar ainda mais a sua barbearia.”"
+        ]
+      },
+      {
+        order: "03",
+        title: "Entender o momento",
+        curto: "Uma pergunta aberta. E então você cala a boca.",
+        why: "Aqui você descobre o que vai vender nos passos 5 e 6. Se você não escutar neste passo, o resto da ligação vira chute — e o dono percebe quando está ouvindo discurso pronto.",
+        result: "Você sai deste passo com o objetivo dele dito com as palavras dele.",
+        falas: [
+          "Opção 1 :: “Me fala uma coisa: como está sendo esse início para você?”",
+          "Opção 2 :: “O que você está buscando hoje para a sua barbearia?”",
+          "Opção 3 :: “Qual é o principal objetivo que você quer alcançar nos próximos meses?”"
+        ],
+        nota: "Escute. Não interrompa, não complete a frase dele e não emende a próxima pergunta em cima da resposta."
+      },
+      {
+        order: "04",
+        title: "Cavar o sonho e a necessidade",
+        curto: "A primeira resposta é rasa. A segunda pergunta traz o problema de verdade.",
+        why: "Quase todo dono responde “quero vender mais”. Isso não é dor, é desejo genérico, e não dá para vender nada em cima disso. A pergunta seguinte é a que faz ele contar o que realmente está travando.",
+        result: "Você troca “quero vender mais” por um problema concreto: equipe, agenda vazia, preço, cliente que some.",
+        falas: [
+          "Depois do “quero vender mais” :: “Que legal. E hoje, o que você acredita que está impedindo isso de acontecer mais rápido?”",
+          "Alternativa :: “Se você pudesse melhorar uma única coisa na barbearia hoje, qual seria?”"
+        ]
+      },
+      {
+        order: "05",
+        title: "A pergunta de visão",
+        curto: "Faça ele imaginar a solução antes de você citar o evento.",
+        why: "É o passo que a gestão mais cobra, e o mais pulado. Você ainda não fala do evento: você faz ele imaginar o que resolveria aquilo — gente que já passou por isso. Quando ele responde que sim, foi ele quem abriu a porta, não você.",
+        result: "O evento, no passo seguinte, entra como resposta a uma frase que ele mesmo disse.",
+        falas: [
+          "Opção 1 :: “Fulano, como seria para você ter acesso a empresários que já resolveram exatamente esse problema?”",
+          "Opção 2 :: “Como seria aprender direto com quem já chegou no resultado que você está buscando?”",
+          "Opção 3 :: “Você acredita que isso te ajudaria a acelerar os teus resultados?”"
+        ]
+      },
+      {
+        order: "06",
+        title: "Venda o desejo, não o evento",
+        curto: "Resultado e transformação. Ainda sem data, sem local, sem programação.",
+        why: "Repare no que não tem aqui: data, cidade, grade, almoço, valor. Tem o que ele vai sair levando. Vender palestra e cronograma é o erro mais comum da equipe — e é o que transforma a ligação em leitura de folheto.",
+        result: "Ele passa a querer a coisa antes de saber o preço dela.",
+        falas: [
+          "Ligando ao que ele disse :: “É exatamente isso que você vai encontrar no Experience.”",
+          "A prova :: “Você vai aprender direto com empresários que passaram por esse mesmo objetivo e hoje faturam muito mais — e eles contam as estratégias que usaram e o que realmente fez diferença no crescimento.”",
+          "O que ele leva :: “Você sai de lá com estratégia prática para aplicar na sua barbearia.”"
+        ]
+      },
+      {
+        order: "07",
+        title: "Apresentação do evento",
+        curto: "Nome, formato e cidade. Curto.",
+        why: "Só aqui o evento ganha nome e forma. Curto de propósito: quem explica tudo mata a curiosidade e não sobra motivo para ele continuar na linha. Objetivo é dar contorno, não dar aula.",
+        result: "Ele sabe o que é, onde é e para quem é — em três frases.",
+        falas: [
+          "Fala :: “Por isso estou te ligando. Você desbloqueou o acesso ao Podium Experience: um evento presencial, aqui em Curitiba, feito para empresário de barbearia acelerar resultado, trocar experiência e aprender estratégia que funciona de verdade.”"
+        ],
+        nota: "A grade muda a cada edição — confirme antes de citar nome de palestrante. Na edição atual: Will Vences em gestão e liderança, Daniel Messias em marketing, um consultor financeiro nos números do negócio, o Lincohn na mentoria, e mentores da Podium que saíram de menos de 100 assinantes para mais de 500 ativos."
+      },
+      {
+        order: "08",
+        title: "Escassez — a verdadeira",
+        curto: "Turma limitada é fato. Urgência inventada é dívida.",
+        why: "Turma limitada, edição com participação dos mentores, vagas que estão acabando: tudo isso é escassez legítima quando é verdade. O problema é usar o número errado. O dono confere, conversa com outro dono, e o que você ganhou numa ligação a marca perde em dez.",
+        result: "A urgência fica na ligação sem que você precise inventar nada.",
+        falas: [
+          "Fala :: “Essa edição está muito especial: tem participação dos mentores e a turma é limitada. Inclusive, já estamos nas últimas vagas para as próximas turmas.”"
+        ],
+        nota: "Confira o número real de vagas antes de citar. Isso é a mesma regra da aula As regras que não se quebram — escassez inventada é a que mais queima a marca."
+      },
+      {
+        order: "09",
+        title: "Fechamento",
+        curto: "Uma pergunta e silêncio.",
+        why: "A pergunta não é “você quer participar?”, que se responde com sim ou não. É “como seria para você participar?”, que faz ele se descrever lá dentro. Depois da pergunta, espere — quem fala primeiro depois do fechamento normalmente perde a venda.",
+        result: "Ele responde com a própria imagem dele no evento, e aí você fala das turmas.",
+        falas: [
+          "Fechamento :: “Como seria para você participar dessa turma?”",
+          "Se demonstrar interesse :: “Perfeito. Deixa eu te falar das turmas.”"
+        ]
+      }
+    ],
+    quiz: {
+      minimo: 4,
+      perguntas: [
+        {
+          q: "Por que a apresentação do evento é o passo 7, e não o primeiro?",
+          ops: [
+            "Por educação: fala-se do cliente antes de falar da empresa.",
+            "Porque antes disso você ainda não sabe o que ele quer — e sem isso o evento vira cronograma, não solução para o problema dele.",
+            "Porque o script é longo e o evento precisa de tempo para ser explicado.",
+            "Porque o sistema só libera a informação do evento depois da qualificação."
+          ],
+          certa: 1,
+          porque: "Os seis primeiros passos existem para você ter o que ligar ao evento. Apresentar antes é apresentar para ninguém."
+        },
+        {
+          q: "O dono responde: “ah, eu quero vender mais”. Qual é a sua próxima fala?",
+          ops: [
+            "“Perfeito, é exatamente para isso que existe o Experience.”",
+            "“Que legal. E hoje, o que você acredita que está impedindo isso de acontecer mais rápido?”",
+            "“Quanto você fatura hoje?”",
+            "“Então deixa eu te explicar como funciona o evento.”"
+          ],
+          certa: 1,
+          porque: "“Quero vender mais” é desejo genérico. A segunda pergunta é a que traz o problema real — e é dele que você vai falar nos passos 5 e 6."
+        },
+        {
+          q: "Qual é o objetivo da pergunta de visão, no passo 5?",
+          ops: [
+            "Apresentar os palestrantes do evento.",
+            "Descobrir se ele tem dinheiro para pagar.",
+            "Fazer ele imaginar a solução — estar perto de quem já resolveu aquilo — antes de você citar o evento, para que o evento entre como resposta à fala dele.",
+            "Confirmar a cidade dele para calcular a viagem."
+          ],
+          certa: 2,
+          porque: "Quando ele responde que sim, foi ele quem abriu a porta. O evento deixa de ser oferta e vira consequência."
+        },
+        {
+          q: "A turma ainda tem 40 vagas abertas. O que você diz?",
+          ops: [
+            "“Estamos nas últimas vagas” — escassez é técnica de venda e todo mundo usa.",
+            "Não cita vaga nenhuma e fala só da participação dos mentores e do limite da turma, que são verdade.",
+            "“Só restam 3 vagas”, para acelerar a decisão, e depois se resolve.",
+            "Pergunta ao gestor se pode exagerar um pouco nessa edição."
+          ],
+          certa: 1,
+          porque: "Turma limitada e edição com mentores são fatos e bastam. Número inventado o dono confere com outro dono — e a conta chega para a marca, não para a ligação."
+        },
+        {
+          q: "No fechamento, qual pergunta funciona melhor?",
+          ops: [
+            "“Você quer participar?”",
+            "“Posso te mandar o link do pagamento?”",
+            "“Como seria para você participar dessa turma?”",
+            "“Você tem interesse ou não?”"
+          ],
+          certa: 2,
+          porque: "“Você quer?” se responde com não. “Como seria?” faz ele se descrever dentro do evento — e é aí que você descobre o que ainda falta resolver."
+        }
+      ]
+    }
+  },
+  {
+    name: "Postura ao telefone — os dez ajustes",
+    tipo: "Leitura", dur: "10 pontos",
+    tag: "read", tagTxt: "ler",
+    desc: "Esta lista não é teoria. É o que a gestão aponta, uma a uma, ouvindo as ligações da equipe — e são sempre os mesmos dez. Repare que nenhum deles é falta de conhecimento sobre o evento: são todos de postura. Leia antes da sua primeira semana de ligação, e releia depois dela, que aí faz muito mais sentido.",
+    subSteps: [
+      {
+        order: "01",
+        title: "Pare de ler o script",
+        curto: "Conheça a estrutura e fale com as suas palavras.",
+        why: "Script lido se escuta do outro lado — o ritmo é errado, as pausas são erradas e o dono entende na hora que é uma lista. A estrutura dos nove passos é para ser sabida, não recitada.",
+        result: "Soa como conversa e não como roteiro."
+      },
+      {
+        order: "02",
+        title: "Carisma e energia",
+        curto: "Sorriso na voz.",
+        why: "Quem atende está no meio da correria da barbearia. A sua energia decide se ele continua na linha ou se desliga educadamente.",
+        result: "Ele tem vontade de continuar a conversa."
+      },
+      {
+        order: "03",
+        title: "Confiança",
+        curto: "Firmeza. Você está oferecendo algo bom.",
+        why: "Insegurança na voz vira dúvida sobre o evento. Se você hesita ao falar do que ele vai encontrar lá, ele hesita em ir.",
+        result: "A oferta soa como convite, não como pedido."
+      },
+      {
+        order: "04",
+        title: "Conexão antes da venda",
+        curto: "Converse primeiro. Rapport antes de oferta.",
+        why: "É o passo 1 do script, e é o mais pulado quando a meta aperta. Sem ele, todo o resto soa como abordagem fria.",
+        result: "Ele conta o que está vivendo — que é de onde sai a venda."
+      },
+      {
+        order: "05",
+        title: "Perguntas melhores",
+        curto: "Objetivo, sonho e desafio. Não “tudo bem?” e pronto.",
+        why: "A qualidade da ligação é a qualidade das perguntas. Pergunta fechada devolve monossílabo e deixa você sem nada para trabalhar.",
+        result: "Você sai da ligação sabendo o que ele quer e o que o trava."
+      },
+      {
+        order: "06",
+        title: "Ouvir mais e falar menos",
+        curto: "Deixe o cliente participar.",
+        why: "Quem fala mais acha que está conduzindo e está só preenchendo silêncio. A informação que fecha a vaga está na fala dele.",
+        result: "Ele fala a maior parte da ligação — e é assim que deve ser."
+      },
+      {
+        order: "07",
+        title: "Não explique tudo do evento",
+        curto: "Crie curiosidade. Seja objetiva.",
+        why: "Explicar a programação inteira entrega tudo e não sobra motivo para ele querer saber mais. Curiosidade é o que mantém a conversa viva até o fechamento.",
+        result: "Ele faz perguntas, em vez de ouvir calado."
+      },
+      {
+        order: "08",
+        title: "Venda transformação",
+        curto: "Não venda palestra, almoço nem cronograma.",
+        why: "Ninguém viaja para outro estado por causa de uma programação. Viaja por causa do que espera ser depois. Resultado e crescimento é o que se vende.",
+        result: "O evento aparece como meio, e o resultado dele como fim."
+      },
+      {
+        order: "09",
+        title: "Use a escassez — a verdadeira",
+        curto: "Turma limitada, edição especial, vaga que acaba.",
+        why: "Sem urgência o dono adia, e adiar é a forma mais comum de não ir. A escassez tem que ser real, e aí ela trabalha sozinha.",
+        result: "A decisão acontece na ligação, e não “semana que vem”."
+      },
+      {
+        order: "10",
+        title: "Postura de vendedor",
+        curto: "Entusiasmo e convicção: “cara, isso é pra você”.",
+        why: "Convicção se transmite. Quem acredita no que está oferecendo convida; quem não acredita pede desculpa por estar ligando.",
+        result: "Ele sente que você está do lado dele, recomendando — não empurrando."
+      }
+    ]
+  },
+  {
     name: "As regras que não se quebram",
     tipo: "Método", dur: "quiz",
     tag: "must", tagTxt: "obrigatório",
@@ -3367,6 +3617,156 @@ const STEPS_EVENTOS = [
         ]
       }
     ]
+  },
+  {
+    name: "Quando ele não atende — áudio e WhatsApp",
+    tipo: "Prática", dur: "2 modelos",
+    tag: "do", tagTxt: "praticar",
+    desc: "Boa parte dos donos não atende número desconhecido no meio do expediente. Isso não é recusa: é barbearia cheia. O áudio e a mensagem abaixo fazem o mesmo trabalho dos passos 1, 2 e 3 do script — apresentar, parabenizar e perguntar — e terminam sempre com uma pergunta, nunca com a oferta. Quem manda o evento inteiro por escrito transforma a ligação seguinte em “já li, obrigado”.",
+    subSteps: [
+      {
+        order: "01",
+        title: "O áudio",
+        curto: "Apresentar, parabenizar, dar o contorno do evento e devolver com uma pergunta.",
+        why: "Áudio é mais pessoal que texto e ele escuta enquanto trabalha. Mantenha curto e termine perguntando: o objetivo não é informar, é fazer ele responder.",
+        result: "Ele responde dizendo o que quer para a barbearia — e você volta no passo 4 do script.",
+        falas: [
+          "Modelo :: “Fala, Fulano, tudo bem? Aqui é [seu nome], da equipe do Lincohn Agner. Estou passando para te parabenizar, porque vi que você concluiu a sua implementação há pouco tempo, e isso é um passo importante para o crescimento da barbearia. E foi justamente por isso que você desbloqueou o acesso ao Podium Experience, que é um evento presencial aqui em Curitiba, para empresário de barbearia acelerar resultado e aprender estratégia que funciona. Mas antes de te explicar melhor, queria entender o teu momento: hoje, qual é o principal objetivo que você quer alcançar nos próximos meses? Me responde por aqui que eu te ajudo a ver qual turma faz mais sentido para você.”"
+        ],
+        nota: "Grave de novo se estiver acelerada. Áudio apressado soa como recado automático."
+      },
+      {
+        order: "02",
+        title: "A mensagem escrita",
+        curto: "A mesma coisa, mais curta, terminando em pergunta.",
+        why: "Serve para quem não ouve áudio. Vale a mesma regra: parabenizar, dizer em uma frase o que é o evento e devolver a conversa com uma pergunta aberta.",
+        result: "A conversa abre no WhatsApp e continua por lá, ou vira uma ligação com hora marcada.",
+        falas: [
+          "Modelo :: “Fala, Fulano, tudo bem? Aqui é [seu nome], da equipe do Lincohn. Primeiro, parabéns por ter concluído a implementação — é um passo importante para o crescimento da barbearia. E por isso você desbloqueou o acesso ao Podium Experience, uma imersão presencial de dois dias aqui em Curitiba, feita para dono de barbearia acelerar resultado e se conectar com empresários que já chegaram lá. Mas antes de te explicar melhor, queria entender o teu momento: hoje, qual é o principal objetivo que você quer alcançar na tua barbearia nos próximos meses? Pergunto porque quero te indicar a turma que combina com o teu momento.”"
+        ]
+      },
+      {
+        order: "03",
+        title: "O que não fazer por mensagem",
+        curto: "Programação, valor e link antes de ele responder.",
+        why: "Mandar grade, preço e link de uma vez parece agilidade e é o contrário: ele lê, não responde, e você perde o único momento em que daria para entender o que ele quer. Preço e programação entram depois de ele falar do negócio dele.",
+        result: "A conversa continua aberta em vez de morrer num “vou ver e te falo”.",
+        nota: "Escreva o nome certo: Lincohn Agner. Nome do dono escrito errado na primeira mensagem é a pior primeira impressão possível."
+      }
+    ]
+  },
+  {
+    name: "Follow-up — a pergunta certa para cada situação",
+    tipo: "Prática", dur: "8 situações",
+    tag: "do", tagTxt: "praticar",
+    desc: "Quase nenhuma vaga se fecha na primeira ligação, e o follow-up mal feito é o que mais queima lead: “e aí, pensou?” repetido três vezes vira cobrança e o dono some de vez. Abaixo, oito situações e o que perguntar em cada uma. Escolha uma pergunta por contato, nunca a lista inteira, e mude de pergunta a cada vez — repetir a mesma frase é o que denuncia que é régua automática.",
+    subSteps: [
+      {
+        order: "01",
+        title: "Ele sumiu depois que você apresentou o evento",
+        curto: "Dê a saída pela correria, não pela desculpa.",
+        why: "Oferecer “foi só a correria?” dá a ele uma saída digna, e quase sempre era isso mesmo. Perguntar “por que você não respondeu?” só gera silêncio.",
+        result: "Ele volta a responder sem precisar se justificar.",
+        falas: [
+          "Opção :: “Oi, Fulano. Passando para saber se ficou alguma dúvida sobre o Podium Experience, ou se foi só a correria do dia a dia.”",
+          "Opção :: “Me conta uma coisa: você chegou a pensar na nossa conversa, ou a correria tomou conta?”",
+          "Opção :: “O que você achou do Experience depois que a gente conversou?”",
+          "Opção :: “Quando você viu todas as informações, o que mais chamou a sua atenção?”"
+        ]
+      },
+      {
+        order: "02",
+        title: "Reabrir a conversa sem parecer cobrança",
+        curto: "Fale da vida dele, não da decisão.",
+        why: "Quando já houve dois contatos sobre o evento, o terceiro sobre o evento vira cobrança. Mude de assunto para o negócio dele e a conversa reabre sozinha.",
+        result: "A porta volta a abrir e você recomeça pelo que ele está vivendo.",
+        falas: [
+          "Opção :: “Oi, tudo bem? Passei só para saber como você está.”",
+          "Opção :: “Como está a correria na barbearia essa semana?”",
+          "Opção :: “Conseguiu dar uma olhada com mais calma nas datas?”",
+          "Opção :: “Lembrei de você essa semana e resolvi passar aqui. Como estão as coisas?”"
+        ]
+      },
+      {
+        order: "03",
+        title: "Você ainda não sabe o objetivo dele",
+        curto: "Volte para o passo 3 do script. Sem isso não há venda.",
+        why: "Se a primeira conversa não trouxe o objetivo da barbearia, o follow-up não tem em que se apoiar. Essas perguntas servem para recuperar o que faltou.",
+        result: "Você finalmente tem o problema concreto para ligar ao evento.",
+        falas: [
+          "Opção :: “Hoje, o que mais tiraria um peso das suas costas na gestão da barbearia?”",
+          "Opção :: “Se você pudesse resolver um único problema da barbearia ainda este mês, qual seria?”",
+          "Opção :: “Você sente que o maior desafio hoje é trazer mais cliente ou organizar melhor o negócio?”",
+          "Opção :: “O que você acredita que está impedindo a sua barbearia de crescer mais rápido?”",
+          "Opção :: “Quando você pensa no futuro da barbearia, onde queria estar daqui a um ano?”",
+          "Opção :: “O que te motivou a investir no sistema? Quero entender a tua expectativa.”"
+        ]
+      },
+      {
+        order: "04",
+        title: "Ele já contou o objetivo — faça ele enxergar o valor",
+        curto: "Ligue o evento à frase que ele disse.",
+        why: "Com o objetivo na mão, a pergunta deixa de ser sobre o evento e passa a ser sobre o encaixe: isso ajuda no momento que você está vivendo?",
+        result: "É ele quem conclui que faz sentido, e não você quem afirma.",
+        falas: [
+          "Opção :: “Você acredita que essa experiência pode ajudar no momento que a sua barbearia está vivendo?”",
+          "Opção :: “Se eu pudesse te mostrar uma forma de acelerar esse crescimento, faria sentido para você?”",
+          "Opção :: “O que você espera encontrar em um evento como esse?”",
+          "Opção :: “A tua prioridade hoje continua sendo fazer a barbearia crescer?”"
+        ]
+      },
+      {
+        order: "05",
+        title: "Ele já sabe tudo e parou na decisão",
+        curto: "Ofereça as duas saídas: agora ou a próxima turma.",
+        why: "Quem já sabe valor, data e local e não responde está travado na decisão, não na informação. Mandar mais informação piora. Oferecer a próxima turma tira o peso e costuma destravar — às vezes para a turma de agora mesmo.",
+        result: "Você sai do limbo com uma resposta, mesmo que seja “na próxima”.",
+        falas: [
+          "Opção :: “O que faria mais sentido para você agora: participar dessa turma ou se programar para a próxima?”",
+          "Opção :: “Você conseguiu pensar em qual das turmas encaixa melhor na sua agenda?”",
+          "Opção :: “O Experience ainda faz sentido para o momento da sua barbearia?”",
+          "Opção :: “Você ainda está analisando, ou acabou deixando essa decisão para depois?”"
+        ]
+      },
+      {
+        order: "06",
+        title: "Você sente que tem uma trava e ele não disse qual",
+        curto: "Pergunte pela trava, não pela decisão.",
+        why: "Objeção não dita não se resolve. Enquanto você insiste no evento, o problema real pode ser a viagem, o sócio, a data ou o dinheiro — e nenhum argumento sobre o evento toca nisso.",
+        result: "A objeção aparece, e aí dá para trabalhar com a aula de objeções.",
+        falas: [
+          "Opção :: “O que está pesando mais hoje na sua decisão?”",
+          "Opção :: “O que está te impedindo de confirmar?”",
+          "Opção :: “Você chegou a conversar com alguém sobre a viagem, ou ainda não deu para se organizar?”",
+          "Opção :: “O que faria você ter certeza de que essa é a decisão certa?”",
+          "Opção :: “Me ajuda a entender: a tua prioridade mudou, ou foi só a correria que atrasou isso?”"
+        ]
+      },
+      {
+        order: "07",
+        title: "Ele demonstra interesse mas não decide",
+        curto: "Peça um compromisso pequeno, não o sim grande.",
+        why: "Entre “quero ir” e “paguei” existe um vão, e é nele que a vaga se perde. Pedir que ele escolha a turma é um compromisso menor que o sim — e quem escolhe turma já está indo.",
+        result: "Sai uma decisão concreta: turma, data ou um “pode contar comigo”.",
+        falas: [
+          "Opção :: “Qual das turmas faria mais sentido para você?”",
+          "Opção :: “Você prefere participar agora ou se programar para a próxima?”",
+          "Opção :: “Você acredita que participar agora acelera os teus resultados, ou prefere esperar mais um pouco?”",
+          "Opção :: “Ainda posso contar com você nessa edição?”"
+        ]
+      },
+      {
+        order: "08",
+        title: "O último contato",
+        curto: "Avise que é o último, e deixe a porta aberta.",
+        why: "Ficar insistindo depois de quatro ou cinco tentativas não traz a vaga e estraga o lead para a próxima edição. Dizer que é a última vez é honesto, respeita o tempo dele e muitas vezes é o que traz a resposta.",
+        result: "Ou ele decide agora, ou você fecha o ciclo sem deixar sensação ruim — e pode voltar na próxima edição.",
+        falas: [
+          "Modelo :: “Oi, Fulano. É a última vez que te chamo aqui, sei que você é ocupado. Só queria que você soubesse que as vagas do Podium Experience estão quase fechando: a turma é limitada e já está enchendo. Se quiser saber mais antes de fechar, é agora. Se não for o momento, tudo bem também.”"
+        ],
+        nota: "Confira a data e o número de vagas da edição antes de mandar. Mensagem de última chamada com informação velha é pior do que não mandar."
+      }
+    ]
   }
 ];
 
@@ -3377,8 +3777,10 @@ const GROUPS_EVENTOS = [
     intro: "O tema do evento muda toda hora; o dono do outro lado da linha é sempre o mesmo. Aqui está o retrato dele — as travas e as palavras que ele usa — e as cinco perguntas que fazem a conversa começar pelo negócio dele." },
   { label: "Os três tipos de evento", indices: [4],
     intro: "Regional, Summit e Certificação. É o tipo, não o tema, que define como você abre a ligação, que prova usa e de onde vem a urgência. Esta é a checagem antes de discar em qualquer evento novo." },
-  { label: "A ligação de evento", indices: [5, 6, 7],
-    intro: "O que fazer antes de discar, as seis regras que valem em qualquer evento e as objeções que aparecem sempre. A aula das regras é a mais importante da trilha: é o que separa vender a vaga de queimar a marca." }
+  { label: "A ligação de evento", indices: [5, 6, 7, 8, 9],
+    intro: "O coração da trilha. O que fazer antes de discar, o script oficial em nove passos, os dez ajustes de postura que a gestão mais cobra, as seis regras que valem em qualquer evento e as objeções que aparecem sempre. A aula das regras é a mais importante: é o que separa vender a vaga de queimar a marca." },
+  { label: "Depois da ligação", indices: [10, 11],
+    intro: "Quase nenhuma vaga se fecha na primeira tentativa. Aqui estão o áudio e a mensagem para quem não atende, e a pergunta certa para cada situação de follow-up — porque “e aí, pensou?” repetido três vezes não traz vaga nenhuma." }
 ];
 
 const TRILHAS = {
@@ -3394,7 +3796,7 @@ const TEXTOS = {
   },
   eventos: {
     eyebrow: "Comercial · Eventos",
-    sub: "8 aulas em 4 módulos. Não ensina um evento: ensina o que não muda de um evento para o outro — o modelo de assinatura e a essência da Podium, quem é o dono de barbearia, os três tipos de evento e a ligação. A ficha de cada evento entra depois, como página de consulta."
+    sub: "12 aulas em 5 módulos. Não ensina um evento: ensina o que não muda de um evento para o outro — o modelo de assinatura e a essência da Podium, quem é o dono de barbearia, os três tipos de evento, o script oficial da ligação e o follow-up. A ficha de cada evento entra depois, como página de consulta."
   },
   farmer: {
     eyebrow: "Revenue · Farmer",
