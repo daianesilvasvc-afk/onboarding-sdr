@@ -2709,10 +2709,35 @@ const STEPS_FARMER = [
     ]
   },
   {
-    name: "Assistir calls — como apresentamos",
-    tipo: "Prática",
-    tag: "watch", tagTxt: "assistir",
-    desc: "Depois de todas as aulas, assista às calls para ver como a Podium apresenta na prática. É a ponte entre o que você estudou e o que você vai fazer: observe a condução, não decore frases. Peça ao gestor as calls de referência — ele indica quais assistir.",
+    name: "Calls completas — como apresentamos",
+    tipo: "Call", dur: "5 calls",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Depois de todas as aulas, veja como a Podium conduz a call na prática. Assista às cinco do início ao fim, uma de cada vez. É a ponte entre o que você estudou e o que você vai fazer: observe a condução, não decore frases. Anote as dúvidas e leve para a liderança.",
+    rotuloParte: "Call",
+    passoPartes: "Assista às cinco calls completas, uma de cada vez",
+    videos: [
+      { kind: "drive", id: "1qm7iqsCs3U7ZyEPImvmkQbJBANPvgHCp", thumb: "img/calls-reais.jpg", titulo: "Call de 30/10/2026", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1EDcfW6XSuw5Az2tqyFw_dVR8_N_mWLXe", thumb: "img/calls-reais.jpg", titulo: "Call de 09/11/2026, 15h27", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1fF58TC4H67E1BYd6f2LkB8HtzOUMJHl5", thumb: "img/calls-reais.jpg", titulo: "Call de 09/11/2026, 17h15", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1wK93oeIjx7eBsnJDSpezGHemR2zvtm-N", thumb: "img/calls-reais.jpg", titulo: "Call de 10/11/2026, 09h13", nota: "Assista à call inteira." },
+      { kind: "drive", id: "1uak5iQliJ-BXV2-kOzR_rCEApJdh_Kui", thumb: "img/calls-reais.jpg", titulo: "Call de 10/11/2026, 10h30", nota: "Assista à call inteira." }
+    ],
+    links: []
+  },
+  {
+    name: "Calls — NPQE e fechamento",
+    tipo: "Call", dur: "5 calls, em trechos",
+    tag: "must", tagTxt: "obrigatório",
+    desc: "Nestas cinco calls você não assiste tudo: só dois trechos de cada uma. Primeiro o NPQE, do começo da call até o início da apresentação dos slides. Depois pule para o final e assista ao fechamento. Compare as cinco: o que se repete na investigação e como cada uma chega ao fechamento.",
+    rotuloParte: "Call",
+    passoPartes: "Em cada call: assista ao NPQE (até começarem os slides) e ao fechamento no final",
+    videos: [
+      { kind: "drive", id: "1HDXZEuNMNcbdJaSqvfGnarQ4B-L6Lfsd", thumb: "img/calls-reais.jpg", titulo: "Call de 20/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1IWi4c0YgfRwnwlkAwVHEgikUStWvTIH5", thumb: "img/calls-reais.jpg", titulo: "Call de 22/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1sNmxO5zukO0j2k_3Nhzp7s9_OJTIOd60", thumb: "img/calls-reais.jpg", titulo: "Call de 27/01/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1uZrdpo6uCDqJPIe92fzBScV0GeflMI_A", thumb: "img/calls-reais.jpg", titulo: "Call de 16/04/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." },
+      { kind: "drive", id: "1F3ySKRjn2ATeLJwhWUo_hf1zAIGAnaS8", thumb: "img/calls-reais.jpg", titulo: "Call de 22/05/2025", nota: "Assista só ao NPQE (do início até começar a apresentação dos slides) e ao fechamento, no final da call." }
+    ],
     links: []
   }
 ];
@@ -2739,7 +2764,7 @@ const GROUPS_COMERCIAL = [
 const GROUPS_FARMER = [
   { label: "Contexto do produto", indices: [0, 1] },
   { label: "Aulas no CashBarber", indices: [2, 3, 4, 5, 6, 7] },
-  { label: "Prática", indices: [8] }
+  { label: "Prática", indices: [8, 9] }
 ];
 
 // ===== TRILHA DE EVENTOS =====
@@ -3865,7 +3890,7 @@ const TEXTOS = {
   },
   farmer: {
     eyebrow: "Revenue · Farmer",
-    sub: "9 aulas em 3 módulos: entender assinatura, dominar o CashBarber e ver como a Podium apresenta. Cada aula libera a próxima."
+    sub: "10 aulas em 3 módulos: entender assinatura, dominar o CashBarber e ver como a Podium apresenta. Cada aula libera a próxima."
   }
 };
 
