@@ -9,7 +9,7 @@
 // O POST chega por sendBeacon quando a aba fecha, e sendBeacon nao faz
 // preflight: por isso o corpo vem como text/plain e o JSON.parse e nosso.
 
-const ORIGENS = ["https://daianesilvasvc-afk.github.io"];
+const ORIGENS = ["https://podium-educacao-salesops.github.io", "https://daianesilvasvc-afk.github.io"];
 const MAX_BYTES = 256 * 1024;
 const MAX_EVENTOS = 200;
 const MAX_LISTA = 3000;

@@ -5,29 +5,45 @@ executivo faz sai do navegador dele — o painel `?gestao` abre vazio.
 
 - Worker: `onboarding-api`
 - Banco: D1 `onboarding_trilha_db`
-- Conta Cloudflare: **daiane.podiumeducacao@gmail.com** (subdomínio `podium-playbook`,
+- Conta Cloudflare: **podium-playbook** (subdomínio `podium-playbook`,
   a mesma do Playbook de Vendas — não é a conta do Simulador SDR)
 - Endereço que a página chama: `https://onboarding-api.podium-playbook.workers.dev`
 
-## Publicar pela primeira vez
+> Atualizado em 25/11/2026. Visão geral, conta e pendências da passagem estão no
+> `README.md` da raiz do repositório, seção "Worker `onboarding-api`".
+
+## Publicar uma alteração
+
+O Worker e o banco já existem (o `database_id` está no `wrangler.toml`). Para
+publicar mudança no código:
 
 ```bash
 cd api
 npx wrangler login                      # abre o navegador; entre na conta daiane.podiumeducacao
-npx wrangler d1 create onboarding_trilha_db
+npx wrangler deploy
 ```
 
-O comando acima imprime um `database_id`. Cole no `wrangler.toml`, no lugar de
-`PREENCHER_APOS_d1_create`. Depois:
+Push no GitHub não publica o Worker. Depois do deploy, faça commit e push do
+mesmo código.
+
+## Recriar em outra conta Cloudflare
+
+Necessário se o Worker sair da conta `podium-playbook`:
 
 ```bash
-npx wrangler d1 execute onboarding_trilha_db --remote --file=schema.sql
+cd api
+npx wrangler d1 export onboarding_trilha_db --remote --output=dump.sql   # na conta antiga
+npx wrangler login                                                       # na conta nova
+npx wrangler d1 create onboarding_trilha_db                              # imprime um database_id
+# colar o database_id novo no wrangler.toml
+npx wrangler d1 execute onboarding_trilha_db --remote --file=dump.sql
 npx wrangler deploy
 ```
 
 O `deploy` imprime a URL. Se ela não for exatamente
 `https://onboarding-api.podium-playbook.workers.dev`, troque a constante
-`API_PADRAO` no `index.html` e publique a página de novo.
+`API_PADRAO` no `index.html` e publique a página de novo. Não versionar o `dump.sql`
+(tem nomes das pessoas).
 
 ## Liberar progresso de quem trocou de navegador
 
@@ -36,7 +52,7 @@ ou de navegador comeca do zero, e nao existe jeito de a gestao escrever no
 navegador de outra pessoa. A saida e mandar um link de uso unico:
 
 ```
-https://daianesilvasvc-afk.github.io/onboarding-sdr/?liberar=12
+https://podium-educacao-salesops.github.io/onboarding-sdr/?liberar=12
 ```
 
 Isso marca as 12 primeiras aulas como feitas **naquele navegador** e abre o
@@ -65,9 +81,8 @@ decisao de gestor, nao estudo, e os dois nao podem se confundir no relatorio.
 | `GET /pessoas` | uma linha por pessoa, com os totais — é o que o painel `?gestao` lê |
 | `GET /pessoas/:id` | o histórico completo daquela pessoa |
 
-Não tem senha, igual ao histórico do Simulador e ao do Playbook: quem tiver o
-endereço lê. O CORS só aceita a origem do GitHub Pages e `localhost`, o que
-impede outro site de gravar, mas não impede alguém de abrir a URL na mão.
+Não tem senha, igual ao histórico do Simulador e ao do Playbook (decisão da
+Daiane). O CORS aceita a origem do GitHub Pages e `localhost`.
 
 ## Enquanto o Worker não estiver no ar
 

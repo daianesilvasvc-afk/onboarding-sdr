@@ -3939,15 +3939,22 @@ if (MODO_GESTAO) {
 // pessoa. O jeito e um link ?liberar=N, que marca as N primeiras aulas como
 // feitas AQUI. Isso nao e conclusao de verdade e o painel nao finge que e:
 // entra como "liberado pela gestao", separado de "concluiu a aula".
+// ?trilha=eventos abre direto na trilha certa, e vale TAMBEM em ?gestao:
+// mandar "o que publiquei" para a gestao so funciona se o link escolher a
+// trilha. Em modo gestao a escolha nao e gravada no navegador de quem abre.
+(function () {
+  const mt = location.search.match(/[?&]trilha=([a-z]+)/);
+  if (!mt || !TRILHAS[mt[1]] || mt[1] === trilhaAtual) return;
+  trilhaAtual = mt[1];
+  if (!MODO_GESTAO) {
+    try { localStorage.setItem("podium-onboarding-trilha", trilhaAtual); } catch (e) {}
+  }
+  carregarProgresso();
+})();
+
 let liberadoAte = 0;
 (function () {
   if (MODO_GESTAO) return;
-  const mt = location.search.match(/[?&]trilha=([a-z]+)/);
-  if (mt && TRILHAS[mt[1]] && mt[1] !== trilhaAtual) {
-    trilhaAtual = mt[1];
-    try { localStorage.setItem("podium-onboarding-trilha", trilhaAtual); } catch (e) {}
-    carregarProgresso();
-  }
   const m = location.search.match(/[?&]liberar=(\d+)/);
   if (!m) return;
   const ate = Math.min(parseInt(m[1], 10), TOTAL);
