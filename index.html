@@ -3875,7 +3875,9 @@ const GROUPS_EVENTOS = [
 
 const TRILHAS = {
   comercial: { label: "Comercial", steps: STEPS_COMERCIAL, groups: GROUPS_COMERCIAL },
-  farmer:    { label: "Farmer",    steps: STEPS_FARMER,    groups: GROUPS_FARMER },
+  // Farmer e trilha livre: o time ja esta em campo e usa isso como consulta,
+  // entao nada tranca. O progresso continua sendo marcado, so nao e porta.
+  farmer:    { label: "Farmer",    steps: STEPS_FARMER,    groups: GROUPS_FARMER, livre: true },
   eventos:   { label: "Eventos",   steps: STEPS_EVENTOS,   groups: GROUPS_EVENTOS }
 };
 
@@ -3890,7 +3892,7 @@ const TEXTOS = {
   },
   farmer: {
     eyebrow: "Revenue · Farmer",
-    sub: "10 aulas em 3 módulos: entender assinatura, dominar o CashBarber e ver como a Podium apresenta. Cada aula libera a próxima."
+    sub: "10 aulas em 3 módulos: entender assinatura, dominar o CashBarber e ver como a Podium apresenta. Todas abertas desde o primeiro dia — a ordem é a recomendada, mas você escolhe por onde começar."
   }
 };
 
@@ -4012,10 +4014,22 @@ function ultimaReal() {
   return TOTAL - 1;
 }
 
+// Trilha livre (ver TRILHAS): nenhuma aula tranca. Nao e o mesmo que
+// ?gestao — aqui o progresso continua sendo gravado normalmente.
+function trilhaDestravada() { return !!(TRILHAS[trilhaAtual] && TRILHAS[trilhaAtual].livre); }
+
+// Rodape da aula: numa trilha livre, "liberar a proxima" seria mentira.
+function textoConcluir() {
+  return trilhaDestravada()
+    ? "Marque como concluída para acompanhar o seu progresso"
+    : "Marque como concluída para liberar a próxima";
+}
+
 function liberado(i) {
   // Pagina de referencia (links): aberta desde o primeiro dia.
   if (ehReferencia(i)) return true;
   if (MODO_GESTAO) return true;
+  if (trilhaDestravada()) return true;
   for (let k = 0; k < i; k++) { if (!ehReferencia(k) && !done[k]) return false; }
   return true;
 }
@@ -4892,7 +4906,7 @@ function destravarRodape() {
   const hdr = document.getElementById("passo-concluir");
   if (hdr) {
     const alvo = hdr.querySelector("span:last-child");
-    if (alvo) alvo.textContent = "Marque como concluída para liberar a próxima";
+    if (alvo) alvo.textContent = textoConcluir();
   }
 }
 
@@ -5330,7 +5344,7 @@ function renderPainel() {
     const hdrFim = painel.lastChild;
     cabecaDePasso(painel, passo, done[i]
       ? "Aula concluída"
-      : (travadoPeloQuiz ? "Passe no quiz para concluir a aula" : "Marque como concluída para liberar a próxima"));
+      : (travadoPeloQuiz ? "Passe no quiz para concluir a aula" : textoConcluir()));
     const hdrConcluir = hdrFim ? hdrFim.nextSibling : null;
     if (hdrConcluir) hdrConcluir.id = "passo-concluir";
     const btn = document.createElement("button");
